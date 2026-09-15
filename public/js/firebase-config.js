@@ -1,6 +1,5 @@
 // Firebase Configuration & Initialization Module for Tienda Nesty
 
-// Placeholder configuration - replace with real project credentials from Firebase Console
 const firebaseConfig = {
   apiKey: "AIzaSy_MOCK_API_KEY_NESTY_STORE_2026",
   authDomain: "tienda-nesty.firebaseapp.com",
@@ -13,15 +12,19 @@ const firebaseConfig = {
 // Global Store State Manager
 class StoreDatabase {
   constructor() {
-    this.useMock = true; // Set to false when real Firebase environment is active
+    this.useMock = true;
     this.initLocalData();
   }
 
   initLocalData() {
-    if (!localStorage.getItem("nesty_products")) {
-      const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
+    const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
+    
+    // Always sync products if new scraped items are present
+    const existingData = localStorage.getItem("nesty_products");
+    if (!existingData || JSON.parse(existingData).length < initialData.length) {
       localStorage.setItem("nesty_products", JSON.stringify(initialData));
     }
+    
     if (!localStorage.getItem("nesty_orders")) {
       localStorage.setItem("nesty_orders", JSON.stringify([]));
     }
@@ -30,10 +33,16 @@ class StoreDatabase {
   async getProducts() {
     try {
       const data = localStorage.getItem("nesty_products");
-      return JSON.parse(data || "[]");
+      const parsed = JSON.parse(data || "[]");
+      const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
+      if (parsed.length < initialData.length) {
+        localStorage.setItem("nesty_products", JSON.stringify(initialData));
+        return initialData;
+      }
+      return parsed;
     } catch (e) {
       console.error("Error reading products:", e);
-      return [];
+      return (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
     }
   }
 
