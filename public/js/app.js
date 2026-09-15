@@ -1,4 +1,4 @@
-// Main Application Logic for Tienda Nesty (Pedidos Directos por WhatsApp sin Carrito ni Buscador)
+// Main Application Logic for Tienda Nesty (Pedidos Directos por WhatsApp - Cards Limpias)
 const WHATSAPP_SELLER_PHONE = "525525000024";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Render Product Grid
+  // Render Product Grid (Sin badges de descuento ni textos de categoría en las cards)
   function renderProducts() {
     const grid = document.getElementById("products-grid");
     const countEl = document.getElementById("products-count-text");
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="col-12 text-center py-5">
           <div class="p-4 bg-white rounded-4 border text-center max-w-md mx-auto">
             <i class="bi bi-box-seam text-muted fs-1 mb-2"></i>
-            <h6 class="fw-bold text-dark">No hay productos en esta categoría</h6>
+            <h6 class="fw-bold text-dark">No hay productos en esta sección</h6>
             <button class="btn btn-sm btn-outline-dark rounded-pill mt-2" id="btn-reset-filters">Ver todos los productos</button>
           </div>
         </div>
@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
       const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
-      const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
 
       return `
@@ -108,11 +107,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="product-card-minimal">
             <div class="product-card-img-container" onclick="window.openOrderModal('${p.id}')">
               <span class="badge-brand-label ${brandBadgeClass}">${deptLabel}</span>
-              ${hasDiscount ? `<span class="badge-discount-pill">-${discountPercent}%</span>` : ''}
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
             </div>
             <div class="product-card-content">
-              <span class="product-code-meta">${p.categoria} • ${p.codigo}</span>
               <h6 class="product-name-minimal" onclick="window.openOrderModal('${p.id}')">${p.nombre}</h6>
               
               <div class="price-row">
