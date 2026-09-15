@@ -29,8 +29,8 @@ function fetchJson(url) {
   });
 }
 
-async function scrapeBelcorpBrand(brandName, baseUrl, maxProducts = 100) {
-  console.log(`\n=== Iniciando Scraper de Belcorp México (${brandName.toUpperCase()}) ===`);
+async function scrapeBelcorpBrand(brandName, baseUrl, maxProducts = 50) {
+  console.log(`\n=== Descargando Catálogo ${brandName.toUpperCase()} Belcorp México ===`);
   
   const productsList = [];
   const pageSize = 49;
@@ -39,13 +39,13 @@ async function scrapeBelcorpBrand(brandName, baseUrl, maxProducts = 100) {
   while (productsList.length < maxProducts) {
     const currentTo = currentFrom + pageSize;
     const url = `${baseUrl}/api/catalog_system/pub/products/search?_from=${currentFrom}&_to=${currentTo}`;
-    console.log(`[${brandName}] Descargando [${currentFrom} - ${currentTo}]...`);
+    console.log(`[${brandName.toUpperCase()}] Lote [${currentFrom} - ${currentTo}]...`);
 
     try {
       const data = await fetchJson(url);
 
       if (!Array.isArray(data) || data.length === 0) {
-        console.log(`[${brandName}] No se encontraron más productos.`);
+        console.log(`[${brandName.toUpperCase()}] No se encontraron más productos.`);
         break;
       }
 
@@ -118,7 +118,7 @@ async function scrapeBelcorpBrand(brandName, baseUrl, maxProducts = 100) {
 
       currentFrom += pageSize + 1;
     } catch (err) {
-      console.error(`[${brandName}] Error procesando lote [${currentFrom}]:`, err.message);
+      console.error(`[${brandName.toUpperCase()}] Error procesando lote [${currentFrom}]:`, err.message);
       break;
     }
   }
@@ -129,13 +129,14 @@ async function scrapeBelcorpBrand(brandName, baseUrl, maxProducts = 100) {
 async function run() {
   const esikaProducts = await scrapeBelcorpBrand('esika', 'https://esika.tiendabelcorp.com.mx', 50);
   const cyzoneProducts = await scrapeBelcorpBrand('cyzone', 'https://cyzone.tiendabelcorp.com.mx', 50);
+  const lbelProducts = await scrapeBelcorpBrand('lbel', 'https://lbel.tiendabelcorp.com.mx', 50);
 
-  const combined = [...esikaProducts, ...cyzoneProducts];
+  const combined = [...esikaProducts, ...cyzoneProducts, ...lbelProducts];
 
   // Save JSON
   const outputPath = path.join(__dirname, 'public', 'belcorp_catalog.json');
   fs.writeFileSync(outputPath, JSON.stringify(combined, null, 2), 'utf-8');
-  console.log(`\n¡Éxito Total! Se guardaron ${combined.length} productos (Ésika + Cyzone) en '${outputPath}'`);
+  console.log(`\n¡Éxito Total! Se guardaron ${combined.length} productos (L'Bel + Ésika + Cyzone) en '${outputPath}'`);
 }
 
 run();

@@ -1,0 +1,2989 @@
+[
+  {
+    "id": "es_591952003",
+    "codigo": "P0591952003",
+    "nombre": "Estuche de anillos x3 New Python",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Joyería",
+    "precio_regular": 750,
+    "precio_oferta": null,
+    "es_oferta": false,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138395/210103576-fotoproductoenfondoblanco.jpg?v=639168574371900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138393/210103576-fotomodelo.jpg?v=639168574369800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138394/210103576-fotosello.jpg?v=639168574370770000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138397/210103576-fotoproductoenfondoblanco.jpg?v=639168574416900000"
+    ],
+    "descripcion": "Estuche de anillos x3 en baño de oro de 24k y pintado a mano",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_210103576",
+        "nombre": "Estuche de anillos x3 New Python",
+        "sku": "P0591952003"
+      },
+      {
+        "id": "v_210103577",
+        "nombre": "Estuche de anillos x3 New Python",
+        "sku": "P0591952003"
+      },
+      {
+        "id": "v_210103578",
+        "nombre": "Estuche de anillos x3 New Python",
+        "sku": "P0591952003"
+      },
+      {
+        "id": "v_210103579",
+        "nombre": "Estuche de anillos x3 New Python",
+        "sku": "P0591952003"
+      }
+    ]
+  },
+  {
+    "id": "es_452050000",
+    "codigo": "452050000",
+    "nombre": "Protector Facial Antimanchas con Color FPS 50 Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 360,
+    "precio_oferta": 342,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253604/200119076-productofb.jpg.jpg?v=639231810489800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253605/200119076-claim-2.jpg.jpg?v=639231810490730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253606/200119076-antesydespues-3.jpg.jpg?v=639231810492000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253607/200119076-beneficios-4.jpg.jpg?v=639231810492930000"
+    ],
+    "descripcion": "Protección solar antimanchas con color para tu piel. Capacidad 50 ml. Tamaño: 12.0x3.50x3.50 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200119076",
+        "nombre": "Protector Facial Antimanchas con Color FPS 50 Triple Acción Max",
+        "sku": "452050000"
+      },
+      {
+        "id": "v_200119077",
+        "nombre": "Protector Facial Antimanchas con Color FPS 50 Triple Acción Max",
+        "sku": "452050000"
+      }
+    ]
+  },
+  {
+    "id": "es_292098000",
+    "codigo": "292098000",
+    "nombre": "Iluminador Líquido Glow PRO",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 310,
+    "precio_oferta": 294,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251960/200120266-producto-1.jpg.jpg?v=639223906984400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251961/200120266-claim-2.jpg.jpg?v=639223906985330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251962/200120266-uso-3.jpg.jpg?v=639223906986430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251963/200120266-linea-4.jpg.jpg?v=639223906987400000"
+    ],
+    "descripcion": "Glow natural con el nuevo iluminador para color e hidratación con vitaminas C + E. Capacidad: 13 g.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200120266",
+        "nombre": "Iluminador Líquido Glow PRO",
+        "sku": "292098000"
+      },
+      {
+        "id": "v_200120267",
+        "nombre": "Iluminador Líquido Glow PRO",
+        "sku": "292098000"
+      },
+      {
+        "id": "v_200120268",
+        "nombre": "Iluminador Líquido Glow PRO",
+        "sku": "292098000"
+      },
+      {
+        "id": "v_200120269",
+        "nombre": "Iluminador Líquido Glow PRO",
+        "sku": "292098000"
+      }
+    ]
+  },
+  {
+    "id": "es_292097004",
+    "codigo": "292097004",
+    "nombre": "Paleta de Sombras para Ojos Eye PRO",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 670,
+    "precio_oferta": 636,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247122/200119608-producto.jpg.jpg?v=639223783180030000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247123/200119608-claim1.jpg.jpg?v=639223783181430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247124/200119608-modelo2.jpg.jpg?v=639223783182700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247125/200119608-benefit3.jpg.jpg?v=639223783183630000"
+    ],
+    "descripcion": "Paleta de sombras de ojos para que reflejes tu estilo con las últimas tendencias del maquillaje de ojos. Capacidad: 8.2 g. Tamaño: 2.40x7.40x7.70 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200119608",
+        "nombre": "Paleta de Sombras para Ojos Eye PRO",
+        "sku": "292097004"
+      },
+      {
+        "id": "v_200119613",
+        "nombre": "Paleta de Sombras para Ojos Eye PRO",
+        "sku": "292097004"
+      },
+      {
+        "id": "v_200119615",
+        "nombre": "Paleta de Sombras para Ojos Eye PRO",
+        "sku": "292097004"
+      },
+      {
+        "id": "v_200119616",
+        "nombre": "Paleta de Sombras para Ojos Eye PRO",
+        "sku": "292097004"
+      },
+      {
+        "id": "v_200119617",
+        "nombre": "Paleta de Sombras para Ojos Eye PRO",
+        "sku": "292097004"
+      },
+      {
+        "id": "v_200119618",
+        "nombre": "Paleta de Sombras para Ojos Eye PRO",
+        "sku": "292097004"
+      }
+    ]
+  },
+  {
+    "id": "es_292095005",
+    "codigo": "P0292095005",
+    "nombre": "Mega Full Size PRO Máscara de Pestañas a Prueba de Agua",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 330,
+    "precio_oferta": 313,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1258874/200119150-producto-1.jpg.jpg?v=639250873148100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1258875/200119150-before-after-2.jpg.jpg?v=639250873149330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1258876/200119150-beneficios-3.jpg.jpg?v=639250873151230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1258877/200119150-claim-4.jpg.jpg?v=639250873152800000"
+    ],
+    "descripcion": "La máscara de pestañas N°1 de ÉSIKA con efecto LARGO INSUPERABLE, a prueba de agua. Capacidad: 8 g. Tamaño: 12.6x2.30x2.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200119150",
+        "nombre": "Mega Full Size PRO Máscara de Pestañas a Prueba de Agua",
+        "sku": "P0292095005"
+      },
+      {
+        "id": "v_200119151",
+        "nombre": "Mega Full Size PRO Máscara de Pestañas a Prueba de Agua",
+        "sku": "P0292095005"
+      },
+      {
+        "id": "v_200119152",
+        "nombre": "Mega Full Size PRO Máscara de Pestañas a Prueba de Agua",
+        "sku": "P0292095005"
+      }
+    ]
+  },
+  {
+    "id": "es_292070008",
+    "codigo": "292070008",
+    "nombre": "Bálsamo con Color Hidrabalm PRO",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 220,
+    "precio_oferta": 209,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251267/200120227-producto.jpg.jpg?v=639223882899730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251268/200120227-claim-2.jpg.jpg?v=639223882900670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251269/200120227-modelo-3.jpg.jpg?v=639223882902530000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251270/200120227-productinuse-4.jpg.jpg?v=639223882903630000"
+    ],
+    "descripcion": "Bálsamo con color con 60H de hidratación con tecnología color care. Capacidad: 3 g. Tamaño:",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200120227",
+        "nombre": "Bálsamo con Color Hidrabalm PRO",
+        "sku": "292070008"
+      },
+      {
+        "id": "v_200120228",
+        "nombre": "Bálsamo con Color Hidrabalm PRO",
+        "sku": "292070008"
+      },
+      {
+        "id": "v_200120229",
+        "nombre": "Bálsamo con Color Hidrabalm PRO",
+        "sku": "292070008"
+      },
+      {
+        "id": "v_200120232",
+        "nombre": "Bálsamo con Color Hidrabalm PRO",
+        "sku": "292070008"
+      },
+      {
+        "id": "v_200120233",
+        "nombre": "Bálsamo con Color Hidrabalm PRO",
+        "sku": "292070008"
+      },
+      {
+        "id": "v_200120235",
+        "nombre": "Bálsamo con Color Hidrabalm PRO",
+        "sku": "292070008"
+      }
+    ]
+  },
+  {
+    "id": "es_289077000",
+    "codigo": "289077000",
+    "nombre": "Labial COLORFIX Barra",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 200,
+    "precio_oferta": 190,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245421/200116633-producto.jpg.jpg?v=639223748043170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245422/200116633-linea-8.jpg.jpg?v=639228564190930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245423/200116633-modelo-3.jpg.jpg?v=639228564191400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245424/200116633-sizeimpression-4.jpg.jpg?v=639228564191400000"
+    ],
+    "descripcion": "Labial en barra con fórmula renovada, 100% no transfer. Capacidad: 2 g. Tamaño: 11.2x1.45x1.45 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200116633",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116634",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116635",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116636",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116637",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116638",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116639",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116640",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116641",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116642",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116643",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116644",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116645",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116646",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116647",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116648",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116649",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116650",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116651",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200116652",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200119239",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121294",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121295",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121324",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121353",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121354",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121355",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121356",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      },
+      {
+        "id": "v_200121357",
+        "nombre": "Labial COLORFIX Barra",
+        "sku": "289077000"
+      }
+    ]
+  },
+  {
+    "id": "es_289072006",
+    "codigo": "289072006",
+    "nombre": "Delineador COLORFIX Plumón Tattoo Punta Fina",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 290,
+    "precio_oferta": 275,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252033/210113179-producto.jpg.jpg?v=639223908970730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252034/210113179-claim-2.jpg.jpg?v=639223908971830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252035/210113179-modelo-3.jpg.jpg?v=639223908972470000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252036/210113179-delineados-4.jpg.jpg?v=639223908973230000"
+    ],
+    "descripcion": "Logra una mirada de impacto con el renovado delineador de COLORFIX. Capacidad: 1.0 ml. Tamaño: 13.5x9.95x9.95 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_210113179",
+        "nombre": "Delineador COLORFIX Plumón Tattoo Punta Fina",
+        "sku": "289072006"
+      },
+      {
+        "id": "v_210113180",
+        "nombre": "Delineador COLORFIX Plumón Tattoo Punta Fina",
+        "sku": "289072006"
+      }
+    ]
+  },
+  {
+    "id": "es_289072001",
+    "codigo": "P0289072001",
+    "nombre": "Delineador COLORFIX Plumón Tattoo Punta Fina",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 330,
+    "precio_oferta": 313,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257866/210108983-producto.jpg.jpg?v=639245838823300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257867/210108983-claim-2.jpg.jpg?v=639245838825170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257868/210108983-modelo-3.jpg.jpg?v=639245838827400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257869/210108983-delineados-4.jpg.jpg?v=639245838829500000"
+    ],
+    "descripcion": "Logra una mirada de impacto con el renovado delineador de COLORFIX. Capacidad: 1.0 ml. Tamaño: 13.5x9.95x9.95 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_289071009",
+    "codigo": "P0289071009",
+    "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 240,
+    "precio_oferta": 228,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247513/200117391-producto.jpg.jpg?v=639223790306900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247514/200117391-sensorial-2.jpg.jpg?v=639223790307530000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247515/200117391-selloos.jpg.jpg?v=639223790308300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1247516/200117391-modelo-3.jpg.jpg?v=639223790309930000"
+    ],
+    "descripcion": "Labios en acabado mate más ligero que una pluma por +32H que no transfiere con aceite de argán. Capacidad: 6 ml. Tamaño: 11.2x1.45x1.45 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200117391",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117392",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117393",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117394",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117395",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117396",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117397",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117398",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117399",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117400",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117401",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117402",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117403",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117404",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117405",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117406",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117407",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117408",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117409",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117410",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117411",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117412",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117413",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200117414",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200121747",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200121748",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200121749",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200121750",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      },
+      {
+        "id": "v_200121751",
+        "nombre": "Labial COLORFIX Liquid Tattoo Mate",
+        "sku": "P0289071009"
+      }
+    ]
+  },
+  {
+    "id": "es_289065007",
+    "codigo": "289065007",
+    "nombre": "Labial COLORFIX Duo Tattoo Tint",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 260,
+    "precio_oferta": 247,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252353/200122854-producto-1.jpg.jpg?v=639223919760900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252354/200122854-claim-2.jpg.jpg?v=639223919761970000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252355/200122854-boca-3.jpg.jpg?v=639223919762730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252356/200122854-aplicacion-4.jpg.jpg?v=639223919763830000"
+    ],
+    "descripcion": "Labial dual con 36H tinta mate, no transfer y 100% hidratante. Capacidad: 2.6 ml. - 1.7 g. Tamaño: 13.1x1.60x1.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200122854",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      },
+      {
+        "id": "v_200122855",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      },
+      {
+        "id": "v_200122856",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      },
+      {
+        "id": "v_200122857",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      },
+      {
+        "id": "v_200122858",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      },
+      {
+        "id": "v_200122859",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      },
+      {
+        "id": "v_200122860",
+        "nombre": "Labial COLORFIX Duo Tattoo Tint",
+        "sku": "289065007"
+      }
+    ]
+  },
+  {
+    "id": "es_289065005",
+    "codigo": "289065005",
+    "nombre": "Labial COLORFIX Duo Tattoo",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 230,
+    "precio_oferta": 218,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251503/200122442-producto-1.jpg.jpg?v=639223890837400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251504/200122442-sensorial-2.jpg.jpg?v=639223890838000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251505/200122442-modelo-3.jpg.jpg?v=639223890838800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251506/200122442-productoenuso-4.jpg.jpg?v=639223890839900000"
+    ],
+    "descripcion": "Labial dual con 36H de color, no transfer y con manteca de Karité para full hidratación. Capacidad: 2.6 ml. - 1.7 g. Tamaño: 13.1x1.60x1.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200122442",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122443",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122444",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122445",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122446",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122447",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122448",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122449",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122450",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122451",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122452",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122453",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122454",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122455",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122456",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      },
+      {
+        "id": "v_200122457",
+        "nombre": "Labial COLORFIX Duo Tattoo",
+        "sku": "289065005"
+      }
+    ]
+  },
+  {
+    "id": "es_289051007",
+    "codigo": "289051007",
+    "nombre": "Power Lash Máscara de Pestañas Multibeneficios",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 330,
+    "precio_oferta": 313,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253946/200121826-productofb.jpg.jpg?v=639231827076070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253947/200121826-claim-2.jpg.jpg?v=639231827077770000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253948/200121826-beforeandafter-3.jpg.jpg?v=639231827078870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253949/200121826-aplicacion-4.jpg.jpg?v=639231827079600000"
+    ],
+    "descripcion": "La máscara de pestañas multibeneficios para más largo y volumen, a prueba de agua. Capacidad: 8 g. Tamaño: 12.6x2.30x2.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_289050004",
+    "codigo": "289050004",
+    "nombre": "Polvos COLORFIX 32H",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 520,
+    "precio_oferta": 494,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251180/200118993-producto.jpg.jpg?v=639223878510600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251181/200118993-bulk.jpg.jpg?v=639223878511370000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251182/200118994-producto.jpg.jpg?v=639223878622300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251183/200118994-bulk.jpg.jpg?v=639223878623000000"
+    ],
+    "descripcion": "Polvos faciales con 32H de alta cobertura y cero brillo. Capacidad: 10 g. Tamaño: 2.50x7.90x7.90 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200118993",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      },
+      {
+        "id": "v_200118994",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      },
+      {
+        "id": "v_200118995",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      },
+      {
+        "id": "v_200118996",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      },
+      {
+        "id": "v_200118997",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      },
+      {
+        "id": "v_200118998",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      },
+      {
+        "id": "v_200118999",
+        "nombre": "Polvos COLORFIX 32H",
+        "sku": "289050004"
+      }
+    ]
+  },
+  {
+    "id": "es_210108458",
+    "codigo": "210108458",
+    "nombre": "Argollas Palma De Oro",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Joyería",
+    "precio_regular": 460,
+    "precio_oferta": 437,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1149645/210108458-producto.jpg?v=639168776004670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1149644/210108458-sello2.jpg?v=639168776003800000"
+    ],
+    "descripcion": "Argollas en baño de oro 24k. ¡Ideal para complementar tu look!",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210107483",
+    "codigo": "210107483",
+    "nombre": "Set Aretes x7 Clau Silver",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Joyería",
+    "precio_regular": 710,
+    "precio_oferta": 674,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1147432/210107483-producto.jpg?v=639168733595830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1147431/210107483-sello5.jpg?v=639168733593930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1147433/210107483-modelo3.jpg?v=639168733597700000"
+    ],
+    "descripcion": "Set Aretes x7 en baño de oro 24k con cristales* y perlas Finart. ¡Ideal para complementar tu look!",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210106583",
+    "codigo": "210106583",
+    "nombre": "Set Collar + Aretes Brilliant Love",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Joyería",
+    "precio_regular": 530,
+    "precio_oferta": 503,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1160094/210106583-producto.jpg?v=639175251573770000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1160095/210106583-modelo2.jpg?v=639175251575430000"
+    ],
+    "descripcion": "Set Collar + Aretes en baño de oro 24k con cristales*. ¡Ideal para darle el toque especial a tu look!",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210099080",
+    "codigo": "210099080",
+    "nombre": "Pulsera Mon Amour",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Joyería",
+    "precio_regular": 570,
+    "precio_oferta": 541,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1133085/210099080-fotoproductoenfondoblanco.jpg?v=639168470824600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1133084/210099080-fotosellos4.jpg?v=639168470823330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1133086/210099080-fotomodelo2.jpg?v=639168470825530000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1133087/210099080-fotomodelo3.jpg?v=639168470826770000"
+    ],
+    "descripcion": "Pulsera bañada en oro de 24k con perlas.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210098197",
+    "codigo": "210098197",
+    "nombre": "Pulsera All Amour",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Joyería",
+    "precio_regular": 1000,
+    "precio_oferta": 950,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1130144/210098197-producto.jpg?v=639168420043700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1130142/210098197-fotosellos4.jpg?v=639168420041470000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1130143/210098197-fotoproducto.jpg?v=639168420042600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1130145/210098197-fotomodelo.jpg?v=639168420044800000"
+    ],
+    "descripcion": "Pulsera con dos cadenas diferentes, una de eslabones y otra de bolitas. Dije central de corazón con movimiento.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210098006",
+    "codigo": "P0210098006",
+    "nombre": "Corrector en barra Instant Perfection",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 190,
+    "precio_oferta": 180,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1122319/200112634-producto1.jpg?v=639160006034430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1122315/200112634-bulk2.jpg?v=639160006029130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1122316/200112634-gama4.jpg?v=639160006030370000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1122317/200112634-sello6.jpg?v=639160006032100000"
+    ],
+    "descripcion": "Corrector en barra que disimula ojeras y perfila tu rostro ¡al instante!",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200112634",
+        "nombre": "Corrector en barra Instant Perfection",
+        "sku": "P0210098006"
+      },
+      {
+        "id": "v_200112635",
+        "nombre": "Corrector en barra Instant Perfection",
+        "sku": "P0210098006"
+      },
+      {
+        "id": "v_200112636",
+        "nombre": "Corrector en barra Instant Perfection",
+        "sku": "P0210098006"
+      },
+      {
+        "id": "v_200112637",
+        "nombre": "Corrector en barra Instant Perfection",
+        "sku": "P0210098006"
+      }
+    ]
+  },
+  {
+    "id": "es_210094333",
+    "codigo": "210094333",
+    "nombre": "Brocha Perlas de Sol",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 180,
+    "precio_oferta": 171,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172472/210094410-FotoFondoBlanco.jpg.jpg?v=639211110441000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172473/210094410-FotoProducto.jpg.jpg?v=639211110442730000"
+    ],
+    "descripcion": "Brocha para rubor",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210093314",
+    "codigo": "210093314",
+    "nombre": "Esponja",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 210,
+    "precio_oferta": 199,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172482/210093314-FotoFondoBlanco.jpg.jpg?v=639211111531400000"
+    ],
+    "descripcion": "Esponja para maquillaje",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210093313",
+    "codigo": "210093313",
+    "nombre": "Brocha para Ojos",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 180,
+    "precio_oferta": 171,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172480/210093313-FotoFondoBlanco.jpg.jpg?v=639211111273270000"
+    ],
+    "descripcion": "Difumina tus sombras con facilidad con la brocha para ojos de ésika pro.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210093312",
+    "codigo": "210093312",
+    "nombre": "Brocha Dual Ojos",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 210,
+    "precio_oferta": 199,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172478/210093312-FotoFondoBlanco.jpg.jpg?v=639211110997170000"
+    ],
+    "descripcion": "Brocha para ojos",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210093310",
+    "codigo": "210093310",
+    "nombre": "Brocha Dual Cejas",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 210,
+    "precio_oferta": 199,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172479/210093310-FotoFondoBlanco.jpg.jpg?v=639211111134530000"
+    ],
+    "descripcion": "Brocha de maquillaje para cejas",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210093082",
+    "codigo": "210093082",
+    "nombre": "Brocha para Polvos y Rubor",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172481/210093082-FotoFondoBlanco.jpg.jpg?v=639211111399730000"
+    ],
+    "descripcion": "Brocha para Polvos y Rubor",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210092104",
+    "codigo": "210092104",
+    "nombre": "Brocha para Contorno",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172475/210092104-FotoFondoBlancoSB.jpg.jpg?v=639211110728300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172476/210092104-FotoFondoBlanco.jpg.jpg?v=639211110729970000"
+    ],
+    "descripcion": "Brocha para Contorno",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210086712",
+    "codigo": "210086712",
+    "nombre": "Desodorante Aerosol Dual Protect",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254777/210086712-productofb.jpg.jpg?v=639231886500730000"
+    ],
+    "descripcion": "Desodorante anti-transpirante masculino 125 ml / 4.2 fl.oz. NSOC83558-18CO.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210086024",
+    "codigo": "210086024",
+    "nombre": "Brocha para Labios",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 180,
+    "precio_oferta": 171,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172477/210086024-FotoFondoBlanco.jpg.jpg?v=639211110865800000"
+    ],
+    "descripcion": "Brocha para labios",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210086021",
+    "codigo": "210086021",
+    "nombre": "Brocha para Base",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172474/210086021-FotoFondoBlanco.jpg.jpg?v=639211110590070000"
+    ],
+    "descripcion": "Brocha para base",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210074007",
+    "codigo": "210074007",
+    "nombre": "Labial Hidragel",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 220,
+    "precio_oferta": 209,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249466/200119024-producto.jpg.jpg?v=639223826935200000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249467/200119024-claim-2.jpg.jpg?v=639223826936470000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249468/200119024-modelo-3.jpg.jpg?v=639223826937700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249469/200119024-productinuse-4.jpg.jpg?v=639223826938630000"
+    ],
+    "descripcion": "Hidragel efecto gel espejo para labios hidratados + ácido hialurónico. Capacidad: 2 g. Tamaño: 11.2x1.45x1.45 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200119024",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119025",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119026",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119027",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119028",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119029",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119031",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119032",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      },
+      {
+        "id": "v_200119033",
+        "nombre": "Labial Hidragel",
+        "sku": "210074007"
+      }
+    ]
+  },
+  {
+    "id": "es_210074002",
+    "codigo": "210074002",
+    "nombre": "Delineador de ojos Kohl con difuminador",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 230,
+    "precio_oferta": 218,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1223544/210096264-foto-producto.jpg.jpg?v=639223372465070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1223546/210096264-bulk.jpg.jpg?v=639223372466170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1223548/210096264-modelo.jpg.jpg?v=639223372467230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1223549/210096264-sensorial.jpg.jpg?v=639223372468330000"
+    ],
+    "descripcion": "Smokey eye en segundos, color intenso y difuminado al instante de larga duración. Capacidad: 1.1 g. Tamaño: 15.98x0.92x0.92 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_210096264",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      },
+      {
+        "id": "v_210096265",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      },
+      {
+        "id": "v_210096266",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      },
+      {
+        "id": "v_210096267",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      },
+      {
+        "id": "v_210096268",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      },
+      {
+        "id": "v_210096269",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      },
+      {
+        "id": "v_210096270",
+        "nombre": "Delineador de ojos Kohl con difuminador",
+        "sku": "210074002"
+      }
+    ]
+  },
+  {
+    "id": "es_210073007",
+    "codigo": "210073007",
+    "nombre": "Delineador Lápiz para Labios",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 200,
+    "precio_oferta": null,
+    "es_oferta": false,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1219166/210096235-foto-producto.jpg.jpg?v=639223299919600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1219167/210096235-sensorial.jpg.jpg?v=639223299920530000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1219168/210096235-modelo1.jpg.jpg?v=639223299921600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1219169/210096235-modelo2.jpg.jpg?v=639223299922700000"
+    ],
+    "descripcion": "¡Haz que tus labios se vean irresistibles! Lápiz delineador de labios, con trazo suave de alta pigmentación. Capacidad 1.1 gr. NSOC04984-21CO.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_210096235",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      },
+      {
+        "id": "v_210096236",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      },
+      {
+        "id": "v_210096237",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      },
+      {
+        "id": "v_210096238",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      },
+      {
+        "id": "v_210096239",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      },
+      {
+        "id": "v_210096240",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      },
+      {
+        "id": "v_210096241",
+        "nombre": "Delineador Lápiz para Labios",
+        "sku": "210073007"
+      }
+    ]
+  },
+  {
+    "id": "es_210069985",
+    "codigo": "210069985",
+    "nombre": "Desodorante Aerosol Aclarant Protect",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254776/210086462-productofb.jpg.jpg?v=639231886300330000"
+    ],
+    "descripcion": "Desodorante anti-transpirante fenemino NSOC83557-18CO.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_210049364",
+    "codigo": "210049364",
+    "nombre": "Rizador de pestañas",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 150,
+    "precio_oferta": 134,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172483/210049364-FotoFondoBlanco.jpg.jpg?v=639211111662730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1172484/210099817-producto1.jpg.jpg?v=639211111808630000"
+    ],
+    "descripcion": "Rizador para pestañas",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_210049364",
+        "nombre": "Rizador",
+        "sku": "210049364"
+      },
+      {
+        "id": "v_210099817",
+        "nombre": "Rizador de pestañas",
+        "sku": "210049364"
+      }
+    ]
+  },
+  {
+    "id": "es_200122546",
+    "codigo": "200122546",
+    "nombre": "Suero Facial Nocturno Supreme 8 en 1",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 440,
+    "precio_oferta": 418,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255869/Supreme-fb.jpg.jpg?v=639235028665900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255870/200122546-sellos-2.jpg.jpg?v=639235028666700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255871/supreme_noche.jpg.jpg?v=639235028667300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255872/200122546-ingredientes-5.jpg.jpg?v=639235028668100000"
+    ],
+    "descripcion": "Suero facial nocturno 8 en 1 con complejor pro retinol. Capacidad: 19 ml. Tamaño: 10.6x2.40x2.40 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200121922",
+    "codigo": "200121922",
+    "nombre": "Set Mega Tubing Extensions + Labial COLORFIX Barra",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Maquillaje",
+    "precio_regular": 550,
+    "precio_oferta": 522,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1107304/200121922-producto.jpg?v=639090438444200000"
+    ],
+    "descripcion": "El set especial para una mirada de impacto y labios mate no transfer +24H para todo el día.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200121126",
+    "codigo": "200121126",
+    "nombre": "Aura Emerald Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255744/Aura_Emerald-fb.jpg.jpg?v=639234983671200000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255745/200121126-aroma-2.jpg.jpg?v=639234983672000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255746/Aura_Emerald.jpg.jpg?v=639234983673230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255747/200121126-ingredientes-4.jpg.jpg?v=639234983674670000"
+    ],
+    "descripcion": "Perfume floral frutal para la mujer femenina, romántica y libre. Capacidad: 45 ml. Tamaño: 10.6x3.80x7.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120952",
+    "codigo": "200120952",
+    "nombre": "Desodorante Antitranspirante ésika MEN",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 125,
+    "precio_oferta": 119,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254951/200120952-productofb.jpg.jpg?v=639231904631170000"
+    ],
+    "descripcion": "¡Protección hasta por 48H! Protege, es anti olor y antibacterial con frescura extrema. Capacidad: 50 g.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120920",
+    "codigo": "200120920",
+    "nombre": "Crema Perfumada Eternally for Her, 130 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254946/200120920-productofb.jpg.jpg?v=639231904446800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254947/200120920-sensorial-2.jpg.jpg?v=639231904447730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254948/200120920-claim-3.jpg.jpg?v=639231904448670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254949/200120920-ingredientes-4.jpg.jpg?v=639231904449930000"
+    ],
+    "descripcion": "Crema que perfuma y suaviza tu piel con el aroma oriental dulce frutal de Eternally for Her. Capacidad: 130 ml. Tamaño: 17.3x4.20x5.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120692",
+    "codigo": "200120692",
+    "nombre": "Crema Perfumada Vibranza Provocative, 130 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254931/200120692-productofb.jpg.jpg?v=639231903742430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254932/200120692-sensorialidad-2.jpg.jpg?v=639231903743230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254933/200120692-modelo-claim-3.jpg.jpg?v=639231903744800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254934/200120692-ingredientes-4.jpg.jpg?v=639231903746830000"
+    ],
+    "descripcion": "Crema que perfuma y suaviza tu piel con el aroma oriental dulce floral de Vibranza Provocative. Capacidad: 130 ml. Tamaño: 17.3x4.20x5.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120632",
+    "codigo": "200120632",
+    "nombre": "Vibranza Provocative Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255750/200120632-productofb.jpg.jpg?v=639234988315330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255751/200120632-sensorialidad-2.jpg.jpg?v=639234988317370000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255752/Provocative.jpg.jpg?v=639234988319100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255753/200120632-ingredientes-4.jpg.jpg?v=639234988320670000"
+    ],
+    "descripcion": "Perfume con aroma oriental dulce floral para la mujer provocativa, sensual e irresistible. Capacidad: 45 ml. Tamaño: 11.5x4.00x6.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120587",
+    "codigo": "200120587",
+    "nombre": "Winner Champion Perfume de Hombre, 100 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 680,
+    "precio_oferta": 646,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254586/200120587-productofb.jpg.jpg?v=639231862633100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254587/200120587-aroma-2.jpg.jpg?v=639231862633900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254588/200120587-claim-3.jpg.jpg?v=639231862634670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254589/200120587-ingredientes-4.jpg.jpg?v=639231862635470000"
+    ],
+    "descripcion": "Perfume herbal aromático inspirado en el hombre apasionado y enérgico. Capacidad: 100 ml. Tamaño: 13.2x4.30x7.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200120587",
+        "nombre": "Kalos Champion Perfume de Hombre, 100 ml",
+        "sku": "200120587"
+      },
+      {
+        "id": "v_200120593",
+        "nombre": "Winner Champion Perfume de Hombre, 100 ml",
+        "sku": "200120587"
+      },
+      {
+        "id": "v_200123556",
+        "nombre": "Winner Champion Perfume de Hombre, 100 ml",
+        "sku": "200120587"
+      }
+    ]
+  },
+  {
+    "id": "es_200120410",
+    "codigo": "200120410",
+    "nombre": "Gel Hidratante y After Shave 3 en 1 ésika MEN",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 405,
+    "precio_oferta": 385,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254927/200120410-productofb.jpg.jpg?v=639231903511300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254928/200120410-beneficios-2.jpg.jpg?v=639231903512070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254929/200120410-sellos-3.jpg.jpg?v=639231903512700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254930/200120410-linea-4.jpg.jpg?v=639231903514270000"
+    ],
+    "descripcion": "Hidratación y frescura con efecto calmante post afeitado con vitamina C y mentol. Capacidad: 75 ml.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120273",
+    "codigo": "200120273",
+    "nombre": "Oud Elixir Perfume de Hombre, 100 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255792/Oud_Elixir-fb.jpg.jpg?v=639235002962930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255793/200120273-aroma-2.jpg.jpg?v=639235002964170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255794/Oud_Elixir.jpg.jpg?v=639235002965730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255795/200120273-ingredientes-4.jpg.jpg?v=639235002968100000"
+    ],
+    "descripcion": "Perfume maderoso especiado de tendencia árabe para el hombre de aromas intensos y sofisticados. Capacidad: 100 ml. Tamaño: 13.4x6.37x3.80 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120248",
+    "codigo": "200120248",
+    "nombre": "Colonia de Hombre Men Power, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 350,
+    "precio_oferta": 332,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252148/200120248-productoo.jpg.jpg?v=639223913130970000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252149/200120248-ambiente-2.jpg.jpg?v=639223913132030000"
+    ],
+    "descripcion": "Colonia para hombre de aroma herbal aromático, con impactantes notas de pimienta negra y jengibre. Capacidad: 200 ml. Tamaño: 19.0x4.60x4.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200120154",
+    "codigo": "200120154",
+    "nombre": "Brilla Nova Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1248674/200120222-producto.jpg.jpg?v=639223812048630000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1248675/200120222-sensorial2.jpg.jpg?v=639223812050200000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1248676/200120222-model3.jpg.jpg?v=639223812051130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1248677/200120222-ingredients-4.jpg.jpg?v=639223812052370000"
+    ],
+    "descripcion": "Eau de Parfum con aroma floral de larga duración, para la mujer segura de sí misma . Capacidad: 45 ml. Tamaño: 11.4x3.45x6.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200120222",
+        "nombre": "Brilla Nova Perfume de Mujer, 45 ml",
+        "sku": "200120154"
+      },
+      {
+        "id": "v_200120154",
+        "nombre": "Dream Nova Perfume de Mujer, 45 ml",
+        "sku": "200120154"
+      }
+    ]
+  },
+  {
+    "id": "es_200120109",
+    "codigo": "200120109",
+    "nombre": "D'orsay Grand Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249187/200120109-producto.jpg.jpg?v=639223821808200000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249188/200120109-sensorial-2.jpg.jpg?v=639223821809330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249189/200120109-claim-3.jpg.jpg?v=639223821810600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1249190/200120109-ingredientes-4.jpg.jpg?v=639223821811870000"
+    ],
+    "descripcion": "Perfume oriental maderoso para el hombre elegante y exitoso. Capacidad: 90 ml. Tamaño: 13.5x3.80x8.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119793",
+    "codigo": "200119793",
+    "nombre": "Crema Perfumada City Love, 130 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257028/200119793-productofb.jpg.jpg?v=639244101428770000"
+    ],
+    "descripcion": "Crema que perfuma y suaviza tu piel con el aroma floral frutal de City Love. Capacidad: 130 ml. Tamaño: 17.3x4.20x5.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119598",
+    "codigo": "200119598",
+    "nombre": "Desmaquillador Bifásico Mini, 40 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 150,
+    "precio_oferta": 142,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251217/200121508-producto.jpg.jpg?v=639223880660670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251218/200121508-claim-2.jpg.jpg?v=639223880661300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1192210/200119598-producto.jpg.jpg?v=639211921293570000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1192211/200119598-sensorial-2.jpg.jpg?v=639211921294500000"
+    ],
+    "descripcion": "La nueva versión travel size del desmaquillador bifásico libre de grasa que hidrata la piel. Capacidad: 40 ml. Tamaño: 8.00x3.26x3.26 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200121508",
+        "nombre": "Desmaquillador Bifásico Mini, 40 ml",
+        "sku": "200119598"
+      },
+      {
+        "id": "v_200119598",
+        "nombre": "Desmaquillador Bifásico Mini",
+        "sku": "200119598"
+      }
+    ]
+  },
+  {
+    "id": "es_200119340",
+    "codigo": "200119340",
+    "nombre": "Colonia Colors in Nature Caramel Bliss, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 350,
+    "precio_oferta": 332,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254572/200119340-productofb.jpg.jpg?v=639231861707430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254573/200119340-sensorial-2.jpg.jpg?v=639231861708870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254574/200119340-linea-3.jpg.jpg?v=639231861709700000"
+    ],
+    "descripcion": "Adictiva, placentera y cremosa con exquisito aroma oriental. Capacidad: 200 ml. Tamaño: 19.0x4.60x4.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119220",
+    "codigo": "200119220",
+    "nombre": "Shampoo Control Caída ésika MEN",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254876/200119220-productofb.jpg.jpg?v=639231897360330000"
+    ],
+    "descripcion": "Shampoo 3 en 1 con mentol: Fortalece, limpia y reduce la grasa del cuero cabelludo. Capacidad: 300 ml.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119021",
+    "codigo": "200119021",
+    "nombre": "Eternally for Him Perfume de Hombre, 100 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255797/200119021-productofb.jpg.jpg?v=639235012533830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255798/200119021-sensorial-2.jpg.jpg?v=639235012535400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255799/Eternally_for_him.jpg.jpg?v=639235012540170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255800/200119021-ingredientes-4.jpg.jpg?v=639235012542200000"
+    ],
+    "descripcion": "Perfume maderoso aromático inspirado en el hombre fuerte y determinado. Capacidad: 100 ml. Tamaño: 14.0x7.30x4.86 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119018",
+    "codigo": "200119018",
+    "nombre": "Eternally for Her Perfume de Mujer, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255803/200119018-productofb.jpg.jpg?v=639235015125930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255804/200119018-sensorial-2.jpg.jpg?v=639235015127330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255805/Eternally_for_her.jpg.jpg?v=639235015135800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255806/200119018-ingredientes-4.jpg.jpg?v=639235015137030000"
+    ],
+    "descripcion": "Perfume oriental dulce frutal inspirado en la mujer poderosa y elegante. Capacidad: 50 ml. Tamaño: 13.7x5.30x3.90 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119017",
+    "codigo": "200119017",
+    "nombre": "Crema Perfumada Aura Lila, 130 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254875/200119017-productofb.jpg.jpg?v=639231897168030000"
+    ],
+    "descripcion": "Crema que perfuma y suaviza tu piel con el aroma floral de Aura Lila. Capacidad: 130 ml. Tamaño: 17.3x4.20x5.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200119003",
+    "codigo": "200119003",
+    "nombre": "Suero Facial Antiedad Supreme 8 en 1",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 460,
+    "precio_oferta": 437,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253599/200119003-productofb.jpg.jpg?v=639231810259930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253600/200119003-claim-2.jpg.jpg?v=639231810260730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253601/200119003-beneficios-3.jpg.jpg?v=639231810262300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253602/200119003-aplicacion-4.jpg.jpg?v=639231810264270000"
+    ],
+    "descripcion": "Suero facial 8 en 1 con poder antiedad. Capacidad: 27 ml. Tamaño: 12.4x3.80x3.80 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200118932",
+    "codigo": "200118932",
+    "nombre": "Limpiadora Facial en Gel Anti-imperfecciones Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 340,
+    "precio_oferta": 323,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253595/200118932-productofb.jpg.jpg?v=639231809996900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253596/200118932-sensorial-2.jpg.jpg?v=639231809998300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253597/200118932-modelo-3.jpg.jpg?v=639231809999230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253598/200118932-rtb-4.jpg.jpg?v=639231810000500000"
+    ],
+    "descripcion": "Limpiadora facial en gel exfoliante 3 en 1 con efecto mate. Capacidad: 120 g. Tamaño: 15.3x4.00x6.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200118765",
+    "codigo": "200118765",
+    "nombre": "Suero Facial Anti-Imperfecciones Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 440,
+    "precio_oferta": 418,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253590/200118765-productofb.jpg.jpg?v=639231809650730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253591/200118765-sensorial-2.jpg.jpg?v=639231809652000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253592/200118765-modelo-3.jpg.jpg?v=639231809653230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253593/200118765-before-after-4.jpg.jpg?v=639231809654330000"
+    ],
+    "descripcion": "Suero anti-imperfecciones 12H de control de oleosidad con ácido salicílico y niacinamida. Capacidad: 28 ml. Tamaño: 10.7x4.10x4.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200118457",
+    "codigo": "200118457",
+    "nombre": "Crema Anti-Imperfecciones Triple Acción Max, 120 g",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 460,
+    "precio_oferta": 437,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253582/200118457-productofb.jpg.jpg?v=639231809402670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253583/200118457-swatch-2.jpg.jpg?v=639231809404700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253584/200118457-claim-3.jpg.jpg?v=639231809405500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253585/200118457-antesydespues-4.jpg.jpg?v=639231809407200000"
+    ],
+    "descripcion": "Crema facial con poder matificante que reduce poros e hidrata. Capacidad: 120 g. Tamaño: 6.60x7.85x7.85 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200118363",
+    "codigo": "200118363",
+    "nombre": "Vibranza Musique Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254555/200118363-productofb.jpg.jpg?v=639231861027730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254556/200118363-sensorial-2.jpg.jpg?v=639231861028500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254557/200118363-claim-3.jpg.jpg?v=639231861029670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254558/200118363-ingredientes-4.jpg.jpg?v=639231861031230000"
+    ],
+    "descripcion": "Perfume floral para la mujer única e independiente que conecta con la música. Capacidad: 45 ml. Tamaño: 11.5x4.00x6.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200118307",
+    "codigo": "200118307",
+    "nombre": "Loción Perfumada Vibranza Addiction",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254840/200118307-productofb.jpg.jpg?v=639231895041630000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254841/200109443-sensorial-2.jpg.jpg?v=639231895042400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254842/200109443-modelo-3.jpg.jpg?v=639231895043800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254843/200109443-modelo-4.jpg.jpg?v=639231895044600000"
+    ],
+    "descripcion": "Loción que perfuma y suaviza tu piel con el irresistible aroma floral oriental de Vibranza Addiction. Capacidad: 130 ml. Tamaño: 17.3x4.20x5.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200117382",
+    "codigo": "200117382",
+    "nombre": "Momentos Radiantes Perfume de Mujer, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 560,
+    "precio_oferta": 532,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1244230/200117382-producto.jpg.jpg?v=639223723788600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1244231/200117382-sensorial-2.jpg.jpg?v=639223723789870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1244232/200117382-modelo-3.jpg.jpg?v=639223723790800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1244233/200117382-ingredientes-4.jpg.jpg?v=639223723791730000"
+    ],
+    "descripcion": "Perfume con aroma floral para la mujer llena de vida. Capacidad: 50 ml. Tamaño: 14.0x3.60x4.90 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200117382",
+        "nombre": "Momentos Radiantes Perfume de Mujer, 50 ml",
+        "sku": "200117382"
+      },
+      {
+        "id": "v_200117383",
+        "nombre": "Fantasía Radiante Perfume de Mujer, 50 ml",
+        "sku": "200117382"
+      }
+    ]
+  },
+  {
+    "id": "es_200117167",
+    "codigo": "200117167",
+    "nombre": "Aura Lila Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254534/200117167-productofb.jpg.jpg?v=639231859886800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254535/200117167-sensorial-2.jpg.jpg?v=639231859888830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254536/200117167-ingredientes-4.jpg.jpg?v=639231859890270000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254537/200117167-claim-3.jpg.jpg?v=639231859891900000"
+    ],
+    "descripcion": "Perfume floral para la mujer fuerte, determinada, femenina, auténtica y decidida. Capacidad: 45 ml. Tamaño: 10.6x3.80x7.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200116520",
+    "codigo": "200116520",
+    "nombre": "Magnat Elite Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254528/200116520-productofb.jpg.jpg?v=639231859454870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254529/200116520-sensorial-2.jpg.jpg?v=639231859456770000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254530/200118220-modelonueva-3.jpg.jpg?v=639231859458430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254531/200116520-ingredientes-4.jpg.jpg?v=639231859460400000"
+    ],
+    "descripcion": "Perfume maderoso para el hombre que celebra el éxito junto con las personas que más valora. Capacidad: 90 ml. Tamaño: 13.3x3.90x7.50 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200116517",
+    "codigo": "200116517",
+    "nombre": "Impredecible Glamour Perfume de Mujer, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254523/200116517-productofb.jpg.jpg?v=639231859217100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254524/200116517-sensorial-2.jpg.jpg?v=639231859217870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254525/200116517-model-3.jpg.jpg?v=639231859218770000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254526/200116517-ingredients-4.jpg.jpg?v=639231859220570000"
+    ],
+    "descripcion": "Eau de Parfum con aroma floral frutal de larga duración, para las mujeres que generan intriga capturando miradas. Capacidad: 50 ml. Tamaño: 10.2x3.70x7.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200116502",
+    "codigo": "200116502",
+    "nombre": "Kalos Max Perfume de Hombre, 100 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254517/200116502-productofb.jpg.jpg?v=639231858818270000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254518/200116502-sensorial2.jpg.jpg?v=639231858822030000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254519/200116502-ingredientes4.jpg.jpg?v=639231858823370000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254520/200116505-productofb.jpg.jpg?v=639231859020870000"
+    ],
+    "descripcion": "Perfume herbal para el hombre que conquista cada kilómetro de su recorrido. Capacidad: 100 ml. Tamaño: 13.6x4.45x7.40 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200116502",
+        "nombre": "Kalos Max Perfume de Hombre, 100 ml",
+        "sku": "200116502"
+      },
+      {
+        "id": "v_200116505",
+        "nombre": "Winner Max Perfume de Hombre, 100 ml",
+        "sku": "200116502"
+      }
+    ]
+  },
+  {
+    "id": "es_200116499",
+    "codigo": "200116499",
+    "nombre": "Colonia Colors in Nature Tropical Vibes, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 350,
+    "precio_oferta": 332,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254515/200116499-productofb.jpg.jpg?v=639231858592430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254516/200116499-sensorial-2.jpg.jpg?v=639231858595670000"
+    ],
+    "descripcion": "Siente los colores de la naturaleza y disfruta al máximo cada instante con el aroma frutal floral.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200116347",
+    "codigo": "200116347",
+    "nombre": "Crema Nutritiva para Manos Brilla, 75 g",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 240,
+    "precio_oferta": 228,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254834/200116625-productofb.jpg.jpg?v=639231894366730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254828/200116347-productofb.jpg.jpg?v=639231893686200000"
+    ],
+    "descripcion": "Crema nutritiva e hidratante para manos con el aroma floral frutal de Dream. Capacidad: 75 g. Tamaño: 13.0x4.00x6.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200116625",
+        "nombre": "Crema Nutritiva para Manos Brilla, 75 g",
+        "sku": "200116347"
+      },
+      {
+        "id": "v_200116347",
+        "nombre": "Crema Nutritiva para Manos Dream, 75 g",
+        "sku": "200116347"
+      }
+    ]
+  },
+  {
+    "id": "es_200116339",
+    "codigo": "200116339",
+    "nombre": "Suero Facial Aclarant Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 440,
+    "precio_oferta": 418,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253570/200116339-productofb.jpg.jpg?v=639231808569070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253571/200116339-sensoriaal-2.jpg.jpg?v=639231808569930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253572/200116339-rtb-4.jpg.jpg?v=639231808571170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253573/200116339-rtb-5.jpg.jpg?v=639231808572800000"
+    ],
+    "descripcion": "Suero aclarante, 3 beneficios en 1: Reduce y previene manchas, y uniformiza el tono la piel. Capacidad: 28 ml. Tamaño: 10.8x4.10x4.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200116330",
+    "codigo": "200116330",
+    "nombre": "Set Perfumes de Hombre Kalos Action + Kalos Sport",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 1260,
+    "precio_oferta": 1197,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1111197/200116330-producto.jpg?v=639115494806400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1111192/200116330-ingredientes4.jpg?v=639115494800400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1111193/200116330-ingredientes7.jpg?v=639115494802000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1111194/200116330-linea8.jpg?v=639115494802800000"
+    ],
+    "descripcion": "Este set de perfumes ofrece dos fragancias con un aroma herbal aromático de alta concentración, perfectas para regalar al hombre que siempre está en acción.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200116071",
+    "codigo": "200116071",
+    "nombre": "Crema Facial Antiedad Supreme 8 en 1",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 470,
+    "precio_oferta": 446,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245949/200116071-producto.jpg.jpg?v=639223757629300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245950/200116071-sensorial-2.jpg.jpg?v=639223757630400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245951/200116071-aplicacion-3.jpg.jpg?v=639223757631800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1245952/200116071-benefit-4.jpg.jpg?v=639223757632600000"
+    ],
+    "descripcion": "Crema facial Supreme 8 en 1 con poder antiedad. Capacidad: 50 g. Tamaño: 5.35x6.25x6.25 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200115979",
+    "codigo": "200115979",
+    "nombre": "City Love Perfume de Mujer, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254510/200115979-productofb.jpg.jpg?v=639231858373370000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254511/200115979-sensorial-2.jpg.jpg?v=639231858375100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254512/200115979-claim-3.jpg.jpg?v=639231858376400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254513/200115979-ingredientes-4.jpg.jpg?v=639231858378070000"
+    ],
+    "descripcion": "Perfume floral frutal inspirado en la mujer que irradía energía y vive la ciudad al máximo. Capacidad: 50 ml. Tamaño: 11.2x3.40x7.65 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200115934",
+    "codigo": "200115934",
+    "nombre": "Limpiadora Multiacción Facial en Gel Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 370,
+    "precio_oferta": 351,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251200/200120744-producto.jpg.jpg?v=639223879677130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237364/200115934-producto.jpg.jpg?v=639223599624130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237365/200115934-sensorial-2.jpg.jpg?v=639223599625070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237366/200115934-beneficios-3.jpg.jpg?v=639223599625700000"
+    ],
+    "descripcion": "Limpiadora facial en gel con efecto Detox y limpieza 3 en 1. Capacidad: 120 g. Tamaño: 15.3x4.00x6.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200120774",
+        "nombre": "Limpiadora Multiacción Facial en Gel Triple Acción Max",
+        "sku": "200115934"
+      },
+      {
+        "id": "v_200115934",
+        "nombre": "Limpiadora Facial en Gel Triple Acción Max",
+        "sku": "200115934"
+      }
+    ]
+  },
+  {
+    "id": "es_200115589",
+    "codigo": "200115589",
+    "nombre": "Suero Facial Vitamina C Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 440,
+    "precio_oferta": 418,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1235648/200115589-producto.jpg.jpg?v=639223574389400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1235649/200115589-sensorial-2.jpg.jpg?v=639223574390630000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1235650/200115589-modelo-3.jpg.jpg?v=639223574391600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1235651/200115589-rtb-4.jpg.jpg?v=639223574392670000"
+    ],
+    "descripcion": "Piel más luminosa, protegida y joven con el suero con complejo de vitamina C. Capacidad: 28 ml. Tamaño: 10.7x4.10x4.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200115589",
+        "nombre": "Óleo Facial Vitamina C Triple Acción Max",
+        "sku": "200115589"
+      },
+      {
+        "id": "v_200119228",
+        "nombre": "Suero Facial Vitamina C Triple Acción Max",
+        "sku": "200115589"
+      }
+    ]
+  },
+  {
+    "id": "es_200115560",
+    "codigo": "200115560",
+    "nombre": "Set Perfumes de Hombre Magnat + Magnat Exclusive",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 1600,
+    "precio_oferta": 1520,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1118004/200115560-producto.jpg?v=639144007280230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1118000/200115560-ingredientes-4.jpg?v=639144007275430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1118001/200115560-ingredientes-7.jpg?v=639144007277170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1118002/200115560-sensorial-2.jpg?v=639144007278100000"
+    ],
+    "descripcion": "Perfumes para hombre con aromas exclusivos de muy larga duración en un set ¡listo para regalar!",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200115525",
+    "codigo": "200115525",
+    "nombre": "Set Perfumes de Mujer Vibranza + Vibranza Addiction",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 1260,
+    "precio_oferta": 1197,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1117997/200115525-producto.jpg?v=639144007172130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1117995/200115525-sensorial-2.jpg?v=639144007169370000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1117996/200115525-productosetvibranza.jpg?v=639144007171100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1117998/200115525-modelo-3.jpg?v=639144007173530000"
+    ],
+    "descripcion": "Set de perfumes de mujer de larga duración: perfume oriental Vibranza y perfume floral para mujer Vibranza Addiction.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200114022",
+    "codigo": "200114022",
+    "nombre": "Set Perfumes de Hombre Magnat + Magnat Select",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 1600,
+    "precio_oferta": 1520,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1072010/200114022-producto.jpg?v=639036870407330000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1072006/200100838-notasdelperfume.jpg?v=639036870401500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1072007/magnat-ingredientes.jpg?v=639036870403200000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1072008/200115561-ingredientes-4.jpg?v=639036870404770000"
+    ],
+    "descripcion": "Dos perfumes de muy larga duración para hombres de éxito, con aromas maderoso (Magnat) y oriental especiado (Magnat Select) en un set ¡listo para regalar!",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200113784",
+    "codigo": "200113784",
+    "nombre": "Seduction Absolute Perfume de Hombre, 100 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254497/200113784-producto-fb.jpg.jpg?v=639231857657300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254498/200113784-sensorial2.jpg.jpg?v=639231857659500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254499/200113784-model3.jpg.jpg?v=639231857661700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254500/200113784-ingredients-4.jpg.jpg?v=639231857665170000"
+    ],
+    "descripcion": "Perfume maderoso para el hombre que sabe que un buen aroma dice más que mil palabras. Capacidad: 100 ml. Tamaño: 16.2x4.80x6.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200113553",
+    "codigo": "200113553",
+    "nombre": "Alpha Perfume de Hombre, 75 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 700,
+    "precio_oferta": 665,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1239082/200113553-producto.jpg.jpg?v=639223633185130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1239083/200113553-sensorial-2.jpg.jpg?v=639223633186930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1239084/200113553-modelo-3.jpg.jpg?v=639223633188530000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1239085/200113553-ingredientes-4.jpg.jpg?v=639223633189870000"
+    ],
+    "descripcion": "Perfume con aroma herbal aromático para el hombre que es dueño de su propio destino. Capacidad: 75 ml. Tamaño: 12.0x3.75x8.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200113548",
+    "codigo": "200113548",
+    "nombre": "Vibranza Luminous Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254487/200113548-productofb.jpg.jpg?v=639231857169000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254488/200113548-sensorial-2.jpg.jpg?v=639231857169770000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254489/200113548-modelo-3.jpg.jpg?v=639231857171500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254490/200113548-ingredientes-4.jpg.jpg?v=639231857173500000"
+    ],
+    "descripcion": "Perfume floral oriental de larga duración, para la mujer elegante y sensual. Capacidad: 45 ml. Tamaño: 11.5x4.00x6.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200113547",
+    "codigo": "200113547",
+    "nombre": "YOU Good Vibes Eau de Toilette, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 560,
+    "precio_oferta": 532,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254483/200113547-productofb.jpg.jpg?v=639231856950500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254484/200113547-sensorial-2.jpg.jpg?v=639231856951600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254485/200113547-ingredientes-4.jpg.jpg?v=639231856952830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254486/200113547-claim-6.jpg.jpg?v=639231856954770000"
+    ],
+    "descripcion": "Eau de Toilette unisex de aroma frutal, para quienes buscan aventura y exploración. Buenas vibras, siempre. Capacidad: 90 ml. Tamaño: 16.3x3.20x6.15 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200113544",
+    "codigo": "200113544",
+    "nombre": "Colonia de Hombre Men Explore, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 350,
+    "precio_oferta": 332,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254480/200113544-productofb.jpg.jpg?v=639231856743800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254481/200113544-sensorial-2.jpg.jpg?v=639231856745830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254482/200113544-linea-3.jpg.jpg?v=639231856746930000"
+    ],
+    "descripcion": "Colonia para hombre de aroma herbal aromático, con energizantes notas de menta negra y sándalo. Capacidad: 200 ml. Tamaño: 19.0x4.60x4.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200111352",
+    "codigo": "200111352",
+    "nombre": "Magnat Exclusive Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254473/200111352-productofb.jpg.jpg?v=639231856511030000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254474/200111352-sensorial-2.jpg.jpg?v=639231856512870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254475/200111352-modelo-3.jpg.jpg?v=639231856514100000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254476/200111352-ingredientes-4.jpg.jpg?v=639231856515670000"
+    ],
+    "descripcion": "Perfume para hombre con aroma oriental especiado de muy larga duración. Para el hombre exitoso e inteligente. Capacidad: 90 ml. Tamaño: 13.3x3.90x7.50 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200111234",
+    "codigo": "200111234",
+    "nombre": "Suero Antiedad Triple Acción Max",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Skincare",
+    "precio_regular": 360,
+    "precio_oferta": 342,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1192509/200117505-producto.jpg.jpg?v=639211932295830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1192510/200117505-sensorial-2.jpg.jpg?v=639211932297570000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1192511/200117505-before-after3.jpg.jpg?v=639211932298970000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1192512/200117505-modelo-4.jpg.jpg?v=639211932299730000"
+    ],
+    "descripcion": "Suero antiedad con 30X más colágeno. Reduce, rellena y reafirma la piel. Capacidad: 28 ml. Tamaño: 10.8x4.10x4.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200117505",
+        "nombre": "Suero Antiedad Triple Acción Max",
+        "sku": "200111234"
+      },
+      {
+        "id": "v_200119227",
+        "nombre": "Suero Antiedad Triple Acción Max",
+        "sku": "200111234"
+      },
+      {
+        "id": "v_200111234",
+        "nombre": "Suero Antiedad Triple Acción Max",
+        "sku": "200111234"
+      }
+    ]
+  },
+  {
+    "id": "es_200111145",
+    "codigo": "200111145",
+    "nombre": "Dream Eau de Parfum de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 610,
+    "precio_oferta": 579,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237749/200116604-producto.jpg.jpg?v=639223606540800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237750/200116604-sensorial-2.jpg.jpg?v=639223606541900000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237751/200116604-modelo-3.jpg.jpg?v=639223606543470000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1237752/200116604-ingredientes-4.jpg.jpg?v=639223606544570000"
+    ],
+    "descripcion": "Eau de Parfum con aroma floral frutal de larga duración, para la mujer que confía en sí misma y logra todo lo que se propone. Capacidad: 45 ml. Tamaño: 11.4x3.45x6.20 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200116604",
+        "nombre": "Brilla Eau de Parfum de Mujer, 45 ml",
+        "sku": "200111145"
+      },
+      {
+        "id": "v_200111145",
+        "nombre": "Dream Eau de Parfum de Mujer, 45 ml",
+        "sku": "200111145"
+      }
+    ]
+  },
+  {
+    "id": "es_200111130",
+    "codigo": "200111130",
+    "nombre": "Kalos Action Eau de Toilette, 100 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 630,
+    "precio_oferta": 598,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254463/200111130-productofb.jpg.jpg?v=639231855992970000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254464/200111130-sensorial2.jpg.jpg?v=639231855994070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254465/200111130-ingredientes4.jpg.jpg?v=639231855995170000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254466/200111130-claim6.jpg.jpg?v=639231855996100000"
+    ],
+    "descripcion": "Perfume herbal aromático para el hombre que conecta con eso que lo reta y apasiona. Capacidad: 100 ml. Tamaño: 13.2x4.30x7.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200111130",
+        "nombre": "Kalos Action Eau de Toilette, 100 ml",
+        "sku": "200111130"
+      },
+      {
+        "id": "v_200113706",
+        "nombre": "Kalos Action Eau de Toilette, 100 ml",
+        "sku": "200111130"
+      }
+    ]
+  },
+  {
+    "id": "es_200110157",
+    "codigo": "200110157",
+    "nombre": "Kromo Fire Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254458/200110157-productofb.jpg.jpg?v=639231855742730000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254459/200110157-sensorial-2.jpg.jpg?v=639231855743670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254460/200110157-modelo-3.jpg.jpg?v=639231855744600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254461/200110157-ingredientes-4.jpg.jpg?v=639231855745830000"
+    ],
+    "descripcion": "PPerfume para hombre que combina la intensidad de las rocas volcánicas con la frescura del océano; ideal para el hombre imparable, fuerte y determinado.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200109443",
+    "codigo": "200109443",
+    "nombre": "Vibranza Addiction Perfume de Mujer, 45ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254450/200109443-productofb.jpg.jpg?v=639231855490270000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254451/200109443-sensorial-2.jpg.jpg?v=639231855491000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254452/200109443-modelo-3.jpg.jpg?v=639231855492400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254453/200109443-ingredientes-4.jpg.jpg?v=639231855493500000"
+    ],
+    "descripcion": "Perfume con aroma floral oriental de muy larga duración. Para la mujer ultra sensual y atractiva. Capacidad: 45 ml. Tamaño: 11.5x4.00x6.10 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200109258",
+    "codigo": "200109258",
+    "nombre": "Crema de manos Mía Sensual Night, 75 g",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 240,
+    "precio_oferta": 228,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1225441/200109258-foto-producto.jpg.jpg?v=639223405023800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1225442/200109258-foto-bulk.jpg.jpg?v=639223405024430000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1225443/200109258-modelo.jpg.jpg?v=639223405025530000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1225444/200109258-ingredientes.jpg.jpg?v=639223405026800000"
+    ],
+    "descripcion": "Manos perfumadas e hidratadas hasta por 48 horas con el aroma oriental dulce de Mía Sensual Night. Capacidad: 75 g. Tamaño: 13.0x4.00x6.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200108045",
+    "codigo": "200108045",
+    "nombre": "Impredecible Crema Nutritiva para Manos, 75 g",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 240,
+    "precio_oferta": 228,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1223706/200108045-producto.jpg.jpg?v=639223375416400000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254916/200119918-productofb.jpg.jpg?v=639231902475200000"
+    ],
+    "descripcion": "Crema nutritiva e hidratante para manos con el aroma oriental dulce frutal de Impredecible. Capacidad: 75 g. Tamaño: 13.0x4.00x6.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200108045",
+        "nombre": "Impredecible Crema de Manos",
+        "sku": "200108045"
+      },
+      {
+        "id": "v_200119918",
+        "nombre": "Impredecible Crema Nutritiva para Manos, 75 g",
+        "sku": "200108045"
+      }
+    ]
+  },
+  {
+    "id": "es_200108044",
+    "codigo": "200108044",
+    "nombre": "Crema Nutritiva para Manos Vibranza Blanc Edición Especial, 75 g",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 240,
+    "precio_oferta": 228,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254813/200108044-productofb.jpg.jpg?v=639231891757670000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254814/200108044-bulk.jpg.jpg?v=639231891758470000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254815/200108044-foto-rtbs.jpg.jpg?v=639231891760500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254816/200108044-aplicacion.jpg.jpg?v=639231891761900000"
+    ],
+    "descripcion": "Crema nutritiva para manos que perfuma, nutre e hidrata hasta por 48 horas. Capacidad: 75 g. Tamaño: 13.0x4.00x6.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200108044",
+        "nombre": "Crema de manos Vibranza Blanc",
+        "sku": "200108044"
+      },
+      {
+        "id": "v_200119854",
+        "nombre": "Crema Nutritiva para Manos Vibranza Blanc Edición Especial, 75 g",
+        "sku": "200108044"
+      }
+    ]
+  },
+  {
+    "id": "es_200106396",
+    "codigo": "200106396",
+    "nombre": "Colonia Colors in Nature Green Coconut, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254433/200106396-productofb.jpg.jpg?v=639231854533300000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254434/200106396-sensorial.jpg.jpg?v=639231854534700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254435/200106396-modelo.jpg.jpg?v=639231854536070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254436/200106396-linea.jpg.jpg?v=639231854537630000"
+    ],
+    "descripcion": "Llena tu vida de energía tropical con aromas frutales de coco y melón. Capacidad: 200 ml. Tamaño: 19.0x4.60x4.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200106396",
+        "nombre": "Colonia Colors in Nature Green Coconut, 200 ml",
+        "sku": "200106396"
+      },
+      {
+        "id": "v_200119217",
+        "nombre": "Colonia Colors in Nature Green Coconut, 200 ml",
+        "sku": "200106396"
+      }
+    ]
+  },
+  {
+    "id": "es_200106312",
+    "codigo": "200106312",
+    "nombre": "Colonia Colors in Nature Red Rose, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 300,
+    "precio_oferta": 285,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254416/200106312-productofb.jpg.jpg?v=639231853661800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254417/200106312-sensorial.jpg.jpg?v=639231853663830000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254418/200106312-modelo.jpg.jpg?v=639231853665070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254419/200106312-sizeimpression.jpg.jpg?v=639231853666770000"
+    ],
+    "descripcion": "Despierta tu sensualidad y pasión con su exquisito aroma floral. Capacidad: 200 ml. Tamaño: 19.0x4.60x4.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200106312",
+        "nombre": "Colonia Colors in Nature Red Rose, 200 ml",
+        "sku": "200106312"
+      },
+      {
+        "id": "v_200117052",
+        "nombre": "Colonia Colors in Nature Red Rose, 200 ml",
+        "sku": "200106312"
+      },
+      {
+        "id": "v_200119218",
+        "nombre": "Colonia Colors in Nature Red Rose, 200 ml",
+        "sku": "200106312"
+      }
+    ]
+  },
+  {
+    "id": "es_200106295",
+    "codigo": "200106295",
+    "nombre": "Mía Sensual Night Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 703,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1224666/200106295-foto-producto.jpg.jpg?v=639223391584600000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1224667/200106295-foto-sensorial.jpg.jpg?v=639223391585700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1224668/200106295-foto-modelo.jpg.jpg?v=639223391586970000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1224669/200106295-ingredientes.jpg.jpg?v=639223391588200000"
+    ],
+    "descripcion": "Perfume con aroma oriental dulce de muy larga duración, para la mujer determinada y audaz. Capacidad: 45 ml. Tamaño: 13.2x3.60x6.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200106295",
+        "nombre": "Mía Sensual Night Perfume de Mujer, 45 ml",
+        "sku": "200106295"
+      },
+      {
+        "id": "v_200117381",
+        "nombre": "Mía Sensual Night Perfume de Mujer, 45 ml",
+        "sku": "200106295"
+      }
+    ]
+  },
+  {
+    "id": "es_200106290",
+    "codigo": "200106290",
+    "nombre": "D'orsay Inspire Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1226690/200106290-producto.jpg.jpg?v=639223424974930000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1226691/200106290-sensorial.jpg.jpg?v=639223424976030000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1226692/200106290-modelo.jpg.jpg?v=639223424978070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1226693/200106290-ingredientes.jpg.jpg?v=639223424979300000"
+    ],
+    "descripcion": "Perfume de hombre de exclusivo aroma maderoso, con una esencia única en el mundo. Capacidad 90 ml. Tamaño: 13.5x3.80x8.30 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200106279",
+    "codigo": "200106279",
+    "nombre": "Colonia Colors in Nature Golden Vainilla, 200 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 350,
+    "precio_oferta": null,
+    "es_oferta": false,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1244561/200119216-producto.jpg.jpg?v=639223730079230000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254411/200106279-productofb.jpg.jpg?v=639231853430700000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254412/200106279-linea-2.jpg.jpg?v=639231853431970000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254413/200106279-sensorial-3.jpg.jpg?v=639231853433030000"
+    ],
+    "descripcion": "Conéctate con tu atardecer favorito con un fresco aroma de vainilla y acordes de jengibre. Capacidad: 200 ml. Tamaño: 19.0x4.60x4.60 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200119216",
+        "nombre": "Colonia Colors in Nature Golden Vainilla, 200 ml",
+        "sku": "200106279"
+      },
+      {
+        "id": "v_200106279",
+        "nombre": "Colonia Colors in Nature Golden Vainilla, 200 ml",
+        "sku": "200106279"
+      }
+    ]
+  },
+  {
+    "id": "es_200101421",
+    "codigo": "200101421",
+    "nombre": "Uno Perfume para Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 780,
+    "precio_oferta": 741,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1218808/200101421-Fotogaleria.jpg.jpg?v=639223293113130000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1218809/200101421-Fotomodelo1.jpg.jpg?v=639223293115800000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1218810/uno-modelo.jpg.jpg?v=639223293117070000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1218811/uno-ingredientes.jpg.jpg?v=639223293118300000"
+    ],
+    "descripcion": "Perfume de muy larga duración con aroma herbal, para los hombres fieles a su esencia",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200100617",
+    "codigo": "200100617",
+    "nombre": "Magnat Select Mini Perfume de Hombre, 10 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254372/200100617-productofb.jpg.jpg?v=639231850966000000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254373/200100617-FotoProducto.jpg.jpg?v=639231850967230000"
+    ],
+    "descripcion": "Perfume travel size con aroma oriental especiado, perfecto para llevarlo de viaje. Capacidad: 10 ml. Tamaño: 7.15x1.85x3.45 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "es_200100407",
+    "codigo": "200100407",
+    "nombre": "Crema Perfumada Vibranza, 130 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Cuidado Personal",
+    "precio_regular": 280,
+    "precio_oferta": 266,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1214847/200100407-FotoFondoBlanco.jpg.jpg?v=639223228732500000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1191760/200114988-producto.jpg.jpg?v=639211900602870000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254879/200119415-productofb.jpg.jpg?v=639231897946200000"
+    ],
+    "descripcion": "Loción que perfuma y suaviza tu piel con el irresistible aroma oriental dulce de Vibranza",
+    "stock": 20,
+    "activo": true,
+    "variantes": [
+      {
+        "id": "v_200100407",
+        "nombre": "Loción Perfumada Vibranza",
+        "sku": "200100407"
+      },
+      {
+        "id": "v_200114988",
+        "nombre": "Loción Perfumada Vibranza",
+        "sku": "200100407"
+      },
+      {
+        "id": "v_200119415",
+        "nombre": "Crema Perfumada Vibranza, 130 ml",
+        "sku": "200100407"
+      }
+    ]
+  },
+  {
+    "id": "es_200099706",
+    "codigo": "200099706",
+    "nombre": "Kromo Black Perfume de Hombre, 10 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 320,
+    "precio_oferta": 304,
+    "es_oferta": true,
+    "fotos": [
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1215472/200099706-FotoFondoBlanco.jpg.jpg?v=639223238124470000",
+      "https://belcorpmexico.vteximg.com.br/arquivos/ids/1215473/200099706-FotoModelo.jpg.jpg?v=639223238125530000"
+    ],
+    "descripcion": "Perfume con aroma oriental de muy larga duración, perfecto para llevar de viaje. Capacidad: 10 ml. Tamaño: 7.15x1.85x3.45 cm.",
+    "stock": 20,
+    "activo": true,
+    "variantes": []
+  }
+]
