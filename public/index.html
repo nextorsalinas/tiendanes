@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Nesty | Pedidos Directos por WhatsApp</title>
+  <meta name="description" content="Catálogo de productos de Hogar y Belleza. Selecciona tu producto y pídelo directamente por WhatsApp.">
+  
+  <!-- Fonts Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CoreUI / Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Design Tokens -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-promo-bar">
+    <i class="bi bi-whatsapp me-1"></i> Elige tu producto y pídelo al instante por WhatsApp | <strong>Tienda Nesty</strong>
+  </div>
+
+  <!-- Minimal Sticky Navbar (Sin barra de búsqueda) -->
+  <nav class="navbar navbar-better">
+    <div class="container justify-content-center">
+      <a href="index.html" class="brand-logo">
+        <i class="bi bi-shop text-primary fs-3"></i>
+        <span>TIENDA NESTY</span>
+        <span class="brand-logo-tag">Catálogo</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Department Navigation Bar (Hogar & Belleza) -->
+  <div class="brand-tabs-container mt-2">
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="d-flex gap-2">
+        <button class="btn-brand-tab active" data-dept-filter="all">Todos los Productos</button>
+        <button class="btn-brand-tab" data-dept-filter="hogar"><i class="bi bi-house-heart me-1"></i> Hogar</button>
+        <button class="btn-brand-tab" data-dept-filter="belleza"><i class="bi bi-stars me-1"></i> Belleza</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Catalog Content -->
+  <main class="container py-4">
+    
+    <!-- Category Chips Slider -->
+    <div class="category-scroll-container mb-3" id="category-chips-container">
+      <!-- Dynamic chips rendered by app.js -->
+    </div>
+
+    <!-- Products Count Header -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <span class="text-muted small fw-bold" id="products-count-text">Cargando catálogo...</span>
+    </div>
+
+    <!-- Minimal Product Grid -->
+    <div class="row g-3" id="products-grid">
+      <!-- Dynamic minimal cards rendered by app.js -->
+    </div>
+
+  </main>
+
+  <!-- Product Order Modal (Direct WhatsApp Order) -->
+  <div class="modal fade" id="orderProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content border-0 rounded-4 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h6 class="modal-title fw-bold text-muted uppercase small" id="orderModalCategory">Pedir Producto</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form id="directOrderForm">
+          <div class="modal-body p-4" id="orderModalBody">
+            <!-- Dynamic product order view -->
+          </div>
+
+          <div class="p-4 pt-0">
+            <button type="submit" class="btn-whatsapp-minimal">
+              <i class="bi bi-whatsapp me-2 fs-5"></i> Pedir este Producto por WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Success Modal -->
+  <div class="modal fade" id="orderSuccessModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content border-0 rounded-4 shadow text-center p-4">
+        <div class="modal-body py-4">
+          <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 65px; height: 65px;">
+            <i class="bi bi-check2 display-4"></i>
+          </div>
+          <h4 class="fw-extrabold text-dark mb-2">¡Pedido Listo para Enviar!</h4>
+          <p class="text-muted small mb-3">Folio: <strong class="text-primary" id="orderSuccessFolio">#ORD-XXXXXX</strong></p>
+          <p class="text-secondary small mb-4">Presiona el botón verde para abrir el chat de WhatsApp y enviar los detalles de tu producto al vendedor.</p>
+          
+          <a href="#" id="btn-open-wa" target="_blank" class="btn btn-success btn-lg w-100 rounded-3 fw-bold py-3 shadow mb-2">
+            <i class="bi bi-whatsapp me-2"></i> Abrir WhatsApp (+52 55 2500 0024)
+          </a>
+          
+          <button type="button" class="btn btn-link text-muted btn-sm mt-2" data-bs-dismiss="modal">Volver al catálogo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/js/coreui.bundle.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+// Seed catalog data for Tienda Nesty (Hogar & Belleza)
+
+const INITIAL_PRODUCTS = [
+  // --- DEPARTAMENTO: HOGAR ---
+  {
+    id: "h_001",
+    codigo: "HOG-24701",
+    nombre: "Organi Closet Max",
+    departamento: "hogar",
+    marca: "betterware",
+    categoria: "Recámara",
+    precio_regular: 399.00,
+    precio_oferta: 269.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Organizador colgante con 6 compartimentos reforzados. Maximiza el espacio de tu clóset. Soporta hasta 8 kg.",
+    stock: 25,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "h_002",
+    codigo: "HOG-23114",
+    nombre: "Dispensa Especias 360°",
+    departamento: "hogar",
+    marca: "betterware",
+    categoria: "Cocina",
+    precio_regular: 289.00,
+    precio_oferta: 199.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Especiero giratorio de doble nivel con 8 frascos herméticos incluidos. Ideal para organizar tu despensa.",
+    stock: 18,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "h_003",
+    codigo: "HOG-22890",
+    nombre: "Lámpara Sensor Flex",
+    departamento: "hogar",
+    marca: "betterware",
+    categoria: "Iluminación",
+    precio_regular: 249.00,
+    precio_oferta: 179.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Luz LED recargable USB con sensor de movimiento inteligente. Encendido automático en la oscuridad.",
+    stock: 40,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "h_004",
+    codigo: "HOG-21455",
+    nombre: "Eco Filtro Agua Inox",
+    departamento: "hogar",
+    marca: "betterware",
+    categoria: "Cocina",
+    precio_regular: 499.00,
+    precio_oferta: 349.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Filtro purificador para grifo de cocina con cartucho de carbón activado y cuerpo de acero inoxidable.",
+    stock: 12,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "h_005",
+    codigo: "HOG-24102",
+    nombre: "Escoba Mágica Spray Pro",
+    departamento: "hogar",
+    marca: "betterware",
+    categoria: "Limpieza",
+    precio_regular: 359.00,
+    precio_oferta: 259.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Mopa con dispensador de limpiador y microfibra lavable 360°. Limpia pisos de madera, azulejo y porcelanato.",
+    stock: 30,
+    activo: true,
+    variantes: []
+  },
+
+  // --- DEPARTAMENTO: BELLEZA ---
+  {
+    id: "b_001",
+    codigo: "BEL-9821",
+    nombre: "Labial Duo Tattoo 24H",
+    departamento: "belleza",
+    marca: "esika",
+    categoria: "Maquillaje",
+    precio_regular: 230.00,
+    precio_oferta: 149.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Labial de máxima duración no transferible con bálsamos de hidratación intensa. Color intacto todo el día.",
+    stock: 50,
+    activo: true,
+    variantes: [
+      { id: "v1", nombre: "Rojo Seductor", sku: "BEL-9821-ROJ" },
+      { id: "v2", nombre: "Rosa Chic", sku: "BEL-9821-ROS" },
+      { id: "v3", nombre: "Pimienta Caliente", sku: "BEL-9821-PIM" }
+    ]
+  },
+  {
+    id: "b_002",
+    codigo: "BEL-1044",
+    nombre: "Perfume Masculino Leyenda 100ml",
+    departamento: "belleza",
+    marca: "esika",
+    categoria: "Perfumes",
+    precio_regular: 650.00,
+    precio_oferta: 399.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Perfume masculino de alta concentración con notas de cardamomo, maderas finas y ámbar. Muy duradero.",
+    stock: 15,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "b_003",
+    codigo: "BEL-3091",
+    nombre: "Máscara de Pestañas Mega Full",
+    departamento: "belleza",
+    marca: "esika",
+    categoria: "Maquillaje",
+    precio_regular: 210.00,
+    precio_oferta: 139.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1631214524020-7e18db9a8f9d?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Efecto largo extremo y volumen cero grumos. Fórmula a prueba de agua enriquecida con biotina.",
+    stock: 35,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "b_004",
+    codigo: "BEL-7712",
+    nombre: "Crema Facial Triple Acción 200g",
+    departamento: "belleza",
+    marca: "esika",
+    categoria: "Cuidado Facial",
+    precio_regular: 290.00,
+    precio_oferta: 189.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Crema multibeneficios con colágeno y vitamina E. Hidrata, firmeza y reduce líneas de expresión.",
+    stock: 22,
+    activo: true,
+    variantes: []
+  },
+  {
+    id: "b_005",
+    codigo: "BEL-5419",
+    nombre: "Perfume Femenino Vibranza 45ml",
+    departamento: "belleza",
+    marca: "esika",
+    categoria: "Perfumes",
+    precio_regular: 580.00,
+    precio_oferta: 349.00,
+    es_oferta: true,
+    fotos: ["https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500&auto=format&fit=crop&q=60"],
+    descripcion: "Nº 1 en ventas. Fragancia femenina oriental dulce con irresistibles notas de orquídea de vainilla y flor de café.",
+    stock: 19,
+    activo: true,
+    variantes: []
+  }
+];
+
+if (typeof window !== "undefined") {
+  window.INITIAL_PRODUCTS = INITIAL_PRODUCTS;
+}
