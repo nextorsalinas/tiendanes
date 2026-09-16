@@ -19,9 +19,8 @@ class StoreDatabase {
   initLocalData() {
     const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
     
-    // Always sync products if new scraped items are present
-    const existingData = localStorage.getItem("nesty_products");
-    if (!existingData || JSON.parse(existingData).length < initialData.length) {
+    // Only initialize if nesty_products key does not exist at all
+    if (!localStorage.getItem("nesty_products")) {
       localStorage.setItem("nesty_products", JSON.stringify(initialData));
     }
     
@@ -33,13 +32,12 @@ class StoreDatabase {
   async getProducts() {
     try {
       const data = localStorage.getItem("nesty_products");
-      const parsed = JSON.parse(data || "[]");
-      const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
-      if (parsed.length < initialData.length) {
-        localStorage.setItem("nesty_products", JSON.stringify(initialData));
-        return initialData;
+      if (data !== null) {
+        return JSON.parse(data);
       }
-      return parsed;
+      const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
+      localStorage.setItem("nesty_products", JSON.stringify(initialData));
+      return initialData;
     } catch (e) {
       console.error("Error reading products:", e);
       return (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
