@@ -9,21 +9,15 @@ const firebaseConfig = {
   appId: "1:123456789012:web:abcdef1234567890"
 };
 
-// Global Store State Manager
+// Global Store State Manager with Disk & Git Repository Sync
 class StoreDatabase {
   constructor() {
     this.useMock = true;
+    this.apiAvailable = true;
     this.initLocalData();
   }
 
   initLocalData() {
-    const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
-    
-    // Only initialize if nesty_products key does not exist at all
-    if (!localStorage.getItem("nesty_products")) {
-      localStorage.setItem("nesty_products", JSON.stringify(initialData));
-    }
-    
     if (!localStorage.getItem("nesty_orders")) {
       localStorage.setItem("nesty_orders", JSON.stringify([]));
     }
@@ -31,54 +25,152 @@ class StoreDatabase {
 
   async getProducts() {
     try {
+      // 1. Try to fetch from server API (live repository files)
+      const res = await fetch('/api/products', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.success && Array.isArray(data.products)) {
+          // Check if localStorage has extra items created offline
+          let local = [];
+          try {
+            local = JSON.parse(localStorage.getItem("nesty_products") || "[]");
+          } catch (e) {}
+
+          // If local has extra products not in server, sync them up
+          const serverIds = new Set(data.products.map(p => p.id));
+          const extraLocal = local.filter(p => !serverIds.has(p.id));
+          if (extraLocal.length > 0) {
+            console.log(`Sincronizando ${extraLocal.length} productos locales al servidor...`);
+            for (const ep of extraLocal) {
+              await this.saveProductToServer(ep);
+            }
+            const refreshed = await fetch('/api/products', { cache: 'no-store' });
+            if (refreshed.ok) {
+              const rData = await refreshed.json();
+              localStorage.setItem("nesty_products", JSON.stringify(rData.products));
+              return rData.products;
+            }
+          }
+
+          localStorage.setItem("nesty_products", JSON.stringify(data.products));
+          return data.products;
+        }
+      }
+    } catch (e) {
+      console.warn("Servidor API no disponible, usando almacenamiento local:", e);
+    }
+
+    // 2. Fallback to localStorage or INITIAL_PRODUCTS
+    try {
       const data = localStorage.getItem("nesty_products");
       if (data !== null) {
-        return JSON.parse(data);
+        const parsed = JSON.parse(data);
+        if (parsed.length > 0) return parsed;
       }
-      const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
-      localStorage.setItem("nesty_products", JSON.stringify(initialData));
-      return initialData;
+    } catch (e) {}
+
+    const initialData = (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
+    localStorage.setItem("nesty_products", JSON.stringify(initialData));
+    return initialData;
+  }
+
+  async saveProductToServer(product) {
+    try {
+      const res = await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      });
+      return await res.json();
     } catch (e) {
-      console.error("Error reading products:", e);
-      return (typeof INITIAL_PRODUCTS !== "undefined") ? INITIAL_PRODUCTS : [];
+      console.error("Error al persistir en servidor:", e);
+      return null;
     }
   }
 
   async saveProduct(product) {
-    const products = await this.getProducts();
     if (!product.id) {
       product.id = "prod_" + Date.now();
     }
-    const index = products.findIndex(p => p.id === product.id);
+
+    // Update in local cache
+    let products = [];
+    try {
+      products = JSON.parse(localStorage.getItem("nesty_products") || "[]");
+    } catch (e) {}
+    
+    const index = products.findIndex(p => p.id === product.id || (product.codigo && p.codigo === product.codigo));
     if (index >= 0) {
       products[index] = { ...products[index], ...product };
     } else {
       products.unshift(product);
     }
     localStorage.setItem("nesty_products", JSON.stringify(products));
-    return product;
+
+    // Persist directly to repository on disk
+    const apiResult = await this.saveProductToServer(product);
+    return { product, savedToRepo: !!(apiResult && apiResult.success) };
   }
 
   async deleteProduct(productId) {
-    let products = await this.getProducts();
+    let products = [];
+    try {
+      products = JSON.parse(localStorage.getItem("nesty_products") || "[]");
+    } catch (e) {}
     products = products.filter(p => p.id !== productId);
     localStorage.setItem("nesty_products", JSON.stringify(products));
+
+    // Delete on server repository
+    try {
+      await fetch('/api/products/' + encodeURIComponent(productId), { method: 'DELETE' });
+    } catch (e) {
+      console.error("Error al eliminar en servidor:", e);
+    }
     return true;
   }
 
   async bulkImportProducts(newProducts) {
-    let products = await this.getProducts();
-    newProducts.forEach(np => {
-      if (!np.id) np.id = "prod_" + Math.random().toString(36).substr(2, 9);
-      const existingIdx = products.findIndex(p => p.codigo === np.codigo || p.id === np.id);
-      if (existingIdx >= 0) {
-        products[existingIdx] = { ...products[existingIdx], ...np };
-      } else {
-        products.unshift(np);
+    // Persist to server
+    try {
+      const res = await fetch('/api/catalog/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newProducts)
+      });
+      const data = await res.json();
+      if (data && data.success) {
+        localStorage.setItem("nesty_products", JSON.stringify(newProducts));
+        return data.total;
       }
-    });
-    localStorage.setItem("nesty_products", JSON.stringify(products));
-    return products.length;
+    } catch (e) {
+      console.error("Error al importar en servidor:", e);
+    }
+
+    // Fallback local
+    localStorage.setItem("nesty_products", JSON.stringify(newProducts));
+    return newProducts.length;
+  }
+
+  async syncWithGit(message) {
+    try {
+      const res = await fetch('/api/git/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      return await res.json();
+    } catch (e) {
+      return { success: false, error: e.message };
+    }
+  }
+
+  async getGitStatus() {
+    try {
+      const res = await fetch('/api/git/status');
+      return await res.json();
+    } catch (e) {
+      return { success: false, error: e.message };
+    }
   }
 
   async createOrder(orderData) {

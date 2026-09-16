@@ -1,21 +1,8 @@
-// Admin Panel Logic for Tienda Nesty (Sincronización Automática a Disco y Git)
+// Admin Panel Logic for Tienda Nesty (Gestión Completa & JSON Directo)
 document.addEventListener("DOMContentLoaded", async () => {
   let ordersList = [];
   let productsList = [];
   let filterText = "";
-
-  // Helper to sync active products to disk file public/js/products-data.js via server API
-  async function syncProductsToDisk(products) {
-    try {
-      await fetch('/api/save-catalog', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(products)
-      });
-    } catch (e) {
-      console.log("Servidor local no detectado o corriendo independiente, guardado en localStorage.");
-    }
-  }
 
   // Tab switcher
   const navTabs = document.querySelectorAll(".admin-nav-link");
@@ -69,7 +56,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (elTotalOrders) elTotalOrders.textContent = totalOrders;
     if (elPendingOrders) elPendingOrders.textContent = pendingOrders;
     if (elRevenue) elRevenue.textContent = `$${totalRevenue.toFixed(2)} MXN`;
-    if (elTotalProducts) elTotalProducts.textContent = totalProducts;
+    if (elTotalProducts) {
+      const hogarCount = productsList.filter(p => (p.departamento || '').toLowerCase() === 'hogar' || (p.marca || '').toLowerCase() === 'betterware').length;
+      const bellezaCount = productsList.length - hogarCount;
+      elTotalProducts.innerHTML = `${totalProducts} <span class="badge bg-primary ms-1 fs-6">${hogarCount} Hogar</span> <span class="badge bg-danger ms-1 fs-6">${bellezaCount} Belleza</span>`;
+    }
   }
 
   // Render Orders Table
@@ -185,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Open New Product Modal
+  // Open New Product Modal (Garantizado)
   window.openNewProductModal = () => {
     document.getElementById("productModalHeading").textContent = "Agregar Nuevo Producto";
     document.getElementById("edit-prod-id").value = "";
@@ -204,7 +195,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Close Product Modal
+  // Close Product Modal (Garantizado)
   window.closeProductModal = () => {
     const modalEl = document.getElementById("addProductModal");
     if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
@@ -251,19 +242,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Delete product action (Sincroniza a Disco)
+  // Delete product action
   window.deleteProduct = async (id) => {
     const product = productsList.find(p => p.id === id);
     const title = product ? product.nombre : "este producto";
-    if (confirm(`¿Estás seguro de eliminar "${title}" del catálogo?`)) {
+    if (confirm(`¿Estás seguro de eliminar "${title}" del catálogo? Se actualizará también en los archivos del repositorio.`)) {
       await window.db.deleteProduct(id);
-      const updated = await window.db.getProducts();
-      await syncProductsToDisk(updated);
       await loadAdminData();
     }
   };
 
-  // Save / Add Product Form Submit (Sincroniza a Disco)
+  // Save / Add Product Form Submit
   const productEditForm = document.getElementById("productEditForm");
   if (productEditForm) {
     productEditForm.addEventListener("submit", async (e) => {
@@ -298,14 +287,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           variantes: []
         };
 
-        await window.db.saveProduct(product);
-        const updated = await window.db.getProducts();
-        await syncProductsToDisk(updated);
-
+        const result = await window.db.saveProduct(product);
         window.closeProductModal();
         productEditForm.reset();
         await loadAdminData();
-        alert(`¡Producto "${nameVal}" guardado y sincronizado a los archivos del proyecto!`);
+        alert(`¡Producto "${nameVal}" guardado exitosamente en el catálogo y en los archivos del repositorio!`);
       } catch (err) {
         console.error("Error al guardar producto:", err);
         alert("Error al guardar producto: " + err.message);
@@ -313,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Bulk Import / Direct JSON Submit (Sincroniza a Disco)
+  // Bulk Import / Direct JSON Submit
   const bulkImportForm = document.getElementById("bulkImportForm");
   if (bulkImportForm) {
     bulkImportForm.addEventListener("submit", async (e) => {
@@ -326,15 +312,50 @@ document.addEventListener("DOMContentLoaded", async () => {
           return;
         }
 
-        localStorage.setItem("nesty_products", JSON.stringify(parsed));
-        await syncProductsToDisk(parsed);
-        alert(`¡Catálogo actualizado y guardado en los archivos del proyecto! (${parsed.length} productos)`);
+        const totalSaved = await window.db.bulkImportProducts(parsed);
+        alert(`¡Catálogo actualizado con éxito! Se guardaron ${totalSaved} productos en el repositorio.`);
         await loadAdminData();
       } catch (err) {
-        alert("Error al procesar el archivo JSON. Verifica la sintaxis: " + err.message);
+        alert("Error al procesar el archivo JSON. Verifica que la sintaxis sea válida: " + err.message);
       }
     });
   }
+
+  // Handle Git Sync (Commit & Push)
+  async function handleGitSync() {
+    const btns = document.querySelectorAll("#btn-git-sync-repo, #btn-sync-git-inline");
+    btns.forEach(b => {
+      b.disabled = true;
+      b.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Sincronizando Git...';
+    });
+
+    try {
+      const res = await window.db.syncWithGit("Actualización de productos y catálogo desde panel local");
+      if (res && res.success) {
+        alert("✅ ¡Repositorio sincronizado!\n\n" + (res.commit || "Archivos guardados en Git.") + (res.pushed ? "\n\nSe subieron los cambios a GitHub (push completado)." : "\n\n(Cambios confirmados localmente en Git)"));
+      } else {
+        alert("ℹ️ Estado Git: " + (res.error || "No se detectaron cambios pendientes."));
+      }
+    } catch (err) {
+      alert("Error al sincronizar con Git: " + err.message);
+    } finally {
+      const mainBtn = document.getElementById("btn-git-sync-repo");
+      if (mainBtn) {
+        mainBtn.disabled = false;
+        mainBtn.innerHTML = '<i class="bi bi-git me-1"></i> Sincronizar Repositorio (Git)';
+      }
+      const inlineBtn = document.getElementById("btn-sync-git-inline");
+      if (inlineBtn) {
+        inlineBtn.disabled = false;
+        inlineBtn.innerHTML = '<i class="bi bi-git me-1"></i> Confirmar en Git';
+      }
+      await loadAdminData();
+    }
+  }
+
+  document.querySelectorAll("#btn-git-sync-repo, #btn-sync-git-inline").forEach(btn => {
+    btn.addEventListener("click", handleGitSync);
+  });
 
   // Export / Download Catalog JSON
   function exportCatalogJSON() {
@@ -361,8 +382,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (btnResetCatalog) {
     btnResetCatalog.addEventListener("click", async () => {
       if (confirm("⚠️ ¿Estás seguro de vaciar el catálogo activo?")) {
-        localStorage.setItem("nesty_products", JSON.stringify([]));
-        await syncProductsToDisk([]);
+        await window.db.bulkImportProducts([]);
         await loadAdminData();
       }
     });

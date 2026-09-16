@@ -1,7 +1,4 @@
-// Catalog Products Data for Tienda Nesty (Hogar & Belleza: L'Bel + Ésika + Cyzone + Betterware)
-// Auto-generated with 400 products (250 Hogar, 150 Belleza)
-
-const INITIAL_PRODUCTS = [
+[
   {
     "id": "bw_10466108539180",
     "codigo": "26098",
@@ -10974,8 +10971,4 @@ const INITIAL_PRODUCTS = [
       }
     ]
   }
-];
-
-if (typeof window !== "undefined") {
-  window.INITIAL_PRODUCTS = INITIAL_PRODUCTS;
-}
+]
