@@ -1,4 +1,4 @@
-// Main Application Logic for Tienda Nesty (Pedidos Directos por WhatsApp - Cards Limpias)
+// Main Application Logic for Tienda Nesty (Tarjetas 100% Limpias sin ninguna etiqueta)
 const WHATSAPP_SELLER_PHONE = "525525000024";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Render Product Grid (Sin badges de descuento ni textos de categoría en las cards)
+  // Render Product Grid (Sin etiquetas de marca, departamento ni descuento)
   function renderProducts() {
     const grid = document.getElementById("products-grid");
     const countEl = document.getElementById("products-count-text");
@@ -93,11 +93,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     grid.innerHTML = filtered.map(p => {
-      const dept = getDept(p);
-      const isHogar = dept === "hogar";
-      const brandBadgeClass = isHogar ? "badge-betterware" : "badge-esika";
-      const deptLabel = isHogar ? "Hogar" : "Belleza";
-
       const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
       const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
@@ -106,7 +101,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="col-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <div class="product-card-img-container" onclick="window.openOrderModal('${p.id}')">
-              <span class="badge-brand-label ${brandBadgeClass}">${deptLabel}</span>
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
             </div>
             <div class="product-card-content">
@@ -162,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!modalBody) return;
     const deptName = getDept(product).toUpperCase();
-    if (categoryLabel) categoryLabel.textContent = `${deptName} • CÓDIGO: ${product.codigo}`;
+    if (categoryLabel) categoryLabel.textContent = `CÓDIGO: ${product.codigo}`;
 
     const hasDiscount = product.precio_oferta && product.precio_oferta < product.precio_regular;
     const currentPrice = hasDiscount ? product.precio_oferta : product.precio_regular;
@@ -172,9 +166,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="d-flex align-items-center gap-3 bg-light p-3 rounded-3 mb-3 border">
         <img src="${mainImg}" style="width: 75px; height: 75px; object-fit: contain;" class="rounded bg-white p-1">
         <div>
-          <span class="badge bg-secondary mb-1" style="font-size:0.7rem;">${deptName}</span>
           <h6 class="fw-bold text-dark m-0">${product.nombre}</h6>
-          <small class="text-muted">Cód: ${product.codigo} | Categoría: ${product.categoria}</small>
+          <small class="text-muted">Cód: ${product.codigo}</small>
           <div class="mt-1">
             <span class="fs-5 fw-extrabold text-success">$${currentPrice.toFixed(2)} MXN</span>
             ${hasDiscount ? `<span class="text-muted text-decoration-line-through ms-2 small">$${product.precio_regular.toFixed(2)}</span>` : ''}
@@ -287,13 +280,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Generate WhatsApp Message for Single Product Order
   function generateSingleProductWhatsAppUrl(orderId, product, variant, customer, payment, price) {
-    const deptTag = getDept(product) === 'hogar' ? '🏠 [Hogar]' : '✨ [Belleza]';
     const variantStr = variant ? `\n🎨 *Variante:* ${variant}` : '';
 
     let msg = `🛍️ *¡NUEVO PEDIDO DIRECTO EN TIENDA NESTY!*\n`;
     msg += `📋 *Folio:* #${orderId}\n`;
     msg += `------------------------------------\n`;
-    msg += `📌 *PRODUCTO:* ${deptTag} *${product.nombre}*${variantStr}\n`;
+    msg += `📌 *PRODUCTO:* *${product.nombre}*${variantStr}\n`;
     msg += `🔢 *Código:* ${product.codigo}\n`;
     msg += `💰 *Precio:* *$${price.toFixed(2)} MXN*\n`;
     msg += `------------------------------------\n`;

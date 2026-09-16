@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tienda Nesty - Direct WhatsApp Order Style (Sin Carrito)
+   Tienda Nesty - Direct WhatsApp Order Style (Sin Carrito ni Etiquetas)
    Clean, Responsive, High Contrast, Ultra-Modern UI
    ========================================================================== */
 
@@ -70,24 +70,6 @@ body {
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
   text-transform: uppercase;
-}
-
-/* --- Search Bar --- */
-.search-input-minimal {
-  background: #f1f5f9;
-  border: 1px solid transparent;
-  border-radius: var(--radius-pill);
-  padding: 0.55rem 1.1rem;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.search-input-minimal:focus {
-  background: #ffffff;
-  border-color: var(--whatsapp-green);
-  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
-  outline: none;
 }
 
 /* --- Clean Department Navigation Tabs --- */
@@ -189,38 +171,9 @@ body {
   padding: 0.85rem;
 }
 
-.badge-brand-label {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-.badge-betterware {
-  background: #0076ce;
-  color: #ffffff;
-}
-
-.badge-esika {
-  background: #d63384;
-  color: #ffffff;
-}
-
-.badge-discount-pill {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #ef4444;
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-pill);
+/* Hide all overlay badges completely */
+.badge-brand-label, .badge-discount-pill, .brand-badge {
+  display: none !important;
 }
 
 .product-card-content {
@@ -228,13 +181,6 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-}
-
-.product-code-meta {
-  font-size: 0.73rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-bottom: 0.25rem;
 }
 
 .product-name-minimal {
@@ -314,17 +260,3 @@ body {
   opacity: 0.95;
   color: #ffffff;
 }
-
-/* --- Status Badges --- */
-.status-badge {
-  padding: 0.3rem 0.65rem;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.75rem;
-}
-
-.status-pendiente_pago { background: #fef3c7; color: #92400e; }
-.status-confirmado { background: #dbeafe; color: #1e40af; }
-.status-en_camino { background: #f3e8ff; color: #6b21a8; }
-.status-entregado { background: #dcfce7; color: #166534; }
-.status-cancelado { background: #fee2e2; color: #991b1b; }
