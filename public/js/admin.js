@@ -172,11 +172,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Open New Product Modal
+  // Open New Product Modal (Garantizado)
   window.openNewProductModal = () => {
     document.getElementById("productModalHeading").textContent = "Agregar Nuevo Producto";
     document.getElementById("edit-prod-id").value = "";
     document.getElementById("productEditForm").reset();
+
+    const modalEl = document.getElementById("addProductModal");
+    if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modalInstance.show();
+    } else if (typeof coreui !== "undefined" && coreui.Modal) {
+      const modalInstance = coreui.Modal.getOrCreateInstance(modalEl);
+      modalInstance.show();
+    } else {
+      modalEl.classList.add("show");
+      modalEl.style.display = "block";
+    }
+  };
+
+  // Close Product Modal (Garantizado)
+  window.closeProductModal = () => {
+    const modalEl = document.getElementById("addProductModal");
+    if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+      const modalInstance = bootstrap.Modal.getInstance(modalEl);
+      if (modalInstance) modalInstance.hide();
+    }
+    if (typeof coreui !== "undefined" && coreui.Modal) {
+      const modalInstance = coreui.Modal.getInstance(modalEl);
+      if (modalInstance) modalInstance.hide();
+    }
+    modalEl.classList.remove("show");
+    modalEl.style.display = "none";
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) backdrop.remove();
   };
 
   // Open Edit Product Modal
@@ -197,8 +226,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("prod-desc").value = product.descripcion || "";
 
     const modalEl = document.getElementById("addProductModal");
-    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
-    modalInstance.show();
+    if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modalInstance.show();
+    } else if (typeof coreui !== "undefined" && coreui.Modal) {
+      const modalInstance = coreui.Modal.getOrCreateInstance(modalEl);
+      modalInstance.show();
+    } else {
+      modalEl.classList.add("show");
+      modalEl.style.display = "block";
+    }
   };
 
   // Delete product action
@@ -247,12 +284,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         await window.db.saveProduct(product);
-
-        // Hide modal
-        const modalEl = document.getElementById("addProductModal");
-        const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
-        if (modalInstance) modalInstance.hide();
-
+        window.closeProductModal();
         productEditForm.reset();
         await loadAdminData();
         alert(`¡Producto "${nameVal}" guardado exitosamente en el catálogo!`);
@@ -276,7 +308,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           return;
         }
 
-        // Overwrite active products list with the edited array
         localStorage.setItem("nesty_products", JSON.stringify(parsed));
         alert(`¡Catálogo actualizado con éxito! Se guardaron ${parsed.length} productos.`);
         await loadAdminData();

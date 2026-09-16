@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Administración | Tienda Nesty</title>
 
-  <!-- Fonts & CoreUI -->
+  <!-- Fonts & CoreUI / Bootstrap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -134,7 +134,7 @@
           <h5 class="fw-bold text-dark m-0"><i class="bi bi-boxes me-2"></i> Productos en Catálogo</h5>
           <div class="d-flex gap-2">
             <input type="text" id="admin-search-product" class="form-control form-control-sm rounded-pill" placeholder="🔍 Buscar producto en tabla..." style="max-width: 250px;">
-            <button class="btn btn-primary btn-sm rounded-pill fw-bold px-3" data-bs-toggle="modal" data-bs-target="#addProductModal" onclick="window.openNewProductModal()">
+            <button type="button" class="btn btn-primary btn-sm rounded-pill fw-bold px-3" onclick="window.openNewProductModal()">
               <i class="bi bi-plus-lg me-1"></i> Nuevo Producto
             </button>
           </div>
@@ -202,7 +202,7 @@
       <div class="modal-content rounded-4 border-0 shadow-lg">
         <div class="modal-header">
           <h5 class="modal-title fw-bold" id="productModalHeading">Agregar Nuevo Producto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.closeProductModal()"></button>
         </div>
         <form id="productEditForm">
           <input type="hidden" id="edit-prod-id">
@@ -250,7 +250,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.closeProductModal()">Cancelar</button>
             <button type="submit" class="btn btn-primary fw-bold" id="btn-save-product-modal">Guardar Producto</button>
           </div>
         </form>
