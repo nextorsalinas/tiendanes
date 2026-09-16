@@ -95,12 +95,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     grid.innerHTML = filtered.map(p => {
       const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
       const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
+      const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
 
       return `
         <div class="col-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <div class="product-card-img-container" onclick="window.openOrderModal('${p.id}')">
+              ${hasDiscount ? `<span class="badge-shein-discount">-${discountPercent}%</span>` : ''}
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
             </div>
             <div class="product-card-content">
@@ -112,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </div>
 
               <button class="btn-whatsapp-card" onclick="window.openOrderModal('${p.id}')">
-                <i class="bi bi-whatsapp fs-6"></i> Pedir por WhatsApp
+                <i class="bi bi-whatsapp"></i> Pedir por WhatsApp
               </button>
             </div>
           </div>

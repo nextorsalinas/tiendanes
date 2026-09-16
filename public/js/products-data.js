@@ -1,7 +1,169 @@
 // Catalog Products Data for Tienda Nesty (Hogar & Belleza: L'Bel + Ésika + Cyzone + Betterware)
-// Auto-generated with 400 products (250 Hogar, 150 Belleza)
+// Auto-generated with 409 products
 
 const INITIAL_PRODUCTS = [
+  {
+    "id": "prod_1789570376562",
+    "codigo": "00012",
+    "nombre": "esika Grazzia Perfume de Mujer Edición Especial, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 490,
+    "precio_oferta": 260,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma floral para la mujer que le gusta despertar su lado más romántico.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1254553-1200-auto?v=639231860830470000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 2,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571066315",
+    "codigo": "1113",
+    "nombre": "Magnat Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 741,
+    "precio_oferta": 320,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma maderoso para el hombre exitoso y sofisticado que sabe elegir. Capacidad: 90 ml. Tamaño: 13.7x3.90x7.60 cm.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1254376-1200-auto?v=639231851213200000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571196458",
+    "codigo": "1114",
+    "nombre": "Momentos Radiantes Perfume de Mujer, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 560,
+    "precio_oferta": 280,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma floral para la mujer llena de vida. Capacidad: 50 ml. Tamaño: 14.0x3.60x4.90 cm.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1244231-1200-auto?v=639223723789870000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571363403",
+    "codigo": "1115",
+    "nombre": "Vibranza Blanc Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 290,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma floral de muy larga duración. Para la mujer atrevida, sensual y auténtica. Capacidad: 45 ml. Tamaño: 11.5x4.00x6.10 cm.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1256086-1200-auto?v=639238276729270000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571518635",
+    "codigo": "11118",
+    "nombre": "YOU Perfume Unisex Edición Especial, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 560,
+    "precio_oferta": 220,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume unisex de aroma frutal fresco, para quienes celebran su autenticidad y disfrutan de la vida a su manera. Capacidad: 90 ml. Tamaño: 16.3x3.20x6.15 cm",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1254396-1200-auto?v=639231852564300000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571730620",
+    "codigo": "1119",
+    "nombre": "Perfume De Hombre Fist, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 450,
+    "precio_oferta": 199,
+    "es_oferta": true,
+    "descripcion": "Conócelo\n\nPerfume de hombre con aroma maderoso de larga duración y concentracion",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1173774-1200-auto?v=639211187022430000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571884453",
+    "codigo": "1120",
+    "nombre": "Perfume de mujer Crystal Star 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 530,
+    "precio_oferta": 340,
+    "es_oferta": true,
+    "descripcion": "Conócelo\nPerfume de mujer Crystal Star con aroma oriental dulce que irradia energía, poder y encanto. Medidas aproximadas: Alto 129mm, Ancho: 59mm, Fondo: 27.6mm",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1250973-1200-auto?v=639223871199600000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789572012613",
+    "codigo": "1121",
+    "nombre": "Bleu Night Perfume para Hombre 100 ml.",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 680,
+    "precio_oferta": 390,
+    "es_oferta": true,
+    "descripcion": "¿Qué es?\nPerfume fresco para hombre de muy alta concentración de familia olfativa herbal maderoso. (8.3 x 4.1 x 13.5 cm) NSOC61350-14CO",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1256950-1200-auto?v=639244013814770000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789572096371",
+    "codigo": "1122",
+    "nombre": "Perfume de mujer Miss L'BEL",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 830,
+    "precio_oferta": 390,
+    "es_oferta": true,
+    "descripcion": "¿Qué es?\nMiss L'BEL parfum 50ml e 1.7 fl. oz. (6 x 4.4 x 11.7 cm) NSOC30958-24CO",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1241433-1200-auto?v=639223676578300000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
   {
     "id": "bw_10466108539180",
     "codigo": "26098",
