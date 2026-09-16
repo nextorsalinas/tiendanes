@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${deptBadge}</td>
           <td><small class="text-muted">${p.categoria}</small></td>
           <td>
-            <strong class="text-dark">$${(p.precio_oferta || p.precio_regular).toFixed(2)}</strong>
+            <strong class="text-dark">$${(p.precio_oferta || p.precio_regular || 0).toFixed(2)}</strong>
             ${p.precio_oferta ? `<br><small class="text-decoration-line-through text-muted">$${p.precio_regular.toFixed(2)}</small>` : ''}
           </td>
           <td>
@@ -186,18 +186,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("productModalHeading").textContent = `Editar Producto: ${product.codigo}`;
     document.getElementById("edit-prod-id").value = product.id;
-    document.getElementById("prod-code").value = product.codigo;
-    document.getElementById("prod-name").value = product.nombre;
+    document.getElementById("prod-code").value = product.codigo || "";
+    document.getElementById("prod-name").value = product.nombre || "";
     document.getElementById("prod-dept").value = (product.departamento || (product.marca === 'betterware' ? 'hogar' : 'belleza'));
-    document.getElementById("prod-category").value = product.categoria;
-    document.getElementById("prod-price-reg").value = product.precio_regular;
+    document.getElementById("prod-category").value = product.categoria || "";
+    document.getElementById("prod-price-reg").value = product.precio_regular || "";
     document.getElementById("prod-price-off").value = product.precio_oferta || "";
     document.getElementById("prod-stock").value = product.stock || 20;
     document.getElementById("prod-img-url").value = product.fotos && product.fotos.length > 0 ? product.fotos[0] : "";
     document.getElementById("prod-desc").value = product.descripcion || "";
 
-    const modal = new bootstrap.Modal(document.getElementById("addProductModal"));
-    modal.show();
+    const modalEl = document.getElementById("addProductModal");
+    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modalInstance.show();
   };
 
   // Delete product action
@@ -210,34 +211,55 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Save / Edit Product Form Submit
+  // Save / Add Product Form Submit
   const productEditForm = document.getElementById("productEditForm");
   if (productEditForm) {
     productEditForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const editId = document.getElementById("edit-prod-id").value;
+      try {
+        const editId = document.getElementById("edit-prod-id").value;
 
-      const product = {
-        id: editId || null,
-        codigo: document.getElementById("prod-code").value,
-        nombre: document.getElementById("prod-name").value,
-        departamento: document.getElementById("prod-dept").value,
-        marca: document.getElementById("prod-dept").value === "hogar" ? "betterware" : "esika",
-        categoria: document.getElementById("prod-category").value,
-        precio_regular: parseFloat(document.getElementById("prod-price-reg").value),
-        precio_oferta: parseFloat(document.getElementById("prod-price-off").value) || null,
-        descripcion: document.getElementById("prod-desc").value,
-        fotos: [document.getElementById("prod-img-url").value || "https://via.placeholder.com/400"],
-        stock: parseInt(document.getElementById("prod-stock").value) || 20,
-        activo: true
-      };
+        const codeVal = document.getElementById("prod-code").value.trim();
+        const nameVal = document.getElementById("prod-name").value.trim();
+        const deptVal = document.getElementById("prod-dept").value;
+        const catVal = document.getElementById("prod-category").value.trim();
+        const priceRegVal = parseFloat(document.getElementById("prod-price-reg").value);
+        const priceOffVal = parseFloat(document.getElementById("prod-price-off").value);
+        const stockVal = parseInt(document.getElementById("prod-stock").value);
+        const imgVal = document.getElementById("prod-img-url").value.trim();
+        const descVal = document.getElementById("prod-desc").value.trim();
 
-      await window.db.saveProduct(product);
-      productEditForm.reset();
-      const modalEl = document.getElementById("addProductModal");
-      const modal = bootstrap.Modal.getInstance(modalEl);
-      if (modal) modal.hide();
-      await loadAdminData();
+        const product = {
+          id: editId || ("prod_" + Date.now()),
+          codigo: codeVal,
+          nombre: nameVal,
+          departamento: deptVal,
+          marca: deptVal === "hogar" ? "betterware" : "esika",
+          categoria: catVal || "General",
+          precio_regular: isNaN(priceRegVal) ? 0 : priceRegVal,
+          precio_oferta: isNaN(priceOffVal) ? null : priceOffVal,
+          es_oferta: !isNaN(priceOffVal) && priceOffVal > 0 && priceOffVal < priceRegVal,
+          descripcion: descVal,
+          fotos: [imgVal || "https://via.placeholder.com/400?text=Sin+Imagen"],
+          stock: isNaN(stockVal) ? 20 : stockVal,
+          activo: true,
+          variantes: []
+        };
+
+        await window.db.saveProduct(product);
+
+        // Hide modal
+        const modalEl = document.getElementById("addProductModal");
+        const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+        if (modalInstance) modalInstance.hide();
+
+        productEditForm.reset();
+        await loadAdminData();
+        alert(`¡Producto "${nameVal}" guardado exitosamente en el catálogo!`);
+      } catch (err) {
+        console.error("Error al guardar producto:", err);
+        alert("Error al guardar producto: " + err.message);
+      }
     });
   }
 
