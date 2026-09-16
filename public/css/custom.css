@@ -1,162 +1,171 @@
 /* ==========================================================================
-   NESTY - High Fashion / Trendy SHEIN-Style E-Commerce Branding
-   Clean, High Contrast (Black & White + Hot Pink Accents), Modern UI
+   nestt. - Youthful, Vibrant & Fresh E-Commerce Branding (Estilo Cyzone)
+   Clean Soft Minimalism, Violet / Magenta / Lilac Accents & Friendly Curves
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* SHEIN Aesthetic Tokens */
-  --nesty-black: #000000;
-  --nesty-dark: #111111;
-  --nesty-gray-900: #1a1a1a;
-  --nesty-gray-800: #262626;
-  --nesty-gray-700: #404040;
-  --nesty-gray-500: #737373;
-  --nesty-gray-300: #d4d4d4;
-  --nesty-gray-100: #f5f5f5;
-  --nesty-white: #ffffff;
+  /* Cyzone Signature Palette (Vibrant Violet, Magenta & Lilac) */
+  --nestt-purple: #7928ca;
+  --nestt-purple-dark: #5c18a0;
+  --nestt-magenta: #f72585;
+  --nestt-pink: #ff4d8d;
+  --nestt-lilac: #e9d5ff;
+  --nestt-lilac-soft: #f5effe;
+  
+  /* Gradients */
+  --nestt-gradient: linear-gradient(135deg, #7928ca 0%, #f72585 100%);
+  --nestt-gradient-hover: linear-gradient(135deg, #681fb3 0%, #e01672 100%);
+  --nestt-gradient-soft: linear-gradient(135deg, #faf5ff 0%, #fff0f6 100%);
 
-  /* SHEIN Accent / Sale Highlight Colors */
-  --nesty-pink: #fa2c5a;
-  --nesty-pink-hover: #e01d4a;
-  --nesty-coral: #ff4757;
-  --nesty-gold: #e2a03f;
+  /* Neutrals */
+  --nestt-dark: #1e152a;
+  --nestt-gray-700: #4a4058;
+  --nestt-gray-500: #7b7289;
+  --nestt-gray-300: #e2d9eb;
+  --nestt-bg: #fbf9fd;
+  --nestt-white: #ffffff;
 
-  /* WhatsApp Action Colors */
+  /* Action Colors */
   --whatsapp-green: #25d366;
   --whatsapp-dark: #128c7e;
 
-  /* Surfaces & Borders */
-  --bg-main: #ffffff;
-  --bg-secondary: #f9f9f9;
-  --border-color: #eaeaea;
-  --border-dark: #000000;
-
-  /* Radii (SHEIN uses crisp, micro-rounded or sharp geometry) */
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  /* Radii (Cyzone uses friendly, playful rounded corners) */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
   --radius-pill: 9999px;
 
   /* Typography */
-  --font-brand: 'Montserrat', sans-serif;
+  --font-brand: 'Poppins', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-secondary);
-  color: var(--nesty-black);
+  background-color: var(--nestt-bg);
+  color: var(--nestt-dark);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- SHEIN Top Promo / Flash Sale Bar --- */
+/* --- Top Promo Bar (Cyzone Friendly Gradient) --- */
 .top-promo-bar {
-  background: var(--nesty-black);
-  color: var(--nesty-white);
+  background: var(--nestt-gradient);
+  color: var(--nestt-white);
   font-family: var(--font-brand);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 0.45rem 1rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(121, 40, 202, 0.2);
 }
 
 .top-promo-bar .highlight-sale {
-  color: var(--nesty-pink);
-  font-weight: 900;
-  margin-right: 0.3rem;
+  background: rgba(255, 255, 255, 0.22);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-right: 0.4rem;
+  letter-spacing: 0.5px;
 }
 
-/* --- Sticky SHEIN Navbar --- */
+/* --- Sticky Navbar --- */
 .navbar-better {
-  background-color: var(--nesty-white);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.9rem 1.5rem;
+  background-color: var(--nestt-white);
+  border-bottom: 1px solid var(--nestt-gray-300);
+  padding: 0.85rem 1.5rem;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(121, 40, 202, 0.04);
 }
 
 .brand-logo {
   font-family: var(--font-brand);
-  font-weight: 900;
-  font-size: 1.75rem;
-  letter-spacing: 3px;
-  color: var(--nesty-black);
   text-decoration: none;
   display: inline-flex;
-  align-items: baseline;
-  text-transform: uppercase;
-  transition: opacity 0.2s ease;
+  align-items: center;
+  gap: 0.35rem;
+  transition: transform 0.2s ease;
 }
 
 .brand-logo:hover {
-  color: var(--nesty-black);
-  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.brand-name-nestt {
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -1px;
+  color: var(--nestt-dark);
+  text-transform: lowercase;
+  line-height: 1;
+}
+
+.brand-dot {
+  background: var(--nestt-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.2rem;
+  font-weight: 900;
 }
 
 .brand-logo-tag {
-  background: var(--nesty-pink);
-  color: var(--nesty-white);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 0.15rem 0.45rem;
-  border-radius: var(--radius-xs);
-  text-transform: uppercase;
-  margin-left: 0.5rem;
-  vertical-align: middle;
+  background: var(--nestt-lilac-soft);
+  color: var(--nestt-purple);
+  border: 1px solid var(--nestt-lilac);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  text-transform: lowercase;
+  letter-spacing: 0.3px;
 }
 
-/* --- Department Navigation Tabs (SHEIN High-Fashion Tabs) --- */
+/* --- Department Navigation Tabs --- */
 .brand-tabs-container {
-  background: var(--nesty-white);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.5rem 0;
+  background: var(--nestt-white);
+  border-bottom: 1px solid var(--nestt-gray-300);
+  padding: 0.65rem 0;
 }
 
 .btn-brand-tab {
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--nesty-gray-700);
+  border: 1.5px solid var(--nestt-gray-300);
+  background: var(--nestt-white);
+  color: var(--nestt-gray-700);
   font-family: var(--font-brand);
-  font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-xs);
-  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.45rem 1.35rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.25s ease;
   cursor: pointer;
-  position: relative;
 }
 
 .btn-brand-tab:hover {
-  color: var(--nesty-black);
-  border-color: var(--nesty-gray-300);
+  border-color: var(--nestt-purple);
+  color: var(--nestt-purple);
+  background: var(--nestt-lilac-soft);
 }
 
 .btn-brand-tab.active {
-  background: var(--nesty-black);
-  color: var(--nesty-white);
-  border-color: var(--nesty-black);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: var(--nestt-gradient);
+  color: var(--nestt-white);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(121, 40, 202, 0.3);
 }
 
-/* --- Category Chips Slider (SHEIN Aesthetic) --- */
+/* --- Category Chips Slider --- */
 .category-scroll-container {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding: 0.85rem 0;
+  padding: 0.75rem 0;
   scrollbar-width: none;
 }
 
@@ -166,37 +175,37 @@ body {
 
 .chip-category {
   white-space: nowrap;
-  border-radius: var(--radius-sm);
-  padding: 0.38rem 1rem;
-  background: var(--nesty-white);
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 1.1rem;
+  background: var(--nestt-white);
+  border: 1px solid var(--nestt-gray-300);
   font-family: var(--font-brand);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: var(--nesty-gray-700);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--nestt-gray-700);
   cursor: pointer;
   transition: all 0.2s ease;
-  text-transform: capitalize;
 }
 
 .chip-category:hover {
-  border-color: var(--nesty-black);
-  color: var(--nesty-black);
+  border-color: var(--nestt-magenta);
+  color: var(--nestt-magenta);
+  background: #fff5f9;
 }
 
 .chip-category.active {
-  background: var(--nesty-black);
-  color: var(--nesty-white);
-  border-color: var(--nesty-black);
-  font-weight: 700;
+  background: var(--nestt-purple);
+  color: var(--nestt-white);
+  border-color: var(--nestt-purple);
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(121, 40, 202, 0.25);
 }
 
-/* --- SHEIN Style Product Card --- */
+/* --- Product Cards (Cyzone Youthful & Friendly Style) --- */
 .product-card-minimal {
-  background: var(--nesty-white);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
+  background: var(--nestt-white);
+  border: 1px solid var(--nestt-gray-300);
+  border-radius: var(--radius-md);
   overflow: hidden;
   height: 100%;
   display: flex;
@@ -206,15 +215,15 @@ body {
 }
 
 .product-card-minimal:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-  border-color: var(--nesty-gray-300);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(121, 40, 202, 0.12);
+  border-color: var(--nestt-lilac);
 }
 
 .product-card-img-container {
   position: relative;
   padding-top: 100%;
-  background: #ffffff;
+  background: var(--nestt-gradient-soft);
   overflow: hidden;
   cursor: pointer;
 }
@@ -226,33 +235,32 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 0.75rem;
-  transition: transform 0.35s ease;
+  padding: 0.85rem;
+  transition: transform 0.3s ease;
 }
 
 .product-card-minimal:hover .product-card-img-container img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
-/* SHEIN Discount Tag */
+/* Discount Pill Tag */
 .badge-shein-discount {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  background: var(--nesty-pink);
-  color: var(--nesty-white);
+  top: 10px;
+  left: 10px;
+  background: var(--nestt-gradient);
+  color: var(--nestt-white);
   font-family: var(--font-brand);
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: 0.5px;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-xs);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
   z-index: 2;
-  box-shadow: 0 2px 6px rgba(250, 44, 90, 0.35);
+  box-shadow: 0 3px 8px rgba(247, 37, 133, 0.35);
 }
 
 .product-card-content {
-  padding: 0.85rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -260,9 +268,9 @@ body {
 
 .product-name-minimal {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--nesty-dark);
+  color: var(--nestt-dark);
   line-height: 1.35;
   margin-bottom: 0.4rem;
   display: -webkit-box;
@@ -274,7 +282,7 @@ body {
 }
 
 .product-name-minimal:hover {
-  color: var(--nesty-pink);
+  color: var(--nestt-purple);
 }
 
 .price-row {
@@ -282,38 +290,34 @@ body {
   display: flex;
   align-items: baseline;
   gap: 0.45rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .price-main {
   font-family: var(--font-brand);
   font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--nesty-black);
-  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: var(--nestt-purple);
 }
 
 .price-old-strike {
   font-family: var(--font-body);
   font-size: 0.82rem;
-  color: var(--nesty-gray-500);
+  color: var(--nestt-gray-500);
   text-decoration: line-through;
-  font-weight: 500;
 }
 
-/* --- WhatsApp Button on Card (Sleek Modern SHEIN Style) --- */
+/* --- WhatsApp Button on Card --- */
 .btn-whatsapp-card {
   width: 100%;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-pill);
   font-family: var(--font-brand);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 0.6rem 0.5rem;
-  border: 1px solid var(--nesty-black);
-  background: var(--nesty-black);
-  color: var(--nesty-white);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid var(--nestt-purple);
+  background: var(--nestt-white);
+  color: var(--nestt-purple);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -325,61 +329,57 @@ body {
 .btn-whatsapp-card:hover {
   background: var(--whatsapp-green);
   border-color: var(--whatsapp-green);
-  color: var(--nesty-white);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  color: var(--nestt-white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.35);
 }
 
-.btn-whatsapp-card i {
-  font-size: 0.95rem;
-}
-
-/* --- Direct WhatsApp Order Modal (SHEIN Look) --- */
+/* --- Modal WhatsApp Order --- */
 .modal-content {
-  border-radius: var(--radius-sm) !important;
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--nestt-gray-300);
+  overflow: hidden;
 }
 
 .btn-whatsapp-minimal {
-  background: var(--nesty-black);
-  color: var(--nesty-white);
+  background: var(--nestt-gradient);
+  color: var(--nestt-white);
   font-family: var(--font-brand);
-  font-weight: 800;
-  font-size: 0.92rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-radius: var(--radius-xs);
-  padding: 0.9rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-pill);
+  padding: 0.85rem;
   border: none;
   width: 100%;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  box-shadow: 0 6px 20px rgba(121, 40, 202, 0.3);
 }
 
 .btn-whatsapp-minimal:hover {
   background: var(--whatsapp-green);
-  color: var(--nesty-white);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  color: var(--nestt-white);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
-/* --- Admin Card & High-Contrast Panel --- */
+/* --- Admin Card & Dashboard Styling --- */
 .admin-card {
-  background: var(--nesty-white);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: var(--nestt-white);
+  border: 1px solid var(--nestt-gray-300);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(121, 40, 202, 0.04);
 }
 
 .status-badge {
   font-family: var(--font-brand);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.8px;
-  padding: 0.3rem 0.6rem;
-  border-radius: var(--radius-xs);
+  letter-spacing: 0.5px;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
   text-transform: uppercase;
 }

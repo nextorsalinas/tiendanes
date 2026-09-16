@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function generateSingleProductWhatsAppUrl(orderId, product, variant, customer, payment, price) {
     const variantStr = variant ? `\n🎨 *Variante:* ${variant}` : '';
 
-    let msg = `🛍️ *¡NUEVO PEDIDO DIRECTO EN TIENDA NESTY!*\n`;
+    let msg = `🛍️ *¡NUEVO PEDIDO EN nestt.!*\n`;
     msg += `📋 *Folio:* #${orderId}\n`;
     msg += `------------------------------------\n`;
     msg += `📌 *PRODUCTO:* *${product.nombre}*${variantStr}\n`;
