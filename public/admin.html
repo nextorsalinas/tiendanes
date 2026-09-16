@@ -22,9 +22,12 @@
       <a class="navbar-brand fw-extrabold d-flex align-items-center gap-2" href="#">
         <i class="bi bi-shield-lock-fill text-warning"></i> TIENDA NESTY <span class="badge bg-secondary ms-2 fs-6">ADMIN</span>
       </a>
-      <div class="d-flex align-items-center gap-3">
-        <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill">
-          <i class="bi bi-box-arrow-up-right me-1"></i> Ver Tienda Pública
+      <div class="d-flex align-items-center gap-2">
+        <button id="btn-export-json" class="btn btn-outline-success btn-sm rounded-pill fw-bold px-3">
+          <i class="bi bi-download me-1"></i> Descargar JSON Actualizado
+        </button>
+        <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3 opacity-75 hover-opacity-100">
+          <i class="bi bi-box-arrow-up-right me-1"></i> Ver Tienda
         </a>
       </div>
     </div>
@@ -84,7 +87,7 @@
     <ul class="nav nav-pills mb-4 gap-2 bg-white p-2 rounded-3 shadow-sm" id="admin-tabs">
       <li class="nav-item">
         <a class="nav-link admin-nav-link active fw-bold" data-target="section-orders" href="#">
-          <i class="bi bi-receipt-cutoff me-1"></i> Gestión de Pedidos
+          <i class="bi bi-receipt-cutoff me-1"></i> Pedidos
         </a>
       </li>
       <li class="nav-item">
@@ -94,7 +97,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link admin-nav-link fw-bold" data-target="section-bulk-import" href="#">
-          <i class="bi bi-file-earmark-arrow-up me-1"></i> Carga Masiva (JSON)
+          <i class="bi bi-file-earmark-code me-1"></i> Editor JSON Directo
         </a>
       </li>
     </ul>
@@ -110,10 +113,10 @@
                 <th>Folio</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
-                <th>Ítems</th>
+                <th>Producto / Ítems</th>
                 <th>Total</th>
                 <th>Estado Actual</th>
-                <th>Acción / Cambiar Estado</th>
+                <th>Cambiar Estado</th>
               </tr>
             </thead>
             <tbody id="admin-orders-tbody">
@@ -127,12 +130,16 @@
     <!-- SECTION 2: PRODUCTS CATALOG MANAGEMENT -->
     <section id="section-products" class="admin-section d-none">
       <div class="admin-card p-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
           <h5 class="fw-bold text-dark m-0"><i class="bi bi-boxes me-2"></i> Productos en Catálogo</h5>
-          <button class="btn btn-primary rounded-3 fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal">
-            <i class="bi bi-plus-lg me-1"></i> Nuevo Producto
-          </button>
+          <div class="d-flex gap-2">
+            <input type="text" id="admin-search-product" class="form-control form-control-sm rounded-pill" placeholder="🔍 Buscar producto en tabla..." style="max-width: 250px;">
+            <button class="btn btn-primary btn-sm rounded-pill fw-bold px-3" data-bs-toggle="modal" data-bs-target="#addProductModal" onclick="window.openNewProductModal()">
+              <i class="bi bi-plus-lg me-1"></i> Nuevo Producto
+            </button>
+          </div>
         </div>
+        
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead class="table-light">
@@ -140,7 +147,7 @@
                 <th>Imagen</th>
                 <th>Código</th>
                 <th>Nombre</th>
-                <th>Marca</th>
+                <th>Departamento</th>
                 <th>Categoría</th>
                 <th>Precio</th>
                 <th>Acciones</th>
@@ -154,61 +161,66 @@
       </div>
     </section>
 
-    <!-- SECTION 3: BULK IMPORT -->
+    <!-- SECTION 3: DIRECT JSON EDITOR & BULK IMPORT -->
     <section id="section-bulk-import" class="admin-section d-none">
       <div class="admin-card p-4">
-        <h5 class="fw-bold text-dark mb-2"><i class="bi bi-file-earmark-code me-2"></i> Carga Masiva de Catálogo (Betterware / Ésika)</h5>
-        <p class="text-muted small mb-4">Puedes pegar un arreglo en formato JSON con la lista de productos de nuevos catálogos o campañas para actualizar la tienda de inmediato.</p>
+        <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+          <h5 class="fw-bold text-dark m-0"><i class="bi bi-file-earmark-code me-2"></i> Editor JSON Directo del Catálogo</h5>
+          <div class="d-flex gap-2">
+            <button id="btn-load-current-json" class="btn btn-outline-primary btn-sm rounded-pill fw-bold">
+              <i class="bi bi-arrow-repeat me-1"></i> Cargar JSON Actual
+            </button>
+            <button id="btn-export-json-editor" class="btn btn-outline-success btn-sm rounded-pill fw-bold">
+              <i class="bi bi-download me-1"></i> Descargar JSON
+            </button>
+          </div>
+        </div>
+        
+        <p class="text-muted small mb-3">Puedes agregar, modificar o eliminar objetos JSON directamente en este cuadro de texto y guardar los cambios. Los productos se actualizarán en vivo en la tienda.</p>
 
         <form id="bulkImportForm">
           <div class="mb-3">
-            <label class="form-label fw-semibold text-dark">Pegar Arreglo JSON de Productos:</label>
-            <textarea id="bulk-json-input" class="form-control font-monospace rounded-3" rows="10" placeholder='[
-  {
-    "codigo": "BW-9901",
-    "nombre": "Producto Ejemplo",
-    "marca": "betterware",
-    "categoria": "Cocina",
-    "precio_regular": 199,
-    "precio_oferta": 149,
-    "descripcion": "Descripción del producto...",
-    "fotos": ["https://..."]
-  }
-]'></textarea>
+            <textarea id="bulk-json-input" class="form-control font-monospace rounded-3" rows="14" placeholder="Cargando JSON..."></textarea>
           </div>
-          <button type="submit" class="btn btn-success fw-bold px-4 rounded-3">
-            <i class="bi bi-upload me-2"></i> Procesar e Importar Productos
-          </button>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success fw-bold px-4 rounded-3">
+              <i class="bi bi-check-lg me-2"></i> Guardar y Aplicar Cambios JSON
+            </button>
+            <button type="button" id="btn-reset-catalog" class="btn btn-outline-danger fw-bold rounded-3">
+              <i class="bi bi-trash me-1"></i> Vaciar Catálogo
+            </button>
+          </div>
         </form>
       </div>
     </section>
 
   </div>
 
-  <!-- Add Product Modal -->
+  <!-- Add / Edit Product Modal -->
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content rounded-4 border-0 shadow-lg">
         <div class="modal-header">
-          <h5 class="modal-title fw-bold">Agregar Nuevo Producto</h5>
+          <h5 class="modal-title fw-bold" id="productModalHeading">Agregar Nuevo Producto</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form id="newProductForm">
+        <form id="productEditForm">
+          <input type="hidden" id="edit-prod-id">
           <div class="modal-body p-4">
             <div class="row g-3">
               <div class="col-md-4">
                 <label class="form-label fw-semibold small">Código de Catálogo *</label>
-                <input type="text" id="prod-code" class="form-control" placeholder="Ej. BW-24701" required>
+                <input type="text" id="prod-code" class="form-control" placeholder="Ej. HOG-24701" required>
               </div>
               <div class="col-md-8">
                 <label class="form-label fw-semibold small">Nombre de Producto *</label>
                 <input type="text" id="prod-name" class="form-control" placeholder="Ej. Organi Closet Max" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label fw-semibold small">Marca *</label>
-                <select id="prod-brand" class="form-select" required>
-                  <option value="betterware">Betterware (Hogar)</option>
-                  <option value="esika">Ésika (Belleza)</option>
+                <label class="form-label fw-semibold small">Departamento *</label>
+                <select id="prod-dept" class="form-select" required>
+                  <option value="hogar">Hogar</option>
+                  <option value="belleza">Belleza</option>
                 </select>
               </div>
               <div class="col-md-6">
@@ -239,7 +251,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary fw-bold">Guardar Producto</button>
+            <button type="submit" class="btn btn-primary fw-bold" id="btn-save-product-modal">Guardar Producto</button>
           </div>
         </form>
       </div>
