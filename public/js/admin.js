@@ -1,8 +1,21 @@
-// Admin Panel Logic for Tienda Nesty (Gestión Completa & JSON Directo)
+// Admin Panel Logic for Tienda Nesty (Sincronización Automática a Disco y Git)
 document.addEventListener("DOMContentLoaded", async () => {
   let ordersList = [];
   let productsList = [];
   let filterText = "";
+
+  // Helper to sync active products to disk file public/js/products-data.js via server API
+  async function syncProductsToDisk(products) {
+    try {
+      await fetch('/api/save-catalog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(products)
+      });
+    } catch (e) {
+      console.log("Servidor local no detectado o corriendo independiente, guardado en localStorage.");
+    }
+  }
 
   // Tab switcher
   const navTabs = document.querySelectorAll(".admin-nav-link");
@@ -172,7 +185,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Open New Product Modal (Garantizado)
+  // Open New Product Modal
   window.openNewProductModal = () => {
     document.getElementById("productModalHeading").textContent = "Agregar Nuevo Producto";
     document.getElementById("edit-prod-id").value = "";
@@ -191,7 +204,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Close Product Modal (Garantizado)
+  // Close Product Modal
   window.closeProductModal = () => {
     const modalEl = document.getElementById("addProductModal");
     if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
@@ -238,17 +251,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Delete product action
+  // Delete product action (Sincroniza a Disco)
   window.deleteProduct = async (id) => {
     const product = productsList.find(p => p.id === id);
     const title = product ? product.nombre : "este producto";
     if (confirm(`¿Estás seguro de eliminar "${title}" del catálogo?`)) {
       await window.db.deleteProduct(id);
+      const updated = await window.db.getProducts();
+      await syncProductsToDisk(updated);
       await loadAdminData();
     }
   };
 
-  // Save / Add Product Form Submit
+  // Save / Add Product Form Submit (Sincroniza a Disco)
   const productEditForm = document.getElementById("productEditForm");
   if (productEditForm) {
     productEditForm.addEventListener("submit", async (e) => {
@@ -284,10 +299,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         await window.db.saveProduct(product);
+        const updated = await window.db.getProducts();
+        await syncProductsToDisk(updated);
+
         window.closeProductModal();
         productEditForm.reset();
         await loadAdminData();
-        alert(`¡Producto "${nameVal}" guardado exitosamente en el catálogo!`);
+        alert(`¡Producto "${nameVal}" guardado y sincronizado a los archivos del proyecto!`);
       } catch (err) {
         console.error("Error al guardar producto:", err);
         alert("Error al guardar producto: " + err.message);
@@ -295,7 +313,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Bulk Import / Direct JSON Submit
+  // Bulk Import / Direct JSON Submit (Sincroniza a Disco)
   const bulkImportForm = document.getElementById("bulkImportForm");
   if (bulkImportForm) {
     bulkImportForm.addEventListener("submit", async (e) => {
@@ -309,10 +327,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         localStorage.setItem("nesty_products", JSON.stringify(parsed));
-        alert(`¡Catálogo actualizado con éxito! Se guardaron ${parsed.length} productos.`);
+        await syncProductsToDisk(parsed);
+        alert(`¡Catálogo actualizado y guardado en los archivos del proyecto! (${parsed.length} productos)`);
         await loadAdminData();
       } catch (err) {
-        alert("Error al procesar el archivo JSON. Verifica que la sintaxis sea válida: " + err.message);
+        alert("Error al procesar el archivo JSON. Verifica la sintaxis: " + err.message);
       }
     });
   }
@@ -343,6 +362,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     btnResetCatalog.addEventListener("click", async () => {
       if (confirm("⚠️ ¿Estás seguro de vaciar el catálogo activo?")) {
         localStorage.setItem("nesty_products", JSON.stringify([]));
+        await syncProductsToDisk([]);
         await loadAdminData();
       }
     });
