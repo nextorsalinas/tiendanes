@@ -14,10 +14,17 @@
   --nestt-lilac: #e9d5ff;
   --nestt-lilac-soft: #f5effe;
   
-  /* Gradients */
+  /* Gradients & Halloween Seasonal Accents */
   --nestt-gradient: linear-gradient(135deg, #7928ca 0%, #f72585 100%);
   --nestt-gradient-hover: linear-gradient(135deg, #681fb3 0%, #e01672 100%);
-  --nestt-gradient-soft: linear-gradient(135deg, #faf5ff 0%, #fff0f6 100%);
+  --nestt-gradient-soft: linear-gradient(135deg, #faf5ff 0%, #fff7f2 100%);
+
+  /* Subtle Spooky Season Accents */
+  --spooky-orange: #ff7518;
+  --spooky-orange-soft: #fff4eb;
+  --spooky-orange-border: #ffd8be;
+  --spooky-gradient: linear-gradient(135deg, #5b1092 0%, #7928ca 55%, #ff7518 100%);
+  --spooky-badge-gradient: linear-gradient(135deg, #ff7518 0%, #f72585 100%);
 
   /* Neutrals */
   --nestt-dark: #1e152a;
@@ -51,9 +58,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- Top Promo Bar (Cyzone Friendly Gradient) --- */
+/* --- Top Promo Bar (Spooky Season Gradient) --- */
 .top-promo-bar {
-  background: var(--nestt-gradient);
+  background: var(--spooky-gradient);
   color: var(--nestt-white);
   font-family: var(--font-brand);
   font-size: 0.8rem;
@@ -61,17 +68,30 @@ body {
   letter-spacing: 0.4px;
   padding: 0.45rem 1rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(121, 40, 202, 0.2);
+  box-shadow: 0 2px 10px rgba(255, 117, 24, 0.2);
 }
 
 .top-promo-bar .highlight-sale {
   background: rgba(255, 255, 255, 0.22);
-  padding: 0.15rem 0.5rem;
+  padding: 0.15rem 0.55rem;
   border-radius: var(--radius-pill);
   font-size: 0.72rem;
   font-weight: 700;
   margin-right: 0.4rem;
   letter-spacing: 0.5px;
+}
+
+/* Ambient Spooky Floating Atmosphere */
+.spooky-ambient-glow {
+  position: fixed;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 117, 24, 0.05) 0%, rgba(121, 40, 202, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* --- Sticky Navbar --- */
@@ -216,8 +236,8 @@ body {
 
 .product-card-minimal:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(121, 40, 202, 0.12);
-  border-color: var(--nestt-lilac);
+  box-shadow: 0 12px 28px rgba(121, 40, 202, 0.1), 0 4px 14px rgba(255, 117, 24, 0.1);
+  border-color: var(--spooky-orange-border);
 }
 
 .product-card-img-container {
@@ -243,20 +263,22 @@ body {
   transform: scale(1.05);
 }
 
-/* Discount Pill Tag */
+/* Discount Pill Tag (Seasonal Spooky Touch) */
 .badge-shein-discount {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: var(--nestt-gradient);
+  background: var(--spooky-badge-gradient);
   color: var(--nestt-white);
   font-family: var(--font-brand);
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-pill);
   z-index: 2;
-  box-shadow: 0 3px 8px rgba(247, 37, 133, 0.35);
+  box-shadow: 0 3px 8px rgba(255, 117, 24, 0.35);
+  display: inline-flex;
+  align-items: center;
 }
 
 .product-card-content {
