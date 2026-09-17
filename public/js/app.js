@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="col-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <div class="product-card-img-container" onclick="window.openOrderModal('${p.id}')">
-              ${hasDiscount ? `<span class="badge-shein-discount"><span class="me-1">🎃</span>-${discountPercent}%</span>` : ''}
+              ${hasDiscount ? `<span class="badge-shein-discount"><span class="me-1">🏵️</span>-${discountPercent}%</span>` : ''}
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
             </div>
             <div class="product-card-content">
