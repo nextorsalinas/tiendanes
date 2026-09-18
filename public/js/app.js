@@ -27,12 +27,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!chipContainer) return;
 
     const rawCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))].sort();
-    const categories = ["Todas", ...rawCategories];
+    const categories = [
+      { id: "all", label: "Todas" },
+      { id: "gift_200", label: "Regalos < $200" },
+      { id: "gift_350", label: "Regalos < $350" },
+      ...rawCategories.map(cat => ({ id: cat, label: cat }))
+    ];
 
     chipContainer.innerHTML = categories.map(cat => {
-      const isSelected = (currentCategory === "all" && cat === "Todas") || (currentCategory === cat);
-      const val = cat === "Todas" ? "all" : cat;
-      return `<button class="chip-category ${isSelected ? 'active' : ''}" data-category="${val}">${cat}</button>`;
+      const isSelected = currentCategory === cat.id;
+      return `<button class="chip-category ${isSelected ? 'active' : ''}" data-category="${cat.id}">${cat.label}</button>`;
     }).join("");
 
     chipContainer.querySelectorAll(".chip-category").forEach(btn => {
@@ -52,7 +56,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let filtered = allProducts.filter(p => p.activo !== false);
 
-    if (currentCategory !== "all") {
+    if (currentCategory === "gift_200") {
+      filtered = filtered.filter(p => {
+        const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
+        return price <= 200;
+      });
+    } else if (currentCategory === "gift_350") {
+      filtered = filtered.filter(p => {
+        const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
+        return price <= 350;
+      });
+    } else if (currentCategory !== "all") {
       filtered = filtered.filter(p => p.categoria === currentCategory);
     }
 
@@ -188,10 +202,42 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         </div>
       </div>
+
+      <!-- Gift Option Section -->
+      <div class="gift-option-card mt-3">
+        <div class="form-check form-switch d-flex align-items-center justify-content-between p-0 m-0">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <label class="form-check-label fw-bold text-dark small m-0" for="order-is-gift">¿Es para regalo?</label>
+              <span class="gift-badge-free">ENVOLTURA GRATIS</span>
+            </div>
+            <p class="text-muted m-0" style="font-size:0.75rem;">Te lo preparamos listo para entregar con tarjeta de dedicatoria de cortesía.</p>
+          </div>
+          <input class="form-check-input ms-2" type="checkbox" role="switch" id="order-is-gift" style="cursor:pointer; width:2.2rem; height:1.2rem;">
+        </div>
+        
+        <div id="gift-dedication-wrapper" class="mt-2 pt-2 border-top border-secondary-subtle d-none">
+          <label class="form-label fw-semibold text-dark small mb-1">Mensaje o dedicatoria para la tarjeta (opcional):</label>
+          <textarea class="form-control form-control-sm rounded-2" id="order-gift-card-msg" rows="2" placeholder="Ej. ¡Feliz Cumpleaños! Con mucho cariño..."></textarea>
+        </div>
+      </div>
     `;
 
     const orderModal = new bootstrap.Modal(document.getElementById("orderProductModal"));
     orderModal.show();
+
+    // Toggle dedication field on gift checkbox
+    const giftCheckbox = document.getElementById("order-is-gift");
+    const giftWrapper = document.getElementById("gift-dedication-wrapper");
+    if (giftCheckbox && giftWrapper) {
+      giftCheckbox.addEventListener("change", (e) => {
+        if (e.target.checked) {
+          giftWrapper.classList.remove("d-none");
+        } else {
+          giftWrapper.classList.add("d-none");
+        }
+      });
+    }
   };
 
   // Submit Direct Order Form
@@ -217,6 +263,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? selectedProductForOrder.precio_oferta 
         : selectedProductForOrder.precio_regular;
 
+      const isGift = document.getElementById("order-is-gift")?.checked || false;
+      const giftDedication = document.getElementById("order-gift-card-msg")?.value.trim() || "";
+
       const orderPayload = {
         cliente: customerData,
         items: [{
@@ -229,11 +278,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           cantidad: 1
         }],
         total: unitPrice,
-        metodoPago: paymentMethod
+        metodoPago: paymentMethod,
+        esRegalo: isGift,
+        dedicatoria: giftDedication
       };
 
       const order = await window.db.createOrder(orderPayload);
-      const waUrl = generateSingleProductWhatsAppUrl(order.id, selectedProductForOrder, selectedVariant, customerData, paymentMethod, unitPrice);
+      const waUrl = generateSingleProductWhatsAppUrl(order.id, selectedProductForOrder, selectedVariant, customerData, paymentMethod, unitPrice, isGift, giftDedication);
 
       const orderModalEl = document.getElementById("orderProductModal");
       const modalInstance = bootstrap.Modal.getInstance(orderModalEl);
@@ -248,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Generate WhatsApp Message for Single Product Order
-  function generateSingleProductWhatsAppUrl(orderId, product, variant, customer, payment, price) {
+  function generateSingleProductWhatsAppUrl(orderId, product, variant, customer, payment, price, isGift, giftDedication) {
     const variantStr = variant ? `\n🎨 *Variante:* ${variant}` : '';
 
     let msg = `🛍️ *¡NUEVO PEDIDO EN nestt.!*\n`;
@@ -258,6 +309,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     msg += `🔢 *Código:* ${product.codigo}\n`;
     msg += `💰 *Precio:* *$${price.toFixed(2)} MXN*\n`;
     msg += `------------------------------------\n`;
+    if (isGift) {
+      msg += `🎁 *¿ES PARA REGALO?:* ¡SÍ! (Envoltura de cortesía gratis)\n`;
+      if (giftDedication) {
+        msg += `💌 *Dedicatoria:* "${giftDedication}"\n`;
+      } else {
+        msg += `💌 *Dedicatoria:* (Tarjeta en blanco para escribir a mano)\n`;
+      }
+      msg += `------------------------------------\n`;
+    }
     msg += `👤 *Cliente:* ${customer.nombre}\n`;
     msg += `📞 *Teléfono:* ${customer.telefono}\n`;
     msg += `📍 *Dirección de Entrega:* ${customer.direccion}\n`;

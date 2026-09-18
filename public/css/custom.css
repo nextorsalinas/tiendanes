@@ -336,6 +336,35 @@ body {
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
+/* --- Gift Option Experience in Modal --- */
+.gift-option-card {
+  background: var(--nestt-lilac-soft);
+  border: 1.5px dashed var(--nestt-lilac);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gift-option-card:hover {
+  border-color: var(--nestt-purple);
+}
+
+.gift-option-card .form-check-input:checked {
+  background-color: var(--nestt-purple);
+  border-color: var(--nestt-purple);
+}
+
+.gift-badge-free {
+  background: var(--nestt-gradient);
+  color: var(--nestt-white);
+  font-family: var(--font-brand);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.4px;
+}
+
 /* --- Admin Card & Dashboard Styling --- */
 .admin-card {
   background: var(--nestt-white);
