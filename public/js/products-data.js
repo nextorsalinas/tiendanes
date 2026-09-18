@@ -1,5 +1,5 @@
 // Catalog Products Data for Tienda Nesty (Hogar & Belleza: L'Bel + Ésika + Cyzone + Betterware)
-// Auto-generated with 392 products
+// Auto-generated with 375 products
 
 const INITIAL_PRODUCTS = [
   {
@@ -201,108 +201,6 @@ const INITIAL_PRODUCTS = [
     "variantes": []
   },
   {
-    "id": "bw_10466107195692",
-    "codigo": "26698",
-    "nombre": "Perlas Aroma Lavanda (2 Pzs)",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "bienestar",
-    "precio_regular": 169,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26237-1-Perlas-Aroma-Lavanda-Betterware_99acf46d-6930-4457-8585-0bc76fdcb4ff.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26237-2-Perlas-Aroma-Lavanda-Betterware_866855ee-fbbb-4541-beba-b97cddae6b05.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26237-3-Perlas-Aroma-Lavanda-Betterware_eee1a919-66db-41bb-8b08-eea843141367.jpg?v=1789450269",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26237-4-Perlas-Aroma-Lavanda-Betterware_420c1595-8e9c-47ff-9d6c-491f800ebc9d.jpg?v=1789450269"
-    ],
-    "descripcion": "Aromatiza tus espacios con un delicioso aroma con las Perlas Aroma Lavanda Betterware. Esta solución para tu bienestar incluye 35g de perlas infusionadas con el delicioso aroma Lavanda. Su aroma cuenta con tecnología de difusión pasiva y neutralizado",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107162924",
-    "codigo": "26257",
-    "nombre": "Pastillas Respira Profundo",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "bienestar",
-    "precio_regular": 99.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26257-1-Pastillas-Respira-Profundo-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26257-2-Pastillas-Respira-Profundo-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26257-3-Pastillas-Respira-Profundo-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Aromatiza tu ducha y relájate al mismo tiempo con las Pastillas Respira Profundo Betterware. Este set de 5 piezas con delicioso aroma a menta y eucalipto se disuelven por completo en la ducha sin dejar residuos.",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107130156",
-    "codigo": "26687",
-    "nombre": "Set Ducha Max",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "bienestar",
-    "precio_regular": 119,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26687-1-Set-de-Ban_CC_83o-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26687-2-Set-Ducha-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26687-3-Set-Ducha-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "El set perfecto para la hora de la ducha es el Set Ducha Max Betterware. Esta solución para tu bienestar, incluye un Cepi Masajeador Betterware que te permitirá cepillar y masajear tu cuero cabelludo y un Estira Esponja Betterware que te permiritá li",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107097388",
-    "codigo": "26266",
-    "nombre": "Difu Ratán",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "bienestar",
-    "precio_regular": 399,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26266-1-Difu-Rata_CC_81n-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26266-2-Difu-Rata_CC_81n-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26266-3-Difu-Rata_CC_81n-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Aromatiza y decora tus espacios con el Difu Ratán Betterware. Esta solución para tu hogar tiene un lindo look ratán que te permitirá decorar cualquier espacio, tiene una capacidad de 140ml, luz ambiental LED de 7 colores led distintos y puedes utiliz",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107031852",
-    "codigo": "26231",
-    "nombre": "Multi Almohada Memory",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "bienestar",
-    "precio_regular": 700,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26231-1-Multi-Almohada-Memory-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26231-2-Multi-Almohada-Memory-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26231-3-Multi-Almohada-Memory-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26231-4-Multi-Almohada-Memory-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Duerme cómodamente con la Multi Almohada Memory Betterware. Esta solución con tecnología Memory Confort tiene la forma ideal para dormir de lado o boja abajo. Cuenta con una cavidad central para aliviar la presión de la cabeza y orificios laterales p",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
     "id": "bw_10466106999084",
     "codigo": "26697",
     "nombre": "Gurmy Nutri Bowl (2pzs)",
@@ -340,43 +238,6 @@ const INITIAL_PRODUCTS = [
     "variantes": []
   },
   {
-    "id": "bw_10466106933548",
-    "codigo": "26078",
-    "nombre": "Organi Cocina",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 249,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26078-1-Organi-Cocina-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26078-2-Organi-Cocina-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Aprovecha al máximo el espacio en tu cocina organizando con el Organi Cocina Betterware. Esta solución para tu cocina tiene un soporte de hasta 2.5kg que te permitirá organizar tazas, utensilios, tablas y servitoallas. Además su instalación con stick",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466106900780",
-    "codigo": "26592",
-    "nombre": "Practi Utensilios",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 399,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26592-1-Practi-Utensilios_E2_80_8B-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Con los Practi Utensilios Betterware tendrás contigo 9 utensilios indispensables para tu cocina. Están elaborados de silicón de gran resistencia que no maltrata tus ollas y sartenes además de no guardar olores ni sabores. Tu mejor opción para cocinar",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
     "id": "bw_10466106868012",
     "codigo": "26086",
     "nombre": "Servi Tortillero ",
@@ -393,25 +254,6 @@ const INITIAL_PRODUCTS = [
       "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26086-4-Servi-Tortillero_E2_80_8B-Betterware.jpg?v=1789450268"
     ],
     "descripcion": "Mantén tus tortillas calientitas con un diseño práctico y funcional con el Servi Tortillero Betterware. Esta solución para tu cocina tiene una capacidad de hasta 2 1/2kg de tortillas, permitiéndote mantenerlas calientes hasta por 2 horas gracias a su",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466106835244",
-    "codigo": "26627",
-    "nombre": "Movi Mesita Adjust",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "hogar",
-    "precio_regular": 800,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26627-1-Movi-Mesita-Adjust-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26627-2-Movi-Mesita-Adjust-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "La Movi Mesita Adjust es la mesita más versatil. Con altura ajustable y ruedas para usarla cómo y dónde necesites. Además ahora cuenta con una estructura reforzada, más resistente y estable, ahora tiene llantitas para que la puedas llevar a donde nec",
     "stock": 25,
     "activo": true,
     "variantes": []
@@ -566,45 +408,6 @@ const INITIAL_PRODUCTS = [
       "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26084-2-Base-Postrera-Betterware.jpg?v=1789450269"
     ],
     "descripcion": "Sirve y presenta tus postres y snacks de manera elegante con la Base Postrera Betterware. Esta solución para tu cocina desmontable y modular, cuenta con 3 niveles con un soporte de hasta 500g distribuidos en cada repisa y un look elegante.¡Utilízala ",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466106212652",
-    "codigo": "26722",
-    "nombre": "Librero Nogal",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "hogar",
-    "precio_regular": 1200,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26722-1-Librero-Nogal-Betterware.jpg?v=1789450269"
-    ],
-    "descripcion": "Maximiza tu espacio y decora tu hogar con el Librero Nogal Betterware. Esta solución para tu hogar cuenta con 5 repisas y estructura de metal que puedes fijar a la pared. Cada repisa tiene un soporte de hasta 5 kg. Adquiere todos los productos de la ",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466106114348",
-    "codigo": "26618",
-    "nombre": "Plegui Cama",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "hogar",
-    "precio_regular": 1700,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26618-1-Plegui-Cama-Betterware.jpg?v=1789450269",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26618-2-Plegui-Cama-Betterware.jpg?v=1789450269",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26618-3-Plegui-Cama-Betterware.jpg?v=1789450269",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26618-4-Plegui-Cama-Betterware.jpg?v=1789450269"
-    ],
-    "descripcion": "Con la Plegui Cama Betterware, ten la cama lista para tus invitados en segundos. Esta solución para tu hogar es suave y cómoda, tiene colchón removible y es muy fácil de instalar. Tiene un soporte de hasta 100kg e incluye bolsa para guardar.",
     "stock": 25,
     "activo": true,
     "variantes": []
@@ -1388,48 +1191,6 @@ const INITIAL_PRODUCTS = [
     "variantes": []
   },
   {
-    "id": "bw_10430268440876",
-    "codigo": "26589",
-    "nombre": "Ralla Fácil",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 700,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26589-1-Ralla-Facil-Betterware.jpg?v=1787011088",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26589-2-Ralla-Facil-Betterware.jpg?v=1787011088",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26589-3-Ralla-Facil-Betterware.jpg?v=1787011088",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26589-4-Ralla-Facil-Betterware.jpg?v=1787011088"
-    ],
-    "descripcion": "Corta y ralla fácilmente con el Ralla Fácil Betterware. Esta solución para tu cocina con cartuchos intercambiables te permitirá cortar rodajas, realizar un rallado fino o rallado grueso. Además es muy fácil de guardar, solo dobla y guarda todo en su ",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10430268375340",
-    "codigo": "26256",
-    "nombre": "Abraza Igor",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "recamara",
-    "precio_regular": 1000,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26256-1-Abraza-Igor-Betterware.jpg?v=1787011088",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26256-2-Abraza-Igor-Betterware.jpg?v=1787011088",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26256-3-Abraza-Igor-Betterware.jpg?v=1787011088",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26256-4-Abraza-Igor-Betterware.jpg?v=1787011088"
-    ],
-    "descripcion": "El compañero ideal de tus peques para descansar e interactuar es el Abraza Igor Betterware. Este hermoso peluche es ultra suave y acogedor. Tiene el tamaño y forma idea para utilizarse como almohada. Además ¡su colita es removible!",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
     "id": "bw_10430268342572",
     "codigo": "26255",
     "nombre": "Almohantifaz Pooh",
@@ -1642,24 +1403,6 @@ const INITIAL_PRODUCTS = [
       "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/25356-1-Maxi-Arbol-Artico-Magico-Betterware.jpg?v=1761008060"
     ],
     "descripcion": "Dale un toque especial a tu navidad con el Maxi Árbol Ártico Mágico Betterware. Este árbol tiene una gran altura de 2.10m y efecto nevado para realzar la decoración navideña. Además ahora es más frondoso pues cuenta con 700 puntas.",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10412437766444",
-    "codigo": "23618",
-    "nombre": "Set Repuesto Comedero Smart",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "hogar",
-    "precio_regular": 49.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/23618-1-Filtro-Repuesto-Comedero-Smart-Betterware_8eda3aab-c67d-4480-99d0-1c4d3b351e35.jpg?v=1785598086"
-    ],
-    "descripcion": "Mantén el agua de tu mascota siempre limpia con el Repuesto Comedero Smart Betterware. El set incluye 2 filtros de carbón activado para mantener el agua limpia por dos meses.",
     "stock": 25,
     "activo": true,
     "variantes": []
@@ -4511,83 +4254,6 @@ const INITIAL_PRODUCTS = [
       "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26542-3-Gira-Ajo_E2_80_8B-Betterware.jpg?v=1779149767"
     ],
     "descripcion": "Corta o tritura ajo sin dejar olor en tus manos con el Gira Ajo Betterware. Con esta solución para tu cocina, desliza y corta en segundos. Puedes girarlo fácilmente en ambos sentidos. Además puedes retirar la navaja para lavarlo sencillamente.",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10301665313068",
-    "codigo": "26876",
-    "nombre": "Maxi Condimentos (2 Pzs)",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 249,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26533-1-Maxi-Condimentos-Betterware_18f1a1c1-5188-431b-b1e6-5d41b2d4c8a5.jpg?v=1779149767"
-    ],
-    "descripcion": "El Maxi Condimentos Betterware es un filtro de acero inoxidable de fácil apertura, ideal para colocar tus especias al cocinar. Su sistema de gancho facilitan su uso y su cadena te ayuda a colocar y remover fácilmente. Esta solución mantiene el sabor ",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10301665181996",
-    "codigo": "26548",
-    "nombre": "Mandil Flora",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 229,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26548-1-Mandil-Flora-Betterware.jpg?v=1779149768",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26548-2-Mandil-Flora-Betterware.jpg?v=1779149768",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26548-3-Mandil-Flora-Betterware.jpg?v=1779112981",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26548-4-Mandil-Flora-Betterware.jpg?v=1779149768"
-    ],
-    "descripcion": "Protege tus prendas al cocinar con el Mandil Flora Betterware. Tiene un diseño increíble de flores, correas ajustables y 2 microfibras que te sirven para secar tus manos al cocinar o que puedes retirar para limpiar cualquier superficie en tu cocina.",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10301665149228",
-    "codigo": "26029",
-    "nombre": "Portavasos Flor",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 59.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26029-1-Porta-Vasos-Flor-Betterware.jpg?v=1779149768",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26029-2-Porta-Vasos-Flor-Betterware.jpg?v=1779149768",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26029-3-Porta-Vasos-Flor-Betterware.jpg?v=1779149768"
-    ],
-    "descripcion": "Protege tu mesa con los Porta Vasos Flor Betterware. Esta solución para tu mesa esta conformado por 6 piezas lavables. Además cuenta con una base para organizar, donde al colocar todas las piezas, formarás una linda flor.",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10301665050924",
-    "codigo": "26875",
-    "nombre": "Circulock (6 Pzs)",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 399,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/20038-1-Circulock-Betterware.jpg?v=1779149768"
-    ],
-    "descripcion": "Los contenedores para comida Circulock, son la solución perfecta en tu cocina después de preparar comidas fáciles y rápidas. Dentro de tu lonchera puedes transportar tus contenedores para comida sin preocuparte por derrames, también puedes colocar en",
     "stock": 25,
     "activo": true,
     "variantes": []

@@ -127,38 +127,6 @@ body {
   letter-spacing: 0.3px;
 }
 
-/* --- Department Navigation Tabs --- */
-.brand-tabs-container {
-  background: var(--nestt-white);
-  border-bottom: 1px solid var(--nestt-gray-300);
-  padding: 0.65rem 0;
-}
-
-.btn-brand-tab {
-  border: 1.5px solid var(--nestt-gray-300);
-  background: var(--nestt-white);
-  color: var(--nestt-gray-700);
-  font-family: var(--font-brand);
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 0.45rem 1.35rem;
-  border-radius: var(--radius-pill);
-  transition: all 0.25s ease;
-  cursor: pointer;
-}
-
-.btn-brand-tab:hover {
-  border-color: var(--nestt-purple);
-  color: var(--nestt-purple);
-  background: var(--nestt-lilac-soft);
-}
-
-.btn-brand-tab.active {
-  background: var(--nestt-gradient);
-  color: var(--nestt-white);
-  border-color: transparent;
-  box-shadow: 0 4px 14px rgba(121, 40, 202, 0.3);
-}
 
 /* --- Category Chips Slider --- */
 .category-scroll-container {

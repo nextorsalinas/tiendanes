@@ -3,7 +3,6 @@ const WHATSAPP_SELLER_PHONE = "525525000024";
 
 document.addEventListener("DOMContentLoaded", async () => {
   let allProducts = [];
-  let currentDept = "all";
   let currentCategory = "all";
   let selectedProductForOrder = null;
 
@@ -27,12 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const chipContainer = document.getElementById("category-chips-container");
     if (!chipContainer) return;
 
-    let filteredForCategories = allProducts;
-    if (currentDept !== "all") {
-      filteredForCategories = allProducts.filter(p => getDept(p) === currentDept);
-    }
-
-    const categories = ["Todas", ...new Set(filteredForCategories.map(p => p.categoria))];
+    const rawCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))].sort();
+    const categories = ["Todas", ...rawCategories];
 
     chipContainer.innerHTML = categories.map(cat => {
       const isSelected = (currentCategory === "all" && cat === "Todas") || (currentCategory === cat);
@@ -57,10 +52,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let filtered = allProducts.filter(p => p.activo !== false);
 
-    if (currentDept !== "all") {
-      filtered = filtered.filter(p => getDept(p) === currentDept);
-    }
-
     if (currentCategory !== "all") {
       filtered = filtered.filter(p => p.categoria === currentCategory);
     }
@@ -82,9 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const resetBtn = document.getElementById("btn-reset-filters");
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
-          currentDept = "all";
           currentCategory = "all";
-          updateDeptTabState();
           renderCategories();
           renderProducts();
         });
@@ -123,28 +112,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
-  // Department Navigation Listener
-  const deptTabs = document.querySelectorAll("[data-dept-filter]");
-  deptTabs.forEach(tab => {
-    tab.addEventListener("click", (e) => {
-      e.preventDefault();
-      currentDept = tab.getAttribute("data-dept-filter");
-      currentCategory = "all";
-      updateDeptTabState();
-      renderCategories();
-      renderProducts();
-    });
-  });
-
-  function updateDeptTabState() {
-    deptTabs.forEach(tab => {
-      const filter = tab.getAttribute("data-dept-filter");
-      tab.classList.remove("active");
-      if (filter === currentDept) {
-        tab.classList.add("active");
-      }
-    });
-  }
 
   // Open Direct Order Modal for Selected Product
   window.openOrderModal = (productId) => {
