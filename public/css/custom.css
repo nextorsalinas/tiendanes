@@ -14,20 +14,10 @@
   --nestt-lilac: #e9d5ff;
   --nestt-lilac-soft: #f5effe;
   
-  /* Gradients & Seasonal Accents - Día de Muertos (Cultura Mexicana) */
+  /* Gradients */
   --nestt-gradient: linear-gradient(135deg, #7928ca 0%, #f72585 100%);
   --nestt-gradient-hover: linear-gradient(135deg, #681fb3 0%, #e01672 100%);
-  --nestt-gradient-soft: linear-gradient(135deg, #faf5ff 0%, #fff9f4 100%);
-
-  /* Día de Muertos Signature Palette */
-  --muertos-cempasuchil: #ff8500;
-  --muertos-cempasuchil-gold: #ffaa00;
-  --muertos-cempasuchil-soft: #fff8ef;
-  --muertos-cempasuchil-border: #ffd299;
-  --muertos-rosa-mexicano: #e6007e;
-  --muertos-morado: #5a189a;
-  --muertos-gradient: linear-gradient(135deg, #5a189a 0%, #e6007e 50%, #ff8500 100%);
-  --muertos-badge-gradient: linear-gradient(135deg, #ff8500 0%, #e6007e 100%);
+  --nestt-gradient-soft: linear-gradient(135deg, #faf5ff 0%, #fff0f6 100%);
 
   /* Neutrals */
   --nestt-dark: #1e152a;
@@ -61,41 +51,27 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- Top Promo Bar (Día de Muertos Cempasúchil & Rosa Mexicano) --- */
+/* --- Top Promo Bar (Minimal Cyzone Vibe) --- */
 .top-promo-bar {
-  background: var(--muertos-gradient);
+  background: var(--nestt-gradient);
   color: var(--nestt-white);
   font-family: var(--font-brand);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
   padding: 0.45rem 1rem;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(230, 0, 126, 0.25);
+  box-shadow: 0 2px 8px rgba(121, 40, 202, 0.2);
 }
 
 .top-promo-bar .highlight-sale {
   background: rgba(255, 255, 255, 0.22);
-  padding: 0.18rem 0.6rem;
+  padding: 0.15rem 0.55rem;
   border-radius: var(--radius-pill);
   font-size: 0.72rem;
   font-weight: 700;
   margin-right: 0.4rem;
   letter-spacing: 0.5px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-/* Ambient Cempasúchil Floating Atmosphere */
-.cempasuchil-ambient-glow {
-  position: fixed;
-  top: -80px;
-  right: -80px;
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle, rgba(255, 133, 0, 0.06) 0%, rgba(230, 0, 126, 0.04) 50%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* --- Sticky Navbar --- */
@@ -149,16 +125,6 @@ body {
   border-radius: var(--radius-pill);
   text-transform: lowercase;
   letter-spacing: 0.3px;
-}
-
-.brand-logo-tag.cempasuchil-tag {
-  background: var(--muertos-cempasuchil-soft);
-  color: #c94a00;
-  border: 1px solid var(--muertos-cempasuchil-border);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--radius-pill);
 }
 
 /* --- Department Navigation Tabs --- */
@@ -250,8 +216,8 @@ body {
 
 .product-card-minimal:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(90, 24, 154, 0.1), 0 4px 14px rgba(255, 133, 0, 0.12);
-  border-color: var(--muertos-cempasuchil-border);
+  box-shadow: 0 12px 28px rgba(121, 40, 202, 0.12);
+  border-color: var(--nestt-lilac);
 }
 
 .product-card-img-container {
@@ -277,12 +243,12 @@ body {
   transform: scale(1.05);
 }
 
-/* Discount Pill Tag (Día de Muertos Cempasúchil & Rosa Mexicano) */
+/* Discount Pill Tag (Clean Minimalist Style) */
 .badge-shein-discount {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: var(--muertos-badge-gradient);
+  background: var(--nestt-gradient);
   color: var(--nestt-white);
   font-family: var(--font-brand);
   font-weight: 700;
@@ -290,7 +256,7 @@ body {
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-pill);
   z-index: 2;
-  box-shadow: 0 3px 8px rgba(255, 133, 0, 0.35);
+  box-shadow: 0 3px 8px rgba(247, 37, 133, 0.35);
   display: inline-flex;
   align-items: center;
 }

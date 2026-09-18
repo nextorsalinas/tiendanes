@@ -1,279 +1,184 @@
 // Catalog Products Data for Tienda Nesty (Hogar & Belleza: L'Bel + Ésika + Cyzone + Betterware)
-// Auto-generated with 400 products (250 Hogar, 150 Belleza)
+// Auto-generated with 392 products
 
 const INITIAL_PRODUCTS = [
   {
-    "id": "bw_10466108539180",
-    "codigo": "26098",
-    "nombre": "B Shaker Lila",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "cocina",
-    "precio_regular": 119,
-    "precio_oferta": null,
-    "es_oferta": null,
+    "id": "prod_1789572096371",
+    "codigo": "1122",
+    "nombre": "Perfume de mujer Miss L'BEL",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 830,
+    "precio_oferta": 390,
+    "es_oferta": true,
+    "descripcion": "¿Qué es?\nMiss L'BEL parfum 50ml e 1.7 fl. oz. (6 x 4.4 x 11.7 cm) NSOC30958-24CO",
     "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26098_E2_80_8B-1-B-Shaker-Lila_E2_80_8B-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26098_E2_80_8B-2-B-Shaker-Lila_E2_80_8B-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26098-23870-1-B-Shaker-Lila_E2_80_8B-B-Shaker-Conmigo-Betterware.jpg?v=1789450267"
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1241433-1200-auto?v=639223676578300000&width=1200&height=auto&aspect=true"
     ],
-    "descripcion": "¡El B Shaker Lila Betterware te permite preparar el batido perfecto donde quiera que estés! Tiene una capacidad de 700ml y cuenta con una esfera mezcladora que facilita el batido para que quede listo en un instante.",
-    "stock": 25,
+    "stock": 1,
     "activo": true,
     "variantes": []
   },
   {
-    "id": "bw_10466108473644",
-    "codigo": "26787",
-    "nombre": "Magneti Pastillero",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "contigo",
-    "precio_regular": 79.9,
-    "precio_oferta": null,
-    "es_oferta": null,
+    "id": "prod_1789572012613",
+    "codigo": "1121",
+    "nombre": "Bleu Night Perfume para Hombre 100 ml.",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 680,
+    "precio_oferta": 390,
+    "es_oferta": true,
+    "descripcion": "¿Qué es?\nPerfume fresco para hombre de muy alta concentración de familia olfativa herbal maderoso. (8.3 x 4.1 x 13.5 cm) NSOC61350-14CO",
     "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26787-1-Magneti-Pastillero-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26787-2-Magneti-Pastillero-PS-Betterware.jpg?v=1789450267"
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1256950-1200-auto?v=639244013814770000&width=1200&height=auto&aspect=true"
     ],
-    "descripcion": "Organiza tus pastillas de la semana con el Magneti Pastillero Betterware. Esta solución para tiene capacidad para tus pastillas diarias, tiene sistema de fácil apertura e imán en la parte trasera para fijarlo al refrigerador y lo tengas siempre a la ",
-    "stock": 25,
+    "stock": 1,
     "activo": true,
     "variantes": []
   },
   {
-    "id": "bw_10466108440876",
-    "codigo": "26693",
-    "nombre": "Mochila Resist Lila + Graba todo",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "contigo",
-    "precio_regular": 700,
-    "precio_oferta": null,
-    "es_oferta": null,
+    "id": "prod_1789571884453",
+    "codigo": "1120",
+    "nombre": "Perfume de mujer Crystal Star 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 530,
+    "precio_oferta": 340,
+    "es_oferta": true,
+    "descripcion": "Conócelo\nPerfume de mujer Crystal Star con aroma oriental dulce que irradia energía, poder y encanto. Medidas aproximadas: Alto 129mm, Ancho: 59mm, Fondo: 27.6mm",
     "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26851-1-Mochila-Resist-Lila-Betterware_4cfa25ca-8810-4bfa-9870-d9a2008eb13e.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26851-2-Mochila-Resist-Lila-Betterware_84012f36-072e-446e-9df2-14799f57ef58.jpg?v=1789394955",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26851-3-Mochila-Resist-Lila-Betterware_504f37ef-d22b-4a82-888e-2d9709f33f95.jpg?v=1789394957",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26851-4-Mochila-Resist-Lila-Betterware_71404ff5-0c9b-463d-9129-82f9d1cf1507.jpg?v=1789450267"
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1250973-1200-auto?v=639223871199600000&width=1200&height=auto&aspect=true"
     ],
-    "descripcion": "¡Mantén tus pertenencias seguras a donde vayas con la Mochila Resist Lila Betterware! Esta solución para llevar contigo está elaborada de material anticortes en la parte frontal, base y costados; con múltiples compartimentos, espacio para laptop y bo",
-    "stock": 25,
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571730620",
+    "codigo": "1119",
+    "nombre": "Perfume De Hombre Fist, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 450,
+    "precio_oferta": 199,
+    "es_oferta": true,
+    "descripcion": "Conócelo\n\nPerfume de hombre con aroma maderoso de larga duración y concentracion",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1173774-1200-auto?v=639211187022430000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571518635",
+    "codigo": "11118",
+    "nombre": "YOU Perfume Unisex Edición Especial, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 560,
+    "precio_oferta": 220,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume unisex de aroma frutal fresco, para quienes celebran su autenticidad y disfrutan de la vida a su manera. Capacidad: 90 ml. Tamaño: 16.3x3.20x6.15 cm",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1254396-1200-auto?v=639231852564300000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571363403",
+    "codigo": "1115",
+    "nombre": "Vibranza Blanc Perfume de Mujer, 45 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 740,
+    "precio_oferta": 290,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma floral de muy larga duración. Para la mujer atrevida, sensual y auténtica. Capacidad: 45 ml. Tamaño: 11.5x4.00x6.10 cm.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1256086-1200-auto?v=639238276729270000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571196458",
+    "codigo": "1114",
+    "nombre": "Momentos Radiantes Perfume de Mujer, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 560,
+    "precio_oferta": 280,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma floral para la mujer llena de vida. Capacidad: 50 ml. Tamaño: 14.0x3.60x4.90 cm.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1244231-1200-auto?v=639223723789870000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789571066315",
+    "codigo": "1113",
+    "nombre": "Magnat Perfume de Hombre, 90 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 741,
+    "precio_oferta": 320,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma maderoso para el hombre exitoso y sofisticado que sabe elegir. Capacidad: 90 ml. Tamaño: 13.7x3.90x7.60 cm.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1254376-1200-auto?v=639231851213200000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 1,
+    "activo": true,
+    "variantes": []
+  },
+  {
+    "id": "prod_1789570376562",
+    "codigo": "00012",
+    "nombre": "esika Grazzia Perfume de Mujer Edición Especial, 50 ml",
+    "departamento": "belleza",
+    "marca": "esika",
+    "categoria": "Perfumes",
+    "precio_regular": 490,
+    "precio_oferta": 260,
+    "es_oferta": true,
+    "descripcion": "¿Por qué elegirlo?\nPerfume con aroma floral para la mujer que le gusta despertar su lado más romántico.",
+    "fotos": [
+      "https://belcorpmexico.vtexassets.com/arquivos/ids/1254553-1200-auto?v=639231860830470000&width=1200&height=auto&aspect=true"
+    ],
+    "stock": 2,
     "activo": true,
     "variantes": []
   },
   {
     "id": "bw_10466108408108",
     "codigo": "26692",
-    "nombre": "Mochila Resist Azul + Graba todo",
+    "nombre": "Mochila Resist Azul",
     "departamento": "hogar",
     "marca": "betterware",
-    "categoria": "contigo",
+    "categoria": "mochilas",
     "precio_regular": 700,
-    "precio_oferta": null,
-    "es_oferta": null,
+    "precio_oferta": 550,
+    "es_oferta": true,
     "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26849-1-Mochila-Resist-Azul-Betterware_b2c317d1-15ba-4ecd-8e68-8a865f727b0f.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26849-2-Mochila-Resist-Azul-Betterware_144e95a3-7f29-4f83-ab7e-9fbbc993a55b.jpg?v=1789394953",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26849-3-Mochila-Resist-Azul-Betterware_aa38f69b-1515-45e5-aed8-01c3b632bada.jpg?v=1789394955",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26849-4-Mochila-Resist-Azul-Betterware_389c907e-5555-4ae0-b6e3-ed0520b30900.jpg?v=1789450268"
+      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26849-1-Mochila-Resist-Azul-Betterware_b2c317d1-15ba-4ecd-8e68-8a865f727b0f.jpg?v=1789450267"
     ],
     "descripcion": "¡Mantén tus pertenencias seguras a donde vayas con la Mochila Resist Azul Betterware! Esta solución para llevar contigo está elaborada de material anticortes en la parte frontal, base y costados; con múltiples compartimentos, espacio para laptop y bo",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466108211500",
-    "codigo": "26623",
-    "nombre": "Bolso Luxury",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "contigo",
-    "precio_regular": 529,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26623-1-Bolso-Luxury-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26623-2-Bolso-Luxury-PS-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Combina estilo y funcionalidad a donde quiera que vayas con el Bolso Luxury Betterware. Esta solución para llevar contigo tiene un lindo diseño texturizado que va con cualquier estilo. Tiene una capacidad de hasta 12L, compartimento oculto para mayor",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466108178732",
-    "codigo": "26161",
-    "nombre": "Ropa Fix",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 249,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26161-1-Ropa-Fix-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26161-2-Ropa-Fix-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26161-3-Ropa-Fix-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26161-4-Ropa-Fix-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Soluciona los detalles de tu ropa en segundos con el Ropa Fix Betterware. Esta solución te permitirá aplicar botones o realizar la bastilla a tu ropa de manera fácil y rápida. Cuenta con 500 grapas plásticas blancas, 500 plásticas negras y 5 agujas d",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107752748",
-    "codigo": "26156",
-    "nombre": "Limpia Esponjas Magic",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 89.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26156-1-Limpia-Esponja-Magic-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26156-2-Limpia-Esponja-Magic-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26156-3-Limpia-Esponja-Magic-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26156-4-Limpia-Esponja-Magic-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Renovación instantánea para tus tenis con las Limpia Esponjas Magic Betterware. Este set de 10 esponjas para limpiar tus tenis se activan con solo unas gotas de agua, brindando una limpieza rápida sin necesidad de detergente para tus tenis. ¡Úsalo ta",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107719980",
-    "codigo": "26157",
-    "nombre": "Quita Polvo Max",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 159,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26157-1-Quita-Polvo-Max-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26157-2-Quita-Polvo-Max-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Sacude hasta las áreas difíciles de alcanzar con el Quita Polvo Max Betterware. Esta solución de limpieza cuenta con un cabezal flexible que se adapta a diferentes formas, además también es removible para que puedas llegar a muchos más espacios. Cuen",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107687212",
-    "codigo": "26158",
-    "nombre": "Quita Pelusa Max",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 99.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26158-1-Quita-Pelusa-Max-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26158-2-Quita-Pelusa-Max-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26158-3-Quita-Pelusa-Max-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Mantén tus prendas y muebles siempre impecables con el Quita Pelusa Max Betterware. Esta solución de limpieza elimina pelos, pelusas y bolitas de tu ropa y muebles gracias a sus dos puntas diferentes . Es ligera y práctica, con un diseño ergonómico q",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107654444",
-    "codigo": "26691",
-    "nombre": "Funda Lavadora Stretch + Cepi Prendas",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 329,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26691-1-Funda-Lavadora-Strech-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Dale una mayor protección a tu lavadora mientras organizas tu espacio con la Funda Lavadora Stretch Betterware. Esta solución protege tu lavadora de rayones y polvo. Es impermeable y cuenta con interior afelpado. Además incluye bolsas frontales ahora",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107621676",
-    "codigo": "26154",
-    "nombre": "Better Klin Tabs: Limpia Wc Azul",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 69.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26154-1-Better-Klin-Tabs-Limpia-WC-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26154-2-Better-Klin-Tabs-Limpia-WC-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Limpia en cada descarga con las Better Klin Tabs: Limpia WC Azul Betterware. Esta solución para tu baño previene el sarro en tu WC en cada descarga. Su azul continuo te indicará cuando reemplazar. Rinde hasta 400 descargas.",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107490604",
-    "codigo": "26145",
-    "nombre": "Fácil Mop Edición Especial",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 849,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26995-1-Fa_CC_81cil-Mop-Edicio_CC_81n-Especial-Betterware_3a9491db-8259-430e-9756-cb3166d73664.jpg?v=1789450268"
-    ],
-    "descripcion": "Ahora el Fácil Mop Edición Especial Betterware cuenta con una palanca activa spin ¡mucho más fácil de usar! Con esta práctica solución evita inclinarte y tocar el trapeador para exprimir. Cuenta con un nuevo sistema de bloqueo y diseño renovado con n",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107457836",
-    "codigo": "26353",
-    "nombre": "Cortina Botanical",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "baño",
-    "precio_regular": 199,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26353-1-Cortina-Bota_CC_81nical-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Decora tu baño con estilo y evita salpicaduras de agua con la Cortina Botanical Betterware. Esta solución brinda privacidad y mantiene tu baño seco. Está elaborada de plástico y además es de fácil deslizamiento gracias a sus ganchos con esferas. ¡Dil",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107425068",
-    "codigo": "26689",
-    "nombre": "Limpia Vidrios 5 en 1 + Tabs",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "limpieza",
-    "precio_regular": 163.9,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/22436-1-Limpia-Vidrios-5-en-1-Betterware_185b970a-1d69-4b6f-8c81-910e7cc5f432.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/22436-2-Limpia-Vidrios-5-en-1-Betterware_2af2a21d-4288-4187-b0ba-d9a088d2e07a.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/22436-3-Limpia-Vidrios-5-en-1-Betterware_e8442d2c-9260-4277-98a0-ca75bc76aced.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/22436-4-Limpia-Vidrios-5-en-1-Betterware_02e86438-bf1f-4e31-b03d-f9fe8f623393.jpg?v=1789450268"
-    ],
-    "descripcion": "Deja tus vidrios impecables de una manera muy sencilla con el Limpia Vidrios 5 en 1 Betterware. Esta increíble solución te facilita la limpieza gracias a su atomizador, microfibra, jalador, contenedor, espátula y cepillo. ¡Todo en un mismo producto! ",
-    "stock": 25,
+    "stock": 1,
     "activo": true,
     "variantes": []
   },
@@ -291,80 +196,6 @@ const INITIAL_PRODUCTS = [
       "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26699_E2_80_8B_20-1-Lava-Bra-Flex-Betterware.jpg?v=1789450268"
     ],
     "descripcion": "Protege tus brasier al momento de lavar con el Lava Flex Betterware. Esta solución de limpieza esta elaborada con un material de gran resistencia, lo que evitará deformaciones o enredos en la ropa protegiendo así tus prendas más delicadas. Ahora en s",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107359532",
-    "codigo": "26421",
-    "nombre": "Organizador Dental Protect",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "baño",
-    "precio_regular": 119,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26421-1-Organi-Dental-Protect-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Organiza y protege tus cepillos de dientes con el Organi Dental Protect Betterware. Esta solución para tu baño tiene un look que se adapta a cualquier espacio. Tiene una capacidad de hasta 5 cepillos de dientes y un rastrillo. Adicional cuenta con ta",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107326764",
-    "codigo": "26423",
-    "nombre": "Set Mármol",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "baño",
-    "precio_regular": 179,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26423-1-Set-Marmol-Betterware.jpg?v=1789450267",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26423-2-Set-Marmol-Betterware.jpg?v=1789450267"
-    ],
-    "descripcion": "Decora tu baño con elegancia funcional con el Set Mármol Betterware. Esta solución para tu baño consta de dos contenedores: uno para colocar cepillos y/o pasta dental y un dispensador de jabón en espuma con una capacidad de 400ml. Su diseño mármol el",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107261228",
-    "codigo": "26624",
-    "nombre": "Deco Planta Aura",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "hogar",
-    "precio_regular": 269,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26624-1-Deco-Planta-Aura-Betterware.jpg?v=1789450268",
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26624-2-Deco-Planta-Aura-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Agrega un toque natural a tus espacios con la Deco Planta Aura Betterware. Esta solución para tu hogar tiene un look realista con dos posibilidades de uso: colgada o en superficie. Incluye una linda maceta que complementará el look elegante en tu esp",
-    "stock": 25,
-    "activo": true,
-    "variantes": []
-  },
-  {
-    "id": "bw_10466107228460",
-    "codigo": "26335",
-    "nombre": "Triangu Cesto Max",
-    "departamento": "hogar",
-    "marca": "betterware",
-    "categoria": "recamara",
-    "precio_regular": 319,
-    "precio_oferta": null,
-    "es_oferta": null,
-    "fotos": [
-      "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26335-1-Triangu-Cesto-Max-Betterware.jpg?v=1789450268"
-    ],
-    "descripcion": "Mantén el orden en tu hogar con el Triangu Cesto Max Betterware. Esta solución oculta tus prendas sucias mientras decora tus espacios. Su diseño triangular lo hace ideal para colocarlo cualquier esquina. Sus asas laterales son resistentes y facilitan",
     "stock": 25,
     "activo": true,
     "variantes": []
