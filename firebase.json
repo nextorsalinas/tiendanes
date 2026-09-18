@@ -1,17 +1,13 @@
 {
   "hosting": {
+    "site": "nestt-trendy",
     "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "cleanUrls": true
   },
   "firestore": {
     "rules": "firestore.rules"
