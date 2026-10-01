@@ -25,15 +25,41 @@
     <span class="highlight-sale">¿NO SABES QUÉ REGALAR?</span> ENVOLTURA DE CORTESÍA Y TARJETA GRATIS EN TODOS TUS PEDIDOS
   </div>
 
-  <!-- Minimal Sticky Navbar -->
+  <!-- Header Morado Alineado a la Izquierda con Menú Hamburguesa -->
   <nav class="navbar navbar-better">
-    <div class="container justify-content-center">
+    <div class="container d-flex align-items-center justify-content-start gap-3">
+      <button class="btn btn-hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#categoriesOffcanvas" aria-controls="categoriesOffcanvas" aria-label="Abrir menú de categorías">
+        <i class="bi bi-list fs-1 text-white"></i>
+      </button>
+
       <a href="index.html" class="brand-logo">
         <span class="brand-name-nestt">nestt<span class="brand-dot">.</span></span>
         <span class="brand-logo-tag">regalos & detalles</span>
       </a>
     </div>
   </nav>
+
+  <!-- Offcanvas Drawer de Categorías -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="categoriesOffcanvas" aria-labelledby="categoriesOffcanvasLabel">
+    <div class="offcanvas-header header-offcanvas-purple text-white">
+      <div class="d-flex align-items-center gap-2">
+        <h5 class="offcanvas-title fw-bold m-0" id="categoriesOffcanvasLabel">
+          <span class="brand-name-nestt text-white">nestt<span class="brand-dot text-white">.</span></span>
+        </h5>
+        <span class="badge-offcanvas-tag">categorías</span>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <div class="p-3 border-bottom bg-light d-flex align-items-center justify-content-between">
+        <span class="text-muted small fw-bold text-uppercase">Todas las Categorías</span>
+        <span class="badge bg-secondary-subtle text-secondary small" id="offcanvas-count-badge">Catálogo</span>
+      </div>
+      <div class="list-group list-group-flush" id="offcanvas-categories-list">
+        <!-- Generado dinámicamente por app.js -->
+      </div>
+    </div>
+  </div>
 
   <!-- Main Catalog Content -->
   <main class="container py-4">

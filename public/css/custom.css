@@ -74,15 +74,36 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* --- Sticky Navbar --- */
+/* --- Sticky Navbar (Fondo Morado, Logo Blanco a la Izquierda) --- */
 .navbar-better {
-  background-color: var(--nestt-white);
-  border-bottom: 1px solid var(--nestt-gray-300);
-  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #7928ca 0%, #5c18a0 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.65rem 1.25rem;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 16px rgba(121, 40, 202, 0.04);
+  box-shadow: 0 4px 18px rgba(92, 24, 160, 0.28);
+}
+
+.btn-hamburger {
+  background: transparent;
+  border: none;
+  padding: 0.2rem 0.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: var(--nestt-white);
+  transition: all 0.2s ease;
+}
+
+.btn-hamburger:hover, .btn-hamburger:focus {
+  background-color: rgba(255, 255, 255, 0.18);
+  outline: none;
+  box-shadow: none;
+  transform: scale(1.05);
 }
 
 .brand-logo {
@@ -90,7 +111,7 @@ body {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
   transition: transform 0.2s ease;
 }
 
@@ -102,29 +123,67 @@ body {
   font-weight: 800;
   font-size: 2rem;
   letter-spacing: -1px;
-  color: var(--nestt-dark);
+  color: var(--nestt-white) !important;
   text-transform: lowercase;
   line-height: 1;
 }
 
 .brand-dot {
-  background: var(--nestt-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--nestt-white) !important;
+  -webkit-text-fill-color: var(--nestt-white) !important;
   font-size: 2.2rem;
   font-weight: 900;
 }
 
 .brand-logo-tag {
-  background: var(--nestt-lilac-soft);
-  color: var(--nestt-purple);
-  border: 1px solid var(--nestt-lilac);
-  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 0.2rem 0.6rem;
+  padding: 0.18rem 0.55rem;
   border-radius: var(--radius-pill);
   text-transform: lowercase;
   letter-spacing: 0.3px;
+  backdrop-filter: blur(4px);
+}
+
+/* --- Offcanvas Menu (Categorías) --- */
+.header-offcanvas-purple {
+  background: linear-gradient(135deg, #7928ca 0%, #5c18a0 100%);
+  padding: 1.15rem 1.4rem;
+}
+
+.badge-offcanvas-tag {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.active-offcanvas-cat {
+  background-color: var(--nestt-lilac-soft) !important;
+  color: var(--nestt-purple) !important;
+  border-left: 4px solid var(--nestt-purple) !important;
+  font-weight: 700 !important;
+}
+
+.list-group-item-action {
+  transition: all 0.18s ease;
+  font-family: var(--font-brand);
+  font-size: 0.92rem;
+  border: none;
+  border-bottom: 1px solid var(--nestt-gray-300);
+}
+
+.list-group-item-action:hover {
+  background-color: var(--nestt-lilac-soft);
+  color: var(--nestt-purple);
+  padding-left: 1.75rem !important;
 }
 
 

@@ -21,11 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     return "hogar";
   }
 
-  // Render Category Chips
+  // Render Category Chips & Offcanvas Drawer List
   function renderCategories() {
-    const chipContainer = document.getElementById("category-chips-container");
-    if (!chipContainer) return;
-
     const rawCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))].sort();
     const categories = [
       { id: "all", label: "Todas" },
@@ -34,18 +31,80 @@ document.addEventListener("DOMContentLoaded", async () => {
       ...rawCategories.map(cat => ({ id: cat, label: cat }))
     ];
 
-    chipContainer.innerHTML = categories.map(cat => {
-      const isSelected = currentCategory === cat.id;
-      return `<button class="chip-category ${isSelected ? 'active' : ''}" data-category="${cat.id}">${cat.label}</button>`;
-    }).join("");
+    // 1. Render Horizontal Chips
+    const chipContainer = document.getElementById("category-chips-container");
+    if (chipContainer) {
+      chipContainer.innerHTML = categories.map(cat => {
+        const isSelected = currentCategory === cat.id;
+        return `<button class="chip-category ${isSelected ? 'active' : ''}" data-category="${cat.id}">${cat.label}</button>`;
+      }).join("");
 
-    chipContainer.querySelectorAll(".chip-category").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        currentCategory = e.target.getAttribute("data-category");
-        renderCategories();
-        renderProducts();
+      chipContainer.querySelectorAll(".chip-category").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          currentCategory = e.target.getAttribute("data-category");
+          renderCategories();
+          renderProducts();
+        });
       });
-    });
+    }
+
+    // 2. Render Offcanvas Hamburger Menu List
+    const offcanvasList = document.getElementById("offcanvas-categories-list");
+    if (offcanvasList) {
+      const countBadge = document.getElementById("offcanvas-count-badge");
+      if (countBadge) {
+        const totalActive = allProducts.filter(p => p.activo !== false).length;
+        countBadge.textContent = `${totalActive} prods`;
+      }
+
+      offcanvasList.innerHTML = categories.map(cat => {
+        const isSelected = currentCategory === cat.id;
+        const count = cat.id === "all" 
+          ? allProducts.filter(p => p.activo !== false).length
+          : cat.id === "gift_200" 
+            ? allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length
+            : cat.id === "gift_350"
+              ? allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length
+              : allProducts.filter(p => p.activo !== false && p.categoria === cat.id).length;
+
+        return `
+          <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-4 ${isSelected ? 'active-offcanvas-cat' : ''}" data-category="${cat.id}">
+            <span class="d-flex align-items-center gap-2">
+              ${cat.id.startsWith('gift_') ? '<span class="badge bg-warning text-dark me-1" style="font-size:0.65rem;">PROMO</span>' : ''}
+              ${cat.label}
+            </span>
+            <span class="badge rounded-pill ${isSelected ? 'bg-primary text-white' : 'bg-light text-muted border'}">${count}</span>
+          </button>
+        `;
+      }).join("");
+
+      offcanvasList.querySelectorAll("[data-category]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          currentCategory = e.currentTarget.getAttribute("data-category");
+          
+          // Close offcanvas drawer
+          const offcanvasEl = document.getElementById("categoriesOffcanvas");
+          if (offcanvasEl) {
+            const instance = (typeof bootstrap !== "undefined" && bootstrap.Offcanvas ? bootstrap.Offcanvas.getInstance(offcanvasEl) : null) || 
+                             (typeof coreui !== "undefined" && coreui.Offcanvas ? coreui.Offcanvas.getInstance(offcanvasEl) : null);
+            if (instance) {
+              instance.hide();
+            } else {
+              const closeBtn = offcanvasEl.querySelector(".btn-close");
+              if (closeBtn) closeBtn.click();
+            }
+          }
+
+          renderCategories();
+          renderProducts();
+
+          const grid = document.getElementById("products-grid");
+          if (grid) {
+            grid.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    }
   }
 
   // Render Product Grid (Sin etiquetas de marca, departamento ni descuento)
