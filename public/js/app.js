@@ -79,15 +79,83 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Render Category Chips & Offcanvas Drawer List
-  function renderCategories() {
-    const rawCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))].sort();
-    const categories = [
+  // Category Formatter & Normalizer
+  function formatCategoryName(cat) {
+    if (!cat) return "";
+    const clean = cat.trim();
+    const map = {
+      "cocina": "Cocina",
+      "limpieza": "Limpieza",
+      "baño": "Baño",
+      "hogar": "Hogar",
+      "recamara": "Recámara",
+      "bienestar": "Bienestar",
+      "contigo": "Portátiles & Viaje",
+      "mochilas": "Mochilas & Bolsos",
+      "perfumes": "Perfumes",
+      "joyería": "Joyería",
+      "maquillaje": "Maquillaje",
+      "cuidado personal": "Cuidado Personal",
+      "skincare": "Skincare",
+      "moda y accesorios": "Moda & Accesorios",
+      "tecnología": "Tecnología"
+    };
+    return map[clean.toLowerCase()] || (clean.charAt(0).toUpperCase() + clean.slice(1));
+  }
+
+  // Smooth scroll offset helper to prevent sticky navbar from obscuring content
+  function scrollToProductsView() {
+    const chipsContainer = document.getElementById("category-chips-container");
+    if (chipsContainer) {
+      const yOffset = -75; // sticky purple header height + breathing room
+      const y = chipsContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+    }
+  }
+
+  // Auto-center active chip in the horizontal scrolling slider
+  function syncActiveChipScroll() {
+    setTimeout(() => {
+      const chipContainer = document.getElementById("category-chips-container");
+      if (chipContainer) {
+        const activeChip = chipContainer.querySelector(`.chip-category[data-category="${currentCategory}"]`);
+        if (activeChip) {
+          activeChip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      }
+    }, 50);
+  }
+
+  // Get normalized categories list excluding technical tags
+  function getCatalogCategories() {
+    const ignoredTags = new Set(["aplica_hiperoferta", "ahorro_30", "aplica_superprecio"]);
+    const categoryMap = new Map();
+
+    allProducts.forEach(p => {
+      if (p.activo !== false && p.categoria) {
+        const lower = p.categoria.toLowerCase().trim();
+        if (!ignoredTags.has(lower)) {
+          const display = formatCategoryName(p.categoria);
+          if (!categoryMap.has(display)) {
+            categoryMap.set(display, new Set());
+          }
+          categoryMap.get(display).add(p.categoria);
+        }
+      }
+    });
+
+    const sortedNames = Array.from(categoryMap.keys()).sort();
+    return [
       { id: "all", label: "Todas" },
       { id: "gift_200", label: "Regalos < $200" },
       { id: "gift_350", label: "Regalos < $350" },
-      ...rawCategories.map(cat => ({ id: cat, label: cat }))
+      ...sortedNames.map(name => ({ id: name, label: name, rawKeys: Array.from(categoryMap.get(name)) }))
     ];
+  }
+
+  // Render Category Chips & Offcanvas Drawer List
+  function renderCategories() {
+    const categories = getCatalogCategories();
 
     // 1. Render Horizontal Chips
     const chipContainer = document.getElementById("category-chips-container");
@@ -99,9 +167,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       chipContainer.querySelectorAll(".chip-category").forEach(btn => {
         btn.addEventListener("click", (e) => {
-          currentCategory = e.target.getAttribute("data-category");
+          currentCategory = e.currentTarget.getAttribute("data-category");
           renderCategories();
           renderProducts();
+          syncActiveChipScroll();
         });
       });
     }
@@ -117,13 +186,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       offcanvasList.innerHTML = categories.map(cat => {
         const isSelected = currentCategory === cat.id;
-        const count = cat.id === "all" 
-          ? allProducts.filter(p => p.activo !== false).length
-          : cat.id === "gift_200" 
-            ? allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length
-            : cat.id === "gift_350"
-              ? allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length
-              : allProducts.filter(p => p.activo !== false && p.categoria === cat.id).length;
+        let count = 0;
+        if (cat.id === "all") {
+          count = allProducts.filter(p => p.activo !== false).length;
+        } else if (cat.id === "gift_200") {
+          count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length;
+        } else if (cat.id === "gift_350") {
+          count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length;
+        } else if (cat.rawKeys) {
+          count = allProducts.filter(p => p.activo !== false && cat.rawKeys.includes(p.categoria)).length;
+        } else {
+          count = allProducts.filter(p => p.activo !== false && formatCategoryName(p.categoria) === cat.id).length;
+        }
 
         return `
           <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-4 ${isSelected ? 'active-offcanvas-cat' : ''}" data-category="${cat.id}">
@@ -142,11 +216,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           closeOffcanvas();
           renderCategories();
           renderProducts();
-
-          const grid = document.getElementById("products-grid");
-          if (grid) {
-            grid.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
+          syncActiveChipScroll();
+          scrollToProductsView();
         });
       });
     }
@@ -171,11 +242,44 @@ document.addEventListener("DOMContentLoaded", async () => {
         return price <= 350;
       });
     } else if (currentCategory !== "all") {
-      filtered = filtered.filter(p => p.categoria === currentCategory);
+      const categories = getCatalogCategories();
+      const catObj = categories.find(c => c.id === currentCategory);
+      if (catObj && catObj.rawKeys) {
+        filtered = filtered.filter(p => catObj.rawKeys.includes(p.categoria));
+      } else {
+        filtered = filtered.filter(p => formatCategoryName(p.categoria) === currentCategory || p.categoria === currentCategory);
+      }
     }
 
     if (countEl) {
-      countEl.textContent = `${filtered.length} Productos Disponibles`;
+      if (currentCategory === "all") {
+        countEl.innerHTML = `<span><strong>${filtered.length}</strong> Productos Disponibles</span>`;
+      } else {
+        const catLabel = currentCategory === "gift_200" 
+          ? "Regalos < $200" 
+          : currentCategory === "gift_350" 
+            ? "Regalos < $350" 
+            : currentCategory;
+
+        countEl.innerHTML = `
+          <div class="d-flex align-items-center justify-content-between w-100 flex-wrap gap-2">
+            <span>Mostrando <strong>${filtered.length}</strong> en <span class="badge bg-light text-primary border">${catLabel}</span></span>
+            <button class="btn btn-sm btn-link text-decoration-none p-0 text-muted" id="btn-clear-cat-filter" style="font-size:0.78rem;">
+              <i class="bi bi-x-circle me-1"></i>Ver todos
+            </button>
+          </div>
+        `;
+        const clearBtn = document.getElementById("btn-clear-cat-filter");
+        if (clearBtn) {
+          clearBtn.addEventListener("click", () => {
+            currentCategory = "all";
+            renderCategories();
+            renderProducts();
+            syncActiveChipScroll();
+            scrollToProductsView();
+          });
+        }
+      }
     }
 
     if (filtered.length === 0) {
@@ -194,6 +298,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           currentCategory = "all";
           renderCategories();
           renderProducts();
+          syncActiveChipScroll();
+          scrollToProductsView();
         });
       }
       return;
