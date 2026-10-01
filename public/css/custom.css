@@ -341,9 +341,9 @@ body {
   width: 100%;
   border-radius: var(--radius-pill);
   font-family: var(--font-brand);
-  font-weight: 600;
-  font-size: 0.82rem;
-  padding: 0.55rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.65rem;
   border: 1.5px solid var(--nestt-purple);
   background: var(--nestt-white);
   color: var(--nestt-purple);
@@ -351,8 +351,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-whatsapp-card:hover {
@@ -360,7 +361,53 @@ body {
   border-color: var(--whatsapp-green);
   color: var(--nestt-white);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp-card i {
+  font-size: 0.95rem;
+}
+
+/* Responsive Mobile Adjustments for WhatsApp Buttons & Cards */
+@media (max-width: 576px) {
+  .product-card-content {
+    padding: 0.75rem 0.65rem 0.85rem;
+  }
+
+  .product-name-minimal {
+    font-size: 0.82rem;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+  }
+
+  .price-row {
+    margin-bottom: 0.5rem;
+    gap: 0.3rem;
+  }
+
+  .price-main {
+    font-size: 1.05rem;
+  }
+
+  .price-old-strike {
+    font-size: 0.75rem;
+  }
+
+  .btn-whatsapp-card {
+    font-size: 0.76rem;
+    padding: 0.35rem 0.5rem;
+    gap: 0.25rem;
+    height: 32px;
+  }
+
+  .btn-whatsapp-card i {
+    font-size: 0.85rem;
+  }
+
+  .btn-whatsapp-minimal {
+    font-size: 0.88rem;
+    padding: 0.65rem 1rem;
+  }
 }
 
 /* --- Modal WhatsApp Order --- */

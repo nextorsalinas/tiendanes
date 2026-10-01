@@ -21,6 +21,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     return "hogar";
   }
 
+  // Offcanvas Drawer Controller (Menú Hamburguesa)
+  const offcanvasEl = document.getElementById("categoriesOffcanvas");
+  const hamburgerBtn = document.getElementById("btn-hamburger-menu");
+
+  function getOffcanvasInstance() {
+    if (!offcanvasEl) return null;
+    if (typeof coreui !== "undefined" && coreui.Offcanvas) {
+      return coreui.Offcanvas.getOrCreateInstance(offcanvasEl);
+    }
+    if (typeof bootstrap !== "undefined" && bootstrap.Offcanvas) {
+      return bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+    }
+    return null;
+  }
+
+  function openOffcanvas() {
+    const inst = getOffcanvasInstance();
+    if (inst) {
+      inst.show();
+    } else if (offcanvasEl) {
+      offcanvasEl.classList.add("show");
+      offcanvasEl.style.visibility = "visible";
+      let backdrop = document.querySelector(".offcanvas-backdrop");
+      if (!backdrop) {
+        backdrop = document.createElement("div");
+        backdrop.className = "offcanvas-backdrop fade show";
+        document.body.appendChild(backdrop);
+        backdrop.addEventListener("click", closeOffcanvas);
+      }
+    }
+  }
+
+  function closeOffcanvas() {
+    const inst = getOffcanvasInstance();
+    if (inst) {
+      inst.hide();
+    } else if (offcanvasEl) {
+      offcanvasEl.classList.remove("show");
+      offcanvasEl.style.visibility = "";
+      document.querySelector(".offcanvas-backdrop")?.remove();
+    }
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openOffcanvas();
+    });
+  }
+
+  const offcanvasCloseBtn = offcanvasEl ? offcanvasEl.querySelector(".btn-close") : null;
+  if (offcanvasCloseBtn) {
+    offcanvasCloseBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeOffcanvas();
+    });
+  }
+
   // Render Category Chips & Offcanvas Drawer List
   function renderCategories() {
     const rawCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))].sort();
@@ -81,20 +139,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       offcanvasList.querySelectorAll("[data-category]").forEach(btn => {
         btn.addEventListener("click", (e) => {
           currentCategory = e.currentTarget.getAttribute("data-category");
-          
-          // Close offcanvas drawer
-          const offcanvasEl = document.getElementById("categoriesOffcanvas");
-          if (offcanvasEl) {
-            const instance = (typeof bootstrap !== "undefined" && bootstrap.Offcanvas ? bootstrap.Offcanvas.getInstance(offcanvasEl) : null) || 
-                             (typeof coreui !== "undefined" && coreui.Offcanvas ? coreui.Offcanvas.getInstance(offcanvasEl) : null);
-            if (instance) {
-              instance.hide();
-            } else {
-              const closeBtn = offcanvasEl.querySelector(".btn-close");
-              if (closeBtn) closeBtn.click();
-            }
-          }
-
+          closeOffcanvas();
           renderCategories();
           renderProducts();
 
@@ -175,8 +220,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ${hasDiscount ? `<span class="price-old-strike">$${p.precio_regular.toFixed(2)}</span>` : ''}
               </div>
 
-              <button class="btn-whatsapp-card" onclick="window.openOrderModal('${p.id}')">
-                <i class="bi bi-whatsapp"></i> Pedir por WhatsApp
+              <button class="btn-whatsapp-card" onclick="window.openOrderModal('${p.id}')" aria-label="Pedir ${p.nombre} por WhatsApp">
+                <i class="bi bi-whatsapp"></i> <span>Pedir<span class="d-none d-sm-inline"> por WhatsApp</span></span>
               </button>
             </div>
           </div>
