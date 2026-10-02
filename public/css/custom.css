@@ -51,27 +51,39 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- Top Promo Bar (Minimal Cyzone Vibe) --- */
+/* --- Top Promo Bar (Minimal Cyzone Vibe con Contraste WCAG AA) --- */
 .top-promo-bar {
-  background: var(--nestt-gradient);
+  background: linear-gradient(135deg, #6c1eb8 0%, #db0068 100%);
   color: var(--nestt-white);
   font-family: var(--font-brand);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
   padding: 0.45rem 1rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(121, 40, 202, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(108, 30, 184, 0.25);
 }
 
 .top-promo-bar .highlight-sale {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.25);
   padding: 0.15rem 0.55rem;
   border-radius: var(--radius-pill);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-right: 0.4rem;
   letter-spacing: 0.5px;
+}
+
+/* --- Accesibilidad: Indicadores de Enfoque por Teclado (WCAG 2.1) --- */
+:focus-visible {
+  outline: 2.5px solid var(--nestt-purple) !important;
+  outline-offset: 2px !important;
+}
+
+.btn-hamburger:focus-visible {
+  outline: 2.5px solid var(--nestt-white) !important;
+  outline-offset: 3px !important;
 }
 
 /* --- Sticky Navbar (Fondo Morado, Logo Blanco a la Izquierda) --- */

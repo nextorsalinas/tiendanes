@@ -167,15 +167,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const isSelected = currentBrand === b.id;
       if (b.isAll) {
         return `
-          <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="all" title="Todas las marcas">
+          <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="all" title="Ver todas las marcas" aria-label="Ver todas las marcas" aria-pressed="${isSelected}">
             <span class="brand-all-icon"><i class="bi bi-grid-fill me-1"></i></span>
             <span class="brand-name">Todas</span>
           </button>
         `;
       }
       return `
-        <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="${b.id}" title="${b.label}">
-          <img src="${b.logo}" alt="${b.label}" class="brand-logo-img">
+        <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="${b.id}" title="${b.label}" aria-label="Filtrar por marca ${b.label}" aria-pressed="${isSelected}">
+          <img src="${b.logo}" alt="Logotipo ${b.label}" class="brand-logo-img">
         </button>
       `;
     }).join("");
@@ -349,15 +349,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (filtered.length === 0) {
+      let emptyTitle = "No hay productos en esta sección";
+      let emptyHint = "No encontramos resultados con los filtros actuales.";
+      
+      if (currentBrand !== "all" && currentCategory !== "all") {
+        const bName = formatBrandName(currentBrand);
+        const catLabel = currentCategory === "gift_200" ? "Regalos < $200" : currentCategory === "gift_350" ? "Regalos < $350" : currentCategory;
+        emptyTitle = `Sin coincidencias en ${catLabel}`;
+        emptyHint = `<strong>${bName}</strong> no cuenta con productos en la categoría <em>${catLabel}</em>. Puedes ver todo lo de ${bName} o explorar todas las marcas.`;
+      }
+
       grid.innerHTML = `
         <div class="col-12 text-center py-5">
-          <div class="p-4 bg-white rounded-4 border text-center max-w-md mx-auto">
-            <i class="bi bi-box-seam text-muted fs-1 mb-2"></i>
-            <h6 class="fw-bold text-dark">No hay productos en esta sección</h6>
-            <button class="btn btn-sm btn-outline-dark rounded-pill mt-2" id="btn-reset-filters">Ver todos los productos</button>
+          <div class="p-4 bg-white rounded-4 border text-center max-w-md mx-auto shadow-sm">
+            <i class="bi bi-box-seam text-muted fs-1 mb-2 d-block"></i>
+            <h6 class="fw-bold text-dark mb-1">${emptyTitle}</h6>
+            <p class="text-muted small mb-3">${emptyHint}</p>
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+              <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold" id="btn-reset-filters">Ver todo el catálogo</button>
+              ${currentBrand !== "all" ? `<button class="btn btn-sm btn-light border rounded-pill px-3 text-muted" id="btn-reset-to-brand">Ver todo ${formatBrandName(currentBrand)}</button>` : ''}
+            </div>
           </div>
         </div>
       `;
+
       const resetBtn = document.getElementById("btn-reset-filters");
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
@@ -370,6 +385,18 @@ document.addEventListener("DOMContentLoaded", async () => {
           scrollToProductsView();
         });
       }
+
+      const resetBrandBtn = document.getElementById("btn-reset-to-brand");
+      if (resetBrandBtn) {
+        resetBrandBtn.addEventListener("click", () => {
+          currentCategory = "all";
+          renderCategories();
+          renderProducts();
+          syncActiveBrandScroll();
+          scrollToProductsView();
+        });
+      }
+
       return;
     }
 
