@@ -45,7 +45,11 @@ class StoreDatabase {
         const snapshot = await firestoreDb.collection("productos").get();
         if (!snapshot.empty) {
           const prods = [];
-          snapshot.forEach(doc => prods.push(doc.data()));
+          snapshot.forEach(doc => {
+            const item = doc.data();
+            item.marca = (item.marca || 'betterware').toLowerCase().trim();
+            prods.push(item);
+          });
           // Sort by name or code
           prods.sort((a, b) => (a.nombre || "").localeCompare(b.nombre || ""));
           localStorage.setItem("nesty_products", JSON.stringify(prods));
@@ -118,6 +122,7 @@ class StoreDatabase {
     if (!product.id) {
       product.id = "prod_" + Date.now();
     }
+    product.marca = (product.marca || "betterware").toLowerCase().trim();
 
     // Save to Firestore
     if (firestoreDb) {

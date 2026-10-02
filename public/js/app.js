@@ -4,11 +4,30 @@ const WHATSAPP_SELLER_PHONE = "525525000024";
 document.addEventListener("DOMContentLoaded", async () => {
   let allProducts = [];
   let currentCategory = "all";
+  let currentBrand = "all";
   let selectedProductForOrder = null;
+
+  // 4 Official Brands Configuration
+  const BRANDS_CONFIG = [
+    { id: "all", label: "Todas", isAll: true },
+    { id: "betterware", label: "Betterware", logo: "images/brands/betterware.webp" },
+    { id: "esika", label: "Ésika", logo: "images/brands/esika.png" },
+    { id: "cyzone", label: "Cyzone", logo: "images/brands/cyzone.png" },
+    { id: "lbel", label: "L'Bel", logo: "images/brands/lbel.png" }
+  ];
 
   // Load products
   async function loadCatalog() {
     allProducts = await window.db.getProducts();
+    // Guarantee fallback for brand on all items
+    allProducts.forEach(p => {
+      if (!p.marca || p.marca.trim() === '') {
+        p.marca = 'betterware';
+      } else {
+        p.marca = p.marca.toLowerCase().trim();
+      }
+    });
+    renderBrands();
     renderCategories();
     renderProducts();
   }
@@ -103,27 +122,78 @@ document.addEventListener("DOMContentLoaded", async () => {
     return map[clean.toLowerCase()] || (clean.charAt(0).toUpperCase() + clean.slice(1));
   }
 
+  // Brand Name Formatter
+  function formatBrandName(marca) {
+    if (!marca) return "Betterware";
+    const clean = marca.toLowerCase().trim();
+    const map = {
+      "betterware": "Betterware",
+      "esika": "Ésika",
+      "cyzone": "Cyzone",
+      "lbel": "L'Bel"
+    };
+    return map[clean] || (clean.charAt(0).toUpperCase() + clean.slice(1));
+  }
+
   // Smooth scroll offset helper to prevent sticky navbar from obscuring content
   function scrollToProductsView() {
-    const chipsContainer = document.getElementById("category-chips-container");
-    if (chipsContainer) {
+    const target = document.getElementById("brand-nav-container") || document.getElementById("products-grid");
+    if (target) {
       const yOffset = -75; // sticky purple header height + breathing room
-      const y = chipsContainer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
     }
   }
 
-  // Auto-center active chip in the horizontal scrolling slider
-  function syncActiveChipScroll() {
+  // Auto-center active brand button in horizontal scroll
+  function syncActiveBrandScroll() {
     setTimeout(() => {
-      const chipContainer = document.getElementById("category-chips-container");
-      if (chipContainer) {
-        const activeChip = chipContainer.querySelector(`.chip-category[data-category="${currentCategory}"]`);
-        if (activeChip) {
-          activeChip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      const brandContainer = document.getElementById("brand-nav-container");
+      if (brandContainer) {
+        const activeBtn = brandContainer.querySelector(`.brand-nav-btn[data-brand="${currentBrand}"]`);
+        if (activeBtn) {
+          activeBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         }
       }
     }, 50);
+  }
+
+  // Render Brand Navigation Buttons (4 Logos + Todas)
+  function renderBrands() {
+    const brandContainer = document.getElementById("brand-nav-container");
+    if (!brandContainer) return;
+
+    brandContainer.innerHTML = BRANDS_CONFIG.map(b => {
+      const isSelected = currentBrand === b.id;
+      if (b.isAll) {
+        return `
+          <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="all" title="Todas las marcas">
+            <span class="brand-all-icon"><i class="bi bi-grid-fill me-1"></i></span>
+            <span class="brand-name">Todas</span>
+          </button>
+        `;
+      }
+      return `
+        <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="${b.id}" title="${b.label}">
+          <img src="${b.logo}" alt="${b.label}" class="brand-logo-img">
+        </button>
+      `;
+    }).join("");
+
+    brandContainer.querySelectorAll(".brand-nav-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const selected = e.currentTarget.getAttribute("data-brand");
+        if (currentBrand === selected && selected !== "all") {
+          currentBrand = "all";
+        } else {
+          currentBrand = selected;
+        }
+        renderBrands();
+        renderProducts();
+        syncActiveBrandScroll();
+        scrollToProductsView();
+      });
+    });
   }
 
   // Get normalized categories list excluding technical tags
@@ -146,84 +216,63 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const sortedNames = Array.from(categoryMap.keys()).sort();
     return [
-      { id: "all", label: "Todas" },
+      { id: "all", label: "Todas las Categorías" },
       { id: "gift_200", label: "Regalos < $200" },
       { id: "gift_350", label: "Regalos < $350" },
       ...sortedNames.map(name => ({ id: name, label: name, rawKeys: Array.from(categoryMap.get(name)) }))
     ];
   }
 
-  // Render Category Chips & Offcanvas Drawer List
+  // Render Offcanvas Drawer List (Categorías en Menú Hamburguesa)
   function renderCategories() {
     const categories = getCatalogCategories();
+    const offcanvasList = document.getElementById("offcanvas-categories-list");
+    if (!offcanvasList) return;
 
-    // 1. Render Horizontal Chips
-    const chipContainer = document.getElementById("category-chips-container");
-    if (chipContainer) {
-      chipContainer.innerHTML = categories.map(cat => {
-        const isSelected = currentCategory === cat.id;
-        return `<button class="chip-category ${isSelected ? 'active' : ''}" data-category="${cat.id}">${cat.label}</button>`;
-      }).join("");
-
-      chipContainer.querySelectorAll(".chip-category").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          currentCategory = e.currentTarget.getAttribute("data-category");
-          renderCategories();
-          renderProducts();
-          syncActiveChipScroll();
-        });
-      });
+    const countBadge = document.getElementById("offcanvas-count-badge");
+    if (countBadge) {
+      const totalActive = allProducts.filter(p => p.activo !== false).length;
+      countBadge.textContent = `${totalActive} prods`;
     }
 
-    // 2. Render Offcanvas Hamburger Menu List
-    const offcanvasList = document.getElementById("offcanvas-categories-list");
-    if (offcanvasList) {
-      const countBadge = document.getElementById("offcanvas-count-badge");
-      if (countBadge) {
-        const totalActive = allProducts.filter(p => p.activo !== false).length;
-        countBadge.textContent = `${totalActive} prods`;
+    offcanvasList.innerHTML = categories.map(cat => {
+      const isSelected = currentCategory === cat.id;
+      let count = 0;
+      if (cat.id === "all") {
+        count = allProducts.filter(p => p.activo !== false).length;
+      } else if (cat.id === "gift_200") {
+        count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length;
+      } else if (cat.id === "gift_350") {
+        count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length;
+      } else if (cat.rawKeys) {
+        count = allProducts.filter(p => p.activo !== false && cat.rawKeys.includes(p.categoria)).length;
+      } else {
+        count = allProducts.filter(p => p.activo !== false && formatCategoryName(p.categoria) === cat.id).length;
       }
 
-      offcanvasList.innerHTML = categories.map(cat => {
-        const isSelected = currentCategory === cat.id;
-        let count = 0;
-        if (cat.id === "all") {
-          count = allProducts.filter(p => p.activo !== false).length;
-        } else if (cat.id === "gift_200") {
-          count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length;
-        } else if (cat.id === "gift_350") {
-          count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length;
-        } else if (cat.rawKeys) {
-          count = allProducts.filter(p => p.activo !== false && cat.rawKeys.includes(p.categoria)).length;
-        } else {
-          count = allProducts.filter(p => p.activo !== false && formatCategoryName(p.categoria) === cat.id).length;
-        }
+      return `
+        <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-4 ${isSelected ? 'active-offcanvas-cat' : ''}" data-category="${cat.id}">
+          <span class="d-flex align-items-center gap-2">
+            ${cat.id.startsWith('gift_') ? '<span class="badge bg-warning text-dark me-1" style="font-size:0.65rem;">PROMO</span>' : ''}
+            ${cat.label}
+          </span>
+          <span class="badge rounded-pill ${isSelected ? 'bg-primary text-white' : 'bg-light text-muted border'}">${count}</span>
+        </button>
+      `;
+    }).join("");
 
-        return `
-          <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-4 ${isSelected ? 'active-offcanvas-cat' : ''}" data-category="${cat.id}">
-            <span class="d-flex align-items-center gap-2">
-              ${cat.id.startsWith('gift_') ? '<span class="badge bg-warning text-dark me-1" style="font-size:0.65rem;">PROMO</span>' : ''}
-              ${cat.label}
-            </span>
-            <span class="badge rounded-pill ${isSelected ? 'bg-primary text-white' : 'bg-light text-muted border'}">${count}</span>
-          </button>
-        `;
-      }).join("");
-
-      offcanvasList.querySelectorAll("[data-category]").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          currentCategory = e.currentTarget.getAttribute("data-category");
-          closeOffcanvas();
-          renderCategories();
-          renderProducts();
-          syncActiveChipScroll();
-          scrollToProductsView();
-        });
+    offcanvasList.querySelectorAll("[data-category]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        currentCategory = e.currentTarget.getAttribute("data-category");
+        closeOffcanvas();
+        renderCategories();
+        renderProducts();
+        scrollToProductsView();
       });
-    }
+    });
   }
 
-  // Render Product Grid (Sin etiquetas de marca, departamento ni descuento)
+  // Render Product Grid con Filtro por Marca y Categoría
   function renderProducts() {
     const grid = document.getElementById("products-grid");
     const countEl = document.getElementById("products-count-text");
@@ -231,6 +280,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let filtered = allProducts.filter(p => p.activo !== false);
 
+    // 1. Filtro por Marca
+    if (currentBrand !== "all") {
+      filtered = filtered.filter(p => (p.marca || "betterware").toLowerCase() === currentBrand.toLowerCase());
+    }
+
+    // 2. Filtro por Categoría
     if (currentCategory === "gift_200") {
       filtered = filtered.filter(p => {
         const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
@@ -251,31 +306,42 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
+    // Actualizar encabezado contextual con botón para limpiar filtros
     if (countEl) {
-      if (currentCategory === "all") {
+      if (currentBrand === "all" && currentCategory === "all") {
         countEl.innerHTML = `<span><strong>${filtered.length}</strong> Productos Disponibles</span>`;
       } else {
-        const catLabel = currentCategory === "gift_200" 
-          ? "Regalos < $200" 
-          : currentCategory === "gift_350" 
-            ? "Regalos < $350" 
-            : currentCategory;
+        const filterBadges = [];
+        if (currentBrand !== "all") {
+          filterBadges.push(`<span class="badge bg-light text-primary border">${formatBrandName(currentBrand)}</span>`);
+        }
+        if (currentCategory !== "all") {
+          const catLabel = currentCategory === "gift_200" 
+            ? "Regalos < $200" 
+            : currentCategory === "gift_350" 
+              ? "Regalos < $350" 
+              : currentCategory;
+          filterBadges.push(`<span class="badge bg-light text-primary border">${catLabel}</span>`);
+        }
 
         countEl.innerHTML = `
           <div class="d-flex align-items-center justify-content-between w-100 flex-wrap gap-2">
-            <span>Mostrando <strong>${filtered.length}</strong> en <span class="badge bg-light text-primary border">${catLabel}</span></span>
-            <button class="btn btn-sm btn-link text-decoration-none p-0 text-muted" id="btn-clear-cat-filter" style="font-size:0.78rem;">
+            <span>Mostrando <strong>${filtered.length}</strong> productos en ${filterBadges.join(' ')}</span>
+            <button class="btn btn-sm btn-link text-decoration-none p-0 text-muted" id="btn-clear-filters" style="font-size:0.78rem;">
               <i class="bi bi-x-circle me-1"></i>Ver todos
             </button>
           </div>
         `;
-        const clearBtn = document.getElementById("btn-clear-cat-filter");
+
+        const clearBtn = document.getElementById("btn-clear-filters");
         if (clearBtn) {
           clearBtn.addEventListener("click", () => {
+            currentBrand = "all";
             currentCategory = "all";
+            renderBrands();
             renderCategories();
             renderProducts();
-            syncActiveChipScroll();
+            syncActiveBrandScroll();
             scrollToProductsView();
           });
         }
@@ -295,10 +361,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       const resetBtn = document.getElementById("btn-reset-filters");
       if (resetBtn) {
         resetBtn.addEventListener("click", () => {
+          currentBrand = "all";
           currentCategory = "all";
+          renderBrands();
           renderCategories();
           renderProducts();
-          syncActiveChipScroll();
+          syncActiveBrandScroll();
           scrollToProductsView();
         });
       }

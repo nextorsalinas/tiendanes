@@ -187,7 +187,83 @@ body {
 }
 
 
-/* --- Category Chips Slider --- */
+/* --- Brand Navigation Bar (4 Marcas Oficiales + Todas) --- */
+.brand-nav-section {
+  position: relative;
+}
+
+.brand-scroll-container {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem 0.75rem 0.25rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.brand-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nestt-white);
+  border: 1.5px solid var(--nestt-gray-300);
+  border-radius: var(--radius-md);
+  padding: 0.45rem 1rem;
+  height: 48px;
+  min-width: 96px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  white-space: nowrap;
+  user-select: none;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.brand-nav-btn:hover {
+  border-color: var(--nestt-purple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(121, 40, 202, 0.12);
+}
+
+.brand-nav-btn.active {
+  border-color: var(--nestt-purple);
+  background: var(--nestt-lilac-soft);
+  box-shadow: 0 0 0 3px rgba(121, 40, 202, 0.2), 0 4px 12px rgba(121, 40, 202, 0.15);
+  transform: translateY(-1px);
+}
+
+.brand-nav-btn .brand-logo-img {
+  max-height: 25px;
+  max-width: 85px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-nav-btn .brand-name {
+  font-family: var(--font-brand);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--nestt-gray-700);
+}
+
+.brand-nav-btn.active .brand-name {
+  color: var(--nestt-purple);
+}
+
+.brand-nav-btn .brand-all-icon {
+  color: var(--nestt-purple);
+  font-size: 0.95rem;
+}
+
+/* Category chips legacy fallback */
 .category-scroll-container {
   display: flex;
   gap: 0.5rem;

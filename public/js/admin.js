@@ -127,18 +127,31 @@ document.addEventListener("DOMContentLoaded", async () => {
       filtered = filtered.filter(p => 
         p.nombre.toLowerCase().includes(q) || 
         p.codigo.toLowerCase().includes(q) || 
-        (p.categoria && p.categoria.toLowerCase().includes(q))
+        (p.categoria && p.categoria.toLowerCase().includes(q)) ||
+        (p.marca && p.marca.toLowerCase().includes(q))
       );
     }
 
     if (filtered.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">No se encontraron productos en el catálogo.</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-muted">No se encontraron productos en el catálogo.</td></tr>`;
       return;
     }
 
     tableBody.innerHTML = filtered.map(p => {
-      const dept = (p.departamento || (p.marca === 'betterware' ? 'hogar' : 'belleza')).toUpperCase();
-      const deptBadge = dept === 'HOGAR' ? '<span class="badge bg-primary">HOGAR</span>' : '<span class="badge bg-danger">BELLEZA</span>';
+      const brand = (p.marca || 'betterware').toLowerCase();
+      let brandBadge = '<span class="badge bg-secondary">Betterware</span>';
+      if (brand === 'betterware') {
+        brandBadge = '<span class="badge bg-primary">Betterware</span>';
+      } else if (brand === 'esika') {
+        brandBadge = '<span class="badge bg-danger">Ésika</span>';
+      } else if (brand === 'cyzone') {
+        brandBadge = '<span class="badge bg-info text-dark">Cyzone</span>';
+      } else if (brand === 'lbel') {
+        brandBadge = '<span class="badge bg-dark">L\'Bel</span>';
+      }
+
+      const dept = (p.departamento || (brand === 'betterware' ? 'hogar' : 'belleza')).toUpperCase();
+      const deptBadge = dept === 'HOGAR' ? '<span class="badge bg-light text-primary border">Hogar</span>' : '<span class="badge bg-light text-danger border">Belleza</span>';
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
 
       return `
@@ -146,6 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td><img src="${mainImg}" style="width: 40px; height: 40px; object-fit: contain;" class="rounded bg-light p-1"></td>
           <td><code>${p.codigo}</code></td>
           <td><strong class="text-dark">${p.nombre}</strong></td>
+          <td>${brandBadge}</td>
           <td>${deptBadge}</td>
           <td><small class="text-muted">${p.categoria}</small></td>
           <td>
@@ -181,6 +195,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("productModalHeading").textContent = "Agregar Nuevo Producto";
     document.getElementById("edit-prod-id").value = "";
     document.getElementById("productEditForm").reset();
+    const brandSelect = document.getElementById("prod-marca");
+    if (brandSelect) brandSelect.value = "betterware";
 
     const modalEl = document.getElementById("addProductModal");
     if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
@@ -221,6 +237,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("edit-prod-id").value = product.id;
     document.getElementById("prod-code").value = product.codigo || "";
     document.getElementById("prod-name").value = product.nombre || "";
+    
+    const brandSelect = document.getElementById("prod-marca");
+    if (brandSelect) brandSelect.value = (product.marca || "betterware").toLowerCase();
+
     document.getElementById("prod-dept").value = (product.departamento || (product.marca === 'betterware' ? 'hogar' : 'belleza'));
     document.getElementById("prod-category").value = product.categoria || "";
     document.getElementById("prod-price-reg").value = product.precio_regular || "";
@@ -262,6 +282,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const codeVal = document.getElementById("prod-code").value.trim();
         const nameVal = document.getElementById("prod-name").value.trim();
+        const marcaSelect = document.getElementById("prod-marca");
+        const marcaVal = marcaSelect ? marcaSelect.value.toLowerCase() : "betterware";
         const deptVal = document.getElementById("prod-dept").value;
         const catVal = document.getElementById("prod-category").value.trim();
         const priceRegVal = parseFloat(document.getElementById("prod-price-reg").value);
@@ -275,7 +297,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           codigo: codeVal,
           nombre: nameVal,
           departamento: deptVal,
-          marca: deptVal === "hogar" ? "betterware" : "esika",
+          marca: marcaVal,
           categoria: catVal || "General",
           precio_regular: isNaN(priceRegVal) ? 0 : priceRegVal,
           precio_oferta: isNaN(priceOffVal) ? null : priceOffVal,
