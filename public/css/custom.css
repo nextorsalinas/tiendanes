@@ -199,7 +199,7 @@ body {
 }
 
 
-/* --- Brand Navigation Bar (4 Marcas Oficiales + Todas) --- */
+/* --- Brand Navigation Bar (4 Marcas Oficiales + Todas con Color Corporativo) --- */
 .brand-nav-section {
   position: relative;
 }
@@ -207,9 +207,9 @@ body {
 .brand-scroll-container {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   overflow-x: auto;
-  padding: 0.5rem 0.25rem 0.75rem 0.25rem;
+  padding: 0.5rem 0.25rem 0.95rem 0.25rem;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -222,57 +222,113 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--nestt-white);
-  border: 1.5px solid var(--nestt-gray-300);
   border-radius: var(--radius-md);
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.15rem;
   height: 48px;
-  min-width: 96px;
+  min-width: 106px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   white-space: nowrap;
   user-select: none;
   flex-shrink: 0;
   outline: none;
+  position: relative;
 }
 
 .brand-nav-btn:hover {
-  border-color: var(--nestt-purple);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(121, 40, 202, 0.12);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+  opacity: 1 !important;
 }
 
-.brand-nav-btn.active {
-  border-color: var(--nestt-purple);
-  background: var(--nestt-lilac-soft);
-  box-shadow: 0 0 0 3px rgba(121, 40, 202, 0.2), 0 4px 12px rgba(121, 40, 202, 0.15);
-  transform: translateY(-1px);
+/* --- Botón "Todas las Marcas" --- */
+.brand-nav-btn[data-brand="all"] {
+  background: var(--nestt-white);
+  border: 1.5px solid var(--nestt-gray-300);
 }
 
+.brand-nav-btn[data-brand="all"] .brand-name {
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--nestt-purple);
+}
+
+.brand-nav-btn[data-brand="all"] .brand-all-icon {
+  color: var(--nestt-purple);
+  font-size: 1rem;
+}
+
+.brand-nav-btn[data-brand="all"].active {
+  background: linear-gradient(135deg, #7928ca 0%, #5c18a0 100%);
+  border-color: #5c18a0;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #7928ca, 0 4px 14px rgba(92, 24, 160, 0.35);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.brand-nav-btn[data-brand="all"].active .brand-name,
+.brand-nav-btn[data-brand="all"].active .brand-all-icon {
+  color: #ffffff;
+}
+
+/* --- Betterware (Azul Oficial Betterware) --- */
+.brand-nav-btn[data-brand="betterware"] {
+  background: linear-gradient(135deg, #005eb8 0%, #003a8c 100%);
+  border: 1.5px solid #003a8c;
+}
+
+.brand-nav-btn[data-brand="betterware"].active {
+  border-color: #005eb8;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5.5px #005eb8, 0 6px 18px rgba(0, 62, 140, 0.45);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* --- Ésika (Rojo / Carmesí Sofisticado) --- */
+.brand-nav-btn[data-brand="esika"] {
+  background: linear-gradient(135deg, #c41230 0%, #8e0b21 100%);
+  border: 1.5px solid #8e0b21;
+}
+
+.brand-nav-btn[data-brand="esika"].active {
+  border-color: #c41230;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5.5px #c41230, 0 6px 18px rgba(142, 11, 33, 0.45);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* --- Cyzone (Magenta Vibrante Juvenil) --- */
+.brand-nav-btn[data-brand="cyzone"] {
+  background: linear-gradient(135deg, #f72585 0%, #b50058 100%);
+  border: 1.5px solid #b50058;
+}
+
+.brand-nav-btn[data-brand="cyzone"].active {
+  border-color: #f72585;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5.5px #f72585, 0 6px 18px rgba(181, 0, 88, 0.45);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* --- L'Bel (Negro Lujo Alta Cosmética) --- */
+.brand-nav-btn[data-brand="lbel"] {
+  background: linear-gradient(135deg, #242424 0%, #0d0d0d 100%);
+  border: 1.5px solid #333333;
+}
+
+.brand-nav-btn[data-brand="lbel"].active {
+  border-color: #444444;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5.5px #111111, 0 6px 18px rgba(0, 0, 0, 0.55);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* --- Imágenes de los Logos en Letra Blanca --- */
 .brand-nav-btn .brand-logo-img {
   max-height: 25px;
-  max-width: 85px;
+  max-width: 86px;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
-}
-
-.brand-nav-btn .brand-name {
-  font-family: var(--font-brand);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--nestt-gray-700);
-}
-
-.brand-nav-btn.active .brand-name {
-  color: var(--nestt-purple);
-}
-
-.brand-nav-btn .brand-all-icon {
-  color: var(--nestt-purple);
-  font-size: 0.95rem;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
 }
 
 /* Category chips legacy fallback */
