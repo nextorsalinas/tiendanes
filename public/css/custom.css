@@ -75,6 +75,12 @@ body {
   letter-spacing: 0.4px;
 }
 
+@media (max-width: 767.98px) {
+  .top-promo-bar {
+    display: none !important;
+  }
+}
+
 /* --- Accesibilidad: Indicadores de Enfoque por Teclado (WCAG 2.1) --- */
 :focus-visible {
   outline: 2.5px solid var(--nestt-purple) !important;
