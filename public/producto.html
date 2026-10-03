@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Detalle del Producto | nestt.</title>
+  <meta name="description" content="Detalle de producto con envoltura de cortesía gratis y pedidos directos por WhatsApp en nestt.">
+  
+  <!-- Fonts Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CoreUI / Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Design Tokens -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="bg-light">
+
+  <!-- Top Nav Bar for Product Page -->
+  <header class="navbar navbar-better sticky-top shadow-sm py-2">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="btn btn-sm btn-outline-light rounded-pill px-3 d-flex align-items-center gap-1" id="btn-back-catalog">
+        <i class="bi bi-arrow-left fs-5"></i> <span class="d-none d-sm-inline fw-semibold">Catálogo</span>
+      </a>
+
+      <a href="index.html" class="brand-logo text-decoration-none">
+        <span class="brand-name-nestt">nestt<span class="brand-dot">.</span></span>
+      </a>
+
+      <button type="button" class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" id="btn-share-product" style="width: 36px; height: 36px;" aria-label="Compartir este producto">
+        <i class="bi bi-share-fill"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Product Detail Container -->
+  <main class="container py-3 py-md-4 product-detail-wrapper">
+    
+    <!-- Loading Skeleton View -->
+    <div id="product-loading-view" class="text-center py-5">
+      <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+        <span class="visually-hidden">Cargando producto...</span>
+      </div>
+      <h6 class="fw-bold text-muted">Cargando detalles del producto...</h6>
+    </div>
+
+    <!-- Product Not Found View (Hidden by default) -->
+    <div id="product-not-found-view" class="d-none text-center py-5">
+      <div class="p-4 bg-white rounded-4 border max-w-md mx-auto shadow-sm">
+        <i class="bi bi-exclamation-circle text-warning fs-1 mb-2 d-block"></i>
+        <h5 class="fw-bold text-dark">Producto no encontrado</h5>
+        <p class="text-muted small mb-3">No pudimos localizar este artículo en el catálogo activo. Es posible que haya cambiado o se encuentre agotado.</p>
+        <a href="index.html" class="btn btn-primary rounded-pill px-4 fw-bold">Explorar Catálogo</a>
+      </div>
+    </div>
+
+    <!-- Product Content (Hidden until loaded) -->
+    <div id="product-content-view" class="d-none">
+      <div class="row g-4 align-items-start">
+        
+        <!-- Left Column: Hero Image Gallery -->
+        <div class="col-12 col-md-6">
+          <div class="product-detail-gallery">
+            <div class="product-detail-main-img">
+              <img id="detail-main-img" src="" alt="Foto del producto" class="img-fluid">
+            </div>
+            <!-- Thumbnails strip (if multiple photos) -->
+            <div id="detail-thumbnails-container" class="product-detail-thumbnails d-none">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Product Info & Actions -->
+        <div class="col-12 col-md-6">
+          <div class="product-detail-info">
+            
+            <!-- Brand Badge & Code -->
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span id="detail-brand-badge" class="product-detail-brand-badge badge-brand-betterware">BETTERWARE</span>
+              <span id="detail-code-badge" class="text-muted small fw-bold">CÓD. 0000</span>
+            </div>
+
+            <!-- Title & Share -->
+            <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+              <h1 id="detail-title" class="product-detail-title m-0">Nombre del Producto</h1>
+              <button type="button" class="btn-share-icon d-none d-md-flex flex-shrink-0" id="btn-share-desktop" title="Compartir">
+                <i class="bi bi-share"></i>
+              </button>
+            </div>
+
+            <!-- Price Block (Inspired by Clean Reference: Sale Price, Normal Strike, Savings) -->
+            <div class="product-detail-price-box">
+              <div class="d-flex align-items-baseline gap-1">
+                <span class="product-detail-price-sale" id="detail-price-sale">$0.00</span>
+                <span class="product-detail-currency">mxn</span>
+              </div>
+              <span class="product-detail-price-normal d-none" id="detail-price-normal">$0.00</span>
+              <span class="product-detail-savings-badge d-none" id="detail-savings-badge">Ahorras $0 (0% OFF)</span>
+            </div>
+
+            <!-- Ver descripción link (Directly below price, exactly as user's screenshot) -->
+            <a href="#descriptionModal" id="btn-open-desc-link" class="product-detail-desc-trigger" data-bs-toggle="modal" data-coreui-toggle="modal">
+              Ver descripción
+            </a>
+
+            <!-- Free Gift Wrapping Option Card (Nestt Value Promise) -->
+            <div class="product-detail-gift-card">
+              <div class="d-flex align-items-start gap-2 mb-2">
+                <i class="bi bi-gift-fill text-primary fs-5 mt-1"></i>
+                <div>
+                  <h6 class="fw-bold m-0 text-dark" style="font-size: 0.95rem;">Envoltura de regalo de cortesía</h6>
+                  <p class="text-muted small m-0">Incluye papel para regalo y tarjeta con dedicatoria <strong>100% gratis</strong>.</p>
+                </div>
+              </div>
+              <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" id="check-gift-wrapping" checked>
+                <label class="form-check-label fw-semibold text-dark small" for="check-gift-wrapping">
+                  Quiero este artículo envuelto para regalo
+                </label>
+              </div>
+              <div class="mt-2" id="box-gift-note">
+                <input type="text" class="form-control form-control-sm rounded-3" id="input-gift-note" placeholder="Dedicatoria o mensaje para la tarjeta (opcional)" maxlength="120">
+              </div>
+            </div>
+
+            <!-- Description Preview Section with 'Ver detalles' (Matching Example) -->
+            <div class="product-detail-desc-section">
+              <div class="product-detail-desc-header">
+                <h6 class="product-detail-desc-title">Descripción</h6>
+                <button type="button" class="product-detail-desc-more-btn" id="btn-desc-ver-detalles" data-bs-toggle="modal" data-coreui-toggle="modal" data-bs-target="#descriptionModal" data-coreui-target="#descriptionModal">
+                  Ver detalles
+                </button>
+              </div>
+              <p class="product-detail-desc-preview" id="detail-desc-preview">
+                Cargando descripción...
+              </p>
+
+              <!-- Value Proposition Bullets (Matching User's Reference Screenshot) -->
+              <ul class="product-detail-perks">
+                <li class="product-detail-perk-item">
+                  <i class="bi bi-star"></i>
+                  <div>
+                    <strong>Promesa de calidad.</strong> Elaboramos cada detalle con productos 100% originales, sellados y garantizados.
+                  </div>
+                </li>
+                <li class="product-detail-perk-item">
+                  <i class="bi bi-truck"></i>
+                  <div>
+                    <strong>Política de Envío y Entrega.</strong> Coordinación directa, puntual y segura para la entrega de tus pedidos.
+                  </div>
+                </li>
+                <li class="product-detail-perk-item">
+                  <i class="bi bi-arrow-repeat"></i>
+                  <div>
+                    <strong>Atención personalizada.</strong> Resuelve cualquier duda o solicita fotos reales directamente por WhatsApp.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Desktop Order CTA (Visible on tablet & desktop) -->
+            <div class="d-none d-md-flex align-items-center gap-3 mt-4 pt-3 border-top">
+              <div class="qty-control">
+                <button type="button" class="btn-qty" id="btn-qty-minus-desktop" aria-label="Disminuir cantidad">-</button>
+                <span class="qty-display" id="qty-value-desktop">1</span>
+                <button type="button" class="btn-qty" id="btn-qty-plus-desktop" aria-label="Aumentar cantidad">+</button>
+              </div>
+              <button type="button" class="btn-whatsapp-order-main" id="btn-order-wa-desktop">
+                <i class="bi bi-whatsapp fs-5"></i> Pedir por WhatsApp
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Bar on Mobile Viewports (Thumbs Reach) -->
+  <div class="product-sticky-bottom-bar d-md-none" id="mobile-sticky-bar">
+    <div class="product-sticky-inner">
+      <div class="qty-control">
+        <button type="button" class="btn-qty" id="btn-qty-minus-mobile" aria-label="Disminuir cantidad">-</button>
+        <span class="qty-display" id="qty-value-mobile">1</span>
+        <button type="button" class="btn-qty" id="btn-qty-plus-mobile" aria-label="Aumentar cantidad">+</button>
+      </div>
+      <button type="button" class="btn-whatsapp-order-main" id="btn-order-wa-mobile">
+        <i class="bi bi-whatsapp fs-5"></i> Pedir por WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Description Modal (Opens on "Ver descripción" and "Ver detalles") -->
+  <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+      <div class="modal-content border-0 rounded-4 shadow">
+        <div class="modal-header border-bottom py-3 px-4" style="background: linear-gradient(135deg, #faf5ff 0%, #fff0f6 100%);">
+          <div>
+            <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase small" id="modal-desc-category">DETALLES</span>
+            <h5 class="modal-title fw-bold text-dark m-0" id="descriptionModalLabel">Descripción del Producto</h5>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" data-coreui-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Full product description with preserved line breaks -->
+          <div id="modal-desc-content" style="white-space: pre-line; line-height: 1.6; font-size: 0.95rem; color: #333;">
+            Cargando descripción completa...
+          </div>
+
+          <!-- Product Technical Specs Table -->
+          <div class="mt-4 pt-3 border-top">
+            <h6 class="fw-bold text-dark small text-uppercase mb-2">Ficha Técnica</h6>
+            <div class="bg-light p-3 rounded-3">
+              <div class="row g-2 small">
+                <div class="col-6 text-muted">Código:</div>
+                <div class="col-6 fw-bold text-dark text-end" id="modal-spec-code">-</div>
+                <div class="col-6 text-muted">Marca:</div>
+                <div class="col-6 fw-bold text-dark text-end" id="modal-spec-brand">-</div>
+                <div class="col-6 text-muted">Categoría:</div>
+                <div class="col-6 fw-bold text-dark text-end" id="modal-spec-category">-</div>
+                <div class="col-6 text-muted">Envoltura de regalo:</div>
+                <div class="col-6 fw-bold text-success text-end">GRATIS incluida</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top py-3 px-4 d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-3 btn-sm" data-bs-dismiss="modal" data-coreui-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-success rounded-pill px-4 btn-sm fw-bold d-flex align-items-center gap-2" id="modal-btn-order-wa">
+            <i class="bi bi-whatsapp"></i> Pedir por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Toast Notification -->
+  <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 1090;">
+    <div id="shareToast" class="toast align-items-center text-bg-dark border-0 rounded-pill shadow" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex px-3 py-2">
+        <div class="toast-body small fw-semibold">
+          <i class="bi bi-check-circle-fill text-success me-2"></i> ¡Enlace copiado al portapapeles!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/js/coreui.bundle.min.js"></script>
+  <!-- Firebase SDKs (Compat v10) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/producto.js"></script>
+</body>
+</html>

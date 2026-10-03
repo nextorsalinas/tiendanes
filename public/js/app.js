@@ -405,26 +405,32 @@ document.addEventListener("DOMContentLoaded", async () => {
       const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
       const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
+      const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
 
       return `
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
-            <div class="product-card-img-container" onclick="window.openOrderModal('${p.id}')">
-              ${hasDiscount ? `<span class="badge-shein-discount">-${discountPercent}%</span>` : ''}
-              <span class="badge-free-wrapping"><i class="bi bi-gift-fill me-1"></i>Envoltura gratis</span>
+            <a href="${productUrl}" class="product-card-img-container text-decoration-none" title="Ver ${p.nombre}">
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
-            </div>
+            </a>
             <div class="product-card-content">
-              <h6 class="product-name-minimal" onclick="window.openOrderModal('${p.id}')">${p.nombre}</h6>
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <span class="badge-brand-subtle badge-brand-${(p.marca || 'betterware').toLowerCase()}">${formatBrandName(p.marca)}</span>
+                ${hasDiscount ? `<span class="badge-discount-subtle">-${discountPercent}%</span>` : ''}
+              </div>
+
+              <a href="${productUrl}" class="product-name-minimal text-decoration-none" title="Ver ${p.nombre}">
+                ${p.nombre}
+              </a>
               
               <div class="price-row">
                 <span class="price-main">$${currentPrice.toFixed(2)}</span>
                 ${hasDiscount ? `<span class="price-old-strike">$${p.precio_regular.toFixed(2)}</span>` : ''}
               </div>
 
-              <button class="btn-whatsapp-card" onclick="window.openOrderModal('${p.id}')" aria-label="Pedir ${p.nombre} por WhatsApp">
+              <a href="${productUrl}" class="btn-whatsapp-card text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
                 <i class="bi bi-whatsapp fs-5"></i> <span>Pedir por WhatsApp</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
