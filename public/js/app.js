@@ -407,10 +407,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
 
       return `
-        <div class="col-6 col-md-4 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <div class="product-card-img-container" onclick="window.openOrderModal('${p.id}')">
               ${hasDiscount ? `<span class="badge-shein-discount">-${discountPercent}%</span>` : ''}
+              <span class="badge-free-wrapping"><i class="bi bi-gift-fill me-1"></i>Envoltura gratis</span>
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
             </div>
             <div class="product-card-content">
@@ -422,7 +423,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </div>
 
               <button class="btn-whatsapp-card" onclick="window.openOrderModal('${p.id}')" aria-label="Pedir ${p.nombre} por WhatsApp">
-                <i class="bi bi-whatsapp"></i> <span>Pedir<span class="d-none d-sm-inline"> por WhatsApp</span></span>
+                <i class="bi bi-whatsapp fs-5"></i> <span>Pedir por WhatsApp</span>
               </button>
             </div>
           </div>
