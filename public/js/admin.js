@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (filtered.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-muted">No se encontraron productos en el catálogo.</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No se encontraron productos en el catálogo.</td></tr>`;
       return;
     }
 
@@ -176,6 +176,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const deptBadge = dept === 'HOGAR' ? '<span class="badge bg-light text-primary border">Hogar</span>' : '<span class="badge bg-light text-danger border">Belleza</span>';
       const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
 
+      const stock = (typeof p.stock === 'number' && p.stock >= 0) ? p.stock : 1;
+      const stockBadge = stock > 0 
+        ? `<span class="badge bg-success-subtle text-success border border-success fw-bold px-2 py-1" style="font-size: 0.82rem;">${stock} pz${stock > 1 ? 's' : ''}</span>`
+        : `<span class="badge bg-danger-subtle text-danger border border-danger fw-bold px-2 py-1" style="font-size: 0.82rem;">Agotado (0)</span>`;
+
       return `
         <tr>
           <td><img src="${mainImg}" style="width: 40px; height: 40px; object-fit: contain;" class="rounded bg-light p-1"></td>
@@ -187,6 +192,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>
             <strong class="text-dark">$${(p.precio_oferta || p.precio_regular || 0).toFixed(2)}</strong>
             ${p.precio_oferta ? `<br><small class="text-decoration-line-through text-muted">$${p.precio_regular.toFixed(2)}</small>` : ''}
+          </td>
+          <td class="text-center">
+            ${stockBadge}
           </td>
           <td>
             <div class="btn-group btn-group-sm">
