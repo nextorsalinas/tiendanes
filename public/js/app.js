@@ -4,19 +4,24 @@ const WHATSAPP_SELLER_PHONE = "525525000024";
 document.addEventListener("DOMContentLoaded", async () => {
   let allProducts = [];
   let currentCategory = null; // null => Visual Categories Showcase (Cyzone style home)
-  let currentBrand = "all";
-  let currentDept = "all"; // 'all', 'belleza', 'hogar'
+  let currentBrand = "cyzone"; // Default active brand is Cyzone
   let currentView = "categories"; // 'categories' or 'products'
   let selectedProductForOrder = null;
 
-  // 4 Official Brands Configuration
+  // 4 Official Brands Configuration (Centered, smaller, no "Todas")
   const BRANDS_CONFIG = [
-    { id: "all", label: "Todas", isAll: true },
-    { id: "betterware", label: "Betterware", logo: "images/brands/betterware.webp" },
-    { id: "esika", label: "Ésika", logo: "images/brands/esika.png" },
     { id: "cyzone", label: "Cyzone", logo: "images/brands/cyzone.png" },
-    { id: "lbel", label: "L'Bel", logo: "images/brands/lbel.png" }
+    { id: "esika", label: "Ésika", logo: "images/brands/esika.png" },
+    { id: "lbel", label: "L'Bel", logo: "images/brands/lbel.png" },
+    { id: "betterware", label: "Betterware", logo: "images/brands/betterware.webp" }
   ];
+
+  const BRAND_LABELS = {
+    cyzone: "Cyzone",
+    esika: "Ésika",
+    lbel: "L'Bel",
+    betterware: "Betterware"
+  };
 
   // Load products
   async function loadCatalog() {
@@ -160,23 +165,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 50);
   }
 
-  // Render Brand Navigation Buttons (4 Logos + Todas)
+  // Render Brand Navigation Buttons (4 Logos Oficiales)
   function renderBrands() {
     const brandContainer = document.getElementById("brand-nav-container");
     if (!brandContainer) return;
 
     brandContainer.innerHTML = BRANDS_CONFIG.map(b => {
       const isSelected = currentBrand === b.id;
-      if (b.isAll) {
-        return `
-          <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="all" title="Ver todas las marcas" aria-label="Ver todas las marcas" aria-pressed="${isSelected}">
-            <span class="brand-all-icon"><i class="bi bi-grid-fill me-1"></i></span>
-            <span class="brand-name">Todas</span>
-          </button>
-        `;
-      }
       return `
-        <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="${b.id}" title="${b.label}" aria-label="Filtrar por marca ${b.label}" aria-pressed="${isSelected}">
+        <button type="button" class="brand-nav-btn ${isSelected ? 'active' : ''}" data-brand="${b.id}" title="${b.label}" aria-label="Ver marca ${b.label}" aria-pressed="${isSelected}">
           <img src="${b.logo}" alt="Logotipo ${b.label}" class="brand-logo-img">
         </button>
       `;
@@ -185,18 +182,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     brandContainer.querySelectorAll(".brand-nav-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const selected = e.currentTarget.getAttribute("data-brand");
-        if (currentBrand === selected && selected !== "all") {
-          currentBrand = "all";
-        } else {
+        if (currentBrand !== selected) {
           currentBrand = selected;
+          renderBrands();
+          renderCategories();
+          if (currentView === "categories") {
+            renderCategoriesShowcase();
+          } else {
+            // When in products view, switch to showcase of selected brand
+            currentCategory = null;
+            currentView = "categories";
+            const showcaseEl = document.getElementById("view-categories-showcase");
+            const catalogEl = document.getElementById("view-products-catalog");
+            if (showcaseEl) showcaseEl.classList.remove("d-none");
+            if (catalogEl) catalogEl.classList.add("d-none");
+            renderCategoriesShowcase();
+          }
+          syncActiveBrandScroll();
         }
-        renderBrands();
-        if (currentView === "categories") {
-          renderCategoriesShowcase();
-        } else {
-          renderProducts();
-        }
-        syncActiveBrandScroll();
       });
     });
   }
@@ -228,152 +231,164 @@ document.addEventListener("DOMContentLoaded", async () => {
     ];
   }
 
-  // Cyzone-Inspired Curated Visual Categories
-  const VISUAL_CATEGORIES_CONFIG = [
-    {
-      id: "Maquillaje",
-      name: "Maquillaje",
-      subtitle: "Labiales, sombras, bases & máscaras",
-      dept: "belleza",
-      brands: ["cyzone", "esika", "lbel"],
-      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253604/200119076-productofb.jpg.jpg?v=639231810489800000",
-      accent: "#e6007e",
-      matchKeys: ["maquillaje"]
-    },
-    {
-      id: "Perfumes",
-      name: "Perfumes & Fragancias",
-      subtitle: "Parfum femenino, masculino & colonias",
-      dept: "belleza",
-      brands: ["esika", "lbel"],
-      image: "https://belcorpmexico.vtexassets.com/arquivos/ids/1241433-1200-auto?v=639223676578300000&width=1200&height=auto&aspect=true",
-      accent: "#7928ca",
-      matchKeys: ["perfumes"]
-    },
-    {
-      id: "Cocina",
-      name: "Cocina & Mesa",
-      subtitle: "Contenedores, organizadores & lunch",
-      dept: "hogar",
-      brands: ["betterware"],
-      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/24014-1-Gurmy-Nutri-Bowl-Betterware-1_a3aad0f7-0048-4475-984f-b3dd4cf25557.jpg?v=1789450268",
-      accent: "#0071ce",
-      matchKeys: ["cocina"]
-    },
-    {
-      id: "Hogar",
-      name: "Organización & Hogar",
-      subtitle: "Espacios ordenados, sala & accesorios",
-      dept: "hogar",
-      brands: ["betterware"],
-      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26856-1-Infla-Jack-Betterware.jpg?v=1789450268",
-      accent: "#0071ce",
-      matchKeys: ["hogar", "recamara", "contigo"]
-    },
-    {
-      id: "Moda y Accesorios",
-      name: "Moda & Accesorios",
-      subtitle: "Bolsos, mochilas, carteras & lentes",
-      dept: "belleza",
-      brands: ["cyzone", "betterware"],
-      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252996/21-0114646_cy_clean_gold_est_are_x3_fotofondoblanco.jpg.jpg?v=639226023269000000",
-      accent: "#f72585",
-      matchKeys: ["moda y accesorios", "mochilas"]
-    },
-    {
-      id: "Cuidado Personal",
-      name: "Cuidado Facial & Skincare",
-      subtitle: "Cremas hidratantes, serums & limpieza",
-      dept: "belleza",
-      brands: ["esika", "lbel"],
-      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255869/Supreme-fb.jpg.jpg?v=639235028665900000",
-      accent: "#111111",
-      matchKeys: ["cuidado personal", "skincare"]
-    },
-    {
-      id: "Limpieza",
-      name: "Limpieza & Lavandería",
-      subtitle: "Cepillos, trapeadores & lavado fácil",
-      dept: "hogar",
-      brands: ["betterware"],
-      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26699_E2_80_8B_20-1-Lava-Bra-Flex-Betterware.jpg?v=1789450268",
-      accent: "#0071ce",
-      matchKeys: ["limpieza"]
-    },
-    {
-      id: "Baño",
-      name: "Baño & Descanso",
-      subtitle: "Dispensadores, tapetes & cortinas",
-      dept: "hogar",
-      brands: ["betterware"],
-      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26430-1-Jabonera-Jack-Betterware.jpg?v=1789450268",
-      accent: "#0071ce",
-      matchKeys: ["baño"]
-    },
-    {
-      id: "Bienestar",
-      name: "Bienestar & Tecnología",
-      subtitle: "Bocinas, masajeadores & gadgets",
-      dept: "hogar",
-      brands: ["betterware", "lbel"],
-      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/23213-1-Bocina-Colors-Betterware_85eb5f44-b8f6-41ac-999f-9103c7ec160b.jpg?v=1787975767",
-      accent: "#7928ca",
-      matchKeys: ["bienestar", "tecnología"]
-    },
-    {
-      id: "Joyería",
-      name: "Joyería & Aretes",
-      subtitle: "Aretes finos, collares & sets",
-      dept: "belleza",
-      brands: ["esika"],
-      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138395/210103576-fotoproductoenfondoblanco.jpg?v=639168574371900000",
-      accent: "#e31c2d",
-      matchKeys: ["joyería"]
-    }
-  ];
+  // Distinct visual categories for each of the 4 official brands
+  const BRAND_CATEGORIES_CONFIG = {
+    cyzone: [
+      {
+        id: "maquillaje",
+        name: "Maquillaje Cyzone",
+        subtitle: "Labiales Cyplay, sombras & máscaras Studio Look",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1258861/200112287_fotofondoblanco.jpg.jpg?v=639250845798470000",
+        matchKeys: ["maquillaje"]
+      },
+      {
+        id: "moda_y_accesorios",
+        name: "Moda & Accesorios",
+        subtitle: "Aretes, mochilas, bolsos, carteras & lentes",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252996/21-0114646_cy_clean_gold_est_are_x3_fotofondoblanco.jpg.jpg?v=639226023269000000",
+        matchKeys: ["moda y accesorios", "mochilas"]
+      }
+    ],
+    esika: [
+      {
+        id: "perfumes",
+        name: "Perfumes & Fragancias",
+        subtitle: "Miss L'Bel, Bleu Night, damas y caballeros",
+        image: "https://belcorpmexico.vtexassets.com/arquivos/ids/1241433-1200-auto?v=639223676578300000&width=1200&height=auto&aspect=true",
+        matchKeys: ["perfumes"]
+      },
+      {
+        id: "maquillaje",
+        name: "Maquillaje & Colorfix",
+        subtitle: "Labiales larga duración, bases & polvos",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253604/200119076-productofb.jpg.jpg?v=639231810489800000",
+        matchKeys: ["maquillaje"]
+      },
+      {
+        id: "cuidado_personal",
+        name: "Cuidado Personal & Skincare",
+        subtitle: "Dual Protect, cremas & sueros",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254777/210086712-productofb.jpg.jpg?v=639231886500730000",
+        matchKeys: ["cuidado personal", "skincare"]
+      },
+      {
+        id: "joyeria",
+        name: "Joyería Fina",
+        subtitle: "Aretes, anillos, collares baño en oro/plata",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138395/210103576-fotoproductoenfondoblanco.jpg?v=639168574371900000",
+        matchKeys: ["joyería"]
+      }
+    ],
+    lbel: [
+      {
+        id: "maquillaje",
+        name: "Maquillaje de Alta Gama",
+        subtitle: "Polvos antiedad Concentré, bases & labiales",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1187268/200120885_polvos_concentre_galeria1.jpg.jpg?v=639211715157200000",
+        matchKeys: ["maquillaje"]
+      },
+      {
+        id: "skincare",
+        name: "Tratamiento Facial & Sérums",
+        subtitle: "Sérum Ácido Hialurónico, Défense Total",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1256261/200121192_protector_antimanchas_claro_galeria1.jpg.jpg?v=639239845126730000",
+        matchKeys: ["cuidado personal", "skincare", "tecnología"]
+      },
+      {
+        id: "perfumes",
+        name: "Perfumería Fina Francesa",
+        subtitle: "Colonias de lujo & alta concentración",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257086/200122336_destine_cancun_galeria1.jpg.jpg?v=639244104250230000",
+        matchKeys: ["perfumes"]
+      },
+      {
+        id: "cuidado_corporal",
+        name: "Cuidado Corporal",
+        subtitle: "Lociones hidratantes & cremas perfumadas",
+        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251843/200121584_bleu_femme_oasis_galeria1.jpg.jpg?v=639223902490930000",
+        matchKeys: ["cuidado personal"]
+      }
+    ],
+    betterware: [
+      {
+        id: "cocina",
+        name: "Cocina & Mesa",
+        subtitle: "Contenedores, organizadores & lunch",
+        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/24014-1-Gurmy-Nutri-Bowl-Betterware-1_a3aad0f7-0048-4475-984f-b3dd4cf25557.jpg?v=1789450268",
+        matchKeys: ["cocina"]
+      },
+      {
+        id: "hogar",
+        name: "Organización & Hogar",
+        subtitle: "Zapateras, estantes, soluciones para el hogar",
+        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26856-1-Infla-Jack-Betterware.jpg?v=1789450268",
+        matchKeys: ["hogar"]
+      },
+      {
+        id: "portatiles",
+        name: "Portátiles & En Movimiento",
+        subtitle: "Porta básicos, termos & mochilas",
+        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26605-1-Porta-Basicos-Betterware.jpg?v=1787011088",
+        matchKeys: ["contigo", "mochilas"]
+      },
+      {
+        id: "bienestar",
+        name: "Bienestar & Soluciones",
+        subtitle: "Bocinas, masajeadores & gadgets",
+        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/23213-1-Bocina-Colors-Betterware_85eb5f44-b8f6-41ac-999f-9103c7ec160b.jpg?v=1787975767",
+        matchKeys: ["bienestar"]
+      },
+      {
+        id: "bano_recamara",
+        name: "Baño & Recámara",
+        subtitle: "Jaboneras, tapetes & confort",
+        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26430-1-Jabonera-Jack-Betterware.jpg?v=1789450268",
+        matchKeys: ["baño", "recamara"]
+      },
+      {
+        id: "limpieza",
+        name: "Limpieza & Lavandería",
+        subtitle: "Lava bra flex, trapeadores & cepillos",
+        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26699_E2_80_8B_20-1-Lava-Bra-Flex-Betterware.jpg?v=1789450268",
+        matchKeys: ["limpieza"]
+      }
+    ]
+  };
 
-  // Render Visual Categories Showcase (Cyzone Style)
+  // Render Visual Categories Showcase per Selected Brand
   function renderCategoriesShowcase() {
     const grid = document.getElementById("categories-visual-grid");
+    const titleEl = document.getElementById("brand-categories-title");
+    const subtitleEl = document.getElementById("brand-categories-subtitle");
+
+    const brandKey = currentBrand || "cyzone";
+    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+
+    if (titleEl) {
+      titleEl.textContent = `Categorías ${brandName}`;
+    }
+    if (subtitleEl) {
+      subtitleEl.textContent = `COLECCIONES EXCLUSIVAS ${brandName.toUpperCase()}`;
+    }
+
     if (!grid) return;
 
-    const activeProds = allProducts.filter(p => p.activo !== false);
+    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
+    const brandProds = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
 
-    // Filter categories by selected department and brand
-    let visibleCats = VISUAL_CATEGORIES_CONFIG.filter(cat => {
-      // 1. Dept filter
-      if (currentDept !== "all" && cat.dept !== currentDept) {
-        return false;
-      }
-      // 2. Brand filter
-      if (currentBrand !== "all" && !cat.brands.includes(currentBrand.toLowerCase())) {
-        return false;
-      }
-      return true;
-    });
-
-    grid.innerHTML = visibleCats.map(cat => {
-      // Count live active items
-      let matching = activeProds.filter(p => {
+    grid.innerHTML = brandCats.map(cat => {
+      const matching = brandProds.filter(p => {
         const pCat = (p.categoria || '').toLowerCase().trim();
         return cat.matchKeys.includes(pCat);
       });
-
-      if (currentBrand !== "all") {
-        matching = matching.filter(p => (p.marca || 'betterware').toLowerCase() === currentBrand.toLowerCase());
-      }
-
       const count = matching.length;
-      if (count === 0 && currentBrand !== "all") return "";
-
-      const deptLabel = cat.dept === "belleza" ? "Belleza" : "Hogar";
       const sampleImg = cat.image || (matching[0] && matching[0].fotos && matching[0].fotos[0]) || "https://via.placeholder.com/400?text=Categoria";
 
       return `
         <div class="col">
-          <div class="category-visual-card h-100" onclick="window.selectCategoryDirect('${cat.id}')" title="Ver productos de ${cat.name}">
+          <div class="category-visual-card h-100" onclick="window.selectCategoryDirect('${cat.id}')" title="Ver ${cat.name}">
             <div class="category-visual-img-wrap">
-              <span class="category-dept-badge">${deptLabel}</span>
+              <span class="category-dept-badge">${brandName}</span>
               <img src="${sampleImg}" alt="${cat.name}" loading="lazy">
             </div>
             <div class="category-visual-body">
@@ -395,9 +410,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const container = document.getElementById("quick-category-pills");
     if (!container) return;
 
+    const brandKey = currentBrand || "cyzone";
+    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
+
     const pills = [
-      { id: "all", label: "✨ Todo el Catálogo" },
-      ...VISUAL_CATEGORIES_CONFIG.map(c => ({ id: c.id, label: c.name }))
+      { id: "all", label: `✨ Todo ${brandName}` },
+      ...brandCats.map(c => ({ id: c.id, label: c.name }))
     ];
 
     container.innerHTML = pills.map(p => {
@@ -412,38 +431,39 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Render Offcanvas Drawer List (Categorías en Menú Hamburguesa)
   function renderCategories() {
-    const categories = getCatalogCategories();
+    const brandKey = currentBrand || "cyzone";
+    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
+    const brandProds = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
+
     const offcanvasList = document.getElementById("offcanvas-categories-list");
     if (!offcanvasList) return;
 
     const countBadge = document.getElementById("offcanvas-count-badge");
     if (countBadge) {
-      const totalActive = allProducts.filter(p => p.activo !== false).length;
-      countBadge.textContent = `${totalActive} prods`;
+      countBadge.textContent = `${brandProds.length} prods`;
     }
 
-    offcanvasList.innerHTML = categories.map(cat => {
-      const isSelected = currentCategory === cat.id;
-      let count = 0;
-      if (cat.id === "all") {
-        count = allProducts.filter(p => p.activo !== false).length;
-      } else if (cat.id === "gift_200") {
-        count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length;
-      } else if (cat.id === "gift_350") {
-        count = allProducts.filter(p => p.activo !== false && ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length;
-      } else if (cat.rawKeys) {
-        count = allProducts.filter(p => p.activo !== false && cat.rawKeys.includes(p.categoria)).length;
-      } else {
-        count = allProducts.filter(p => p.activo !== false && formatCategoryName(p.categoria) === cat.id).length;
-      }
+    const items = [
+      { id: "all", label: `✨ Todo ${brandName}`, count: brandProds.length },
+      { id: "gift_200", label: "🎁 Regalos < $200", count: brandProds.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length },
+      { id: "gift_350", label: "🎀 Regalos < $350", count: brandProds.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length },
+      ...brandCats.map(cat => ({
+        id: cat.id,
+        label: cat.name,
+        count: brandProds.filter(p => cat.matchKeys.includes((p.categoria || '').toLowerCase().trim())).length
+      }))
+    ];
 
+    offcanvasList.innerHTML = items.map(cat => {
+      const isSelected = currentCategory === cat.id;
       return `
         <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-4 ${isSelected ? 'active-offcanvas-cat' : ''}" data-category="${cat.id}">
           <span class="d-flex align-items-center gap-2">
             ${cat.id.startsWith('gift_') ? '<span class="badge bg-warning text-dark me-1" style="font-size:0.65rem;">PROMO</span>' : ''}
             ${cat.label}
           </span>
-          <span class="badge rounded-pill ${isSelected ? 'bg-primary text-white' : 'bg-light text-muted border'}">${count}</span>
+          <span class="badge rounded-pill ${isSelected ? 'bg-primary text-white' : 'bg-light text-muted border'}">${cat.count}</span>
         </button>
       `;
     }).join("");
@@ -463,12 +483,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const countEl = document.getElementById("products-count-text");
     if (!grid) return;
 
-    let filtered = allProducts.filter(p => p.activo !== false);
+    const brandKey = currentBrand || "cyzone";
+    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
 
-    // 1. Filtro por Marca
-    if (currentBrand !== "all") {
-      filtered = filtered.filter(p => (p.marca || "betterware").toLowerCase() === currentBrand.toLowerCase());
-    }
+    // 1. Filtro por Marca seleccionada
+    let filtered = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
 
     // 2. Filtro por Categoría
     if (currentCategory === "gift_200") {
@@ -482,11 +501,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         return price <= 350;
       });
     } else if (currentCategory && currentCategory !== "all") {
-      const vCat = VISUAL_CATEGORIES_CONFIG.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
-      if (vCat && vCat.matchKeys) {
+      const catConfig = brandCats.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
+      if (catConfig && catConfig.matchKeys) {
         filtered = filtered.filter(p => {
           const pCat = (p.categoria || '').toLowerCase().trim();
-          return vCat.matchKeys.includes(pCat);
+          return catConfig.matchKeys.includes(pCat);
         });
       } else {
         filtered = filtered.filter(p => (p.categoria || '').toLowerCase().trim() === currentCategory.toLowerCase().trim());
@@ -504,7 +523,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="p-4 bg-white rounded-4 border text-center mx-auto" style="max-width: 420px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
             <i class="bi bi-box-seam text-muted fs-1 mb-2 d-block"></i>
             <h6 class="fw-bold text-dark mb-1">Sin productos disponibles</h6>
-            <p class="text-muted small mb-3">No hay productos disponibles con esta combinación de filtros.</p>
+            <p class="text-muted small mb-3">No hay productos disponibles en esta categoría.</p>
             <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold" onclick="window.viewAllProducts()">Ver todo el catálogo</button>
           </div>
         </div>
@@ -556,16 +575,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (catalogEl) catalogEl.classList.remove("d-none");
 
     const titleEl = document.getElementById("current-category-title");
+    const brandKey = currentBrand || "cyzone";
+    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
+
     if (titleEl) {
       if (catId === "gift_200") {
-        titleEl.textContent = "Regalos < $200";
+        titleEl.textContent = `Regalos < $200 (${brandName})`;
       } else if (catId === "gift_350") {
-        titleEl.textContent = "Regalos < $350";
+        titleEl.textContent = `Regalos < $350 (${brandName})`;
       } else if (catId === "all") {
-        titleEl.textContent = "Todo el Catálogo";
+        titleEl.textContent = `Catálogo ${brandName}`;
       } else {
-        const vCat = VISUAL_CATEGORIES_CONFIG.find(c => c.id.toLowerCase() === catId.toLowerCase());
-        titleEl.textContent = vCat ? vCat.name : formatCategoryName(catId);
+        const catConfig = brandCats.find(c => c.id.toLowerCase() === catId.toLowerCase());
+        titleEl.textContent = catConfig ? catConfig.name : formatCategoryName(catId);
       }
     }
 
@@ -590,17 +613,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   window.viewAllProducts = () => {
     window.selectCategoryDirect("all");
   };
-
-  // Department filter pills in Category Showcase view
-  const deptPills = document.querySelectorAll("#dept-pills-container .dept-filter-pill");
-  deptPills.forEach(pill => {
-    pill.addEventListener("click", (e) => {
-      deptPills.forEach(p => p.classList.remove("active"));
-      e.currentTarget.classList.add("active");
-      currentDept = e.currentTarget.getAttribute("data-dept");
-      renderCategoriesShowcase();
-    });
-  });
 
 
   // Open Direct Order Modal for Selected Product

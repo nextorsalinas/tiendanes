@@ -212,9 +212,12 @@ body {
 .brand-scroll-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center; /* Centrado */
+  gap: 0.55rem;
   overflow-x: auto;
-  padding: 0.35rem 0.15rem 0.65rem 0.15rem;
+  padding: 0.25rem 0.2rem 0.6rem 0.2rem;
+  margin: 0 auto;
+  max-width: 100%;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -227,54 +230,30 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  padding: 0.35rem 0.85rem;
-  height: 40px;
-  min-width: 86px;
+  border-radius: var(--radius-pill);
+  padding: 0.22rem 0.8rem;
+  height: 32px; /* Reducido de 40px */
+  min-width: 64px; /* Reducido de 86px */
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   white-space: nowrap;
   user-select: none;
   flex-shrink: 0;
   outline: none;
   position: relative;
+  opacity: 0.78;
 }
 
 .brand-nav-btn:hover {
   transform: translateY(-1.5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
   opacity: 1 !important;
 }
 
-/* --- Botón "Todas las Marcas" --- */
-.brand-nav-btn[data-brand="all"] {
-  background: var(--nestt-white);
-  border: 1.5px solid var(--nestt-gray-300);
-}
-
-.brand-nav-btn[data-brand="all"] .brand-name {
-  font-family: var(--font-brand);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--nestt-purple);
-}
-
-.brand-nav-btn[data-brand="all"] .brand-all-icon {
-  color: var(--nestt-purple);
-  font-size: 0.9rem;
-}
-
-.brand-nav-btn[data-brand="all"].active {
-  background: linear-gradient(135deg, #7928ca 0%, #5c18a0 100%);
-  border-color: #5c18a0;
-  box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 4.5px #7928ca, 0 4px 12px rgba(92, 24, 160, 0.3);
-  transform: translateY(-1px) scale(1.02);
-}
-
-.brand-nav-btn[data-brand="all"].active .brand-name,
-.brand-nav-btn[data-brand="all"].active .brand-all-icon {
-  color: #ffffff;
+.brand-nav-btn.active {
+  opacity: 1 !important;
+  transform: translateY(-1px) scale(1.04);
 }
 
 /* --- Betterware (Azul Oficial Betterware) --- */
@@ -285,8 +264,7 @@ body {
 
 .brand-nav-btn[data-brand="betterware"].active {
   border-color: #005eb8;
-  box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 4.5px #005eb8, 0 5px 14px rgba(0, 62, 140, 0.4);
-  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #005eb8, 0 4px 10px rgba(0, 62, 140, 0.35);
 }
 
 /* --- Ésika (Rojo / Carmesí Sofisticado) --- */
@@ -297,8 +275,7 @@ body {
 
 .brand-nav-btn[data-brand="esika"].active {
   border-color: #c41230;
-  box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 4.5px #c41230, 0 5px 14px rgba(142, 11, 33, 0.4);
-  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #c41230, 0 4px 10px rgba(142, 11, 33, 0.35);
 }
 
 /* --- Cyzone (Magenta Vibrante Juvenil) --- */
@@ -309,8 +286,7 @@ body {
 
 .brand-nav-btn[data-brand="cyzone"].active {
   border-color: #f72585;
-  box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 4.5px #f72585, 0 5px 14px rgba(181, 0, 88, 0.4);
-  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #f72585, 0 4px 10px rgba(181, 0, 88, 0.35);
 }
 
 /* --- L'Bel (Negro Lujo Alta Cosmética) --- */
@@ -321,19 +297,19 @@ body {
 
 .brand-nav-btn[data-brand="lbel"].active {
   border-color: #444444;
-  box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 4.5px #111111, 0 5px 14px rgba(0, 0, 0, 0.45);
-  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #111111, 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Imágenes de los Logos en Letra Blanca --- */
+/* --- Imágenes de los Logos Reducidas (Más chicas que nestt.) --- */
 .brand-nav-btn .brand-logo-img {
-  max-height: 20px;
-  max-width: 72px;
+  max-height: 13px; /* Más chica que el logo de la tienda nestt. que mide 23px */
+  max-width: 48px;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.22));
+  margin: 0 auto;
 }
 
 /* Category chips legacy fallback */
