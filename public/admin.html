@@ -192,13 +192,90 @@
     <!-- SECTION 2: PRODUCTS CATALOG MANAGEMENT -->
     <section id="section-products" class="admin-section d-none">
       <div class="admin-card p-4">
+        <!-- Title & Add Product Button -->
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <h5 class="fw-bold text-dark m-0"><i class="bi bi-boxes me-2 text-primary"></i> Productos en Catálogo</h5>
-          <div class="d-flex gap-2">
-            <input type="text" id="admin-search-product" class="form-control form-control-sm rounded-pill" placeholder="🔍 Buscar producto en tabla..." style="max-width: 250px;">
-            <button type="button" class="btn btn-primary btn-sm rounded-pill fw-bold px-3 shadow-sm" onclick="window.openNewProductModal()">
-              <i class="bi bi-plus-lg me-1"></i> Nuevo Producto
-            </button>
+          <div class="d-flex align-items-center gap-2">
+            <h5 class="fw-bold text-dark m-0"><i class="bi bi-boxes me-2 text-primary"></i> Productos en Catálogo</h5>
+            <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small fw-semibold" id="catalog-total-badge">0 SKUs</span>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm rounded-pill fw-bold px-3 shadow-sm" onclick="window.openNewProductModal()">
+            <i class="bi bi-plus-lg me-1"></i> + Nuevo Producto
+          </button>
+        </div>
+
+        <!-- Toolbar de Filtros Avanzados -->
+        <div class="bg-light p-3 rounded-3 mb-3 border">
+          <div class="row g-2 align-items-end">
+            <!-- Búsqueda textual rápida -->
+            <div class="col-12 col-md-6 col-lg-3">
+              <label class="form-label text-muted small fw-bold mb-1"><i class="bi bi-search me-1"></i> Búsqueda Rápida</label>
+              <input type="text" id="admin-search-product" class="form-control form-control-sm" placeholder="Nombre, código o SKU...">
+            </div>
+
+            <!-- Filtro por Marca -->
+            <div class="col-6 col-md-3 col-lg-2">
+              <label class="form-label text-muted small fw-bold mb-1"><i class="bi bi-tag-fill me-1"></i> Marca</label>
+              <select id="admin-filter-brand" class="form-select form-select-sm">
+                <option value="all">Todas las marcas</option>
+                <option value="betterware">Betterware</option>
+                <option value="esika">Ésika</option>
+                <option value="cyzone">Cyzone</option>
+                <option value="lbel">L'Bel</option>
+              </select>
+            </div>
+
+            <!-- Filtro por Departamento -->
+            <div class="col-6 col-md-3 col-lg-2">
+              <label class="form-label text-muted small fw-bold mb-1"><i class="bi bi-grid-fill me-1"></i> Depto.</label>
+              <select id="admin-filter-dept" class="form-select form-select-sm">
+                <option value="all">Todos los depts.</option>
+                <option value="hogar">Hogar</option>
+                <option value="belleza">Belleza</option>
+              </select>
+            </div>
+
+            <!-- Filtro por Categoría -->
+            <div class="col-6 col-md-4 col-lg-2">
+              <label class="form-label text-muted small fw-bold mb-1"><i class="bi bi-folder2-open me-1"></i> Categoría</label>
+              <select id="admin-filter-category" class="form-select form-select-sm">
+                <option value="all">Todas las categorías</option>
+              </select>
+            </div>
+
+            <!-- Filtro por Existencias / Stock -->
+            <div class="col-6 col-md-4 col-lg-3">
+              <label class="form-label text-muted small fw-bold mb-1"><i class="bi bi-layers-fill me-1"></i> Existencias / Stock</label>
+              <select id="admin-filter-stock" class="form-select form-select-sm">
+                <option value="all">Todo el inventario</option>
+                <option value="in_stock">En Stock (> 0 pz)</option>
+                <option value="out_of_stock">Agotados (0 pz)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Sub-barra: Contador en tiempo real, Tags activos y Ordenamiento -->
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-2 border-top mt-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <small class="text-muted fw-semibold" id="catalog-filter-count">Mostrando 0 de 0 productos</small>
+              <div id="catalog-active-filter-tags" class="d-flex gap-1 flex-wrap"></div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <div class="d-flex align-items-center gap-1">
+                <small class="text-muted text-nowrap fw-semibold" style="font-size: 0.78rem;">Ordenar:</small>
+                <select id="admin-filter-sort" class="form-select form-select-sm" style="width: auto;">
+                  <option value="name_asc">Nombre (A - Z)</option>
+                  <option value="name_desc">Nombre (Z - A)</option>
+                  <option value="price_asc">Precio: Menor a Mayor</option>
+                  <option value="price_desc">Precio: Mayor a Menor</option>
+                  <option value="stock_desc">Stock: Mayor a Menor</option>
+                  <option value="stock_asc">Stock: Menor a Mayor</option>
+                  <option value="code_asc">Código (A - Z)</option>
+                </select>
+              </div>
+              <button type="button" id="btn-reset-filters" class="btn btn-outline-secondary btn-sm rounded-pill px-3" onclick="window.resetCatalogFilters()" title="Restablecer todos los filtros">
+                <i class="bi bi-arrow-counterclockwise me-1"></i> Limpiar
+              </button>
+            </div>
           </div>
         </div>
 
@@ -303,8 +380,8 @@
   <!-- Firebase SDKs (Compat v10) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-  <script src="js/products-data.js?v=20261004_2"></script>
-  <script src="js/firebase-config.js?v=20261004_2"></script>
-  <script src="js/admin.js?v=20261004_2"></script>
+  <script src="js/products-data.js?v=20261004_3"></script>
+  <script src="js/firebase-config.js?v=20261004_3"></script>
+  <script src="js/admin.js?v=20261004_3"></script>
 </body>
 </html>

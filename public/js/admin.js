@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   let ordersList = [];
   let productsList = [];
   let filterText = "";
+  let filterBrand = "all";
+  let filterDept = "all";
+  let filterCategory = "all";
+  let filterStock = "all";
+  let filterSort = "name_asc";
 
   // 1. Tab switcher (Pedidos & Catálogo)
   const navTabs = document.querySelectorAll(".admin-nav-link");
@@ -25,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       ordersList = await window.db.getOrders();
       productsList = await window.db.getProducts();
 
+      populateCategoryFilter();
       renderDashboardMetrics();
       renderBrandInsights();
       renderOrdersTable();
@@ -98,6 +104,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (elOrdersBadge) {
       elOrdersBadge.textContent = `${totalOrders} pedido${totalOrders === 1 ? '' : 's'}`;
     }
+
+    const elCatalogBadge = document.getElementById("catalog-total-badge");
+    if (elCatalogBadge) {
+      elCatalogBadge.textContent = `${totalProducts} SKUs`;
+    }
   }
 
   // 4. Render Brand Breakdown Insights (Betterware, Ésika, Cyzone, L'Bel)
@@ -130,17 +141,49 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       return `
         <div class="col-6 col-md-3">
-          <div class="p-3 bg-white rounded-3 border h-100 shadow-sm" style="border-top: 3px solid ${b.color} !important;">
+          <div class="p-3 bg-white rounded-3 border h-100 shadow-sm brand-kpi-card" 
+               style="border-top: 3px solid ${b.color} !important; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease;"
+               onclick="window.filterByBrandShortcut('${b.id}')"
+               title="Clic para ver y filtrar productos de ${b.label}">
             <div class="d-flex align-items-center justify-content-between mb-2">
               <span class="fw-bold small" style="color: ${b.color};"><i class="bi ${b.icon} me-1"></i> ${b.label}</span>
               <span class="badge bg-light text-muted border" style="font-size:0.7rem;">${prodsOfBrand.length} SKUs</span>
             </div>
             <h5 class="fw-extrabold text-dark mb-1">$${brandSaleVal.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h5>
-            <small class="text-muted" style="font-size: 0.78rem;">${brandStock} piezas en inventario</small>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted" style="font-size: 0.78rem;">${brandStock} piezas</small>
+              <small class="text-primary fw-bold" style="font-size: 0.72rem;">Filtrar <i class="bi bi-chevron-right"></i></small>
+            </div>
           </div>
         </div>
       `;
     }).join("");
+  }
+
+  // 4.1 Populate dynamic categories select filter
+  function populateCategoryFilter() {
+    const catSelect = document.getElementById("admin-filter-category");
+    if (!catSelect) return;
+
+    const categories = new Set();
+    productsList.forEach(p => {
+      if (p.categoria && p.categoria.trim() !== "") {
+        categories.add(p.categoria.trim());
+      }
+    });
+
+    const sortedCats = Array.from(categories).sort((a, b) => a.localeCompare(b, 'es'));
+    const currentVal = catSelect.value || "all";
+
+    catSelect.innerHTML = `<option value="all">Todas las categorías</option>` +
+      sortedCats.map(c => `<option value="${c}">${c}</option>`).join("");
+
+    if (sortedCats.includes(currentVal)) {
+      catSelect.value = currentVal;
+    } else {
+      catSelect.value = "all";
+      filterCategory = "all";
+    }
   }
 
   // 5. Render Orders Table
@@ -196,12 +239,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // 6. Render Products Table with Search & Stock Quantity Column
+  // 6. Render Products Table with Search, Multi-Filter, Stock & Sorting
   function renderProductsTable() {
     const tableBody = document.getElementById("admin-products-tbody");
     if (!tableBody) return;
 
-    let filtered = productsList;
+    let filtered = [...productsList];
+
+    // Filter by Brand
+    if (filterBrand !== "all") {
+      filtered = filtered.filter(p => (p.marca || 'betterware').toLowerCase() === filterBrand.toLowerCase());
+    }
+
+    // Filter by Department
+    if (filterDept !== "all") {
+      filtered = filtered.filter(p => {
+        const brand = (p.marca || 'betterware').toLowerCase();
+        const dept = (p.departamento || (brand === 'betterware' ? 'hogar' : 'belleza')).toLowerCase();
+        return dept === filterDept.toLowerCase();
+      });
+    }
+
+    // Filter by Category
+    if (filterCategory !== "all") {
+      filtered = filtered.filter(p => (p.categoria || '').toLowerCase() === filterCategory.toLowerCase());
+    }
+
+    // Filter by Stock Status
+    if (filterStock === "in_stock") {
+      filtered = filtered.filter(p => (typeof p.stock === 'number' ? p.stock : 1) > 0);
+    } else if (filterStock === "out_of_stock") {
+      filtered = filtered.filter(p => (typeof p.stock === 'number' ? p.stock : 1) === 0);
+    }
+
+    // Filter by Search Query
     if (filterText.trim() !== "") {
       const q = filterText.toLowerCase();
       filtered = filtered.filter(p => 
@@ -212,8 +283,57 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
 
+    // Sorting
+    filtered.sort((a, b) => {
+      const saleA = (a.precio_oferta && Number(a.precio_oferta) < Number(a.precio_regular)) ? Number(a.precio_oferta) : Number(a.precio_regular || 0);
+      const saleB = (b.precio_oferta && Number(b.precio_oferta) < Number(b.precio_regular)) ? Number(b.precio_oferta) : Number(b.precio_regular || 0);
+      const stockA = (typeof a.stock === 'number' && a.stock >= 0) ? a.stock : 1;
+      const stockB = (typeof b.stock === 'number' && b.stock >= 0) ? b.stock : 1;
+      const nameA = (a.nombre || '').toLowerCase();
+      const nameB = (b.nombre || '').toLowerCase();
+      const codeA = (a.codigo || '').toLowerCase();
+      const codeB = (b.codigo || '').toLowerCase();
+
+      switch (filterSort) {
+        case "name_desc":
+          return nameB.localeCompare(nameA, 'es');
+        case "price_asc":
+          return saleA - saleB;
+        case "price_desc":
+          return saleB - saleA;
+        case "stock_asc":
+          return stockA - stockB;
+        case "stock_desc":
+          return stockB - stockA;
+        case "code_asc":
+          return codeA.localeCompare(codeB, 'es');
+        case "name_asc":
+        default:
+          return nameA.localeCompare(nameB, 'es');
+      }
+    });
+
+    // Update count indicator
+    const countEl = document.getElementById("catalog-filter-count");
+    if (countEl) {
+      countEl.innerHTML = `Mostrando <strong class="text-dark">${filtered.length}</strong> de <strong class="text-dark">${productsList.length}</strong> productos`;
+    }
+
+    // Update active filters badge indicator
+    updateActiveFilterBadges();
+
     if (filtered.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No se encontraron productos que coincidan con la búsqueda.</td></tr>`;
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="9" class="text-center py-5">
+            <div class="text-muted mb-2"><i class="bi bi-funnel fs-1 text-secondary opacity-50"></i></div>
+            <h6 class="fw-bold text-dark mb-1">No se encontraron productos coincidentes</h6>
+            <p class="text-muted small mb-3">Intenta cambiar o limpiar los filtros seleccionados.</p>
+            <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="window.resetCatalogFilters()">
+              <i class="bi bi-arrow-counterclockwise me-1"></i> Restablecer Filtros
+            </button>
+          </td>
+        </tr>`;
       return;
     }
 
@@ -269,11 +389,150 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
-  // 7. Search input in admin table
+  // 6.1 Update Active Filter Badges
+  function updateActiveFilterBadges() {
+    const container = document.getElementById("catalog-active-filter-tags");
+    if (!container) return;
+
+    const tags = [];
+    if (filterBrand !== "all") {
+      const brandLabels = { "betterware": "Betterware", "esika": "Ésika", "cyzone": "Cyzone", "lbel": "L'Bel" };
+      tags.push(`<span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill py-1 px-2" style="font-size: 0.74rem; cursor: pointer;" onclick="window.clearSingleFilter('brand')">Marca: ${brandLabels[filterBrand] || filterBrand} <i class="bi bi-x-circle ms-1"></i></span>`);
+    }
+    if (filterDept !== "all") {
+      tags.push(`<span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle rounded-pill py-1 px-2" style="font-size: 0.74rem; cursor: pointer;" onclick="window.clearSingleFilter('dept')">Depto: ${filterDept.toUpperCase()} <i class="bi bi-x-circle ms-1"></i></span>`);
+    }
+    if (filterCategory !== "all") {
+      tags.push(`<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill py-1 px-2" style="font-size: 0.74rem; cursor: pointer;" onclick="window.clearSingleFilter('category')">Cat: ${filterCategory} <i class="bi bi-x-circle ms-1"></i></span>`);
+    }
+    if (filterStock !== "all") {
+      const stockLabel = filterStock === "in_stock" ? "En Stock (>0)" : "Agotados (0)";
+      tags.push(`<span class="badge bg-info-subtle text-info-emphasis border border-info-subtle rounded-pill py-1 px-2" style="font-size: 0.74rem; cursor: pointer;" onclick="window.clearSingleFilter('stock')">${stockLabel} <i class="bi bi-x-circle ms-1"></i></span>`);
+    }
+    if (filterText.trim() !== "") {
+      tags.push(`<span class="badge bg-dark-subtle text-dark border rounded-pill py-1 px-2" style="font-size: 0.74rem; cursor: pointer;" onclick="window.clearSingleFilter('text')">"${filterText.trim()}" <i class="bi bi-x-circle ms-1"></i></span>`);
+    }
+
+    container.innerHTML = tags.join("");
+  }
+
+  // 6.2 Clear single filter handler
+  window.clearSingleFilter = (type) => {
+    if (type === 'brand') {
+      filterBrand = 'all';
+      const el = document.getElementById("admin-filter-brand");
+      if (el) el.value = 'all';
+    } else if (type === 'dept') {
+      filterDept = 'all';
+      const el = document.getElementById("admin-filter-dept");
+      if (el) el.value = 'all';
+    } else if (type === 'category') {
+      filterCategory = 'all';
+      const el = document.getElementById("admin-filter-category");
+      if (el) el.value = 'all';
+    } else if (type === 'stock') {
+      filterStock = 'all';
+      const el = document.getElementById("admin-filter-stock");
+      if (el) el.value = 'all';
+    } else if (type === 'text') {
+      filterText = '';
+      const el = document.getElementById("admin-search-product");
+      if (el) el.value = '';
+    }
+    renderProductsTable();
+  };
+
+  // 6.3 Reset all catalog filters
+  window.resetCatalogFilters = () => {
+    filterText = "";
+    filterBrand = "all";
+    filterDept = "all";
+    filterCategory = "all";
+    filterStock = "all";
+    filterSort = "name_asc";
+
+    const sInput = document.getElementById("admin-search-product");
+    if (sInput) sInput.value = "";
+    const bSelect = document.getElementById("admin-filter-brand");
+    if (bSelect) bSelect.value = "all";
+    const dSelect = document.getElementById("admin-filter-dept");
+    if (dSelect) dSelect.value = "all";
+    const cSelect = document.getElementById("admin-filter-category");
+    if (cSelect) cSelect.value = "all";
+    const kSelect = document.getElementById("admin-filter-stock");
+    if (kSelect) kSelect.value = "all";
+    const oSelect = document.getElementById("admin-filter-sort");
+    if (oSelect) oSelect.value = "name_asc";
+
+    renderProductsTable();
+  };
+
+  // 6.4 Shortcut from Brand KPI Cards
+  window.filterByBrandShortcut = (brandId) => {
+    window.resetCatalogFilters();
+
+    filterBrand = brandId;
+    const bSelect = document.getElementById("admin-filter-brand");
+    if (bSelect) bSelect.value = brandId;
+
+    // Switch active nav tab to Catálogo de Productos
+    const tabCatalog = document.querySelector('[data-target="section-products"]');
+    if (tabCatalog) {
+      document.querySelectorAll(".admin-nav-link").forEach(t => t.classList.remove("active"));
+      tabCatalog.classList.add("active");
+      document.querySelectorAll(".admin-section").forEach(sec => sec.classList.add("d-none"));
+      const secProd = document.getElementById("section-products");
+      if (secProd) secProd.classList.remove("d-none");
+    }
+
+    renderProductsTable();
+  };
+
+  // 7. Event listeners for filters
   const searchInput = document.getElementById("admin-search-product");
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
       filterText = e.target.value;
+      renderProductsTable();
+    });
+  }
+
+  const brandSelect = document.getElementById("admin-filter-brand");
+  if (brandSelect) {
+    brandSelect.addEventListener("change", (e) => {
+      filterBrand = e.target.value;
+      renderProductsTable();
+    });
+  }
+
+  const deptSelect = document.getElementById("admin-filter-dept");
+  if (deptSelect) {
+    deptSelect.addEventListener("change", (e) => {
+      filterDept = e.target.value;
+      renderProductsTable();
+    });
+  }
+
+  const catSelect = document.getElementById("admin-filter-category");
+  if (catSelect) {
+    catSelect.addEventListener("change", (e) => {
+      filterCategory = e.target.value;
+      renderProductsTable();
+    });
+  }
+
+  const stockSelect = document.getElementById("admin-filter-stock");
+  if (stockSelect) {
+    stockSelect.addEventListener("change", (e) => {
+      filterStock = e.target.value;
+      renderProductsTable();
+    });
+  }
+
+  const sortSelect = document.getElementById("admin-filter-sort");
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      filterSort = e.target.value;
       renderProductsTable();
     });
   }
