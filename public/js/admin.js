@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       return sum + (salePrice * stock);
     }, 0);
 
+    const avgPricePerPiece = totalPieces > 0 ? (totalCatalogSaleValue / totalPieces) : 0;
+
     const elTotalOrders = document.getElementById("metric-total-orders");
     const elPendingOrders = document.getElementById("metric-pending-orders");
     const elRevenue = document.getElementById("metric-revenue");
@@ -79,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       elCatalogSaleValue.textContent = `$${totalCatalogSaleValue.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
     }
     if (elCatalogPieces) {
-      elCatalogPieces.textContent = `${totalPieces} piezas en catálogo`;
+      elCatalogPieces.textContent = `${totalPieces} piezas (Promedio $${avgPricePerPiece.toFixed(2)} c/u)`;
     }
   }
 
@@ -215,6 +217,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("productModalHeading").textContent = "Agregar Nuevo Producto";
     document.getElementById("edit-prod-id").value = "";
     document.getElementById("productEditForm").reset();
+    document.getElementById("prod-stock").value = "1";
     const brandSelect = document.getElementById("prod-marca");
     if (brandSelect) brandSelect.value = "betterware";
 
@@ -265,7 +268,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("prod-category").value = product.categoria || "";
     document.getElementById("prod-price-reg").value = product.precio_regular || "";
     document.getElementById("prod-price-off").value = product.precio_oferta || "";
-    document.getElementById("prod-stock").value = product.stock || 20;
+    document.getElementById("prod-stock").value = (typeof product.stock === "number" && product.stock >= 0) ? product.stock : 1;
     document.getElementById("prod-img-url").value = product.fotos && product.fotos.length > 0 ? product.fotos[0] : "";
     document.getElementById("prod-desc").value = product.descripcion || "";
 
@@ -324,7 +327,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           es_oferta: !isNaN(priceOffVal) && priceOffVal > 0 && priceOffVal < priceRegVal,
           descripcion: descVal,
           fotos: [imgVal || "https://via.placeholder.com/400?text=Sin+Imagen"],
-          stock: isNaN(stockVal) ? 20 : stockVal,
+          stock: isNaN(stockVal) ? 1 : Math.max(0, stockVal),
           activo: true,
           variantes: []
         };
