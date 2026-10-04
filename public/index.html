@@ -71,50 +71,50 @@
       </div>
     </div>
 
-    <!-- VIEW 1: CATEGORY SHOWCASE (Estilo Cyzone / Belcorp) -->
+    <!-- VIEW 1: CATEGORY SHOWCASE (Estilo Minimalista L'Bel / Belcorp) -->
     <section id="view-categories-showcase" class="categories-showcase-section">
-      <!-- Section Header con tipografía refinada estilo Cyzone -->
-      <div class="d-flex align-items-end justify-content-between mb-3 pb-2 border-bottom">
+      <!-- Section Header Minimalista -->
+      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
         <div>
-          <span class="text-uppercase tracking-wider small fw-bold text-muted" id="brand-categories-subtitle" style="font-size: 0.72rem; letter-spacing: 1.5px;">COLECCIONES & DETALLES</span>
-          <h4 class="fw-extrabold text-dark m-0" id="brand-categories-title" style="letter-spacing: -0.3px; font-size: 1.35rem;">Categorías Cyzone</h4>
+          <h4 class="fw-bold text-dark m-0" id="brand-categories-title" style="letter-spacing: -0.3px; font-size: 1.25rem;">Compra por categoría</h4>
+          <span class="text-muted small" id="brand-categories-subtitle" style="font-size: 0.8rem;">Colecciones exclusivas de L'Bel</span>
         </div>
         <div>
           <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0 small fw-semibold" id="btn-view-all-products" onclick="window.viewAllProducts()">
-            Ver todo el catálogo <i class="bi bi-arrow-right ms-1"></i>
+            Ver todo <i class="bi bi-arrow-right ms-1"></i>
           </button>
         </div>
       </div>
 
-      <!-- Visual Categories Grid -->
-      <div class="row g-2 g-md-3 row-cols-2 row-cols-md-3 row-cols-lg-4 mb-4" id="categories-visual-grid">
-        <!-- Rendered dynamically by app.js with high quality images -->
+      <!-- Visual Categories Grid (5 columnas en desktop, 2 en móvil) -->
+      <div class="row g-2 g-md-3 row-cols-2 row-cols-md-3 row-cols-lg-5 mb-4" id="categories-visual-grid">
+        <!-- Rendered dynamically by app.js with official Belcorp/L'Bel images -->
       </div>
 
       <!-- Curated Banners: Regalos < $200 y < $350 -->
-      <div class="row g-3 mb-4">
+      <div class="row g-2 g-md-3 mb-4">
         <div class="col-12 col-md-6">
-          <div class="promo-gift-banner p-3 p-md-4 rounded-4 text-white d-flex align-items-center justify-content-between cursor-pointer" 
-               style="background: linear-gradient(135deg, #7928ca 0%, #a855f7 100%); cursor: pointer;"
+          <div class="promo-gift-banner p-3 rounded-3 text-white d-flex align-items-center justify-content-between cursor-pointer" 
+               style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); cursor: pointer;"
                onclick="window.selectCategoryDirect('gift_200')">
             <div>
-              <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.65rem;">DETALLES ACCESIBLES</span>
-              <h5 class="fw-bold mb-1" style="font-size: 1.05rem;">Regalos por menos de $200</h5>
-              <p class="small text-white-50 m-0" style="font-size: 0.78rem;">Envoltura y tarjeta de cortesía incluidas</p>
+              <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.62rem;">DETALLES ACCESIBLES</span>
+              <h5 class="fw-bold mb-0 text-white" style="font-size: 0.98rem;">Regalos por menos de $200</h5>
+              <p class="small text-white-50 m-0 mt-1" style="font-size: 0.75rem;">Envoltura y tarjeta de cortesía incluidas</p>
             </div>
-            <i class="bi bi-gift-fill display-5 opacity-75"></i>
+            <i class="bi bi-gift display-6 opacity-75"></i>
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <div class="promo-gift-banner p-3 p-md-4 rounded-4 text-white d-flex align-items-center justify-content-between cursor-pointer" 
-               style="background: linear-gradient(135deg, #f72585 0%, #ff4d8d 100%); cursor: pointer;"
+          <div class="promo-gift-banner p-3 rounded-3 text-white d-flex align-items-center justify-content-between cursor-pointer" 
+               style="background: linear-gradient(135deg, #7928ca 0%, #5c18a0 100%); cursor: pointer;"
                onclick="window.selectCategoryDirect('gift_350')">
             <div>
-              <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.65rem;">FAVORITOS DE TEMPORADA</span>
-              <h5 class="fw-bold mb-1" style="font-size: 1.05rem;">Detalles selectos por menos de $350</h5>
-              <p class="small text-white-50 m-0" style="font-size: 0.78rem;">Fragancias, sets y organizadores únicos</p>
+              <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.62rem;">FAVORITOS DE TEMPORADA</span>
+              <h5 class="fw-bold mb-0 text-white" style="font-size: 0.98rem;">Detalles selectos por menos de $350</h5>
+              <p class="small text-white-50 m-0 mt-1" style="font-size: 0.75rem;">Sets, fragancias y organizadores únicos</p>
             </div>
-            <i class="bi bi-bag-heart-fill display-5 opacity-75"></i>
+            <i class="bi bi-bag-heart display-6 opacity-75"></i>
           </div>
         </div>
       </div>
@@ -198,8 +198,8 @@
   <!-- Firebase SDKs (Compat v10) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-  <script src="js/products-data.js?v=20261004_5"></script>
-  <script src="js/firebase-config.js?v=20261004_5"></script>
-  <script src="js/app.js?v=20261004_5"></script>
+  <script src="js/products-data.js?v=20261004_6"></script>
+  <script src="js/firebase-config.js?v=20261004_6"></script>
+  <script src="js/app.js?v=20261004_6"></script>
 </body>
 </html>

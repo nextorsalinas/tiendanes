@@ -4,15 +4,15 @@ const WHATSAPP_SELLER_PHONE = "525525000024";
 document.addEventListener("DOMContentLoaded", async () => {
   let allProducts = [];
   let currentCategory = null; // null => Visual Categories Showcase (Cyzone style home)
-  let currentBrand = "cyzone"; // Default active brand is Cyzone
+  let currentBrand = "lbel"; // Default active brand is L'Bel
   let currentView = "categories"; // 'categories' or 'products'
   let selectedProductForOrder = null;
 
   // 4 Official Brands Configuration (Centered, smaller, no "Todas")
   const BRANDS_CONFIG = [
-    { id: "cyzone", label: "Cyzone", logo: "images/brands/cyzone.png" },
-    { id: "esika", label: "Ésika", logo: "images/brands/esika.png" },
     { id: "lbel", label: "L'Bel", logo: "images/brands/lbel.png" },
+    { id: "esika", label: "Ésika", logo: "images/brands/esika.png" },
+    { id: "cyzone", label: "Cyzone", logo: "images/brands/cyzone.png" },
     { id: "betterware", label: "Betterware", logo: "images/brands/betterware.webp" }
   ];
 
@@ -231,124 +231,115 @@ document.addEventListener("DOMContentLoaded", async () => {
     ];
   }
 
-  // Distinct visual categories for each of the 4 official brands
+  // Distinct visual categories for each of the 4 official brands (Inspirado en L'Bel / Belcorp Oficial)
   const BRAND_CATEGORIES_CONFIG = {
+    lbel: [
+      {
+        id: "cuidado_piel",
+        name: "Cuidado de la Piel",
+        image: "https://lbel.vteximg.com.br/arquivos/categorie-cuidado-de-la-piel.jpg",
+        matchKeys: ["skincare", "tecnología", "tratamiento facial", "cuidado de la piel"]
+      },
+      {
+        id: "fragancias",
+        name: "Fragancias",
+        image: "https://lbel.vteximg.com.br/arquivos/categorie-perfumes.jpg",
+        matchKeys: ["perfumes", "fragancias"]
+      },
+      {
+        id: "maquillaje",
+        name: "Maquillaje",
+        image: "https://lbel.vteximg.com.br/arquivos/categorie-maquillaje.jpg",
+        matchKeys: ["maquillaje"]
+      },
+      {
+        id: "cuidado_personal",
+        name: "Cuidado personal",
+        image: "https://lbel.vteximg.com.br/arquivos/categorie-cuidado-personal.jpg",
+        matchKeys: ["cuidado personal", "cuidado corporal"]
+      },
+      {
+        id: "sets",
+        name: "Sets",
+        image: "https://esika.vteximg.com.br/arquivos/top-regalos.jpg",
+        matchKeys: ["sets"],
+        customFilter: (p) => (p.categoria && p.categoria.toLowerCase() === 'sets') || /set|kit|duo|dúo|rutina|pack|estuche/i.test(p.nombre)
+      }
+    ],
+    esika: [
+      {
+        id: "fragancias",
+        name: "Fragancias",
+        image: "https://esika.vteximg.com.br/arquivos/categorie-perfumes.jpg",
+        matchKeys: ["perfumes", "fragancias"]
+      },
+      {
+        id: "maquillaje",
+        name: "Maquillaje",
+        image: "https://esika.vteximg.com.br/arquivos/categorie-maquillaje.jpg",
+        matchKeys: ["maquillaje"]
+      },
+      {
+        id: "cuidado_piel",
+        name: "Cuidado de la Piel",
+        image: "https://esika.vteximg.com.br/arquivos/categorie-cuidado-de-la-piel.jpg",
+        matchKeys: ["cuidado personal", "skincare", "cuidado de la piel"]
+      },
+      {
+        id: "joyeria",
+        name: "Joyería",
+        image: "https://esika.vteximg.com.br/arquivos/categorie-joyeria.jpg",
+        matchKeys: ["joyería"]
+      }
+    ],
     cyzone: [
       {
         id: "maquillaje",
-        name: "Maquillaje Cyzone",
-        subtitle: "Labiales Cyplay, sombras & máscaras Studio Look",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1258861/200112287_fotofondoblanco.jpg.jpg?v=639250845798470000",
+        name: "Maquillaje",
+        image: "https://cyzone.vteximg.com.br/arquivos/categorie-maquillaje.jpg",
         matchKeys: ["maquillaje"]
       },
       {
         id: "moda_y_accesorios",
         name: "Moda & Accesorios",
-        subtitle: "Aretes, mochilas, bolsos, carteras & lentes",
         image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252996/21-0114646_cy_clean_gold_est_are_x3_fotofondoblanco.jpg.jpg?v=639226023269000000",
         matchKeys: ["moda y accesorios", "mochilas"]
-      }
-    ],
-    esika: [
-      {
-        id: "perfumes",
-        name: "Perfumes & Fragancias",
-        subtitle: "Miss L'Bel, Bleu Night, damas y caballeros",
-        image: "https://belcorpmexico.vtexassets.com/arquivos/ids/1241433-1200-auto?v=639223676578300000&width=1200&height=auto&aspect=true",
-        matchKeys: ["perfumes"]
-      },
-      {
-        id: "maquillaje",
-        name: "Maquillaje & Colorfix",
-        subtitle: "Labiales larga duración, bases & polvos",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253604/200119076-productofb.jpg.jpg?v=639231810489800000",
-        matchKeys: ["maquillaje"]
-      },
-      {
-        id: "cuidado_personal",
-        name: "Cuidado Personal & Skincare",
-        subtitle: "Dual Protect, cremas & sueros",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1254777/210086712-productofb.jpg.jpg?v=639231886500730000",
-        matchKeys: ["cuidado personal", "skincare"]
-      },
-      {
-        id: "joyeria",
-        name: "Joyería Fina",
-        subtitle: "Aretes, anillos, collares baño en oro/plata",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138395/210103576-fotoproductoenfondoblanco.jpg?v=639168574371900000",
-        matchKeys: ["joyería"]
-      }
-    ],
-    lbel: [
-      {
-        id: "maquillaje",
-        name: "Maquillaje de Alta Gama",
-        subtitle: "Polvos antiedad Concentré, bases & labiales",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1187268/200120885_polvos_concentre_galeria1.jpg.jpg?v=639211715157200000",
-        matchKeys: ["maquillaje"]
-      },
-      {
-        id: "skincare",
-        name: "Tratamiento Facial & Sérums",
-        subtitle: "Sérum Ácido Hialurónico, Défense Total",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1256261/200121192_protector_antimanchas_claro_galeria1.jpg.jpg?v=639239845126730000",
-        matchKeys: ["cuidado personal", "skincare", "tecnología"]
-      },
-      {
-        id: "perfumes",
-        name: "Perfumería Fina Francesa",
-        subtitle: "Colonias de lujo & alta concentración",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1257086/200122336_destine_cancun_galeria1.jpg.jpg?v=639244104250230000",
-        matchKeys: ["perfumes"]
-      },
-      {
-        id: "cuidado_corporal",
-        name: "Cuidado Corporal",
-        subtitle: "Lociones hidratantes & cremas perfumadas",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1251843/200121584_bleu_femme_oasis_galeria1.jpg.jpg?v=639223902490930000",
-        matchKeys: ["cuidado personal"]
       }
     ],
     betterware: [
       {
         id: "cocina",
         name: "Cocina & Mesa",
-        subtitle: "Contenedores, organizadores & lunch",
         image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/24014-1-Gurmy-Nutri-Bowl-Betterware-1_a3aad0f7-0048-4475-984f-b3dd4cf25557.jpg?v=1789450268",
         matchKeys: ["cocina"]
       },
       {
         id: "hogar",
         name: "Organización & Hogar",
-        subtitle: "Zapateras, estantes, soluciones para el hogar",
         image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26856-1-Infla-Jack-Betterware.jpg?v=1789450268",
         matchKeys: ["hogar"]
       },
       {
         id: "portatiles",
-        name: "Portátiles & En Movimiento",
-        subtitle: "Porta básicos, termos & mochilas",
+        name: "Portátiles & Viaje",
         image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26605-1-Porta-Basicos-Betterware.jpg?v=1787011088",
         matchKeys: ["contigo", "mochilas"]
       },
       {
         id: "bienestar",
-        name: "Bienestar & Soluciones",
-        subtitle: "Bocinas, masajeadores & gadgets",
+        name: "Bienestar",
         image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/23213-1-Bocina-Colors-Betterware_85eb5f44-b8f6-41ac-999f-9103c7ec160b.jpg?v=1787975767",
         matchKeys: ["bienestar"]
       },
       {
         id: "bano_recamara",
         name: "Baño & Recámara",
-        subtitle: "Jaboneras, tapetes & confort",
         image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26430-1-Jabonera-Jack-Betterware.jpg?v=1789450268",
         matchKeys: ["baño", "recamara"]
       },
       {
         id: "limpieza",
-        name: "Limpieza & Lavandería",
-        subtitle: "Lava bra flex, trapeadores & cepillos",
+        name: "Limpieza",
         image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26699_E2_80_8B_20-1-Lava-Bra-Flex-Betterware.jpg?v=1789450268",
         matchKeys: ["limpieza"]
       }
@@ -361,14 +352,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const titleEl = document.getElementById("brand-categories-title");
     const subtitleEl = document.getElementById("brand-categories-subtitle");
 
-    const brandKey = currentBrand || "cyzone";
-    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandKey = currentBrand || "lbel";
+    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
 
     if (titleEl) {
-      titleEl.textContent = `Categorías ${brandName}`;
+      titleEl.textContent = "Compra por categoría";
     }
     if (subtitleEl) {
-      subtitleEl.textContent = `COLECCIONES EXCLUSIVAS ${brandName.toUpperCase()}`;
+      subtitleEl.textContent = `Colecciones exclusivas de ${brandName}`;
     }
 
     if (!grid) return;
@@ -377,27 +368,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     const brandProds = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
 
     grid.innerHTML = brandCats.map(cat => {
-      const matching = brandProds.filter(p => {
-        const pCat = (p.categoria || '').toLowerCase().trim();
-        return cat.matchKeys.includes(pCat);
-      });
+      let matching = [];
+      if (cat.customFilter) {
+        matching = brandProds.filter(cat.customFilter);
+      } else {
+        matching = brandProds.filter(p => {
+          const pCat = (p.categoria || '').toLowerCase().trim();
+          return cat.matchKeys && cat.matchKeys.includes(pCat);
+        });
+      }
+
       const count = matching.length;
+      if (count === 0 && !cat.customFilter) return "";
+
       const sampleImg = cat.image || (matching[0] && matching[0].fotos && matching[0].fotos[0]) || "https://via.placeholder.com/400?text=Categoria";
 
       return `
         <div class="col">
-          <div class="category-visual-card h-100" onclick="window.selectCategoryDirect('${cat.id}')" title="Ver ${cat.name}">
+          <div class="category-visual-card" onclick="window.selectCategoryDirect('${cat.id}')" title="Comprar ${cat.name}">
             <div class="category-visual-img-wrap">
-              <span class="category-dept-badge">${brandName}</span>
               <img src="${sampleImg}" alt="${cat.name}" loading="lazy">
             </div>
             <div class="category-visual-body">
               <h6 class="category-visual-title">${cat.name}</h6>
-              <p class="category-visual-desc">${cat.subtitle}</p>
-              <div class="category-visual-footer">
-                <span class="category-product-count">${count} producto${count === 1 ? '' : 's'}</span>
-                <span class="category-view-arrow"><i class="bi bi-arrow-right-short"></i></span>
-              </div>
+              <span class="category-product-count">${count} producto${count === 1 ? '' : 's'}</span>
             </div>
           </div>
         </div>
@@ -410,8 +404,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const container = document.getElementById("quick-category-pills");
     if (!container) return;
 
-    const brandKey = currentBrand || "cyzone";
-    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandKey = currentBrand || "lbel";
+    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
     const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
 
     const pills = [
@@ -431,8 +425,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Render Offcanvas Drawer List (Categorías en Menú Hamburguesa)
   function renderCategories() {
-    const brandKey = currentBrand || "cyzone";
-    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandKey = currentBrand || "lbel";
+    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
     const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
     const brandProds = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
 
@@ -448,11 +442,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       { id: "all", label: `✨ Todo ${brandName}`, count: brandProds.length },
       { id: "gift_200", label: "🎁 Regalos < $200", count: brandProds.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length },
       { id: "gift_350", label: "🎀 Regalos < $350", count: brandProds.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length },
-      ...brandCats.map(cat => ({
-        id: cat.id,
-        label: cat.name,
-        count: brandProds.filter(p => cat.matchKeys.includes((p.categoria || '').toLowerCase().trim())).length
-      }))
+      ...brandCats.map(cat => {
+        let cnt = 0;
+        if (cat.customFilter) {
+          cnt = brandProds.filter(cat.customFilter).length;
+        } else {
+          cnt = brandProds.filter(p => cat.matchKeys && cat.matchKeys.includes((p.categoria || '').toLowerCase().trim())).length;
+        }
+        return {
+          id: cat.id,
+          label: cat.name,
+          count: cnt
+        };
+      })
     ];
 
     offcanvasList.innerHTML = items.map(cat => {
@@ -477,13 +479,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Render Product Grid con Proporciones Estilo Cyzone
+  // Render Product Grid con Proporciones Estilo Minimalista
   function renderProducts() {
     const grid = document.getElementById("products-grid");
     const countEl = document.getElementById("products-count-text");
     if (!grid) return;
 
-    const brandKey = currentBrand || "cyzone";
+    const brandKey = currentBrand || "lbel";
     const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
 
     // 1. Filtro por Marca seleccionada
@@ -502,7 +504,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     } else if (currentCategory && currentCategory !== "all") {
       const catConfig = brandCats.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
-      if (catConfig && catConfig.matchKeys) {
+      if (catConfig && catConfig.customFilter) {
+        filtered = filtered.filter(catConfig.customFilter);
+      } else if (catConfig && catConfig.matchKeys) {
         filtered = filtered.filter(p => {
           const pCat = (p.categoria || '').toLowerCase().trim();
           return catConfig.matchKeys.includes(pCat);
@@ -575,8 +579,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (catalogEl) catalogEl.classList.remove("d-none");
 
     const titleEl = document.getElementById("current-category-title");
-    const brandKey = currentBrand || "cyzone";
-    const brandName = BRAND_LABELS[brandKey] || "Cyzone";
+    const brandKey = currentBrand || "lbel";
+    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
     const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
 
     if (titleEl) {
