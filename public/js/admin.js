@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const brandSelect = document.getElementById("prod-marca");
     if (brandSelect) brandSelect.value = (product.marca || "betterware").toLowerCase();
 
-    document.getElementById("prod-dept").value = (product.departamento || (product.marca === 'betterware' ? 'hogar' : 'belleza'));
+    document.getElementById("prod-dept").value = (product.departamento || (product.marca === 'betterware' ? 'hogar' : 'belleza')).toLowerCase();
     document.getElementById("prod-category").value = product.categoria || "";
     document.getElementById("prod-price-reg").value = product.precio_regular || "";
     document.getElementById("prod-price-off").value = product.precio_oferta || "";
