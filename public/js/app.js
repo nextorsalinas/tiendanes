@@ -3,8 +3,10 @@ const WHATSAPP_SELLER_PHONE = "525525000024";
 
 document.addEventListener("DOMContentLoaded", async () => {
   let allProducts = [];
-  let currentCategory = "all";
+  let currentCategory = null; // null => Visual Categories Showcase (Cyzone style home)
   let currentBrand = "all";
+  let currentDept = "all"; // 'all', 'belleza', 'hogar'
+  let currentView = "categories"; // 'categories' or 'products'
   let selectedProductForOrder = null;
 
   // 4 Official Brands Configuration
@@ -28,8 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
     renderBrands();
+    renderCategoriesShowcase();
     renderCategories();
-    renderProducts();
   }
 
   // Helper to get product department ('hogar' or 'belleza')
@@ -189,9 +191,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           currentBrand = selected;
         }
         renderBrands();
-        renderProducts();
+        if (currentView === "categories") {
+          renderCategoriesShowcase();
+        } else {
+          renderProducts();
+        }
         syncActiveBrandScroll();
-        scrollToProductsView();
       });
     });
   }
@@ -221,6 +226,188 @@ document.addEventListener("DOMContentLoaded", async () => {
       { id: "gift_350", label: "Regalos < $350" },
       ...sortedNames.map(name => ({ id: name, label: name, rawKeys: Array.from(categoryMap.get(name)) }))
     ];
+  }
+
+  // Cyzone-Inspired Curated Visual Categories
+  const VISUAL_CATEGORIES_CONFIG = [
+    {
+      id: "Maquillaje",
+      name: "Maquillaje",
+      subtitle: "Labiales, sombras, bases & máscaras",
+      dept: "belleza",
+      brands: ["cyzone", "esika", "lbel"],
+      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1253604/200119076-productofb.jpg.jpg?v=639231810489800000",
+      accent: "#e6007e",
+      matchKeys: ["maquillaje"]
+    },
+    {
+      id: "Perfumes",
+      name: "Perfumes & Fragancias",
+      subtitle: "Parfum femenino, masculino & colonias",
+      dept: "belleza",
+      brands: ["esika", "lbel"],
+      image: "https://belcorpmexico.vtexassets.com/arquivos/ids/1241433-1200-auto?v=639223676578300000&width=1200&height=auto&aspect=true",
+      accent: "#7928ca",
+      matchKeys: ["perfumes"]
+    },
+    {
+      id: "Cocina",
+      name: "Cocina & Mesa",
+      subtitle: "Contenedores, organizadores & lunch",
+      dept: "hogar",
+      brands: ["betterware"],
+      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/24014-1-Gurmy-Nutri-Bowl-Betterware-1_a3aad0f7-0048-4475-984f-b3dd4cf25557.jpg?v=1789450268",
+      accent: "#0071ce",
+      matchKeys: ["cocina"]
+    },
+    {
+      id: "Hogar",
+      name: "Organización & Hogar",
+      subtitle: "Espacios ordenados, sala & accesorios",
+      dept: "hogar",
+      brands: ["betterware"],
+      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26856-1-Infla-Jack-Betterware.jpg?v=1789450268",
+      accent: "#0071ce",
+      matchKeys: ["hogar", "recamara", "contigo"]
+    },
+    {
+      id: "Moda y Accesorios",
+      name: "Moda & Accesorios",
+      subtitle: "Bolsos, mochilas, carteras & lentes",
+      dept: "belleza",
+      brands: ["cyzone", "betterware"],
+      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252996/21-0114646_cy_clean_gold_est_are_x3_fotofondoblanco.jpg.jpg?v=639226023269000000",
+      accent: "#f72585",
+      matchKeys: ["moda y accesorios", "mochilas"]
+    },
+    {
+      id: "Cuidado Personal",
+      name: "Cuidado Facial & Skincare",
+      subtitle: "Cremas hidratantes, serums & limpieza",
+      dept: "belleza",
+      brands: ["esika", "lbel"],
+      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1255869/Supreme-fb.jpg.jpg?v=639235028665900000",
+      accent: "#111111",
+      matchKeys: ["cuidado personal", "skincare"]
+    },
+    {
+      id: "Limpieza",
+      name: "Limpieza & Lavandería",
+      subtitle: "Cepillos, trapeadores & lavado fácil",
+      dept: "hogar",
+      brands: ["betterware"],
+      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26699_E2_80_8B_20-1-Lava-Bra-Flex-Betterware.jpg?v=1789450268",
+      accent: "#0071ce",
+      matchKeys: ["limpieza"]
+    },
+    {
+      id: "Baño",
+      name: "Baño & Descanso",
+      subtitle: "Dispensadores, tapetes & cortinas",
+      dept: "hogar",
+      brands: ["betterware"],
+      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26430-1-Jabonera-Jack-Betterware.jpg?v=1789450268",
+      accent: "#0071ce",
+      matchKeys: ["baño"]
+    },
+    {
+      id: "Bienestar",
+      name: "Bienestar & Tecnología",
+      subtitle: "Bocinas, masajeadores & gadgets",
+      dept: "hogar",
+      brands: ["betterware", "lbel"],
+      image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/23213-1-Bocina-Colors-Betterware_85eb5f44-b8f6-41ac-999f-9103c7ec160b.jpg?v=1787975767",
+      accent: "#7928ca",
+      matchKeys: ["bienestar", "tecnología"]
+    },
+    {
+      id: "Joyería",
+      name: "Joyería & Aretes",
+      subtitle: "Aretes finos, collares & sets",
+      dept: "belleza",
+      brands: ["esika"],
+      image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1138395/210103576-fotoproductoenfondoblanco.jpg?v=639168574371900000",
+      accent: "#e31c2d",
+      matchKeys: ["joyería"]
+    }
+  ];
+
+  // Render Visual Categories Showcase (Cyzone Style)
+  function renderCategoriesShowcase() {
+    const grid = document.getElementById("categories-visual-grid");
+    if (!grid) return;
+
+    const activeProds = allProducts.filter(p => p.activo !== false);
+
+    // Filter categories by selected department and brand
+    let visibleCats = VISUAL_CATEGORIES_CONFIG.filter(cat => {
+      // 1. Dept filter
+      if (currentDept !== "all" && cat.dept !== currentDept) {
+        return false;
+      }
+      // 2. Brand filter
+      if (currentBrand !== "all" && !cat.brands.includes(currentBrand.toLowerCase())) {
+        return false;
+      }
+      return true;
+    });
+
+    grid.innerHTML = visibleCats.map(cat => {
+      // Count live active items
+      let matching = activeProds.filter(p => {
+        const pCat = (p.categoria || '').toLowerCase().trim();
+        return cat.matchKeys.includes(pCat);
+      });
+
+      if (currentBrand !== "all") {
+        matching = matching.filter(p => (p.marca || 'betterware').toLowerCase() === currentBrand.toLowerCase());
+      }
+
+      const count = matching.length;
+      if (count === 0 && currentBrand !== "all") return "";
+
+      const deptLabel = cat.dept === "belleza" ? "Belleza" : "Hogar";
+      const sampleImg = cat.image || (matching[0] && matching[0].fotos && matching[0].fotos[0]) || "https://via.placeholder.com/400?text=Categoria";
+
+      return `
+        <div class="col">
+          <div class="category-visual-card h-100" onclick="window.selectCategoryDirect('${cat.id}')" title="Ver productos de ${cat.name}">
+            <div class="category-visual-img-wrap">
+              <span class="category-dept-badge">${deptLabel}</span>
+              <img src="${sampleImg}" alt="${cat.name}" loading="lazy">
+            </div>
+            <div class="category-visual-body">
+              <h6 class="category-visual-title">${cat.name}</h6>
+              <p class="category-visual-desc">${cat.subtitle}</p>
+              <div class="category-visual-footer">
+                <span class="category-product-count">${count} producto${count === 1 ? '' : 's'}</span>
+                <span class="category-view-arrow"><i class="bi bi-arrow-right-short"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Render quick horizontal category selector in products catalog view
+  function renderQuickCategoryPills() {
+    const container = document.getElementById("quick-category-pills");
+    if (!container) return;
+
+    const pills = [
+      { id: "all", label: "✨ Todo el Catálogo" },
+      ...VISUAL_CATEGORIES_CONFIG.map(c => ({ id: c.id, label: c.name }))
+    ];
+
+    container.innerHTML = pills.map(p => {
+      const isSelected = (currentCategory === p.id) || (currentCategory === "all" && p.id === "all");
+      return `
+        <button type="button" class="quick-cat-pill ${isSelected ? 'active' : ''}" onclick="window.selectCategoryDirect('${p.id}')">
+          ${p.label}
+        </button>
+      `;
+    }).join("");
   }
 
   // Render Offcanvas Drawer List (Categorías en Menú Hamburguesa)
@@ -263,16 +450,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     offcanvasList.querySelectorAll("[data-category]").forEach(btn => {
       btn.addEventListener("click", (e) => {
-        currentCategory = e.currentTarget.getAttribute("data-category");
+        const cat = e.currentTarget.getAttribute("data-category");
         closeOffcanvas();
-        renderCategories();
-        renderProducts();
-        scrollToProductsView();
+        window.selectCategoryDirect(cat);
       });
     });
   }
 
-  // Render Product Grid con Filtro por Marca y Categoría
+  // Render Product Grid con Proporciones Estilo Cyzone
   function renderProducts() {
     const grid = document.getElementById("products-grid");
     const countEl = document.getElementById("products-count-text");
@@ -296,107 +481,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
         return price <= 350;
       });
-    } else if (currentCategory !== "all") {
-      const categories = getCatalogCategories();
-      const catObj = categories.find(c => c.id === currentCategory);
-      if (catObj && catObj.rawKeys) {
-        filtered = filtered.filter(p => catObj.rawKeys.includes(p.categoria));
+    } else if (currentCategory && currentCategory !== "all") {
+      const vCat = VISUAL_CATEGORIES_CONFIG.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
+      if (vCat && vCat.matchKeys) {
+        filtered = filtered.filter(p => {
+          const pCat = (p.categoria || '').toLowerCase().trim();
+          return vCat.matchKeys.includes(pCat);
+        });
       } else {
-        filtered = filtered.filter(p => formatCategoryName(p.categoria) === currentCategory || p.categoria === currentCategory);
+        filtered = filtered.filter(p => (p.categoria || '').toLowerCase().trim() === currentCategory.toLowerCase().trim());
       }
     }
 
-    // Actualizar encabezado contextual con botón para limpiar filtros
+    // Actualizar contador
     if (countEl) {
-      if (currentBrand === "all" && currentCategory === "all") {
-        countEl.innerHTML = `<span><strong>${filtered.length}</strong> Productos Disponibles</span>`;
-      } else {
-        const filterBadges = [];
-        if (currentBrand !== "all") {
-          filterBadges.push(`<span class="badge bg-light text-primary border">${formatBrandName(currentBrand)}</span>`);
-        }
-        if (currentCategory !== "all") {
-          const catLabel = currentCategory === "gift_200" 
-            ? "Regalos < $200" 
-            : currentCategory === "gift_350" 
-              ? "Regalos < $350" 
-              : currentCategory;
-          filterBadges.push(`<span class="badge bg-light text-primary border">${catLabel}</span>`);
-        }
-
-        countEl.innerHTML = `
-          <div class="d-flex align-items-center justify-content-between w-100 flex-wrap gap-2">
-            <span>Mostrando <strong>${filtered.length}</strong> productos en ${filterBadges.join(' ')}</span>
-            <button class="btn btn-sm btn-link text-decoration-none p-0 text-muted" id="btn-clear-filters" style="font-size:0.78rem;">
-              <i class="bi bi-x-circle me-1"></i>Ver todos
-            </button>
-          </div>
-        `;
-
-        const clearBtn = document.getElementById("btn-clear-filters");
-        if (clearBtn) {
-          clearBtn.addEventListener("click", () => {
-            currentBrand = "all";
-            currentCategory = "all";
-            renderBrands();
-            renderCategories();
-            renderProducts();
-            syncActiveBrandScroll();
-            scrollToProductsView();
-          });
-        }
-      }
+      countEl.textContent = `${filtered.length} producto${filtered.length === 1 ? '' : 's'}`;
     }
 
     if (filtered.length === 0) {
-      let emptyTitle = "No hay productos en esta sección";
-      let emptyHint = "No encontramos resultados con los filtros actuales.";
-      
-      if (currentBrand !== "all" && currentCategory !== "all") {
-        const bName = formatBrandName(currentBrand);
-        const catLabel = currentCategory === "gift_200" ? "Regalos < $200" : currentCategory === "gift_350" ? "Regalos < $350" : currentCategory;
-        emptyTitle = `Sin coincidencias en ${catLabel}`;
-        emptyHint = `<strong>${bName}</strong> no cuenta con productos en la categoría <em>${catLabel}</em>. Puedes ver todo lo de ${bName} o explorar todas las marcas.`;
-      }
-
       grid.innerHTML = `
         <div class="col-12 text-center py-5">
-          <div class="p-4 bg-white rounded-4 border text-center max-w-md mx-auto shadow-sm">
+          <div class="p-4 bg-white rounded-4 border text-center mx-auto" style="max-width: 420px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
             <i class="bi bi-box-seam text-muted fs-1 mb-2 d-block"></i>
-            <h6 class="fw-bold text-dark mb-1">${emptyTitle}</h6>
-            <p class="text-muted small mb-3">${emptyHint}</p>
-            <div class="d-flex justify-content-center gap-2 flex-wrap">
-              <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold" id="btn-reset-filters">Ver todo el catálogo</button>
-              ${currentBrand !== "all" ? `<button class="btn btn-sm btn-light border rounded-pill px-3 text-muted" id="btn-reset-to-brand">Ver todo ${formatBrandName(currentBrand)}</button>` : ''}
-            </div>
+            <h6 class="fw-bold text-dark mb-1">Sin productos disponibles</h6>
+            <p class="text-muted small mb-3">No hay productos disponibles con esta combinación de filtros.</p>
+            <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold" onclick="window.viewAllProducts()">Ver todo el catálogo</button>
           </div>
         </div>
       `;
-
-      const resetBtn = document.getElementById("btn-reset-filters");
-      if (resetBtn) {
-        resetBtn.addEventListener("click", () => {
-          currentBrand = "all";
-          currentCategory = "all";
-          renderBrands();
-          renderCategories();
-          renderProducts();
-          syncActiveBrandScroll();
-          scrollToProductsView();
-        });
-      }
-
-      const resetBrandBtn = document.getElementById("btn-reset-to-brand");
-      if (resetBrandBtn) {
-        resetBrandBtn.addEventListener("click", () => {
-          currentCategory = "all";
-          renderCategories();
-          renderProducts();
-          syncActiveBrandScroll();
-          scrollToProductsView();
-        });
-      }
-
       return;
     }
 
@@ -408,28 +520,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
 
       return `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <a href="${productUrl}" class="product-card-img-container text-decoration-none" title="Ver ${p.nombre}">
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
+              ${hasDiscount ? `<span class="badge-shein-discount">-${discountPercent}%</span>` : ''}
             </a>
             <div class="product-card-content">
-              <div class="d-flex align-items-center justify-content-between mb-1">
-                <span class="badge-brand-subtle badge-brand-${(p.marca || 'betterware').toLowerCase()}">${formatBrandName(p.marca)}</span>
-                ${hasDiscount ? `<span class="badge-discount-subtle">-${discountPercent}%</span>` : ''}
-              </div>
-
+              <span class="product-brand-tag">${formatBrandName(p.marca)}</span>
               <a href="${productUrl}" class="product-name-minimal text-decoration-none" title="Ver ${p.nombre}">
                 ${p.nombre}
               </a>
-              
               <div class="price-row">
                 <span class="price-main">$${currentPrice.toFixed(2)}</span>
                 ${hasDiscount ? `<span class="price-old-strike">$${p.precio_regular.toFixed(2)}</span>` : ''}
               </div>
-
               <a href="${productUrl}" class="btn-whatsapp-card text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
-                <i class="bi bi-whatsapp fs-5"></i> <span>Pedir por WhatsApp</span>
+                <i class="bi bi-whatsapp"></i> <span>Pedir por WhatsApp</span>
               </a>
             </div>
           </div>
@@ -437,6 +544,63 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
     }).join("");
   }
+
+  // Window Global Navigation Methods
+  window.selectCategoryDirect = (catId) => {
+    currentCategory = catId;
+    currentView = "products";
+
+    const showcaseEl = document.getElementById("view-categories-showcase");
+    const catalogEl = document.getElementById("view-products-catalog");
+    if (showcaseEl) showcaseEl.classList.add("d-none");
+    if (catalogEl) catalogEl.classList.remove("d-none");
+
+    const titleEl = document.getElementById("current-category-title");
+    if (titleEl) {
+      if (catId === "gift_200") {
+        titleEl.textContent = "Regalos < $200";
+      } else if (catId === "gift_350") {
+        titleEl.textContent = "Regalos < $350";
+      } else if (catId === "all") {
+        titleEl.textContent = "Todo el Catálogo";
+      } else {
+        const vCat = VISUAL_CATEGORIES_CONFIG.find(c => c.id.toLowerCase() === catId.toLowerCase());
+        titleEl.textContent = vCat ? vCat.name : formatCategoryName(catId);
+      }
+    }
+
+    renderQuickCategoryPills();
+    renderProducts();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  window.backToCategories = () => {
+    currentCategory = null;
+    currentView = "categories";
+
+    const showcaseEl = document.getElementById("view-categories-showcase");
+    const catalogEl = document.getElementById("view-products-catalog");
+    if (showcaseEl) showcaseEl.classList.remove("d-none");
+    if (catalogEl) catalogEl.classList.add("d-none");
+
+    renderCategoriesShowcase();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  window.viewAllProducts = () => {
+    window.selectCategoryDirect("all");
+  };
+
+  // Department filter pills in Category Showcase view
+  const deptPills = document.querySelectorAll("#dept-pills-container .dept-filter-pill");
+  deptPills.forEach(pill => {
+    pill.addEventListener("click", (e) => {
+      deptPills.forEach(p => p.classList.remove("active"));
+      e.currentTarget.classList.add("active");
+      currentDept = e.currentTarget.getAttribute("data-dept");
+      renderCategoriesShowcase();
+    });
+  });
 
 
   // Open Direct Order Modal for Selected Product
