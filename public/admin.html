@@ -40,8 +40,8 @@
 
     <!-- KPI Metric Cards -->
     <div class="row g-3 mb-4">
-      <div class="col-6 col-md-3">
-        <div class="admin-card p-3 d-flex align-items-center justify-content-between">
+      <div class="col-6 col-md-4 col-xl">
+        <div class="admin-card p-3 d-flex align-items-center justify-content-between h-100">
           <div>
             <span class="text-muted small fw-bold">Total Pedidos</span>
             <h3 class="fw-extrabold mb-0 text-dark" id="metric-total-orders">0</h3>
@@ -51,8 +51,8 @@
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="admin-card p-3 d-flex align-items-center justify-content-between">
+      <div class="col-6 col-md-4 col-xl">
+        <div class="admin-card p-3 d-flex align-items-center justify-content-between h-100">
           <div>
             <span class="text-muted small fw-bold">Pendientes Pago</span>
             <h3 class="fw-extrabold mb-0 text-warning" id="metric-pending-orders">0</h3>
@@ -62,8 +62,8 @@
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="admin-card p-3 d-flex align-items-center justify-content-between">
+      <div class="col-6 col-md-4 col-xl">
+        <div class="admin-card p-3 d-flex align-items-center justify-content-between h-100">
           <div>
             <span class="text-muted small fw-bold">Ventas Totales</span>
             <h3 class="fw-extrabold mb-0 text-success" id="metric-revenue">$0.00</h3>
@@ -73,14 +73,26 @@
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="admin-card p-3 d-flex align-items-center justify-content-between">
+      <div class="col-6 col-md-6 col-xl">
+        <div class="admin-card p-3 d-flex align-items-center justify-content-between h-100">
           <div>
             <span class="text-muted small fw-bold">Productos Catálogo</span>
             <h3 class="fw-extrabold mb-0 text-info" id="metric-total-products">0</h3>
           </div>
           <div class="bg-info bg-opacity-10 text-info p-3 rounded-circle">
             <i class="bi bi-boxes fs-4"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-xl">
+        <div class="admin-card p-3 d-flex align-items-center justify-content-between h-100" style="border-left: 4px solid #7928ca;">
+          <div>
+            <span class="text-muted small fw-bold">Valor en Precio Venta</span>
+            <h3 class="fw-extrabold mb-0" style="color: #7928ca;" id="metric-catalog-sale-value">$0.00</h3>
+            <small class="text-muted" id="metric-catalog-pieces">0 piezas</small>
+          </div>
+          <div class="p-3 rounded-circle" style="background-color: rgba(121, 40, 202, 0.1); color: #7928ca;">
+            <i class="bi bi-tags-fill fs-4"></i>
           </div>
         </div>
       </div>

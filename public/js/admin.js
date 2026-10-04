@@ -48,10 +48,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     const totalRevenue = ordersList.reduce((sum, o) => sum + (o.total || 0), 0);
     const totalProducts = productsList.length;
 
+    // Calcular cantidad y valor total de los productos en precio de venta:
+    let totalPieces = 0;
+    const totalCatalogSaleValue = productsList.reduce((sum, p) => {
+      if (p.activo === false) return sum;
+      const salePrice = (p.precio_oferta && Number(p.precio_oferta) < Number(p.precio_regular))
+        ? Number(p.precio_oferta)
+        : Number(p.precio_regular || 0);
+      const stock = (typeof p.stock === "number" && p.stock >= 0) ? p.stock : 1;
+      totalPieces += stock;
+      return sum + (salePrice * stock);
+    }, 0);
+
     const elTotalOrders = document.getElementById("metric-total-orders");
     const elPendingOrders = document.getElementById("metric-pending-orders");
     const elRevenue = document.getElementById("metric-revenue");
     const elTotalProducts = document.getElementById("metric-total-products");
+    const elCatalogSaleValue = document.getElementById("metric-catalog-sale-value");
+    const elCatalogPieces = document.getElementById("metric-catalog-pieces");
 
     if (elTotalOrders) elTotalOrders.textContent = totalOrders;
     if (elPendingOrders) elPendingOrders.textContent = pendingOrders;
@@ -60,6 +74,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       const hogarCount = productsList.filter(p => (p.departamento || '').toLowerCase() === 'hogar' || (p.marca || '').toLowerCase() === 'betterware').length;
       const bellezaCount = productsList.length - hogarCount;
       elTotalProducts.innerHTML = `${totalProducts} <span class="badge bg-primary ms-1 fs-6">${hogarCount} Hogar</span> <span class="badge bg-danger ms-1 fs-6">${bellezaCount} Belleza</span>`;
+    }
+    if (elCatalogSaleValue) {
+      elCatalogSaleValue.textContent = `$${totalCatalogSaleValue.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
+    }
+    if (elCatalogPieces) {
+      elCatalogPieces.textContent = `${totalPieces} piezas en catálogo`;
     }
   }
 
