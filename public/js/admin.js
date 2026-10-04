@@ -1,10 +1,10 @@
-// Admin Panel Logic for Tienda Nesty (Gestión Completa & JSON Directo)
+// Executive Admin Panel Logic for nestt. (CoreUI KPIs & Operations)
 document.addEventListener("DOMContentLoaded", async () => {
   let ordersList = [];
   let productsList = [];
   let filterText = "";
 
-  // Tab switcher
+  // 1. Tab switcher (Pedidos & Catálogo)
   const navTabs = document.querySelectorAll(".admin-nav-link");
   navTabs.forEach(tab => {
     tab.addEventListener("click", (e) => {
@@ -14,44 +14,50 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const targetSection = tab.getAttribute("data-target");
       document.querySelectorAll(".admin-section").forEach(sec => sec.classList.add("d-none"));
-      document.getElementById(targetSection).classList.remove("d-none");
-
-      if (targetSection === "section-bulk-import") {
-        populateJsonEditorTextarea();
-      }
+      const activeSec = document.getElementById(targetSection);
+      if (activeSec) activeSec.classList.remove("d-none");
     });
   });
 
-  // Load Admin Data
+  // 2. Load Data from Cloud Firestore & Local Cache
   async function loadAdminData() {
-    ordersList = await window.db.getOrders();
-    productsList = await window.db.getProducts();
+    try {
+      ordersList = await window.db.getOrders();
+      productsList = await window.db.getProducts();
 
-    renderDashboardMetrics();
-    renderOrdersTable();
-    renderProductsTable();
-    populateJsonEditorTextarea();
-  }
-
-  // Populate JSON Editor Textarea
-  function populateJsonEditorTextarea() {
-    const jsonInput = document.getElementById("bulk-json-input");
-    if (jsonInput) {
-      jsonInput.value = JSON.stringify(productsList, null, 2);
+      renderDashboardMetrics();
+      renderBrandInsights();
+      renderOrdersTable();
+      renderProductsTable();
+    } catch (err) {
+      console.error("Error al cargar datos del panel admin:", err);
     }
   }
 
-  // Render Dashboard Metrics
+  // Helper to format brand names
+  function formatBrandName(marca) {
+    if (!marca) return "Betterware";
+    const clean = marca.toLowerCase().trim();
+    const map = {
+      "betterware": "Betterware",
+      "esika": "Ésika",
+      "cyzone": "Cyzone",
+      "lbel": "L'Bel"
+    };
+    return map[clean] || (clean.charAt(0).toUpperCase() + clean.slice(1));
+  }
+
+  // 3. Render Executive Dashboard Metrics (KPIs)
   function renderDashboardMetrics() {
     const totalOrders = ordersList.length;
     const pendingOrders = ordersList.filter(o => o.estado === "pendiente_pago").length;
     const totalRevenue = ordersList.reduce((sum, o) => sum + (o.total || 0), 0);
-    const totalProducts = productsList.length;
+    const activeProducts = productsList.filter(p => p.activo !== false);
+    const totalProducts = activeProducts.length;
 
-    // Calcular cantidad y valor total de los productos en precio de venta:
+    // Calcular cantidad y valor total de inventario a precio de venta
     let totalPieces = 0;
-    const totalCatalogSaleValue = productsList.reduce((sum, p) => {
-      if (p.activo === false) return sum;
+    const totalCatalogSaleValue = activeProducts.reduce((sum, p) => {
       const salePrice = (p.precio_oferta && Number(p.precio_oferta) < Number(p.precio_regular))
         ? Number(p.precio_oferta)
         : Number(p.precio_regular || 0);
@@ -68,24 +74,76 @@ document.addEventListener("DOMContentLoaded", async () => {
     const elTotalProducts = document.getElementById("metric-total-products");
     const elCatalogSaleValue = document.getElementById("metric-catalog-sale-value");
     const elCatalogPieces = document.getElementById("metric-catalog-pieces");
+    const elProductsBreakdown = document.getElementById("metric-products-breakdown");
+    const elOrdersBadge = document.getElementById("orders-count-badge");
 
     if (elTotalOrders) elTotalOrders.textContent = totalOrders;
     if (elPendingOrders) elPendingOrders.textContent = pendingOrders;
-    if (elRevenue) elRevenue.textContent = `$${totalRevenue.toFixed(2)} MXN`;
-    if (elTotalProducts) {
-      const hogarCount = productsList.filter(p => (p.departamento || '').toLowerCase() === 'hogar' || (p.marca || '').toLowerCase() === 'betterware').length;
-      const bellezaCount = productsList.length - hogarCount;
-      elTotalProducts.innerHTML = `${totalProducts} <span class="badge bg-primary ms-1 fs-6">${hogarCount} Hogar</span> <span class="badge bg-danger ms-1 fs-6">${bellezaCount} Belleza</span>`;
+    if (elRevenue) elRevenue.textContent = `$${totalRevenue.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
+
+    if (elTotalProducts) elTotalProducts.textContent = totalProducts;
+    if (elProductsBreakdown) {
+      const hogarCount = activeProducts.filter(p => (p.departamento || '').toLowerCase() === 'hogar' || (p.marca || '').toLowerCase() === 'betterware').length;
+      const bellezaCount = totalProducts - hogarCount;
+      elProductsBreakdown.innerHTML = `<span class="badge bg-primary-subtle text-primary border border-primary me-1">${hogarCount} Hogar</span> <span class="badge bg-danger-subtle text-danger border border-danger">${bellezaCount} Belleza</span>`;
     }
+
     if (elCatalogSaleValue) {
       elCatalogSaleValue.textContent = `$${totalCatalogSaleValue.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
     }
     if (elCatalogPieces) {
       elCatalogPieces.textContent = `${totalPieces} piezas (Promedio $${avgPricePerPiece.toFixed(2)} c/u)`;
     }
+
+    if (elOrdersBadge) {
+      elOrdersBadge.textContent = `${totalOrders} pedido${totalOrders === 1 ? '' : 's'}`;
+    }
   }
 
-  // Render Orders Table
+  // 4. Render Brand Breakdown Insights (Betterware, Ésika, Cyzone, L'Bel)
+  function renderBrandInsights() {
+    const grid = document.getElementById("brand-insights-grid");
+    if (!grid) return;
+
+    const brandConfig = [
+      { id: "betterware", label: "Betterware", color: "#0071ce", icon: "bi-house-heart-fill", dept: "Hogar" },
+      { id: "esika", label: "Ésika", color: "#e31c2d", icon: "bi-gem", dept: "Belleza" },
+      { id: "cyzone", label: "Cyzone", color: "#e6007e", icon: "bi-stars", dept: "Belleza" },
+      { id: "lbel", label: "L'Bel", color: "#111111", icon: "bi-award-fill", dept: "Alta Belleza" }
+    ];
+
+    const activeProducts = productsList.filter(p => p.activo !== false);
+
+    grid.innerHTML = brandConfig.map(b => {
+      const prodsOfBrand = activeProducts.filter(p => (p.marca || 'betterware').toLowerCase() === b.id);
+      let brandStock = 0;
+      let brandSaleVal = 0;
+
+      prodsOfBrand.forEach(p => {
+        const sale = (p.precio_oferta && Number(p.precio_oferta) < Number(p.precio_regular))
+          ? Number(p.precio_oferta)
+          : Number(p.precio_regular || 0);
+        const stock = (typeof p.stock === 'number' && p.stock >= 0) ? p.stock : 1;
+        brandStock += stock;
+        brandSaleVal += (sale * stock);
+      });
+
+      return `
+        <div class="col-6 col-md-3">
+          <div class="p-3 bg-white rounded-3 border h-100 shadow-sm" style="border-top: 3px solid ${b.color} !important;">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="fw-bold small" style="color: ${b.color};"><i class="bi ${b.icon} me-1"></i> ${b.label}</span>
+              <span class="badge bg-light text-muted border" style="font-size:0.7rem;">${prodsOfBrand.length} SKUs</span>
+            </div>
+            <h5 class="fw-extrabold text-dark mb-1">$${brandSaleVal.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h5>
+            <small class="text-muted" style="font-size: 0.78rem;">${brandStock} piezas en inventario</small>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // 5. Render Orders Table
   function renderOrdersTable() {
     const tableBody = document.getElementById("admin-orders-tbody");
     if (!tableBody) return;
@@ -106,15 +164,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td><strong class="text-dark">${order.id}</strong></td>
           <td><small class="text-muted">${fechaFormatted}</small></td>
           <td>
-            <strong>${order.cliente.nombre}</strong><br>
-            <small class="text-muted"><i class="bi bi-whatsapp"></i> ${order.cliente.telefono}</small>
+            <strong>${order.cliente ? order.cliente.nombre : 'Cliente'}</strong><br>
+            <small class="text-muted"><i class="bi bi-whatsapp"></i> ${order.cliente ? order.cliente.telefono : 'N/A'}</small>
           </td>
           <td>
             <small class="fw-bold text-dark">${itemTitle}</small><br>
-            <small class="text-muted">${order.cliente.direccion}</small>
+            <small class="text-muted">${order.cliente ? order.cliente.direccion : ''}</small>
           </td>
           <td class="fw-bold text-success">$${order.total ? order.total.toFixed(2) : '0.00'}</td>
-          <td><span class="status-badge ${statusClass}">${order.estado.replace('_', ' ').toUpperCase()}</span></td>
+          <td><span class="status-badge ${statusClass}">${(order.estado || 'pendiente').replace('_', ' ').toUpperCase()}</span></td>
           <td>
             <select class="form-select form-select-sm status-change-select rounded-pill" data-order-id="${order.id}">
               <option value="pendiente_pago" ${order.estado === 'pendiente_pago' ? 'selected' : ''}>Pendiente Pago</option>
@@ -138,7 +196,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Render Products Table with Search
+  // 6. Render Products Table with Search & Stock Quantity Column
   function renderProductsTable() {
     const tableBody = document.getElementById("admin-products-tbody");
     if (!tableBody) return;
@@ -147,15 +205,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (filterText.trim() !== "") {
       const q = filterText.toLowerCase();
       filtered = filtered.filter(p => 
-        p.nombre.toLowerCase().includes(q) || 
-        p.codigo.toLowerCase().includes(q) || 
+        (p.nombre && p.nombre.toLowerCase().includes(q)) || 
+        (p.codigo && p.codigo.toLowerCase().includes(q)) || 
         (p.categoria && p.categoria.toLowerCase().includes(q)) ||
         (p.marca && p.marca.toLowerCase().includes(q))
       );
     }
 
     if (filtered.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No se encontraron productos en el catálogo.</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No se encontraron productos que coincidan con la búsqueda.</td></tr>`;
       return;
     }
 
@@ -184,11 +242,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       return `
         <tr>
           <td><img src="${mainImg}" style="width: 40px; height: 40px; object-fit: contain;" class="rounded bg-light p-1"></td>
-          <td><code>${p.codigo}</code></td>
+          <td><code>${p.codigo || 'N/A'}</code></td>
           <td><strong class="text-dark">${p.nombre}</strong></td>
           <td>${brandBadge}</td>
           <td>${deptBadge}</td>
-          <td><small class="text-muted">${p.categoria}</small></td>
+          <td><small class="text-muted">${p.categoria || 'General'}</small></td>
           <td>
             <strong class="text-dark">$${(p.precio_oferta || p.precio_regular || 0).toFixed(2)}</strong>
             ${p.precio_oferta ? `<br><small class="text-decoration-line-through text-muted">$${p.precio_regular.toFixed(2)}</small>` : ''}
@@ -211,7 +269,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
-  // Search input in admin table
+  // 7. Search input in admin table
   const searchInput = document.getElementById("admin-search-product");
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
@@ -220,7 +278,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Open New Product Modal (Garantizado)
+  // 8. Open New Product Modal
   window.openNewProductModal = () => {
     document.getElementById("productModalHeading").textContent = "Agregar Nuevo Producto";
     document.getElementById("edit-prod-id").value = "";
@@ -242,7 +300,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Close Product Modal (Garantizado)
+  // Close Product Modal
   window.closeProductModal = () => {
     const modalEl = document.getElementById("addProductModal");
     if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
@@ -259,12 +317,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (backdrop) backdrop.remove();
   };
 
-  // Open Edit Product Modal
+  // 9. Open Edit Product Modal
   window.editProduct = (id) => {
     const product = productsList.find(p => p.id === id);
     if (!product) return;
 
-    document.getElementById("productModalHeading").textContent = `Editar Producto: ${product.codigo}`;
+    document.getElementById("productModalHeading").textContent = `Editar Producto: ${product.codigo || ''}`;
     document.getElementById("edit-prod-id").value = product.id;
     document.getElementById("prod-code").value = product.codigo || "";
     document.getElementById("prod-name").value = product.nombre || "";
@@ -293,24 +351,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  // Delete product action
+  // 10. Delete product action
   window.deleteProduct = async (id) => {
     const product = productsList.find(p => p.id === id);
     const title = product ? product.nombre : "este producto";
-    if (confirm(`¿Estás seguro de eliminar "${title}" del catálogo? Se actualizará también en los archivos del repositorio.`)) {
+    if (confirm(`¿Estás seguro de eliminar "${title}" del catálogo?`)) {
       await window.db.deleteProduct(id);
       await loadAdminData();
     }
   };
 
-  // Save / Add Product Form Submit
+  // 11. Save / Add Product Form Submit
   const productEditForm = document.getElementById("productEditForm");
   if (productEditForm) {
     productEditForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       try {
         const editId = document.getElementById("edit-prod-id").value;
-
         const codeVal = document.getElementById("prod-code").value.trim();
         const nameVal = document.getElementById("prod-name").value.trim();
         const marcaSelect = document.getElementById("prod-marca");
@@ -340,11 +397,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           variantes: []
         };
 
-        const result = await window.db.saveProduct(product);
+        await window.db.saveProduct(product);
         window.closeProductModal();
         productEditForm.reset();
         await loadAdminData();
-        alert(`¡Producto "${nameVal}" guardado exitosamente en el catálogo y en los archivos del repositorio!`);
+        alert(`¡Producto "${nameVal}" guardado exitosamente!`);
       } catch (err) {
         console.error("Error al guardar producto:", err);
         alert("Error al guardar producto: " + err.message);
@@ -352,95 +409,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Bulk Import / Direct JSON Submit
-  const bulkImportForm = document.getElementById("bulkImportForm");
-  if (bulkImportForm) {
-    bulkImportForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const jsonText = document.getElementById("bulk-json-input").value;
-      try {
-        const parsed = JSON.parse(jsonText);
-        if (!Array.isArray(parsed)) {
-          alert("El contenido JSON debe ser un arreglo de productos: [ { ... }, { ... } ]");
-          return;
-        }
-
-        const totalSaved = await window.db.bulkImportProducts(parsed);
-        alert(`¡Catálogo actualizado con éxito! Se guardaron ${totalSaved} productos en el repositorio.`);
-        await loadAdminData();
-      } catch (err) {
-        alert("Error al procesar el archivo JSON. Verifica que la sintaxis sea válida: " + err.message);
-      }
-    });
-  }
-
-  // Handle Git Sync (Commit & Push)
-  async function handleGitSync() {
-    const btns = document.querySelectorAll("#btn-git-sync-repo, #btn-sync-git-inline");
-    btns.forEach(b => {
-      b.disabled = true;
-      b.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Sincronizando Git...';
-    });
-
-    try {
-      const res = await window.db.syncWithGit("Actualización de productos y catálogo desde panel local");
-      if (res && res.success) {
-        alert("✅ ¡Repositorio sincronizado!\n\n" + (res.commit || "Archivos guardados en Git.") + (res.pushed ? "\n\nSe subieron los cambios a GitHub (push completado)." : "\n\n(Cambios confirmados localmente en Git)"));
-      } else {
-        alert("ℹ️ Estado Git: " + (res.error || "No se detectaron cambios pendientes."));
-      }
-    } catch (err) {
-      alert("Error al sincronizar con Git: " + err.message);
-    } finally {
-      const mainBtn = document.getElementById("btn-git-sync-repo");
-      if (mainBtn) {
-        mainBtn.disabled = false;
-        mainBtn.innerHTML = '<i class="bi bi-git me-1"></i> Sincronizar Repositorio (Git)';
-      }
-      const inlineBtn = document.getElementById("btn-sync-git-inline");
-      if (inlineBtn) {
-        inlineBtn.disabled = false;
-        inlineBtn.innerHTML = '<i class="bi bi-git me-1"></i> Confirmar en Git';
-      }
-      await loadAdminData();
-    }
-  }
-
-  document.querySelectorAll("#btn-git-sync-repo, #btn-sync-git-inline").forEach(btn => {
-    btn.addEventListener("click", handleGitSync);
-  });
-
-  // Export / Download Catalog JSON
-  function exportCatalogJSON() {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(productsList, null, 2));
-    const downloadAnchor = document.createElement("a");
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `nesty_catalog_${Date.now()}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-  }
-
-  document.querySelectorAll("#btn-export-json, #btn-export-json-editor").forEach(btn => {
-    btn.addEventListener("click", exportCatalogJSON);
-  });
-
-  const btnLoadCurrent = document.getElementById("btn-load-current-json");
-  if (btnLoadCurrent) {
-    btnLoadCurrent.addEventListener("click", populateJsonEditorTextarea);
-  }
-
-  // Reset / Clear Catalog
-  const btnResetCatalog = document.getElementById("btn-reset-catalog");
-  if (btnResetCatalog) {
-    btnResetCatalog.addEventListener("click", async () => {
-      if (confirm("⚠️ ¿Estás seguro de vaciar el catálogo activo?")) {
-        await window.db.bulkImportProducts([]);
-        await loadAdminData();
-      }
-    });
-  }
-
-  // Initial load
+  // Initial Load
   await loadAdminData();
 });
