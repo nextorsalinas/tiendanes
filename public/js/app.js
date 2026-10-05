@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderBrands();
     renderCategoriesShowcase();
     renderCategories();
+    initCart();
+    initHeaderSearch();
   }
 
   // Helper to get product department ('hogar' or 'belleza')
@@ -565,9 +567,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <span class="price-main">$${currentPrice.toFixed(2)}</span>
                 ${hasDiscount ? `<span class="price-old-strike">$${p.precio_regular.toFixed(2)}</span>` : ''}
               </div>
-              <a href="${productUrl}" class="btn-whatsapp-card text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
-                <i class="bi bi-whatsapp"></i> <span>Pedir por WhatsApp</span>
-              </a>
+              <div class="d-flex gap-1 mt-2">
+                <button type="button" class="btn-cart-add-card flex-grow-0" onclick="window.addToCart('${p.id}', 1, event)" title="Agregar al carrito" aria-label="Agregar ${p.nombre} al carrito">
+                  <i class="bi bi-bag-plus fs-6"></i>
+                </button>
+                <a href="${productUrl}" class="btn-whatsapp-card flex-grow-1 text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
+                  <i class="bi bi-whatsapp"></i> <span>Pedir</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -828,6 +835,420 @@ document.addEventListener("DOMContentLoaded", async () => {
     msg += `Quedo atento(a) para confirmar la recepción y enviar los datos de pago/entrega. ¡Muchas gracias!`;
 
     return `https://wa.me/${WHATSAPP_SELLER_PHONE}?text=${encodeURIComponent(msg)}`;
+  }
+
+  // ==========================================
+  // SHOPPING CART (Carrito de Compras Funcional)
+  // ==========================================
+  const CART_STORAGE_KEY = "nesty_cart";
+
+  function getCart() {
+    try {
+      const data = localStorage.getItem(CART_STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    updateCartBadges(cart);
+  }
+
+  function updateCartBadges(cart = getCart()) {
+    const totalCount = cart.reduce((acc, item) => acc + (item.cantidad || 1), 0);
+    const badgeEl = document.getElementById("header-cart-badge");
+    const drawerCountEl = document.getElementById("cart-drawer-count");
+
+    if (badgeEl) {
+      badgeEl.textContent = totalCount;
+      if (totalCount > 0) {
+        badgeEl.classList.remove("d-none");
+      } else {
+        badgeEl.classList.add("d-none");
+      }
+    }
+
+    if (drawerCountEl) {
+      drawerCountEl.textContent = `${totalCount} ${totalCount === 1 ? 'artículo' : 'artículos'}`;
+    }
+  }
+
+  window.addToCart = (productId, qty = 1, event = null) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    const product = allProducts.find(p => (p.id || '').toString() === productId.toString());
+    if (!product) return;
+
+    const cart = getCart();
+    const existingIndex = cart.findIndex(item => item.id.toString() === productId.toString());
+
+    const hasDiscount = product.precio_oferta && product.precio_oferta < product.precio_regular;
+    const price = hasDiscount ? product.precio_oferta : product.precio_regular;
+    const photo = (product.fotos && product.fotos.length > 0) ? product.fotos[0] : '';
+
+    if (existingIndex >= 0) {
+      cart[existingIndex].cantidad = (cart[existingIndex].cantidad || 1) + qty;
+    } else {
+      cart.push({
+        id: product.id,
+        codigo: product.codigo || '',
+        nombre: product.nombre,
+        marca: product.marca || 'betterware',
+        precio: price,
+        precio_regular: product.precio_regular,
+        foto: photo,
+        cantidad: qty
+      });
+    }
+
+    saveCart(cart);
+    window.renderCart();
+
+    // Feedback visual
+    showCartToast(product.nombre);
+  };
+
+  window.updateCartQty = (productId, delta) => {
+    const cart = getCart();
+    const index = cart.findIndex(item => item.id.toString() === productId.toString());
+    if (index >= 0) {
+      cart[index].cantidad = (cart[index].cantidad || 1) + delta;
+      if (cart[index].cantidad <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart(cart);
+      window.renderCart();
+    }
+  };
+
+  window.removeFromCart = (productId) => {
+    let cart = getCart();
+    cart = cart.filter(item => item.id.toString() !== productId.toString());
+    saveCart(cart);
+    window.renderCart();
+  };
+
+  window.renderCart = () => {
+    const listEl = document.getElementById("cart-items-list");
+    const totalEl = document.getElementById("cart-total-amount");
+    const footerEl = document.getElementById("cart-footer");
+    if (!listEl) return;
+
+    const cart = getCart();
+    updateCartBadges(cart);
+
+    if (cart.length === 0) {
+      listEl.innerHTML = `
+        <div class="text-center py-5 px-3">
+          <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center p-3 shadow-sm mb-3" style="width: 70px; height: 70px;">
+            <i class="bi bi-bag-x fs-2 text-muted"></i>
+          </div>
+          <h6 class="fw-bold text-dark mb-1">Tu carrito está vacío</h6>
+          <p class="text-muted small mb-4">Agrega tus productos favoritos de L'Bel, Ésika, Cyzone o Betterware.</p>
+          <button type="button" class="btn btn-outline-primary rounded-pill px-4 btn-sm fw-bold" data-bs-dismiss="offcanvas" data-coreui-dismiss="offcanvas">
+            Explorar Catálogo
+          </button>
+        </div>
+      `;
+      if (totalEl) totalEl.textContent = "$0.00 MXN";
+      if (footerEl) footerEl.classList.add("opacity-50");
+      return;
+    }
+
+    if (footerEl) footerEl.classList.remove("opacity-50");
+
+    let grandTotal = 0;
+    listEl.innerHTML = cart.map(item => {
+      const itemTotal = (item.precio || 0) * (item.cantidad || 1);
+      grandTotal += itemTotal;
+      const thumb = item.foto || "https://via.placeholder.com/100?text=Producto";
+
+      return `
+        <div class="cart-item-row">
+          <img src="${thumb}" alt="${item.nombre}" class="cart-item-thumb">
+          <div class="cart-item-info">
+            <span class="cart-item-brand">${formatBrandName(item.marca)}</span>
+            <h6 class="cart-item-title" title="${item.nombre}">${item.nombre}</h6>
+            <div class="d-flex align-items-center justify-content-between mt-1">
+              <span class="cart-item-price">$${(item.precio || 0).toFixed(2)}</span>
+              <div class="d-flex align-items-center gap-2">
+                <div class="cart-qty-ctrl">
+                  <button type="button" class="btn-cart-qty" onclick="window.updateCartQty('${item.id}', -1)" aria-label="Restar 1">-</button>
+                  <span class="cart-qty-num">${item.cantidad || 1}</span>
+                  <button type="button" class="btn-cart-qty" onclick="window.updateCartQty('${item.id}', 1)" aria-label="Sumar 1">+</button>
+                </div>
+                <button type="button" class="btn-cart-remove" onclick="window.removeFromCart('${item.id}')" title="Eliminar del carrito" aria-label="Eliminar ${item.nombre}">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    if (totalEl) {
+      totalEl.textContent = `$${grandTotal.toFixed(2)} MXN`;
+    }
+  };
+
+  window.openCartDrawer = () => {
+    window.renderCart();
+    const drawerEl = document.getElementById("cartOffcanvas");
+    if (drawerEl) {
+      if (typeof bootstrap !== "undefined" && bootstrap.Offcanvas) {
+        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(drawerEl);
+        bsOffcanvas.show();
+      } else if (typeof coreui !== "undefined" && coreui.Offcanvas) {
+        const cuiOffcanvas = coreui.Offcanvas.getOrCreateInstance(drawerEl);
+        cuiOffcanvas.show();
+      }
+    }
+  };
+
+  function showCartToast(productName) {
+    const toastEl = document.getElementById("cartToast");
+    const toastText = document.getElementById("cartToastText");
+    if (toastText) {
+      toastText.innerHTML = `
+        <i class="bi bi-check-circle-fill text-success fs-5"></i>
+        <span class="text-truncate" style="max-width: 220px;">¡${productName} agregado!</span>
+      `;
+    }
+    if (toastEl) {
+      if (typeof bootstrap !== "undefined" && bootstrap.Toast) {
+        const toast = new bootstrap.Toast(toastEl, { delay: 2800 });
+        toast.show();
+      } else if (typeof coreui !== "undefined" && coreui.Toast) {
+        const toast = new coreui.Toast(toastEl, { delay: 2800 });
+        toast.show();
+      } else {
+        toastEl.classList.add("show");
+        setTimeout(() => toastEl.classList.remove("show"), 2800);
+      }
+    }
+  }
+
+  window.checkoutCartWhatsApp = () => {
+    const cart = getCart();
+    if (!cart || cart.length === 0) {
+      alert("Tu carrito está vacío. Agrega productos antes de realizar el pedido.");
+      return;
+    }
+
+    let grandTotal = 0;
+    let itemsText = "";
+
+    cart.forEach(item => {
+      const lineTotal = (item.precio || 0) * (item.cantidad || 1);
+      grandTotal += lineTotal;
+      const brand = formatBrandName(item.marca);
+      itemsText += `• [${brand}] ${item.nombre} x${item.cantidad} ($${item.precio.toFixed(2)} c/u) = $${lineTotal.toFixed(2)}\n`;
+    });
+
+    const msg = `¡Hola! Me gustaría hacer un pedido en nestt:
+
+🛒 *PRODUCTOS SOLICITADOS:*
+${itemsText}
+💰 *TOTAL ESTIMADO:* $${grandTotal.toFixed(2)} MXN
+
+🎁 ¿Incluye envoltura de cortesía gratis?: Sí, por favor.
+
+¿Me podrías confirmar disponibilidad de estos artículos y métodos de entrega? ¡Muchas gracias!`;
+
+    const waUrl = `https://wa.me/${WHATSAPP_SELLER_PHONE}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, "_blank");
+  };
+
+  function initCart() {
+    window.renderCart();
+  }
+
+  // ==========================================
+  // HEADER SEARCH (Lupa y Barra de Búsqueda)
+  // ==========================================
+  let isSearchActive = false;
+
+  function initHeaderSearch() {
+    const btnSearch = document.getElementById("btn-header-search");
+    const searchBar = document.getElementById("header-search-bar");
+    const inputSearch = document.getElementById("input-search-header");
+    const btnClear = document.getElementById("btn-clear-search");
+    const btnClose = document.getElementById("btn-close-search");
+
+    if (!btnSearch || !searchBar || !inputSearch) return;
+
+    // Toggle search bar
+    btnSearch.addEventListener("click", () => {
+      const isHidden = searchBar.classList.contains("d-none");
+      if (isHidden) {
+        searchBar.classList.remove("d-none");
+        inputSearch.focus();
+      } else {
+        closeSearch();
+      }
+    });
+
+    // Close button
+    if (btnClose) {
+      btnClose.addEventListener("click", () => {
+        closeSearch();
+      });
+    }
+
+    // Clear button
+    if (btnClear) {
+      btnClear.addEventListener("click", () => {
+        inputSearch.value = "";
+        btnClear.style.display = "none";
+        closeSearch();
+      });
+    }
+
+    // Real-time search with input
+    let searchTimeout = null;
+    inputSearch.addEventListener("input", (e) => {
+      const val = e.target.value.trim();
+      if (btnClear) {
+        btnClear.style.display = val ? "inline-block" : "none";
+      }
+
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        executeSearch(val);
+      }, 150);
+    });
+
+    // Esc key closes search
+    inputSearch.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeSearch();
+      }
+    });
+  }
+
+  function executeSearch(query) {
+    if (!query) {
+      if (isSearchActive) {
+        window.backToCategories();
+        isSearchActive = false;
+      }
+      return;
+    }
+
+    isSearchActive = true;
+    currentView = "products";
+
+    const showcaseEl = document.getElementById("view-categories-showcase");
+    const catalogEl = document.getElementById("view-products-catalog");
+    if (showcaseEl) showcaseEl.classList.add("d-none");
+    if (catalogEl) catalogEl.classList.remove("d-none");
+
+    const titleEl = document.getElementById("current-category-title");
+    if (titleEl) {
+      titleEl.innerHTML = `<i class="bi bi-search me-1 text-primary"></i> Resultados: "<span class="text-primary">${query}</span>"`;
+    }
+
+    // Hide quick category pills during general search
+    const pillsContainer = document.getElementById("quick-category-pills");
+    if (pillsContainer) pillsContainer.innerHTML = "";
+
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    const results = allProducts.filter(p => {
+      if (p.activo === false) return false;
+      const searchable = [
+        p.nombre || '',
+        p.descripcion || '',
+        p.categoria || '',
+        p.marca || '',
+        p.codigo || ''
+      ].join(' ').toLowerCase();
+
+      return terms.every(term => searchable.includes(term));
+    });
+
+    renderSearchResultsGrid(results, query);
+  }
+
+  function renderSearchResultsGrid(results, query) {
+    const grid = document.getElementById("products-grid");
+    const countBadge = document.getElementById("products-count-text");
+
+    if (countBadge) {
+      countBadge.textContent = `${results.length} producto${results.length === 1 ? '' : 's'}`;
+    }
+
+    if (!grid) return;
+
+    if (results.length === 0) {
+      grid.innerHTML = `
+        <div class="col-12 text-center py-5">
+          <i class="bi bi-search text-muted opacity-50 display-3 d-block mb-3"></i>
+          <h5 class="fw-bold text-dark">No se encontraron productos</h5>
+          <p class="text-muted small mb-3">No hay artículos que coincidan con "<strong>${query}</strong>". Prueba con otra palabra clave como <em>perfume, labial, stitch, mochila</em>.</p>
+          <button type="button" class="btn btn-outline-primary rounded-pill px-4 btn-sm fw-bold" onclick="window.backToCategories()">
+            Volver a Categorías
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = results.map(p => {
+      const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
+      const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
+      const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
+      const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
+      const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
+
+      return `
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="product-card-minimal">
+            <a href="${productUrl}" class="product-card-img-container text-decoration-none" title="Ver ${p.nombre}">
+              <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
+              ${hasDiscount ? `<span class="badge-shein-discount">-${discountPercent}%</span>` : ''}
+            </a>
+            <div class="product-card-content">
+              <span class="product-brand-tag">${formatBrandName(p.marca)}</span>
+              <a href="${productUrl}" class="product-name-minimal text-decoration-none" title="Ver ${p.nombre}">
+                ${p.nombre}
+              </a>
+              <div class="price-row">
+                <span class="price-main">$${currentPrice.toFixed(2)}</span>
+                ${hasDiscount ? `<span class="price-old-strike">$${p.precio_regular.toFixed(2)}</span>` : ''}
+              </div>
+              <div class="d-flex gap-1 mt-2">
+                <button type="button" class="btn-cart-add-card flex-grow-0" onclick="window.addToCart('${p.id}', 1, event)" title="Agregar al carrito" aria-label="Agregar ${p.nombre} al carrito">
+                  <i class="bi bi-bag-plus fs-6"></i>
+                </button>
+                <a href="${productUrl}" class="btn-whatsapp-card flex-grow-1 text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
+                  <i class="bi bi-whatsapp"></i> <span>Pedir</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function closeSearch() {
+    const searchBar = document.getElementById("header-search-bar");
+    const inputSearch = document.getElementById("input-search-header");
+    const btnClear = document.getElementById("btn-clear-search");
+
+    if (searchBar) searchBar.classList.add("d-none");
+    if (inputSearch) inputSearch.value = "";
+    if (btnClear) btnClear.style.display = "none";
+
+    if (isSearchActive) {
+      isSearchActive = false;
+      window.backToCategories();
+    }
   }
 
   // Init
