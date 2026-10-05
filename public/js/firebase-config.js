@@ -39,48 +39,29 @@ class StoreDatabase {
 
   // Retrieve products: Firestore -> Local Server API -> LocalStorage -> INITIAL_PRODUCTS
   async getProducts() {
-    let prods = [];
-    const defaultList = (typeof INITIAL_PRODUCTS !== "undefined" && Array.isArray(INITIAL_PRODUCTS)) ? INITIAL_PRODUCTS : [];
-
     // 1. Try Cloud Firestore
     if (firestoreDb) {
       try {
         const snapshot = await firestoreDb.collection("productos").get();
         if (!snapshot.empty) {
+          const prods = [];
           snapshot.forEach(doc => {
             const item = doc.data();
             item.marca = (item.marca || 'betterware').toLowerCase().trim();
             prods.push(item);
           });
+          // Sort by name or code
+          prods.sort((a, b) => (a.nombre || "").localeCompare(b.nombre || ""));
+          localStorage.setItem("nesty_products", JSON.stringify(prods));
+          return prods;
         }
       } catch (err) {
         console.warn("[Firestore] Error al leer productos de Firestore, usando respaldo local:", err);
       }
     }
 
-    // 2. If Firestore was empty or failed, fallback to Local Server / LocalStorage / INITIAL_PRODUCTS
-    if (!prods.length) {
-      prods = await this.getLocalOrApiProducts();
-    }
-
-    // 3. Guarantee catalog completeness: merge any default catalog items missing from Firestore/storage
-    if (defaultList.length > 0) {
-      const existingCodes = new Set(prods.map(p => (p.codigo || p.id || '').toString()));
-      defaultList.forEach(p => {
-        const key = (p.codigo || p.id || '').toString();
-        if (!existingCodes.has(key)) {
-          const item = { ...p };
-          item.marca = (item.marca || 'betterware').toLowerCase().trim();
-          prods.push(item);
-          existingCodes.add(key);
-        }
-      });
-    }
-
-    // Sort by name or code
-    prods.sort((a, b) => (a.nombre || "").localeCompare(b.nombre || ""));
-    localStorage.setItem("nesty_products", JSON.stringify(prods));
-    return prods;
+    // 2. Fallback to Local Server API or LocalStorage
+    return await this.getLocalOrApiProducts();
   }
 
   async getLocalOrApiProducts() {

@@ -35,20 +35,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // Guarantee all brands exist in catalog even if browser has partial cache
-    if (typeof INITIAL_PRODUCTS !== "undefined" && Array.isArray(INITIAL_PRODUCTS)) {
-      const existingCodes = new Set(allProducts.map(p => (p.codigo || p.id || '').toString()));
-      INITIAL_PRODUCTS.forEach(p => {
-        const key = (p.codigo || p.id || '').toString();
-        if (!existingCodes.has(key)) {
-          const item = { ...p };
-          item.marca = (item.marca || 'betterware').toLowerCase().trim();
-          allProducts.push(item);
-          existingCodes.add(key);
-        }
-      });
-    }
-
     renderBrands();
     renderCategoriesShowcase();
     renderCategories();
@@ -253,7 +239,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         id: "cuidado_piel",
         name: "Cuidado de la Piel",
         image: "https://lbel.vteximg.com.br/arquivos/categorie-cuidado-de-la-piel.jpg",
-        matchKeys: ["skincare", "tecnología", "tratamiento facial", "cuidado de la piel"]
+        matchKeys: ["skincare", "tecnología", "tratamiento facial", "cuidado de la piel", "tratamiento"]
       },
       {
         id: "fragancias",
@@ -271,7 +257,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         id: "cuidado_personal",
         name: "Cuidado personal",
         image: "https://lbel.vteximg.com.br/arquivos/categorie-cuidado-personal.jpg",
-        matchKeys: ["cuidado personal", "cuidado corporal"]
+        matchKeys: ["cuidado personal", "cuidado corporal", "tratamiento", "capilar"]
       },
       {
         id: "sets",
