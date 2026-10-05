@@ -39,37 +39,48 @@ class StoreDatabase {
 
   // Retrieve products: Firestore -> Local Server API -> LocalStorage -> INITIAL_PRODUCTS
   async getProducts() {
+    let prods = [];
+    const defaultList = (typeof INITIAL_PRODUCTS !== "undefined" && Array.isArray(INITIAL_PRODUCTS)) ? INITIAL_PRODUCTS : [];
+
     // 1. Try Cloud Firestore
     if (firestoreDb) {
       try {
         const snapshot = await firestoreDb.collection("productos").get();
         if (!snapshot.empty) {
-          const prods = [];
           snapshot.forEach(doc => {
             const item = doc.data();
             item.marca = (item.marca || 'betterware').toLowerCase().trim();
             prods.push(item);
           });
-          // Sort by name or code
-          prods.sort((a, b) => (a.nombre || "").localeCompare(b.nombre || ""));
-          localStorage.setItem("nesty_products", JSON.stringify(prods));
-          return prods;
-        } else {
-          // If Firestore collection is empty, seed it from local catalog
-          console.log("[Firestore] Colección 'productos' vacía. Sembrando catálogo inicial...");
-          const seedList = await this.getLocalOrApiProducts();
-          if (seedList && seedList.length > 0) {
-            this.seedFirestoreBatch(seedList).catch(e => console.warn("[Firestore] Error en sembrado masivo:", e));
-            return seedList;
-          }
         }
       } catch (err) {
         console.warn("[Firestore] Error al leer productos de Firestore, usando respaldo local:", err);
       }
     }
 
-    // 2. Fallback to Local Server API or LocalStorage
-    return await this.getLocalOrApiProducts();
+    // 2. If Firestore was empty or failed, fallback to Local Server / LocalStorage / INITIAL_PRODUCTS
+    if (!prods.length) {
+      prods = await this.getLocalOrApiProducts();
+    }
+
+    // 3. Guarantee catalog completeness: merge any default catalog items missing from Firestore/storage
+    if (defaultList.length > 0) {
+      const existingCodes = new Set(prods.map(p => (p.codigo || p.id || '').toString()));
+      defaultList.forEach(p => {
+        const key = (p.codigo || p.id || '').toString();
+        if (!existingCodes.has(key)) {
+          const item = { ...p };
+          item.marca = (item.marca || 'betterware').toLowerCase().trim();
+          prods.push(item);
+          existingCodes.add(key);
+        }
+      });
+    }
+
+    // Sort by name or code
+    prods.sort((a, b) => (a.nombre || "").localeCompare(b.nombre || ""));
+    localStorage.setItem("nesty_products", JSON.stringify(prods));
+    return prods;
   }
 
   async getLocalOrApiProducts() {
@@ -88,7 +99,7 @@ class StoreDatabase {
       const cached = localStorage.getItem("nesty_products");
       if (cached) {
         const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length >= 350) return parsed;
       }
     } catch (e) {}
 

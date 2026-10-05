@@ -34,6 +34,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         p.marca = p.marca.toLowerCase().trim();
       }
     });
+
+    // Guarantee all brands exist in catalog even if browser has partial cache
+    if (typeof INITIAL_PRODUCTS !== "undefined" && Array.isArray(INITIAL_PRODUCTS)) {
+      const existingCodes = new Set(allProducts.map(p => (p.codigo || p.id || '').toString()));
+      INITIAL_PRODUCTS.forEach(p => {
+        const key = (p.codigo || p.id || '').toString();
+        if (!existingCodes.has(key)) {
+          const item = { ...p };
+          item.marca = (item.marca || 'betterware').toLowerCase().trim();
+          allProducts.push(item);
+          existingCodes.add(key);
+        }
+      });
+    }
+
     renderBrands();
     renderCategoriesShowcase();
     renderCategories();
@@ -304,6 +319,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         name: "Moda & Accesorios",
         image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252996/21-0114646_cy_clean_gold_est_are_x3_fotofondoblanco.jpg.jpg?v=639226023269000000",
         matchKeys: ["moda y accesorios", "mochilas"]
+      },
+      {
+        id: "perfumes",
+        name: "Perfumes & Fragancias",
+        image: "https://cyzone.vteximg.com.br/arquivos/categorie-perfumes.jpg",
+        matchKeys: ["perfumes", "fragancias"]
       }
     ],
     betterware: [
