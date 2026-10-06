@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Description Preview & Full Modal
-    const rawDesc = p.descripcion || "Producto exclusivo en nestt. Calidad garantizada, listo para entrega con envoltura de cortesía.";
+    const rawDesc = p.descripcion || "Producto exclusivo en nestt. Calidad garantizada, listo para entrega inmediata.";
     const descPreviewEl = document.getElementById("detail-desc-preview");
     if (descPreviewEl) {
       const snippet = rawDesc.length > 150 ? rawDesc.substring(0, 150) + "..." : rawDesc;
@@ -253,8 +253,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 5. WhatsApp Order Generation
   function setupOrderActions(p, unitPrice) {
     function triggerWhatsAppOrder() {
-      const isGift = document.getElementById("check-gift-wrapping")?.checked ?? true;
-      const giftNote = document.getElementById("input-gift-note")?.value?.trim() || "";
       const total = unitPrice * currentQuantity;
 
       let msg = `¡Hola *nestt.*! 👋 Quiero pedir este producto de su tienda:\n\n`;
@@ -264,11 +262,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       msg += `💰 *Precio Unitario:* $${unitPrice.toFixed(2)} MXN\n`;
       msg += `📦 *Cantidad:* ${currentQuantity}\n`;
       msg += `💵 *Total Estimado:* $${total.toFixed(2)} MXN\n\n`;
-      msg += `🎁 *Envoltura de regalo de cortesía:* ${isGift ? 'Sí, por favor (con tarjeta gratis)' : 'No requerida'}\n`;
-      if (isGift && giftNote) {
-        msg += `💌 *Dedicatoria:* "${giftNote}"\n`;
-      }
-      msg += `\n🔗 *Enlace:* ${window.location.href}\n\n`;
+      msg += `🔗 *Enlace:* ${window.location.href}\n\n`;
       msg += `¿Tienen disponibilidad para entrega? ¡Muchas gracias!`;
 
       const waUrl = `https://wa.me/${WHATSAPP_SELLER_PHONE}?text=${encodeURIComponent(msg)}`;
@@ -285,7 +279,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function shareProduct() {
       const shareData = {
         title: `${p.nombre} | nestt.`,
-        text: `Mira ${p.nombre} en nestt. con envoltura de regalo gratis:`,
+        text: `Mira ${p.nombre} en nestt.:`,
         url: window.location.href
       };
 

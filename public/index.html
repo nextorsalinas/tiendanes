@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>nestt. | Regalos & Detalles con Envoltura Gratis</title>
-  <meta name="description" content="¿No sabes qué regalar? Descubre detalles únicos en Belleza y Hogar con envoltura de regalo de cortesía y pedidos directos por WhatsApp.">
+  <title>nestt. | Tienda Online</title>
+  <meta name="description" content="Descubre colecciones exclusivas en Belleza y Hogar con pedidos directos por WhatsApp en nestt.">
   
   <!-- Fonts Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,13 +16,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css?v=20261004_9">
+  <link rel="stylesheet" href="css/custom.css?v=20261005_1">
 </head>
 <body>
 
-  <!-- Top Announcement Bar (Gift Focus & Free Wrapping) - Oculto en móvil -->
+  <!-- Top Announcement Bar - Oculto en móvil -->
   <div class="top-promo-bar d-none d-md-block">
-    <span class="highlight-sale">¿NO SABES QUÉ REGALAR?</span> ENVOLTURA DE CORTESÍA Y TARJETA GRATIS EN TODOS TUS PEDIDOS
+    <span class="highlight-sale">ATENCIÓN PERSONALIZADA</span> PEDIDOS Y ENTREGAS DIRECTAS POR WHATSAPP
   </div>
 
   <!-- Header Morado: Menú Hamburguesa, Logo nestt., Lupa y Carrito -->
@@ -104,13 +104,10 @@
         <!-- Rendered dynamically by app.js -->
       </div>
       <div class="cart-footer border-top p-3 bg-white" id="cart-footer">
-        <div class="d-flex align-items-center justify-content-between mb-2">
+        <div class="d-flex align-items-center justify-content-between mb-3">
           <span class="text-muted small fw-semibold">Total estimado:</span>
           <span class="fs-5 fw-extrabold text-dark" id="cart-total-amount">$0.00 MXN</span>
         </div>
-        <p class="small text-muted mb-3" style="font-size: 0.76rem;">
-          <i class="bi bi-gift text-primary me-1"></i> Envoltura y tarjeta de cortesía gratis incluida.
-        </p>
         <button type="button" class="btn btn-success btn-lg w-100 rounded-pill fw-bold py-3 shadow-sm d-flex align-items-center justify-content-center gap-2" id="btn-cart-checkout-wa" onclick="window.checkoutCartWhatsApp()">
           <i class="bi bi-whatsapp fs-5"></i> Pedir Carrito por WhatsApp
         </button>
@@ -170,8 +167,8 @@
                onclick="window.selectCategoryDirect('gift_200')">
             <div>
               <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.62rem;">DETALLES ACCESIBLES</span>
-              <h5 class="fw-bold mb-0 text-white" style="font-size: 0.98rem;">Regalos por menos de $200</h5>
-              <p class="small text-white-50 m-0 mt-1" style="font-size: 0.75rem;">Envoltura y tarjeta de cortesía incluidas</p>
+              <h5 class="fw-bold mb-0 text-white" style="font-size: 0.98rem;">Artículos por menos de $200</h5>
+              <p class="small text-white-50 m-0 mt-1" style="font-size: 0.75rem;">Productos seleccionados al mejor precio</p>
             </div>
             <i class="bi bi-gift display-6 opacity-75"></i>
           </div>
@@ -269,8 +266,8 @@
   <!-- Firebase SDKs (Compat v10) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-  <script src="js/products-data.js?v=20261004_9"></script>
-  <script src="js/firebase-config.js?v=20261004_9"></script>
-  <script src="js/app.js?v=20261004_9"></script>
+  <script src="js/products-data.js?v=20261005_1"></script>
+  <script src="js/firebase-config.js?v=20261005_1"></script>
+  <script src="js/app.js?v=20261005_1"></script>
 </body>
 </html>

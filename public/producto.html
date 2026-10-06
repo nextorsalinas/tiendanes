@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Detalle del Producto | nestt.</title>
-  <meta name="description" content="Detalle de producto con envoltura de cortesía gratis y pedidos directos por WhatsApp en nestt.">
+  <meta name="description" content="Detalle de producto y pedidos directos por WhatsApp en nestt.">
   
   <!-- Fonts Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/custom.css?v=20261005_1">
 </head>
 <body class="bg-light">
 
@@ -104,29 +104,9 @@
             </div>
 
             <!-- Ver descripción link (Directly below price, exactly as user's screenshot) -->
-            <a href="#descriptionModal" id="btn-open-desc-link" class="product-detail-desc-trigger" data-bs-toggle="modal" data-coreui-toggle="modal">
+            <a href="#descriptionModal" id="btn-open-desc-link" class="product-detail-desc-trigger mb-3 d-inline-block" data-bs-toggle="modal" data-coreui-toggle="modal">
               Ver descripción
             </a>
-
-            <!-- Free Gift Wrapping Option Card (Nestt Value Promise) -->
-            <div class="product-detail-gift-card">
-              <div class="d-flex align-items-start gap-2 mb-2">
-                <i class="bi bi-gift-fill text-primary fs-5 mt-1"></i>
-                <div>
-                  <h6 class="fw-bold m-0 text-dark" style="font-size: 0.95rem;">Envoltura de regalo de cortesía</h6>
-                  <p class="text-muted small m-0">Incluye papel para regalo y tarjeta con dedicatoria <strong>100% gratis</strong>.</p>
-                </div>
-              </div>
-              <div class="form-check mt-2">
-                <input class="form-check-input" type="checkbox" id="check-gift-wrapping" checked>
-                <label class="form-check-label fw-semibold text-dark small" for="check-gift-wrapping">
-                  Quiero este artículo envuelto para regalo
-                </label>
-              </div>
-              <div class="mt-2" id="box-gift-note">
-                <input type="text" class="form-control form-control-sm rounded-3" id="input-gift-note" placeholder="Dedicatoria o mensaje para la tarjeta (opcional)" maxlength="120">
-              </div>
-            </div>
 
             <!-- Description Preview Section with 'Ver detalles' (Matching Example) -->
             <div class="product-detail-desc-section">
@@ -224,8 +204,6 @@
                 <div class="col-6 fw-bold text-dark text-end" id="modal-spec-brand">-</div>
                 <div class="col-6 text-muted">Categoría:</div>
                 <div class="col-6 fw-bold text-dark text-end" id="modal-spec-category">-</div>
-                <div class="col-6 text-muted">Envoltura de regalo:</div>
-                <div class="col-6 fw-bold text-success text-end">GRATIS incluida</div>
               </div>
             </div>
           </div>
