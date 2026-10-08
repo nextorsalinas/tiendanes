@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css?v=20261005_1">
+  <link rel="stylesheet" href="css/custom.css?v=20261008_1">
 </head>
 <body>
 
@@ -132,20 +132,13 @@
   <!-- Main Catalog Content -->
   <main class="container py-3">
     
-    <!-- Brand Navigation Bar (4 Marcas Oficiales + Todas) -->
-    <div class="brand-nav-section mb-3">
-      <div class="brand-scroll-container" id="brand-nav-container">
-        <!-- Dynamic brand buttons rendered by app.js -->
-      </div>
-    </div>
-
-    <!-- VIEW 1: CATEGORY SHOWCASE (Estilo Minimalista L'Bel / Belcorp) -->
+    <!-- VIEW 1: CATEGORY SHOWCASE (Categorías Globales con Fotos y Hover) -->
     <section id="view-categories-showcase" class="categories-showcase-section">
       <!-- Section Header Minimalista -->
       <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
         <div>
           <h4 class="fw-bold text-dark m-0" id="brand-categories-title" style="letter-spacing: -0.3px; font-size: 1.25rem;">Compra por categoría</h4>
-          <span class="text-muted small" id="brand-categories-subtitle" style="font-size: 0.8rem;">Colecciones exclusivas de L'Bel</span>
+          <span class="text-muted small" id="brand-categories-subtitle" style="font-size: 0.8rem;">Descubre nuestras colecciones en Belleza y Hogar</span>
         </div>
         <div>
           <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0 small fw-semibold" id="btn-view-all-products" onclick="window.viewAllProducts()">
@@ -154,9 +147,17 @@
         </div>
       </div>
 
-      <!-- Visual Categories Grid (5 columnas en desktop, 2 en móvil) -->
-      <div class="row g-2 g-md-3 row-cols-2 row-cols-md-3 row-cols-lg-5 mb-4" id="categories-visual-grid">
-        <!-- Rendered dynamically by app.js with official Belcorp/L'Bel images -->
+      <!-- Visual Categories Grid (3 columnas en desktop, 2 en móvil) -->
+      <div class="row g-2 g-md-3 row-cols-2 row-cols-md-3 row-cols-lg-3 mb-4" id="categories-visual-grid">
+        <!-- Rendered dynamically by app.js with user's category images and hover swap -->
+      </div>
+
+      <!-- Explorar por Marca Oficial -->
+      <div class="brand-nav-section mb-4 text-center">
+        <span class="text-muted small fw-bold text-uppercase d-block mb-2" style="font-size: 0.72rem; letter-spacing: 0.6px;">O explora por marca oficial</span>
+        <div class="brand-scroll-container justify-content-center" id="brand-nav-container">
+          <!-- Dynamic brand buttons rendered by app.js -->
+        </div>
       </div>
 
       <!-- Curated Banners: Regalos < $200 y < $350 -->
@@ -188,7 +189,7 @@
       </div>
     </section>
 
-    <!-- VIEW 2: PRODUCTS CATALOG (When a category is active) -->
+    <!-- VIEW 2: PRODUCTS CATALOG (When a category or brand is active) -->
     <section id="view-products-catalog" class="products-catalog-section d-none">
       <!-- Breadcrumb & Back to Categories Button -->
       <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom flex-wrap gap-2">
@@ -200,6 +201,11 @@
           <h5 class="fw-bold text-dark m-0" id="current-category-title" style="font-size: 1.05rem;">Catálogo</h5>
         </div>
         <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small fw-semibold" id="products-count-text">0 productos</span>
+      </div>
+
+      <!-- Quick Brand Filter Chips within Catalog -->
+      <div class="brand-filter-chips-wrap mb-2" id="catalog-brand-filter-chips">
+        <!-- Rendered dynamically by app.js -->
       </div>
 
       <!-- Quick Category Horizontal Pills Bar (to switch categories on the fly) -->
@@ -266,8 +272,8 @@
   <!-- Firebase SDKs (Compat v10) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-  <script src="js/products-data.js?v=20261005_1"></script>
-  <script src="js/firebase-config.js?v=20261005_1"></script>
-  <script src="js/app.js?v=20261005_1"></script>
+  <script src="js/products-data.js?v=20261008_1"></script>
+  <script src="js/firebase-config.js?v=20261008_1"></script>
+  <script src="js/app.js?v=20261008_1"></script>
 </body>
 </html>

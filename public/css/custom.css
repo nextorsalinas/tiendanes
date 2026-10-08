@@ -1257,7 +1257,7 @@ body {
 }
 
 /* ==========================================================================
-   VISUAL CATEGORIES SHOWCASE (Estilo Cyzone / Belcorp)
+   VISUAL CATEGORIES SHOWCASE (Categorías Globales con Hover Swap)
    ========================================================================== */
 .categories-showcase-section {
   animation: fadeInCategories 0.25s ease-out;
@@ -1268,33 +1268,33 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Minimalist Category Cards (Estilo L'Bel / Belcorp Oficial) --- */
+/* --- Minimalist Category Cards con Efecto Hover Swap --- */
 .category-visual-card {
   background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #f0f0f2;
+  border-radius: 14px;
+  border: 1px solid #ede8f5;
   overflow: hidden;
   cursor: pointer;
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
   position: relative;
   user-select: none;
 }
 
 .category-visual-card:hover {
-  transform: translateY(-3px);
-  border-color: #d1d5db;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  transform: translateY(-4px);
+  border-color: #d8cceb;
+  box-shadow: 0 12px 28px rgba(121, 40, 202, 0.12);
 }
 
 .category-visual-img-wrap {
   position: relative;
   width: 100%;
   padding-top: 100%; /* Proporción 1:1 limpia de catálogo */
-  background: #f8f8fa;
+  background: #fbf9fd;
   overflow: hidden;
 }
 
@@ -1305,15 +1305,36 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 }
 
-.category-visual-card:hover .category-visual-img-wrap img {
-  transform: scale(1.05);
+/* Hover swap para categorías con imagen secundaria */
+.category-visual-card.has-hover-img .cat-img-main {
+  opacity: 1;
+  z-index: 1;
+}
+
+.category-visual-card.has-hover-img .cat-img-hover {
+  opacity: 0;
+  z-index: 2;
+}
+
+.category-visual-card.has-hover-img:hover .cat-img-main {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.category-visual-card.has-hover-img:hover .cat-img-hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.category-visual-card:not(.has-hover-img):hover .cat-img-main {
+  transform: scale(1.06);
 }
 
 .category-visual-body {
-  padding: 0.75rem 0.5rem 0.85rem;
+  padding: 0.85rem 0.6rem 0.95rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1323,25 +1344,67 @@ body {
 
 .category-visual-title {
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #111111;
-  letter-spacing: -0.15px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1e152a;
+  letter-spacing: -0.2px;
   margin: 0;
-  line-height: 1.25;
-  transition: color 0.15s ease;
+  line-height: 1.3;
+  transition: color 0.2s ease;
 }
 
 .category-visual-card:hover .category-visual-title {
-  color: #000000;
-  text-decoration: underline;
+  color: var(--nestt-purple);
 }
 
 .category-product-count {
   font-size: 0.72rem;
-  font-weight: 400;
-  color: #888888;
-  margin-top: 0.25rem;
+  font-weight: 500;
+  color: #8c8599;
+  margin-top: 0.3rem;
+}
+
+/* Brand Filter Chips inside Category Catalog View */
+.brand-filter-chips-wrap {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.45rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.brand-filter-chips-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-chip-btn {
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #f8f6fb;
+  border: 1px solid #e7dfef;
+  color: #554b63;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.brand-chip-btn:hover {
+  border-color: var(--nestt-purple);
+  color: var(--nestt-purple);
+  background: #fdfaff;
+}
+
+.brand-chip-btn.active {
+  background: var(--nestt-purple);
+  color: #ffffff;
+  border-color: var(--nestt-purple);
+  box-shadow: 0 2px 8px rgba(121, 40, 202, 0.28);
 }
 
 /* Department filter pills */

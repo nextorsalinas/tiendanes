@@ -4,11 +4,11 @@ const WHATSAPP_SELLER_PHONE = "525525000024";
 document.addEventListener("DOMContentLoaded", async () => {
   let allProducts = [];
   let currentCategory = null; // null => Visual Categories Showcase (Cyzone style home)
-  let currentBrand = "lbel"; // Default active brand is L'Bel
+  let currentBrand = "all"; // Default active brand: todas las marcas unificadas
   let currentView = "categories"; // 'categories' or 'products'
   let selectedProductForOrder = null;
 
-  // 4 Official Brands Configuration (Centered, smaller, no "Todas")
+  // 4 Official Brands Configuration
   const BRANDS_CONFIG = [
     { id: "lbel", label: "L'Bel", logo: "images/brands/lbel.png" },
     { id: "esika", label: "Ésika", logo: "images/brands/esika.png" },
@@ -22,6 +22,83 @@ document.addEventListener("DOMContentLoaded", async () => {
     lbel: "L'Bel",
     betterware: "Betterware"
   };
+
+  // Categorías Globales Unificadas con Fotos Oficiales de /categorias/ y Efecto Hover Swap
+  const GLOBAL_CATEGORIES = [
+    {
+      id: "perfumes",
+      name: "Perfumes & Fragancias",
+      image: "images/categorias/perfumes.png",
+      hoverImage: "images/categorias/perfumes2.png",
+      match: (p) => ["perfumes", "fragancias"].includes((p.categoria || "").toLowerCase().trim())
+    },
+    {
+      id: "maquillaje",
+      name: "Maquillaje",
+      image: "images/categorias/maquillajes.png",
+      hoverImage: "images/categorias/maquillajes1.png",
+      match: (p) => ["maquillaje"].includes((p.categoria || "").toLowerCase().trim())
+    },
+    {
+      id: "skincare",
+      name: "Skincare & Facial",
+      image: "images/categorias/skincare.png",
+      hoverImage: "images/categorias/skincare1.png",
+      match: (p) => {
+        const c = (p.categoria || "").toLowerCase().trim();
+        const n = (p.nombre || "").toLowerCase();
+        return ["skincare", "cuidado facial", "cuidado de la piel"].includes(c) ||
+          (c === "tratamiento" && !n.includes("capilar") && !n.includes("óleo") && !n.includes("oleo"));
+      }
+    },
+    {
+      id: "cuidado_personal",
+      name: "Cuidado Personal",
+      image: "images/categorias/cuidadopersonal.png",
+      hoverImage: "images/categorias/cuidadopersonal1.png",
+      match: (p) => {
+        const c = (p.categoria || "").toLowerCase().trim();
+        const n = (p.nombre || "").toLowerCase();
+        return ["cuidado personal", "corporal", "capilar"].includes(c) ||
+          (c === "tratamiento" && (n.includes("capilar") || n.includes("óleo") || n.includes("oleo")));
+      }
+    },
+    {
+      id: "cocina",
+      name: "Cocina & Mesa",
+      image: "images/categorias/cocina.png",
+      hoverImage: null,
+      match: (p) => ["cocina"].includes((p.categoria || "").toLowerCase().trim())
+    },
+    {
+      id: "hogar",
+      name: "Hogar & Organización",
+      image: "images/categorias/hogar.png",
+      hoverImage: null,
+      match: (p) => ["hogar", "recamara", "muebles"].includes((p.categoria || "").toLowerCase().trim())
+    },
+    {
+      id: "bano",
+      name: "Baño",
+      image: "images/categorias/bano.png",
+      hoverImage: null,
+      match: (p) => ["baño", "bano"].includes((p.categoria || "").toLowerCase().trim())
+    },
+    {
+      id: "limpieza",
+      name: "Limpieza",
+      image: "images/categorias/limpieza.png",
+      hoverImage: null,
+      match: (p) => ["limpieza"].includes((p.categoria || "").toLowerCase().trim())
+    },
+    {
+      id: "moda_accesorios",
+      name: "Moda & Accesorios",
+      image: "images/categorias/modayaccesorios.png",
+      hoverImage: null,
+      match: (p) => ["contigo", "accesorios", "moda y accesorios", "moda", "mochilas"].includes((p.categoria || "").toLowerCase().trim())
+    }
+  ];
 
   // Load products
   async function loadCatalog() {
@@ -185,218 +262,51 @@ document.addEventListener("DOMContentLoaded", async () => {
     brandContainer.querySelectorAll(".brand-nav-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const selected = e.currentTarget.getAttribute("data-brand");
-        if (currentBrand !== selected) {
-          currentBrand = selected;
-          renderBrands();
-          renderCategories();
-          if (currentView === "categories") {
-            renderCategoriesShowcase();
-          } else {
-            // When in products view, switch to showcase of selected brand
-            currentCategory = null;
-            currentView = "categories";
-            const showcaseEl = document.getElementById("view-categories-showcase");
-            const catalogEl = document.getElementById("view-products-catalog");
-            if (showcaseEl) showcaseEl.classList.remove("d-none");
-            if (catalogEl) catalogEl.classList.add("d-none");
-            renderCategoriesShowcase();
-          }
-          syncActiveBrandScroll();
-        }
+        window.selectBrandDirect(selected);
       });
     });
   }
 
-  // Get normalized categories list excluding technical tags
-  function getCatalogCategories() {
-    const ignoredTags = new Set(["aplica_hiperoferta", "ahorro_30", "aplica_superprecio"]);
-    const categoryMap = new Map();
-
-    allProducts.forEach(p => {
-      if (p.activo !== false && p.categoria) {
-        const lower = p.categoria.toLowerCase().trim();
-        if (!ignoredTags.has(lower)) {
-          const display = formatCategoryName(p.categoria);
-          if (!categoryMap.has(display)) {
-            categoryMap.set(display, new Set());
-          }
-          categoryMap.get(display).add(p.categoria);
-        }
+  // Preload hover images in browser memory for instant swap
+  function preloadCategoryHoverImages() {
+    GLOBAL_CATEGORIES.forEach(cat => {
+      if (cat.hoverImage) {
+        const img = new Image();
+        img.src = cat.hoverImage;
       }
     });
-
-    const sortedNames = Array.from(categoryMap.keys()).sort();
-    return [
-      { id: "all", label: "Todas las Categorías" },
-      { id: "gift_200", label: "Regalos < $200" },
-      { id: "gift_350", label: "Regalos < $350" },
-      ...sortedNames.map(name => ({ id: name, label: name, rawKeys: Array.from(categoryMap.get(name)) }))
-    ];
   }
 
-  // Distinct visual categories for each of the 4 official brands (Inspirado en L'Bel / Belcorp Oficial)
-  const BRAND_CATEGORIES_CONFIG = {
-    lbel: [
-      {
-        id: "cuidado_piel",
-        name: "Cuidado de la Piel",
-        image: "https://lbel.vteximg.com.br/arquivos/categorie-cuidado-de-la-piel.jpg",
-        matchKeys: ["skincare", "tecnología", "tratamiento facial", "cuidado de la piel", "tratamiento"]
-      },
-      {
-        id: "fragancias",
-        name: "Fragancias",
-        image: "https://lbel.vteximg.com.br/arquivos/categorie-perfumes.jpg",
-        matchKeys: ["perfumes", "fragancias"]
-      },
-      {
-        id: "maquillaje",
-        name: "Maquillaje",
-        image: "https://lbel.vteximg.com.br/arquivos/categorie-maquillaje.jpg",
-        matchKeys: ["maquillaje"]
-      },
-      {
-        id: "cuidado_personal",
-        name: "Cuidado personal",
-        image: "https://lbel.vteximg.com.br/arquivos/categorie-cuidado-personal.jpg",
-        matchKeys: ["cuidado personal", "cuidado corporal", "tratamiento", "capilar"]
-      },
-      {
-        id: "sets",
-        name: "Sets",
-        image: "https://esika.vteximg.com.br/arquivos/top-regalos.jpg",
-        matchKeys: ["sets"],
-        customFilter: (p) => (p.categoria && p.categoria.toLowerCase() === 'sets') || /set|kit|duo|dúo|rutina|pack|estuche/i.test(p.nombre)
-      }
-    ],
-    esika: [
-      {
-        id: "fragancias",
-        name: "Fragancias",
-        image: "https://esika.vteximg.com.br/arquivos/categorie-perfumes.jpg",
-        matchKeys: ["perfumes", "fragancias"]
-      },
-      {
-        id: "maquillaje",
-        name: "Maquillaje",
-        image: "https://esika.vteximg.com.br/arquivos/categorie-maquillaje.jpg",
-        matchKeys: ["maquillaje"]
-      },
-      {
-        id: "cuidado_piel",
-        name: "Cuidado de la Piel",
-        image: "https://esika.vteximg.com.br/arquivos/categorie-cuidado-de-la-piel.jpg",
-        matchKeys: ["cuidado personal", "skincare", "cuidado de la piel"]
-      },
-      {
-        id: "joyeria",
-        name: "Joyería",
-        image: "https://esika.vteximg.com.br/arquivos/categorie-joyeria.jpg",
-        matchKeys: ["joyería"]
-      }
-    ],
-    cyzone: [
-      {
-        id: "maquillaje",
-        name: "Maquillaje",
-        image: "https://cyzone.vteximg.com.br/arquivos/categorie-maquillaje.jpg",
-        matchKeys: ["maquillaje"]
-      },
-      {
-        id: "moda_y_accesorios",
-        name: "Moda & Accesorios",
-        image: "https://belcorpmexico.vteximg.com.br/arquivos/ids/1252996/21-0114646_cy_clean_gold_est_are_x3_fotofondoblanco.jpg.jpg?v=639226023269000000",
-        matchKeys: ["moda y accesorios", "mochilas"]
-      },
-      {
-        id: "perfumes",
-        name: "Perfumes & Fragancias",
-        image: "https://cyzone.vteximg.com.br/arquivos/categorie-perfumes.jpg",
-        matchKeys: ["perfumes", "fragancias"]
-      }
-    ],
-    betterware: [
-      {
-        id: "cocina",
-        name: "Cocina & Mesa",
-        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/24014-1-Gurmy-Nutri-Bowl-Betterware-1_a3aad0f7-0048-4475-984f-b3dd4cf25557.jpg?v=1789450268",
-        matchKeys: ["cocina"]
-      },
-      {
-        id: "hogar",
-        name: "Organización & Hogar",
-        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26856-1-Infla-Jack-Betterware.jpg?v=1789450268",
-        matchKeys: ["hogar"]
-      },
-      {
-        id: "portatiles",
-        name: "Portátiles & Viaje",
-        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26605-1-Porta-Basicos-Betterware.jpg?v=1787011088",
-        matchKeys: ["contigo", "mochilas"]
-      },
-      {
-        id: "bienestar",
-        name: "Bienestar",
-        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/23213-1-Bocina-Colors-Betterware_85eb5f44-b8f6-41ac-999f-9103c7ec160b.jpg?v=1787975767",
-        matchKeys: ["bienestar"]
-      },
-      {
-        id: "bano_recamara",
-        name: "Baño & Recámara",
-        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26430-1-Jabonera-Jack-Betterware.jpg?v=1789450268",
-        matchKeys: ["baño", "recamara"]
-      },
-      {
-        id: "limpieza",
-        name: "Limpieza",
-        image: "https://cdn.shopify.com/s/files/1/0853/3114/9100/files/26699_E2_80_8B_20-1-Lava-Bra-Flex-Betterware.jpg?v=1789450268",
-        matchKeys: ["limpieza"]
-      }
-    ]
-  };
-
-  // Render Visual Categories Showcase per Selected Brand
+  // Render Visual Categories Showcase (Categorías Globales con Fotos y Hover Swap)
   function renderCategoriesShowcase() {
     const grid = document.getElementById("categories-visual-grid");
     const titleEl = document.getElementById("brand-categories-title");
     const subtitleEl = document.getElementById("brand-categories-subtitle");
 
-    const brandKey = currentBrand || "lbel";
-    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
-
     if (titleEl) {
       titleEl.textContent = "Compra por categoría";
     }
     if (subtitleEl) {
-      subtitleEl.textContent = `Colecciones exclusivas de ${brandName}`;
+      subtitleEl.textContent = "Descubre nuestras colecciones en Belleza y Hogar";
     }
 
     if (!grid) return;
 
-    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
-    const brandProds = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
+    preloadCategoryHoverImages();
 
-    grid.innerHTML = brandCats.map(cat => {
-      let matching = [];
-      if (cat.customFilter) {
-        matching = brandProds.filter(cat.customFilter);
-      } else {
-        matching = brandProds.filter(p => {
-          const pCat = (p.categoria || '').toLowerCase().trim();
-          return cat.matchKeys && cat.matchKeys.includes(pCat);
-        });
-      }
-
+    grid.innerHTML = GLOBAL_CATEGORIES.map(cat => {
+      const matching = allProducts.filter(p => p.activo !== false && cat.match(p));
       const count = matching.length;
-      if (count === 0 && !cat.customFilter) return "";
+      if (count === 0) return "";
 
-      const sampleImg = cat.image || (matching[0] && matching[0].fotos && matching[0].fotos[0]) || "https://via.placeholder.com/400?text=Categoria";
+      const hasHover = !!cat.hoverImage;
 
       return `
         <div class="col">
-          <div class="category-visual-card" onclick="window.selectCategoryDirect('${cat.id}')" title="Comprar ${cat.name}">
+          <div class="category-visual-card ${hasHover ? 'has-hover-img' : ''}" onclick="window.selectCategoryDirect('${cat.id}')" title="Comprar ${cat.name}">
             <div class="category-visual-img-wrap">
-              <img src="${sampleImg}" alt="${cat.name}" loading="lazy">
+              <img src="${cat.image}" alt="${cat.name}" class="cat-img-main" loading="lazy">
+              ${hasHover ? `<img src="${cat.hoverImage}" alt="${cat.name}" class="cat-img-hover" loading="lazy">` : ''}
             </div>
             <div class="category-visual-body">
               <h6 class="category-visual-title">${cat.name}</h6>
@@ -408,18 +318,57 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
+  // Render Brand Filter Chips inside Category Catalog View
+  function renderBrandFilterChips() {
+    const container = document.getElementById("catalog-brand-filter-chips");
+    if (!container) return;
+
+    // Filter by category first to know which brands exist in this category
+    let catProducts = allProducts.filter(p => p.activo !== false);
+    if (currentCategory === "gift_200") {
+      catProducts = catProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200));
+    } else if (currentCategory === "gift_350") {
+      catProducts = catProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350));
+    } else if (currentCategory && currentCategory !== "all") {
+      const catConfig = GLOBAL_CATEGORIES.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
+      if (catConfig) {
+        catProducts = catProducts.filter(catConfig.match);
+      }
+    }
+
+    const brandCounts = {};
+    catProducts.forEach(p => {
+      const b = (p.marca || "betterware").toLowerCase();
+      brandCounts[b] = (brandCounts[b] || 0) + 1;
+    });
+
+    const activeBrands = BRANDS_CONFIG.filter(b => (brandCounts[b.id] || 0) > 0);
+    const isAll = !currentBrand || currentBrand === "all";
+
+    container.innerHTML = `
+      <button type="button" class="brand-chip-btn ${isAll ? 'active' : ''}" onclick="window.filterByBrand('all')">
+        Todas las marcas (${catProducts.length})
+      </button>
+      ${activeBrands.map(b => {
+        const isSelected = currentBrand === b.id;
+        const count = brandCounts[b.id] || 0;
+        return `
+          <button type="button" class="brand-chip-btn ${isSelected ? 'active' : ''}" onclick="window.filterByBrand('${b.id}')">
+            ${b.label} (${count})
+          </button>
+        `;
+      }).join("")}
+    `;
+  }
+
   // Render quick horizontal category selector in products catalog view
   function renderQuickCategoryPills() {
     const container = document.getElementById("quick-category-pills");
     if (!container) return;
 
-    const brandKey = currentBrand || "lbel";
-    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
-    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
-
     const pills = [
-      { id: "all", label: `✨ Todo ${brandName}` },
-      ...brandCats.map(c => ({ id: c.id, label: c.name }))
+      { id: "all", label: "✨ Ver Todo" },
+      ...GLOBAL_CATEGORIES.map(c => ({ id: c.id, label: c.name }))
     ];
 
     container.innerHTML = pills.map(p => {
@@ -434,36 +383,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Render Offcanvas Drawer List (Categorías en Menú Hamburguesa)
   function renderCategories() {
-    const brandKey = currentBrand || "lbel";
-    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
-    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
-    const brandProds = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
-
     const offcanvasList = document.getElementById("offcanvas-categories-list");
     if (!offcanvasList) return;
 
+    const activeProducts = allProducts.filter(p => p.activo !== false);
+
     const countBadge = document.getElementById("offcanvas-count-badge");
     if (countBadge) {
-      countBadge.textContent = `${brandProds.length} prods`;
+      countBadge.textContent = `${activeProducts.length} prods`;
     }
 
     const items = [
-      { id: "all", label: `✨ Todo ${brandName}`, count: brandProds.length },
-      { id: "gift_200", label: "🎁 Regalos < $200", count: brandProds.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length },
-      { id: "gift_350", label: "🎀 Regalos < $350", count: brandProds.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length },
-      ...brandCats.map(cat => {
-        let cnt = 0;
-        if (cat.customFilter) {
-          cnt = brandProds.filter(cat.customFilter).length;
-        } else {
-          cnt = brandProds.filter(p => cat.matchKeys && cat.matchKeys.includes((p.categoria || '').toLowerCase().trim())).length;
-        }
-        return {
-          id: cat.id,
-          label: cat.name,
-          count: cnt
-        };
-      })
+      { id: "all", label: "✨ Todo el Catálogo", count: activeProducts.length },
+      { id: "gift_200", label: "🎁 Regalos < $200", count: activeProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length },
+      { id: "gift_350", label: "🎀 Regalos < $350", count: activeProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length },
+      ...GLOBAL_CATEGORIES.map(cat => ({
+        id: cat.id,
+        label: cat.name,
+        count: activeProducts.filter(cat.match).length
+      }))
     ];
 
     offcanvasList.innerHTML = items.map(cat => {
@@ -483,6 +421,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       btn.addEventListener("click", (e) => {
         const cat = e.currentTarget.getAttribute("data-category");
         closeOffcanvas();
+        currentBrand = "all";
         window.selectCategoryDirect(cat);
       });
     });
@@ -494,13 +433,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const countEl = document.getElementById("products-count-text");
     if (!grid) return;
 
-    const brandKey = currentBrand || "lbel";
-    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
+    let filtered = allProducts.filter(p => p.activo !== false);
 
-    // 1. Filtro por Marca seleccionada
-    let filtered = allProducts.filter(p => p.activo !== false && (p.marca || "betterware").toLowerCase() === brandKey);
-
-    // 2. Filtro por Categoría
+    // 1. Filtro por Categoría Global
     if (currentCategory === "gift_200") {
       filtered = filtered.filter(p => {
         const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
@@ -512,17 +447,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         return price <= 350;
       });
     } else if (currentCategory && currentCategory !== "all") {
-      const catConfig = brandCats.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
-      if (catConfig && catConfig.customFilter) {
-        filtered = filtered.filter(catConfig.customFilter);
-      } else if (catConfig && catConfig.matchKeys) {
-        filtered = filtered.filter(p => {
-          const pCat = (p.categoria || '').toLowerCase().trim();
-          return catConfig.matchKeys.includes(pCat);
-        });
+      const catConfig = GLOBAL_CATEGORIES.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
+      if (catConfig) {
+        filtered = filtered.filter(catConfig.match);
       } else {
         filtered = filtered.filter(p => (p.categoria || '').toLowerCase().trim() === currentCategory.toLowerCase().trim());
       }
+    }
+
+    // 2. Filtro por Marca
+    if (currentBrand && currentBrand !== "all") {
+      filtered = filtered.filter(p => (p.marca || "betterware").toLowerCase() === currentBrand.toLowerCase());
     }
 
     // Actualizar contador
@@ -536,7 +471,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="p-4 bg-white rounded-4 border text-center mx-auto" style="max-width: 420px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
             <i class="bi bi-box-seam text-muted fs-1 mb-2 d-block"></i>
             <h6 class="fw-bold text-dark mb-1">Sin productos disponibles</h6>
-            <p class="text-muted small mb-3">No hay productos disponibles en esta categoría.</p>
+            <p class="text-muted small mb-3">No hay productos disponibles con los filtros actuales.</p>
             <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold" onclick="window.viewAllProducts()">Ver todo el catálogo</button>
           </div>
         </div>
@@ -593,30 +528,57 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (catalogEl) catalogEl.classList.remove("d-none");
 
     const titleEl = document.getElementById("current-category-title");
-    const brandKey = currentBrand || "lbel";
-    const brandName = BRAND_LABELS[brandKey] || "L'Bel";
-    const brandCats = BRAND_CATEGORIES_CONFIG[brandKey] || [];
 
     if (titleEl) {
       if (catId === "gift_200") {
-        titleEl.textContent = `Regalos < $200 (${brandName})`;
+        titleEl.textContent = "Regalos < $200";
       } else if (catId === "gift_350") {
-        titleEl.textContent = `Regalos < $350 (${brandName})`;
+        titleEl.textContent = "Regalos < $350";
       } else if (catId === "all") {
-        titleEl.textContent = `Catálogo ${brandName}`;
+        titleEl.textContent = (currentBrand && currentBrand !== "all") ? `Catálogo ${BRAND_LABELS[currentBrand] || currentBrand}` : "Todo el Catálogo";
       } else {
-        const catConfig = brandCats.find(c => c.id.toLowerCase() === catId.toLowerCase());
+        const catConfig = GLOBAL_CATEGORIES.find(c => c.id.toLowerCase() === catId.toLowerCase());
         titleEl.textContent = catConfig ? catConfig.name : formatCategoryName(catId);
       }
     }
 
+    renderBrandFilterChips();
     renderQuickCategoryPills();
     renderProducts();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  window.selectBrandDirect = (brandId) => {
+    currentBrand = brandId;
+    currentCategory = "all";
+    currentView = "products";
+
+    const showcaseEl = document.getElementById("view-categories-showcase");
+    const catalogEl = document.getElementById("view-products-catalog");
+    if (showcaseEl) showcaseEl.classList.add("d-none");
+    if (catalogEl) catalogEl.classList.remove("d-none");
+
+    const brandName = BRAND_LABELS[brandId] || formatBrandName(brandId);
+    const titleEl = document.getElementById("current-category-title");
+    if (titleEl) {
+      titleEl.textContent = `Catálogo ${brandName}`;
+    }
+
+    renderBrandFilterChips();
+    renderQuickCategoryPills();
+    renderProducts();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  window.filterByBrand = (brandId) => {
+    currentBrand = brandId;
+    renderBrandFilterChips();
+    renderProducts();
+  };
+
   window.backToCategories = () => {
     currentCategory = null;
+    currentBrand = "all";
     currentView = "categories";
 
     const showcaseEl = document.getElementById("view-categories-showcase");
@@ -624,11 +586,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (showcaseEl) showcaseEl.classList.remove("d-none");
     if (catalogEl) catalogEl.classList.add("d-none");
 
+    renderBrands();
     renderCategoriesShowcase();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   window.viewAllProducts = () => {
+    currentBrand = "all";
     window.selectCategoryDirect("all");
   };
 
