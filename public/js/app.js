@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let currentCategory = null; // null => Visual Categories Showcase (Cyzone style home)
   let currentBrand = "all"; // Default active brand: todas las marcas unificadas
   let currentView = "categories"; // 'categories' or 'products'
+  let currentSort = "featured"; // 'featured', 'price-asc', 'price-desc', 'discount-desc'
   let selectedProductForOrder = null;
 
   // 4 Official Brands Configuration
@@ -460,6 +461,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       filtered = filtered.filter(p => (p.marca || "betterware").toLowerCase() === currentBrand.toLowerCase());
     }
 
+    // 3. Ordenamiento del Catálogo
+    if (currentSort === "price-asc") {
+      filtered.sort((a, b) => {
+        const pA = (a.precio_oferta && a.precio_oferta < a.precio_regular) ? a.precio_oferta : a.precio_regular;
+        const pB = (b.precio_oferta && b.precio_oferta < b.precio_regular) ? b.precio_oferta : b.precio_regular;
+        return pA - pB;
+      });
+    } else if (currentSort === "price-desc") {
+      filtered.sort((a, b) => {
+        const pA = (a.precio_oferta && a.precio_oferta < a.precio_regular) ? a.precio_oferta : a.precio_regular;
+        const pB = (b.precio_oferta && b.precio_oferta < b.precio_regular) ? b.precio_oferta : b.precio_regular;
+        return pB - pA;
+      });
+    } else if (currentSort === "discount-desc") {
+      filtered.sort((a, b) => {
+        const discA = (a.precio_oferta && a.precio_oferta < a.precio_regular) ? (a.precio_regular - a.precio_oferta) : 0;
+        const discB = (b.precio_oferta && b.precio_oferta < b.precio_regular) ? (b.precio_regular - b.precio_oferta) : 0;
+        return discB - discA;
+      });
+    }
+
     // Actualizar contador
     if (countEl) {
       countEl.textContent = `${filtered.length} producto${filtered.length === 1 ? '' : 's'}`;
@@ -517,6 +539,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
+  // Handle Sort Change
+  window.handleSortChange = (sortVal) => {
+    currentSort = sortVal;
+    renderProducts();
+  };
+
+  // Sync Bottom Navigation Active State
+  function syncBottomNavActive(activeId) {
+    document.querySelectorAll(".bottom-nav-item").forEach(item => {
+      if (item.id === activeId) {
+        item.classList.add("active");
+      } else {
+        item.classList.remove("active");
+      }
+    });
+  }
+
+  // Mobile Bottom Navigation Callbacks
+  window.openOffcanvasMenu = () => {
+    openOffcanvas();
+    syncBottomNavActive("bnav-categories");
+  };
+
+  window.triggerMobileSearch = () => {
+    const searchBar = document.getElementById("header-search-bar");
+    const inputSearch = document.getElementById("input-search-header");
+    if (searchBar) {
+      searchBar.classList.remove("d-none");
+      if (inputSearch) {
+        inputSearch.focus();
+      }
+    }
+    syncBottomNavActive("bnav-search");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // Window Global Navigation Methods
   window.selectCategoryDirect = (catId) => {
     currentCategory = catId;
@@ -542,6 +600,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
+    syncBottomNavActive("bnav-categories");
     renderBrandFilterChips();
     renderQuickCategoryPills();
     renderProducts();
@@ -564,6 +623,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       titleEl.textContent = `Catálogo ${brandName}`;
     }
 
+    syncBottomNavActive("bnav-categories");
     renderBrandFilterChips();
     renderQuickCategoryPills();
     renderProducts();
@@ -586,6 +646,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (showcaseEl) showcaseEl.classList.remove("d-none");
     if (catalogEl) catalogEl.classList.add("d-none");
 
+    syncBottomNavActive("bnav-home");
     renderBrands();
     renderCategoriesShowcase();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -793,6 +854,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (drawerCountEl) {
       drawerCountEl.textContent = `${totalCount} ${totalCount === 1 ? 'artículo' : 'artículos'}`;
+    }
+
+    const bnavBadgeEl = document.getElementById("bnav-cart-badge");
+    if (bnavBadgeEl) {
+      bnavBadgeEl.textContent = totalCount;
+      if (totalCount > 0) {
+        bnavBadgeEl.classList.remove("d-none");
+      } else {
+        bnavBadgeEl.classList.add("d-none");
+      }
     }
   }
 

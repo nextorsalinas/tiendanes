@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css?v=20261008_2">
+  <link rel="stylesheet" href="css/custom.css?v=20261009_1">
 </head>
 <body>
 
@@ -134,6 +134,32 @@
     
     <!-- VIEW 1: CATEGORY SHOWCASE (Categorías Globales con Fotos y Hover) -->
     <section id="view-categories-showcase" class="categories-showcase-section">
+      
+      <!-- HERO BANNER: Festival de Fragancias -->
+      <div class="hero-festival-banner mb-4">
+        <div class="hero-festival-content">
+          <div class="hero-badge-pill">
+            <i class="bi bi-stars"></i> EDICIÓN ESPECIAL 2026
+          </div>
+          <h2 class="hero-festival-title">Festival de<br>Fragancias</h2>
+          <p class="hero-festival-desc">
+            Descubre aromas inolvidables de <strong>L'Bel, Ésika y Cyzone</strong> con hasta 30% de ahorro. Perfumes exclusivos para cada personalidad.
+          </p>
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <button type="button" class="btn btn-hero-explore" onclick="window.selectCategoryDirect('perfumes')">
+              <i class="bi bi-bag-heart-fill me-1"></i> Explorar Perfumes
+            </button>
+            <button type="button" class="btn btn-hero-viewall" onclick="window.viewAllProducts()">
+              Ver Todo el Catálogo <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+        <div class="hero-festival-visual">
+          <div class="hero-visual-badge">-30% OFF</div>
+          <img src="images/categorias/perfumes.png" alt="Festival de Fragancias nestt." class="hero-perfume-img">
+        </div>
+      </div>
+
       <!-- Section Header Minimalista -->
       <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
         <div>
@@ -191,7 +217,7 @@
 
     <!-- VIEW 2: PRODUCTS CATALOG (When a category or brand is active) -->
     <section id="view-products-catalog" class="products-catalog-section d-none">
-      <!-- Breadcrumb & Back to Categories Button -->
+      <!-- Breadcrumb, Sort & Back to Categories Button -->
       <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom flex-wrap gap-2">
         <div class="d-flex align-items-center gap-2">
           <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-bold" id="btn-back-to-categories" onclick="window.backToCategories()">
@@ -200,7 +226,19 @@
           <span class="text-muted">/</span>
           <h5 class="fw-bold text-dark m-0" id="current-category-title" style="font-size: 1.05rem;">Catálogo</h5>
         </div>
-        <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small fw-semibold" id="products-count-text">0 productos</span>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Selector de Ordenamiento -->
+          <div class="dropdown">
+            <select id="catalog-sort-select" class="form-select form-select-sm rounded-pill fw-semibold border" style="font-size: 0.78rem; padding-right: 1.8rem; background-color: #fbf9fd;" onchange="window.handleSortChange(this.value)">
+              <option value="featured">✨ Destacados</option>
+              <option value="price-asc">Precio: Menor a Mayor</option>
+              <option value="price-desc">Precio: Mayor a Menor</option>
+              <option value="discount-desc">Mayor Descuento</option>
+            </select>
+          </div>
+          <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small fw-semibold" id="products-count-text">0 productos</span>
+        </div>
       </div>
 
       <!-- Quick Brand Filter Chips within Catalog -->
@@ -219,7 +257,79 @@
       </div>
     </section>
 
+    <!-- Trust Badges Section -->
+    <section class="trust-badges-section my-4 py-3 border-top border-bottom">
+      <div class="row g-3 text-center">
+        <div class="col-12 col-md-4">
+          <div class="trust-badge-card p-3">
+            <div class="trust-icon-box mb-2">
+              <i class="bi bi-shield-check fs-2 text-primary"></i>
+            </div>
+            <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.92rem;">100% Originales y Sellados</h6>
+            <p class="text-muted small m-0" style="font-size: 0.78rem;">Productos oficiales directos de L'Bel, Ésika, Cyzone y Betterware.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="trust-badge-card p-3">
+            <div class="trust-icon-box mb-2">
+              <i class="bi bi-whatsapp fs-2 text-success"></i>
+            </div>
+            <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.92rem;">Atención y Pedidos WhatsApp</h6>
+            <p class="text-muted small m-0" style="font-size: 0.78rem;">Coordinación personalizada, rápida y segura para tus entregas.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="trust-badge-card p-3">
+            <div class="trust-icon-box mb-2">
+              <i class="bi bi-tags-fill fs-2" style="color: #f72585;"></i>
+            </div>
+            <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.92rem;">Promociones de Catálogo</h6>
+            <p class="text-muted small m-0" style="font-size: 0.78rem;">Precios de campaña con descuentos reales en cada producto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Footer -->
+    <footer class="store-footer text-center py-4 text-muted small">
+      <div class="mb-2">
+        <span class="brand-name-nestt fs-4">nestt<span class="brand-dot">.</span></span>
+      </div>
+      <p class="mb-3 max-w-md mx-auto text-secondary" style="font-size: 0.82rem;">
+        Tu catálogo en línea de confianza en Belleza y Hogar. Entregas coordinadas directamente por WhatsApp.
+      </p>
+      <div class="d-flex justify-content-center gap-2 mb-3">
+        <a href="https://wa.me/525525000024" target="_blank" rel="noopener" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold">
+          <i class="bi bi-whatsapp me-1"></i> Contactar por WhatsApp
+        </a>
+      </div>
+      <div class="border-top pt-3 text-secondary" style="font-size: 0.75rem;">
+        &copy; 2026 nestt. Todos los derechos reservados.
+      </div>
+    </footer>
+
   </main>
+
+  <!-- Barra de Navegación Inferior Móvil (Bottom Navigation Bar) -->
+  <nav class="mobile-bottom-nav d-md-none" id="mobile-bottom-nav" aria-label="Navegación móvil">
+    <button type="button" class="bottom-nav-item active" id="bnav-home" onclick="window.backToCategories()">
+      <i class="bi bi-house-door-fill"></i>
+      <span>Inicio</span>
+    </button>
+    <button type="button" class="bottom-nav-item" id="bnav-categories" onclick="window.openOffcanvasMenu()">
+      <i class="bi bi-grid-fill"></i>
+      <span>Categorías</span>
+    </button>
+    <button type="button" class="bottom-nav-item" id="bnav-search" onclick="window.triggerMobileSearch()">
+      <i class="bi bi-search"></i>
+      <span>Buscar</span>
+    </button>
+    <button type="button" class="bottom-nav-item position-relative" id="bnav-cart" onclick="window.openCartDrawer()">
+      <i class="bi bi-bag-fill"></i>
+      <span class="bnav-cart-badge d-none" id="bnav-cart-badge">0</span>
+      <span>Carrito</span>
+    </button>
+  </nav>
 
   <!-- Product Order Modal (Direct WhatsApp Order) -->
   <div class="modal fade" id="orderProductModal" tabindex="-1" aria-hidden="true">
@@ -272,8 +382,8 @@
   <!-- Firebase SDKs (Compat v10) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-  <script src="js/products-data.js?v=20261008_1"></script>
-  <script src="js/firebase-config.js?v=20261008_1"></script>
-  <script src="js/app.js?v=20261008_2"></script>
+  <script src="js/products-data.js?v=20261009_1"></script>
+  <script src="js/firebase-config.js?v=20261009_1"></script>
+  <script src="js/app.js?v=20261009_1"></script>
 </body>
 </html>

@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     renderProductDetail(currentProduct);
+    renderRelatedProducts(currentProduct, products);
   } catch (err) {
     console.error("Error al cargar producto:", err);
     showNotFound();
@@ -338,4 +339,75 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("btn-share-product")?.addEventListener("click", shareProduct);
     document.getElementById("btn-share-desktop")?.addEventListener("click", shareProduct);
   }
+
+  // 7. Render Related Products ("También te podría gustar")
+  function renderRelatedProducts(current, allProducts) {
+    const relatedSection = document.getElementById("related-products-section");
+    const relatedGrid = document.getElementById("related-products-grid");
+    if (!relatedSection || !relatedGrid) return;
+
+    const currentBrand = (current.marca || "").toLowerCase().trim();
+    const currentCat = (current.categoria || "").toLowerCase().trim();
+
+    // Exclude current product and inactive products
+    const candidates = allProducts.filter(p => {
+      if (String(p.id) === String(current.id)) return false;
+      if (p.activo === false) return false;
+      return true;
+    });
+
+    if (candidates.length === 0) return;
+
+    // Score candidates by same category and brand
+    const scored = candidates.map(p => {
+      let score = 0;
+      const b = (p.marca || "").toLowerCase().trim();
+      const c = (p.categoria || "").toLowerCase().trim();
+      if (c && c === currentCat) score += 3;
+      if (b && b === currentBrand) score += 2;
+      return { product: p, score: score + Math.random() };
+    });
+
+    scored.sort((a, b) => b.score - a.score);
+    const relatedList = scored.slice(0, 4).map(s => s.product);
+
+    if (relatedList.length === 0) return;
+
+    relatedGrid.innerHTML = relatedList.map(p => {
+      const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
+      const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
+      const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
+      const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
+      const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
+
+      return `
+        <div class="col">
+          <div class="product-card-minimal">
+            <a href="${productUrl}" class="product-card-img-container text-decoration-none" title="Ver ${p.nombre}">
+              <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
+              ${hasDiscount ? `<span class="badge-shein-discount">-${discountPercent}%</span>` : ''}
+            </a>
+            <div class="product-card-content">
+              <span class="product-brand-tag">${formatBrandName(p.marca)}</span>
+              <a href="${productUrl}" class="product-name-minimal text-decoration-none" title="Ver ${p.nombre}">
+                ${p.nombre}
+              </a>
+              <div class="price-row">
+                <span class="price-main">$${currentPrice.toFixed(2)}</span>
+                ${hasDiscount ? `<span class="price-old-strike">$${p.precio_regular.toFixed(2)}</span>` : ''}
+              </div>
+              <div class="mt-2">
+                <a href="${productUrl}" class="btn-whatsapp-card text-decoration-none w-100" aria-label="Ver ${p.nombre}">
+                  <span>Ver Detalle</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    relatedSection.classList.remove("d-none");
+  }
 });
+
