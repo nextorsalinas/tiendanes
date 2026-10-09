@@ -754,13 +754,13 @@ body {
 /* --- Mobile-First Single Card Showcase (Max 576px) --- */
 @media (max-width: 575.98px) {
   #products-grid > [class*="col-"] {
-    max-width: 440px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
   }
 
   .product-card-img-container {
-    height: 290px;
+    height: 310px;
     padding-top: 0;
     display: flex;
     align-items: center;
@@ -770,7 +770,7 @@ body {
 
   .product-card-img-container img {
     position: static;
-    max-height: 260px;
+    max-height: 280px;
     max-width: 90%;
     width: auto;
     height: auto;
@@ -778,7 +778,7 @@ body {
   }
 
   .product-name-minimal {
-    font-size: 1.02rem;
+    font-size: 1.05rem;
     line-height: 1.35;
     -webkit-line-clamp: 2;
   }
@@ -790,6 +790,16 @@ body {
   .btn-whatsapp-minimal {
     font-size: 0.88rem;
     padding: 0.65rem 1rem;
+  }
+
+  .btn-whatsapp-card {
+    height: 40px;
+    font-size: 0.88rem;
+  }
+
+  .btn-cart-add-card {
+    height: 40px;
+    width: 44px;
   }
 }
 

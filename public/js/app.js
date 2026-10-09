@@ -487,7 +487,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
 
       return `
-        <div class="col-6 col-md-4 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <a href="${productUrl}" class="product-card-img-container text-decoration-none" title="Ver ${p.nombre}">
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
@@ -1125,7 +1125,7 @@ ${itemsText}
       const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
 
       return `
-        <div class="col-6 col-md-4 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div class="product-card-minimal">
             <a href="${productUrl}" class="product-card-img-container text-decoration-none" title="Ver ${p.nombre}">
               <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
