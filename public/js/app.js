@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </div>
               <div class="d-flex gap-1 mt-2">
                 <button type="button" class="btn-cart-add-card flex-grow-0" onclick="window.addToCart('${p.id}', 1, event)" title="Agregar al carrito" aria-label="Agregar ${p.nombre} al carrito">
-                  <i class="bi bi-bag-plus fs-6"></i>
+                  <i class="bi bi-cart-plus fs-6"></i>
                 </button>
                 <a href="${productUrl}" class="btn-whatsapp-card flex-grow-1 text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
                   <i class="bi bi-whatsapp"></i> <span>Pedir</span>
@@ -563,13 +563,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   window.triggerMobileSearch = () => {
-    const searchBar = document.getElementById("header-search-bar");
     const inputSearch = document.getElementById("input-search-header");
-    if (searchBar) {
-      searchBar.classList.remove("d-none");
-      if (inputSearch) {
-        inputSearch.focus();
-      }
+    if (inputSearch) {
+      inputSearch.focus();
     }
     syncBottomNavActive("bnav-search");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -937,7 +933,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       listEl.innerHTML = `
         <div class="text-center py-5 px-3">
           <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center p-3 shadow-sm mb-3" style="width: 70px; height: 70px;">
-            <i class="bi bi-bag-x fs-2 text-muted"></i>
+            <i class="bi bi-cart-x fs-2 text-muted"></i>
           </div>
           <h6 class="fw-bold text-dark mb-1">Tu carrito está vacío</h6>
           <p class="text-muted small mb-4">Agrega tus productos favoritos de L'Bel, Ésika, Cyzone o Betterware.</p>
@@ -1059,36 +1055,15 @@ ${itemsText}
   }
 
   // ==========================================
-  // HEADER SEARCH (Lupa y Barra de Búsqueda)
+  // HEADER SEARCH (Input de Búsqueda Activo)
   // ==========================================
   let isSearchActive = false;
 
   function initHeaderSearch() {
-    const btnSearch = document.getElementById("btn-header-search");
-    const searchBar = document.getElementById("header-search-bar");
     const inputSearch = document.getElementById("input-search-header");
     const btnClear = document.getElementById("btn-clear-search");
-    const btnClose = document.getElementById("btn-close-search");
 
-    if (!btnSearch || !searchBar || !inputSearch) return;
-
-    // Toggle search bar
-    btnSearch.addEventListener("click", () => {
-      const isHidden = searchBar.classList.contains("d-none");
-      if (isHidden) {
-        searchBar.classList.remove("d-none");
-        inputSearch.focus();
-      } else {
-        closeSearch();
-      }
-    });
-
-    // Close button
-    if (btnClose) {
-      btnClose.addEventListener("click", () => {
-        closeSearch();
-      });
-    }
+    if (!inputSearch) return;
 
     // Clear button
     if (btnClear) {
@@ -1116,6 +1091,8 @@ ${itemsText}
     // Esc key closes search
     inputSearch.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
+        inputSearch.value = "";
+        if (btnClear) btnClear.style.display = "none";
         closeSearch();
       }
     });
@@ -1213,7 +1190,7 @@ ${itemsText}
               </div>
               <div class="d-flex gap-1 mt-2">
                 <button type="button" class="btn-cart-add-card flex-grow-0" onclick="window.addToCart('${p.id}', 1, event)" title="Agregar al carrito" aria-label="Agregar ${p.nombre} al carrito">
-                  <i class="bi bi-bag-plus fs-6"></i>
+                  <i class="bi bi-cart-plus fs-6"></i>
                 </button>
                 <a href="${productUrl}" class="btn-whatsapp-card flex-grow-1 text-decoration-none" aria-label="Ver y pedir ${p.nombre}">
                   <i class="bi bi-whatsapp"></i> <span>Pedir</span>
@@ -1227,11 +1204,9 @@ ${itemsText}
   }
 
   function closeSearch() {
-    const searchBar = document.getElementById("header-search-bar");
     const inputSearch = document.getElementById("input-search-header");
     const btnClear = document.getElementById("btn-clear-search");
 
-    if (searchBar) searchBar.classList.add("d-none");
     if (inputSearch) inputSearch.value = "";
     if (btnClear) btnClear.style.display = "none";
 
