@@ -1560,190 +1560,99 @@ body {
 }
 
 /* ==========================================================================
-   HERO BANNER: FESTIVAL DE FRAGANCIAS
+   HERO BANNERS CAROUSEL (Banners Oficiales nestt.)
    ========================================================================== */
-.hero-festival-banner {
-  background: linear-gradient(135deg, #0369a1 0%, #0284c7 45%, #38bdf8 100%);
+.hero-banners-carousel {
   border-radius: 16px;
-  padding: 1.25rem 1.6rem;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #f1f5f9;
 }
 
-.hero-festival-banner::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  right: 15%;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
-  pointer-events: none;
+.hero-banners-carousel .carousel-inner {
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.hero-festival-content {
-  position: relative;
-  z-index: 2;
-  max-width: 540px;
-}
-
-.hero-badge-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  padding: 0.22rem 0.65rem;
-  border-radius: var(--radius-pill);
-  margin-bottom: 0.6rem;
-}
-
-.hero-festival-title {
-  font-family: var(--font-brand);
-  font-size: 1.55rem;
-  font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -0.4px;
-  color: #ffffff;
-  margin-bottom: 0.45rem;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
-}
-
-.hero-festival-desc {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.92);
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-.hero-festival-desc strong {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.btn-hero-explore {
-  background: #ffffff;
-  color: #0369a1;
-  border: none;
-  font-family: var(--font-brand);
-  font-weight: 800;
-  font-size: 0.82rem;
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.22s ease;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-}
-
-.btn-hero-explore:hover {
-  background: #e0f2fe;
-  color: #075985;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.btn-hero-viewall {
-  background: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  font-family: var(--font-brand);
-  font-weight: 600;
-  font-size: 0.8rem;
-  padding: 0.48rem 1rem;
-  border-radius: var(--radius-pill);
-  backdrop-filter: blur(4px);
-  transition: all 0.2s ease;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-}
-
-.btn-hero-viewall:hover {
-  background: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  border-color: #ffffff;
-}
-
-.hero-festival-visual {
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-perfume-img {
-  width: 140px;
-  height: 140px;
+.hero-banners-carousel .banner-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3.1 / 1;
   object-fit: cover;
-  border-radius: 14px;
-  border: 2.5px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s ease;
+  display: block;
+  transition: transform 0.35s ease;
+  cursor: pointer;
 }
 
-.hero-festival-banner:hover .hero-perfume-img {
-  transform: scale(1.04) rotate(1deg);
+@media (max-width: 575.98px) {
+  .hero-banners-carousel {
+    border-radius: 12px;
+  }
+
+  .hero-banners-carousel .carousel-inner {
+    border-radius: 12px;
+  }
+
+  .hero-banners-carousel .banner-img {
+    aspect-ratio: 2.85 / 1;
+    min-height: 120px;
+  }
 }
 
-.hero-visual-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #ef4444;
-  color: #ffffff;
-  font-family: var(--font-brand);
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 0.2rem 0.55rem;
+.hero-banners-carousel .carousel-item a:hover .banner-img {
+  transform: scale(1.01);
+}
+
+.hero-banners-carousel .carousel-indicators {
+  margin-bottom: 0.5rem;
+}
+
+.hero-banners-carousel .carousel-indicators [data-bs-target],
+.hero-banners-carousel .carousel-indicators [data-coreui-target] {
+  width: 22px;
+  height: 4px;
   border-radius: var(--radius-pill);
-  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4);
-  z-index: 3;
+  background-color: rgba(255, 255, 255, 0.65);
+  border: none;
+  margin: 0 3px;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banners-carousel .carousel-indicators .active {
+  width: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-banners-carousel .carousel-control-prev,
+.hero-banners-carousel .carousel-control-next {
+  width: 42px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.hero-banners-carousel:hover .carousel-control-prev,
+.hero-banners-carousel:hover .carousel-control-next {
+  opacity: 1;
 }
 
 @media (max-width: 767.98px) {
-  .hero-festival-banner {
-    padding: 1rem 1.1rem;
-    flex-direction: column;
-    text-align: left;
-    align-items: flex-start;
-    gap: 0.85rem;
-  }
-
-  .hero-festival-title {
-    font-size: 1.35rem;
-  }
-
-  .hero-festival-desc {
-    font-size: 0.78rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .hero-festival-visual {
+  .hero-banners-carousel .carousel-control-prev,
+  .hero-banners-carousel .carousel-control-next {
     display: none;
   }
+}
 
-  .btn-hero-explore, .btn-hero-viewall {
-    font-size: 0.76rem;
-    padding: 0.45rem 0.9rem;
-  }
+.hero-banners-carousel .carousel-control-prev-icon,
+.hero-banners-carousel .carousel-control-next-icon {
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  background-size: 55%;
 }
 
 /* ==========================================================================

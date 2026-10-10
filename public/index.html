@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css?v=20261010_2">
+  <link rel="stylesheet" href="css/custom.css?v=20261010_3">
 </head>
 <body>
 
@@ -128,29 +128,30 @@
     <!-- VIEW 1: CATEGORY SHOWCASE (Categorías Globales con Fotos y Hover) -->
     <section id="view-categories-showcase" class="categories-showcase-section">
       
-      <!-- HERO BANNER: Festival de Fragancias -->
-      <div class="hero-festival-banner mb-4">
-        <div class="hero-festival-content">
-          <div class="hero-badge-pill">
-            <i class="bi bi-stars"></i> EDICIÓN ESPECIAL 2026
+      <!-- CAROUSEL DE BANNERS OFICIALES (Fragancias & Maquillaje) -->
+      <div id="heroBannersCarousel" class="carousel slide hero-banners-carousel mb-4" data-bs-ride="carousel" data-coreui-ride="carousel" data-bs-interval="4500" data-coreui-interval="4500">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroBannersCarousel" data-coreui-target="#heroBannersCarousel" data-bs-slide-to="0" data-coreui-slide-to="0" class="active" aria-current="true" aria-label="Banner Fragancias"></button>
+          <button type="button" data-bs-target="#heroBannersCarousel" data-coreui-target="#heroBannersCarousel" data-bs-slide-to="1" data-coreui-slide-to="1" aria-label="Banner Maquillaje"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="javascript:void(0)" onclick="window.selectCategoryDirect('perfumes')" title="Ver Perfumes y Fragancias" class="d-block text-decoration-none">
+              <img src="images/banners/per.png" class="d-block w-100 banner-img" alt="nestt. - Perfumes y Fragancias L'Bel, Ésika, Cyzone con 30% de descuento">
+            </a>
           </div>
-          <h2 class="hero-festival-title">Festival de<br>Fragancias</h2>
-          <p class="hero-festival-desc">
-            Descubre aromas inolvidables de <strong>L'Bel, Ésika y Cyzone</strong> con hasta 30% de ahorro. Perfumes exclusivos para cada personalidad.
-          </p>
-          <div class="d-flex align-items-center gap-2 flex-wrap">
-            <button type="button" class="btn btn-hero-explore" onclick="window.selectCategoryDirect('perfumes')">
-              <i class="bi bi-bag-heart-fill me-1"></i> Explorar Perfumes
-            </button>
-            <button type="button" class="btn btn-hero-viewall" onclick="window.viewAllProducts()">
-              Ver Todo el Catálogo <i class="bi bi-arrow-right ms-1"></i>
-            </button>
+          <div class="carousel-item">
+            <a href="javascript:void(0)" onclick="window.selectCategoryDirect('maquillaje')" title="Ver Maquillaje" class="d-block text-decoration-none">
+              <img src="images/banners/maq.jpg" class="d-block w-100 banner-img" alt="nestt. - Maquillaje L'Bel, Ésika, Cyzone con hasta 30% OFF">
+            </a>
           </div>
         </div>
-        <div class="hero-festival-visual">
-          <div class="hero-visual-badge">-30% OFF</div>
-          <img src="images/categorias/perfumes.png" alt="Festival de Fragancias nestt." class="hero-perfume-img">
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroBannersCarousel" data-coreui-target="#heroBannersCarousel" data-bs-slide="prev" data-coreui-slide="prev" aria-label="Banner anterior">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroBannersCarousel" data-coreui-target="#heroBannersCarousel" data-bs-slide="next" data-coreui-slide="next" aria-label="Banner siguiente">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
       </div>
 
       <!-- Section Header Minimalista -->
@@ -377,6 +378,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
   <script src="js/products-data.js?v=20261010_1"></script>
   <script src="js/firebase-config.js?v=20261010_1"></script>
-  <script src="js/app.js?v=20261010_1"></script>
+  <script src="js/app.js?v=20261010_3"></script>
 </body>
 </html>

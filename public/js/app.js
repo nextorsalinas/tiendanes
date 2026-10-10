@@ -118,6 +118,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderCategories();
     initCart();
     initHeaderSearch();
+    initHeroCarousel();
+  }
+
+  function initHeroCarousel() {
+    const el = document.getElementById("heroBannersCarousel");
+    if (!el) return;
+    if (typeof bootstrap !== "undefined" && bootstrap.Carousel) {
+      bootstrap.Carousel.getOrCreateInstance(el, { interval: 4500, ride: "carousel", touch: true });
+    } else if (typeof coreui !== "undefined" && coreui.Carousel) {
+      coreui.Carousel.getOrCreateInstance(el, { interval: 4500, ride: "carousel", touch: true });
+    }
   }
 
   // Helper to get product department ('hogar' or 'belleza')
