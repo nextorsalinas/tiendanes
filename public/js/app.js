@@ -101,6 +101,108 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   ];
 
+  // Categorías e Iconos Circulares Oficiales (Carpeta categorias/circulo - Estilo Mercado Libre)
+  const CIRCLE_CATEGORIES = [
+    {
+      id: "perfumes",
+      type: "category",
+      label: "Perfumes",
+      webp: "images/categorias/circulo/perfumes.webp",
+      png: "images/categorias/circulo/perfumes.png"
+    },
+    {
+      id: "maquillaje",
+      type: "category",
+      label: "Maquillaje",
+      webp: "images/categorias/circulo/maquillajes.webp",
+      png: "images/categorias/circulo/maquillajes.png"
+    },
+    {
+      id: "delineadores",
+      type: "category",
+      label: "Delineadores",
+      webp: "images/categorias/circulo/delineadores.webp",
+      png: "images/categorias/circulo/delineadores.png"
+    },
+    {
+      id: "pestanas",
+      type: "category",
+      label: "Máscaras",
+      webp: "images/categorias/circulo/mascara_de_pestanas.webp",
+      png: "images/categorias/circulo/mascara_de_pestanas.png"
+    },
+    {
+      id: "skincare",
+      type: "category",
+      label: "Skincare",
+      webp: "images/categorias/circulo/skincare.webp",
+      png: "images/categorias/circulo/skincare.png"
+    },
+    {
+      id: "cuidado_personal",
+      type: "category",
+      label: "Cuidado Personal",
+      webp: "images/categorias/circulo/cuidado_personal.webp",
+      png: "images/categorias/circulo/cuidado_personal.png"
+    },
+    {
+      id: "cocina",
+      type: "category",
+      label: "Cocina",
+      webp: "images/categorias/circulo/cocina.webp",
+      png: "images/categorias/circulo/cocina.png"
+    },
+    {
+      id: "limpieza",
+      type: "category",
+      label: "Limpieza",
+      webp: "images/categorias/circulo/limpieza.webp",
+      png: "images/categorias/circulo/limpieza.png"
+    },
+    {
+      id: "moda_accesorios",
+      type: "category",
+      label: "Accesorios",
+      webp: "images/categorias/circulo/accesorios.webp",
+      png: "images/categorias/circulo/accesorios.png"
+    },
+    {
+      id: "infaltables",
+      type: "category",
+      label: "Infaltables",
+      webp: "images/categorias/circulo/infantables_better.webp",
+      png: "images/categorias/circulo/infantables_better.png"
+    },
+    {
+      id: "betterware",
+      type: "brand",
+      label: "Betterware",
+      webp: "images/categorias/circulo/betterware.webp",
+      png: "images/categorias/circulo/betterware.png"
+    },
+    {
+      id: "esika",
+      type: "brand",
+      label: "Ésika",
+      webp: "images/categorias/circulo/esika.webp",
+      png: "images/categorias/circulo/esika.png"
+    },
+    {
+      id: "cyzone",
+      type: "brand",
+      label: "Cyzone",
+      webp: "images/categorias/circulo/cyzone.webp",
+      png: "images/categorias/circulo/cyzone.png"
+    },
+    {
+      id: "lbel",
+      type: "brand",
+      label: "L'Bel",
+      webp: "images/categorias/circulo/lebel.webp",
+      png: "images/categorias/circulo/lebel.png"
+    }
+  ];
+
   // Load products
   async function loadCatalog() {
     allProducts = await window.db.getProducts();
@@ -115,10 +217,83 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderBrands();
     renderCategoriesShowcase();
+    renderCircularCategories();
     renderCategories();
     initCart();
     initHeaderSearch();
     initHeroCarousel();
+  }
+
+  // Render Horizontal Circular Categories (Estilo Mercado Libre con arrastre sin scrollbar)
+  function renderCircularCategories() {
+    const container = document.getElementById("circular-categories-container");
+    if (!container) return;
+
+    container.innerHTML = CIRCLE_CATEGORIES.map(item => {
+      const isBrand = item.type === "brand";
+      const clickAction = isBrand 
+        ? `window.selectBrandDirect('${item.id}')` 
+        : `window.selectCategoryDirect('${item.id}')`;
+
+      return `
+        <div class="circle-category-item" onclick="${clickAction}" title="${item.label}" role="button" tabindex="0">
+          <div class="circle-category-avatar">
+            <picture>
+              <source srcset="${item.webp}" type="image/webp">
+              <img src="${item.png}" alt="${item.label}" width="62" height="62" loading="lazy">
+            </picture>
+          </div>
+          <span class="circle-category-label">${item.label}</span>
+        </div>
+      `;
+    }).join("");
+
+    initCircularDragScroll(container);
+  }
+
+  // Smooth Drag & Swipe scroll logic (sin barra de desplazamiento)
+  function initCircularDragScroll(slider) {
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let isDragging = false;
+
+    slider.addEventListener("mousedown", (e) => {
+      isDown = true;
+      isDragging = false;
+      slider.classList.add("dragging");
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener("mouseleave", () => {
+      isDown = false;
+      slider.classList.remove("dragging");
+    });
+
+    slider.addEventListener("mouseup", () => {
+      isDown = false;
+      slider.classList.remove("dragging");
+      setTimeout(() => { isDragging = false; }, 50);
+    });
+
+    slider.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.6; // Multiplicador de velocidad de arrastre
+      if (Math.abs(walk) > 5) {
+        isDragging = true;
+      }
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // Prevenir click accidental si se arrastró
+    slider.addEventListener("click", (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
   }
 
   function initHeroCarousel() {
@@ -458,6 +633,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
         return price <= 350;
       });
+    } else if (currentCategory === "delineadores") {
+      filtered = filtered.filter(p => {
+        const n = (p.nombre || "").toLowerCase();
+        const d = (p.descripcion || "").toLowerCase();
+        return n.includes("delineador") || d.includes("delineador");
+      });
+    } else if (currentCategory === "pestanas") {
+      filtered = filtered.filter(p => {
+        const n = (p.nombre || "").toLowerCase();
+        const d = (p.descripcion || "").toLowerCase();
+        return n.includes("pestañ") || n.includes("pestan") || n.includes("máscara") || n.includes("mascara") || d.includes("pestañ") || d.includes("pestan");
+      });
+    } else if (currentCategory === "infaltables") {
+      filtered = filtered.filter(p => {
+        const b = (p.marca || "").toLowerCase();
+        return b === "betterware";
+      });
     } else if (currentCategory && currentCategory !== "all") {
       const catConfig = GLOBAL_CATEGORIES.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
       if (catConfig) {
@@ -599,6 +791,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         titleEl.textContent = "Regalos < $200";
       } else if (catId === "gift_350") {
         titleEl.textContent = "Regalos < $350";
+      } else if (catId === "delineadores") {
+        titleEl.textContent = "Delineadores";
+      } else if (catId === "pestanas") {
+        titleEl.textContent = "Máscaras de Pestañas";
+      } else if (catId === "infaltables") {
+        titleEl.textContent = "Infaltables Betterware";
       } else if (catId === "all") {
         titleEl.textContent = (currentBrand && currentBrand !== "all") ? `Catálogo ${BRAND_LABELS[currentBrand] || currentBrand}` : "Todo el Catálogo";
       } else {
