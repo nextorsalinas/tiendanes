@@ -32,9 +32,9 @@
   --nestt-dark: #0f172a;           /* Slate 900 - texto nítido y legible */
   --nestt-gray-700: #334155;       /* Slate 700 */
   --nestt-gray-500: #64748b;       /* Slate 500 */
-  --nestt-gray-300: #bae6fd;       /* Sky 200 */
-  --nestt-bg: #0284c7;             /* Azul Cielo igual al Header */
-  --nestt-bg-gradient: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  --nestt-gray-300: #e2e8f0;       /* Slate 200 */
+  --nestt-bg: #f0f9ff;             /* Sky 50 - Azul nube ultra suave y luminoso */
+  --nestt-bg-gradient: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%);
   --nestt-white: #ffffff;
 
   /* Action Colors */
@@ -1939,14 +1939,14 @@ body {
 
 .store-footer {
   background: transparent;
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: #64748b !important;
 }
 
 .store-footer .text-secondary {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: #64748b !important;
 }
 
 .store-footer .border-top {
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
 }
 
