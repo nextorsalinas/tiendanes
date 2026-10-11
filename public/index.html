@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css?v=20261011_3">
+  <link rel="stylesheet" href="css/custom.css?v=20261011_4">
 </head>
 <body>
 
@@ -188,13 +188,13 @@
       </div>
 
       <!-- Section Header Minimalista -->
-      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-white border-opacity-25">
         <div>
-          <h4 class="fw-bold text-dark m-0" id="brand-categories-title" style="letter-spacing: -0.3px; font-size: 1.25rem;">Compra por categoría</h4>
-          <span class="text-muted small" id="brand-categories-subtitle" style="font-size: 0.8rem;">Descubre nuestras colecciones en Belleza y Hogar</span>
+          <h4 class="fw-bold text-white m-0" id="brand-categories-title" style="letter-spacing: -0.3px; font-size: 1.25rem;">Compra por categoría</h4>
+          <span class="text-white-50 small" id="brand-categories-subtitle" style="font-size: 0.8rem;">Descubre nuestras colecciones en Belleza y Hogar</span>
         </div>
         <div>
-          <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0 small fw-semibold" id="btn-view-all-products" onclick="window.viewAllProducts()">
+          <button type="button" class="btn btn-sm btn-link text-decoration-none text-white p-0 small fw-semibold" id="btn-view-all-products" onclick="window.viewAllProducts()">
             Ver todo <i class="bi bi-arrow-right ms-1"></i>
           </button>
         </div>
@@ -207,37 +207,9 @@
 
       <!-- Explorar por Marca Oficial -->
       <div class="brand-nav-section mb-4 text-center">
-        <span class="text-muted small fw-bold text-uppercase d-block mb-2" style="font-size: 0.72rem; letter-spacing: 0.6px;">O explora por marca oficial</span>
+        <span class="text-white-50 small fw-bold text-uppercase d-block mb-2" style="font-size: 0.72rem; letter-spacing: 0.6px;">O explora por marca oficial</span>
         <div class="brand-scroll-container justify-content-center" id="brand-nav-container">
           <!-- Dynamic brand buttons rendered by app.js -->
-        </div>
-      </div>
-
-      <!-- Curated Banners: Regalos < $200 y < $350 -->
-      <div class="row g-2 g-md-3 mb-4">
-        <div class="col-12 col-md-6">
-          <div class="promo-gift-banner p-3 rounded-3 text-white d-flex align-items-center justify-content-between cursor-pointer" 
-               style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); cursor: pointer;"
-               onclick="window.selectCategoryDirect('gift_200')">
-            <div>
-              <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.62rem;">DETALLES ACCESIBLES</span>
-              <h5 class="fw-bold mb-0 text-white" style="font-size: 0.98rem;">Artículos por menos de $200</h5>
-              <p class="small text-white-50 m-0 mt-1" style="font-size: 0.75rem;">Productos seleccionados al mejor precio</p>
-            </div>
-            <i class="bi bi-gift display-6 opacity-75"></i>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="promo-gift-banner p-3 rounded-3 text-white d-flex align-items-center justify-content-between cursor-pointer" 
-               style="background: linear-gradient(135deg, #7928ca 0%, #5c18a0 100%); cursor: pointer;"
-               onclick="window.selectCategoryDirect('gift_350')">
-            <div>
-              <span class="badge bg-white text-dark rounded-pill fw-bold mb-1" style="font-size: 0.62rem;">FAVORITOS DE TEMPORADA</span>
-              <h5 class="fw-bold mb-0 text-white" style="font-size: 0.98rem;">Detalles selectos por menos de $350</h5>
-              <p class="small text-white-50 m-0 mt-1" style="font-size: 0.75rem;">Sets, fragancias y organizadores únicos</p>
-            </div>
-            <i class="bi bi-bag-heart display-6 opacity-75"></i>
-          </div>
         </div>
       </div>
     </section>
@@ -245,13 +217,13 @@
     <!-- VIEW 2: PRODUCTS CATALOG (When a category or brand is active) -->
     <section id="view-products-catalog" class="products-catalog-section d-none">
       <!-- Breadcrumb, Sort & Back to Categories Button -->
-      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom flex-wrap gap-2">
+      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-white border-opacity-25 flex-wrap gap-2">
         <div class="d-flex align-items-center gap-2">
-          <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-bold" id="btn-back-to-categories" onclick="window.backToCategories()">
+          <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3 py-1 fw-bold" id="btn-back-to-categories" onclick="window.backToCategories()">
             <i class="bi bi-arrow-left me-1"></i> Categorías
           </button>
-          <span class="text-muted">/</span>
-          <h5 class="fw-bold text-dark m-0" id="current-category-title" style="font-size: 1.05rem;">Catálogo</h5>
+          <span class="text-white-50">/</span>
+          <h5 class="fw-bold text-white m-0" id="current-category-title" style="font-size: 1.05rem;">Catálogo</h5>
         </div>
 
         <div class="d-flex align-items-center gap-2">
@@ -411,6 +383,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
   <script src="js/products-data.js?v=20261010_1"></script>
   <script src="js/firebase-config.js?v=20261010_1"></script>
-  <script src="js/app.js?v=20261011_2"></script>
+  <script src="js/app.js?v=20261011_3"></script>
 </body>
 </html>

@@ -32,8 +32,9 @@
   --nestt-dark: #0f172a;           /* Slate 900 - texto nítido y legible */
   --nestt-gray-700: #334155;       /* Slate 700 */
   --nestt-gray-500: #64748b;       /* Slate 500 */
-  --nestt-gray-300: #e2e8f0;       /* Slate 200 */
-  --nestt-bg: #f8fafc;             /* Slate 50 / limpio */
+  --nestt-gray-300: #bae6fd;       /* Sky 200 */
+  --nestt-bg: #0284c7;             /* Azul Cielo igual al Header */
+  --nestt-bg-gradient: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
   --nestt-white: #ffffff;
 
   /* Action Colors */
@@ -54,12 +55,15 @@
 body {
   font-family: var(--font-body);
   background-color: var(--nestt-bg);
+  background: var(--nestt-bg-gradient);
+  background-attachment: fixed;
   color: var(--nestt-dark);
   margin: 0;
   padding: 0;
   font-size: 0.88rem;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 /* --- Top Promo Bar (Azul Cielo con Contraste WCAG AA) --- */
@@ -1911,9 +1915,10 @@ body {
    TRUST BADGES & STORE FOOTER
    ========================================================================== */
 .trust-badges-section {
-  background: #fbf9fd;
-  border-color: #efeaf5 !important;
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25) !important;
   border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .trust-badge-card {
@@ -1924,15 +1929,24 @@ body {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--nestt-sky-soft);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee7f8;
+  border: 1px solid var(--nestt-sky-border);
 }
 
 .store-footer {
   background: transparent;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.store-footer .text-secondary {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.store-footer .border-top {
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 

@@ -512,10 +512,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Filter by category first to know which brands exist in this category
     let catProducts = allProducts.filter(p => p.activo !== false);
-    if (currentCategory === "gift_200") {
-      catProducts = catProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200));
-    } else if (currentCategory === "gift_350") {
-      catProducts = catProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350));
+    if (currentCategory === "delineadores") {
+      catProducts = catProducts.filter(p => {
+        const n = (p.nombre || "").toLowerCase();
+        const d = (p.descripcion || "").toLowerCase();
+        return n.includes("delineador") || d.includes("delineador");
+      });
+    } else if (currentCategory === "pestanas") {
+      catProducts = catProducts.filter(p => {
+        const n = (p.nombre || "").toLowerCase();
+        const d = (p.descripcion || "").toLowerCase();
+        return n.includes("pestañ") || n.includes("pestan") || n.includes("máscara") || n.includes("mascara") || d.includes("pestañ") || d.includes("pestan");
+      });
+    } else if (currentCategory === "infaltables") {
+      catProducts = catProducts.filter(p => (p.marca || "").toLowerCase() === "betterware");
     } else if (currentCategory && currentCategory !== "all") {
       const catConfig = GLOBAL_CATEGORIES.find(c => c.id.toLowerCase() === currentCategory.toLowerCase());
       if (catConfig) {
@@ -582,8 +592,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const items = [
       { id: "all", label: "✨ Todo el Catálogo", count: activeProducts.length },
-      { id: "gift_200", label: "🎁 Regalos < $200", count: activeProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 200)).length },
-      { id: "gift_350", label: "🎀 Regalos < $350", count: activeProducts.filter(p => ((p.precio_oferta && p.precio_oferta < p.precio_regular ? p.precio_oferta : p.precio_regular) <= 350)).length },
       ...GLOBAL_CATEGORIES.map(cat => ({
         id: cat.id,
         label: cat.name,
@@ -596,7 +604,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       return `
         <button type="button" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between py-3 px-4 ${isSelected ? 'active-offcanvas-cat' : ''}" data-category="${cat.id}">
           <span class="d-flex align-items-center gap-2">
-            ${cat.id.startsWith('gift_') ? '<span class="badge bg-warning text-dark me-1" style="font-size:0.65rem;">PROMO</span>' : ''}
             ${cat.label}
           </span>
           <span class="badge rounded-pill ${isSelected ? 'bg-primary text-white' : 'bg-light text-muted border'}">${cat.count}</span>
@@ -623,17 +630,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let filtered = allProducts.filter(p => p.activo !== false);
 
     // 1. Filtro por Categoría Global
-    if (currentCategory === "gift_200") {
-      filtered = filtered.filter(p => {
-        const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
-        return price <= 200;
-      });
-    } else if (currentCategory === "gift_350") {
-      filtered = filtered.filter(p => {
-        const price = (p.precio_oferta && p.precio_oferta < p.precio_regular) ? p.precio_oferta : p.precio_regular;
-        return price <= 350;
-      });
-    } else if (currentCategory === "delineadores") {
+    if (currentCategory === "delineadores") {
       filtered = filtered.filter(p => {
         const n = (p.nombre || "").toLowerCase();
         const d = (p.descripcion || "").toLowerCase();
@@ -787,11 +784,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const titleEl = document.getElementById("current-category-title");
 
     if (titleEl) {
-      if (catId === "gift_200") {
-        titleEl.textContent = "Regalos < $200";
-      } else if (catId === "gift_350") {
-        titleEl.textContent = "Regalos < $350";
-      } else if (catId === "delineadores") {
+      if (catId === "delineadores") {
         titleEl.textContent = "Delineadores";
       } else if (catId === "pestanas") {
         titleEl.textContent = "Máscaras de Pestañas";
