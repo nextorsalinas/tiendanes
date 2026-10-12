@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     renderBrands();
-    renderCategoriesShowcase();
+    renderFeaturedProducts();
     renderCircularCategories();
     renderCategories();
     initCart();
@@ -464,45 +464,66 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Render Visual Categories Showcase (Categorías Globales con Fotos y Hover Swap)
-  function renderCategoriesShowcase() {
-    const grid = document.getElementById("categories-visual-grid");
-    const titleEl = document.getElementById("brand-categories-title");
-    const subtitleEl = document.getElementById("brand-categories-subtitle");
+  // Render Tira Horizontal de Cards Verticales Destacadas (3 de cada marca alternadas y deslizables)
+  function renderFeaturedProducts() {
+    const container = document.getElementById("featured-products-scroll-container");
+    if (!container) return;
 
-    if (titleEl) {
-      titleEl.textContent = "Compra por categoría";
+    const brands = ["betterware", "esika", "cyzone", "lbel"];
+    const productsByBrand = {};
+    brands.forEach(b => {
+      productsByBrand[b] = allProducts.filter(p => p.activo !== false && (p.marca || "").toLowerCase() === b);
+    });
+
+    // Tomar 3 productos representativos de cada marca
+    const selectedByBrand = {};
+    brands.forEach(b => {
+      selectedByBrand[b] = productsByBrand[b].slice(0, 3);
+    });
+
+    // Alternar 1 de cada marca hasta completar (Betterware, Ésika, Cyzone, L'Bel...)
+    const alternating = [];
+    for (let i = 0; i < 3; i++) {
+      brands.forEach(b => {
+        if (selectedByBrand[b] && selectedByBrand[b][i]) {
+          alternating.push(selectedByBrand[b][i]);
+        }
+      });
     }
-    if (subtitleEl) {
-      subtitleEl.textContent = "Descubre nuestras colecciones en Belleza y Hogar";
-    }
 
-    if (!grid) return;
-
-    preloadCategoryHoverImages();
-
-    grid.innerHTML = GLOBAL_CATEGORIES.map(cat => {
-      const matching = allProducts.filter(p => p.activo !== false && cat.match(p));
-      const count = matching.length;
-      if (count === 0) return "";
-
-      const hasHover = !!cat.hoverImage;
+    container.innerHTML = alternating.map(p => {
+      const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
+      const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
+      const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
+      const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
+      const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
+      const brandKey = (p.marca || "betterware").toLowerCase();
+      const brandLabel = BRAND_LABELS[brandKey] || formatBrandName(p.marca);
 
       return `
-        <div class="col">
-          <div class="category-visual-card ${hasHover ? 'has-hover-img' : ''}" onclick="window.selectCategoryDirect('${cat.id}')" title="Comprar ${cat.name}">
-            <div class="category-visual-img-wrap">
-              <img src="${cat.image}" alt="${cat.name}" class="cat-img-main" loading="lazy">
-              ${hasHover ? `<img src="${cat.hoverImage}" alt="${cat.name}" class="cat-img-hover" loading="lazy">` : ''}
-            </div>
-            <div class="category-visual-body">
-              <h6 class="category-visual-title">${cat.name}</h6>
-              <span class="category-product-count">${count} producto${count === 1 ? '' : 's'}</span>
-            </div>
+        <a href="${productUrl}" class="featured-card-vertical" title="${p.nombre}">
+          <div class="card-img-box">
+            <span class="brand-badge ${brandKey}">${brandLabel}</span>
+            <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
           </div>
-        </div>
+          <div class="card-info-box">
+            <span class="product-title">${p.nombre}</span>
+            <div class="product-price-row">
+              <span class="current-price">$${currentPrice.toFixed(0)}</span>
+              ${hasDiscount ? `
+                <span class="old-price">$${p.precio_regular.toFixed(0)}</span>
+                <span class="discount-tag">${discountPercent}% OFF</span>
+              ` : ''}
+            </div>
+            <span class="shipping-text">
+              <i class="bi bi-truck"></i> Envío gratis
+            </span>
+          </div>
+        </a>
       `;
     }).join("");
+
+    initCircularDragScroll(container);
   }
 
   // Render Brand Filter Chips inside Category Catalog View
@@ -846,7 +867,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     syncBottomNavActive("bnav-home");
     renderBrands();
-    renderCategoriesShowcase();
+    renderFeaturedProducts();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

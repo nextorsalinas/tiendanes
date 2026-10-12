@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
   <!-- Custom Design Tokens -->
-  <link rel="stylesheet" href="css/custom.css?v=20261011_5">
+  <link rel="stylesheet" href="css/custom.css?v=20261012_1">
 </head>
 <body>
 
@@ -187,22 +187,23 @@
         </div>
       </div>
 
-      <!-- Section Header Minimalista -->
-      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
-        <div>
-          <h4 class="fw-bold text-dark m-0" id="brand-categories-title" style="letter-spacing: -0.3px; font-size: 1.25rem;">Compra por categoría</h4>
-          <span class="text-muted small" id="brand-categories-subtitle" style="font-size: 0.8rem;">Descubre nuestras colecciones en Belleza y Hogar</span>
+      <!-- Tira Horizontal Deslizable de Cards Verticales Destacadas (Estilo Mercado Libre) -->
+      <div class="featured-products-scroll-wrapper mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+          <div>
+            <h4 class="fw-bold text-dark m-0" style="letter-spacing: -0.3px; font-size: 1.25rem;">Destacados de temporada</h4>
+            <span class="text-muted small" style="font-size: 0.8rem;">Favoritos oficiales de nuestras marcas</span>
+          </div>
+          <div>
+            <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0 small fw-semibold" onclick="window.viewAllProducts()">
+              Ver todo <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
         </div>
-        <div>
-          <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0 small fw-semibold" id="btn-view-all-products" onclick="window.viewAllProducts()">
-            Ver todo <i class="bi bi-arrow-right ms-1"></i>
-          </button>
-        </div>
-      </div>
 
-      <!-- Visual Categories Grid (3 columnas en desktop, 2 en móvil) -->
-      <div class="row g-2 g-md-3 row-cols-2 row-cols-md-3 row-cols-lg-3 mb-4" id="categories-visual-grid">
-        <!-- Rendered dynamically by app.js with user's category images and hover swap -->
+        <div class="featured-products-scroll" id="featured-products-scroll-container">
+          <!-- Rendered dynamically by app.js: 3 cards alternadas por marca -->
+        </div>
       </div>
 
       <!-- Explorar por Marca Oficial -->
@@ -383,6 +384,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
   <script src="js/products-data.js?v=20261010_1"></script>
   <script src="js/firebase-config.js?v=20261010_1"></script>
-  <script src="js/app.js?v=20261011_3"></script>
+  <script src="js/app.js?v=20261012_1"></script>
 </body>
 </html>
