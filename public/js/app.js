@@ -527,20 +527,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     initCircularDragScroll(container);
   }
 
-  // Render Grupo de 5 Cards Horizontales (Estilo Mercado Libre "También puede interesarte")
+  // Render Grupo de 10 Cards Horizontales (Estilo Mercado Libre "También puede interesarte")
   function renderHorizontalProducts() {
     const container = document.getElementById("horizontal-products-container");
     if (!container) return;
 
-    // Seleccionar 5 productos atractivos de distintas marcas y categorías
+    // Seleccionar 10 productos atractivos de distintas marcas y categorías
     const available = allProducts.filter(p => p.activo !== false);
     
     // Priorizar productos con oferta o fotos de alta calidad
     const withOffer = available.filter(p => p.precio_oferta && p.precio_oferta < p.precio_regular);
     const withoutOffer = available.filter(p => !p.precio_oferta || p.precio_oferta >= p.precio_regular);
     
-    // Tomar 5 productos variados
-    const selected = [...withOffer, ...withoutOffer].slice(0, 5);
+    // Tomar 10 productos variados
+    const selected = [...withOffer, ...withoutOffer].slice(0, 10);
 
     container.innerHTML = selected.map(p => {
       const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
@@ -573,7 +573,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="hcard-shipping">
               <i class="bi bi-truck text-success"></i>
               <span>Envío gratis</span>
-              <span class="badge-full ms-1">⚡ FULL</span>
             </div>
           </div>
         </a>
