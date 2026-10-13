@@ -217,6 +217,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderBrands();
     renderFeaturedProducts();
+    renderHorizontalProducts();
     renderCircularCategories();
     renderCategories();
     initCart();
@@ -524,6 +525,60 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
 
     initCircularDragScroll(container);
+  }
+
+  // Render Grupo de 5 Cards Horizontales (Estilo Mercado Libre "También puede interesarte")
+  function renderHorizontalProducts() {
+    const container = document.getElementById("horizontal-products-container");
+    if (!container) return;
+
+    // Seleccionar 5 productos atractivos de distintas marcas y categorías
+    const available = allProducts.filter(p => p.activo !== false);
+    
+    // Priorizar productos con oferta o fotos de alta calidad
+    const withOffer = available.filter(p => p.precio_oferta && p.precio_oferta < p.precio_regular);
+    const withoutOffer = available.filter(p => !p.precio_oferta || p.precio_oferta >= p.precio_regular);
+    
+    // Tomar 5 productos variados
+    const selected = [...withOffer, ...withoutOffer].slice(0, 5);
+
+    container.innerHTML = selected.map(p => {
+      const hasDiscount = p.precio_oferta && p.precio_oferta < p.precio_regular;
+      const currentPrice = hasDiscount ? p.precio_oferta : p.precio_regular;
+      const discountPercent = hasDiscount ? Math.round(((p.precio_regular - p.precio_oferta) / p.precio_regular) * 100) : 0;
+      const mainImg = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/400?text=Sin+Imagen";
+      const productUrl = `producto.html?id=${encodeURIComponent(p.id)}`;
+      const brandKey = (p.marca || "betterware").toLowerCase();
+      const brandLabel = BRAND_LABELS[brandKey] || formatBrandName(p.marca);
+
+      return `
+        <a href="${productUrl}" class="product-card-horizontal" title="${p.nombre}">
+          <div class="hcard-img-box">
+            <img src="${mainImg}" alt="${p.nombre}" loading="lazy">
+          </div>
+          <div class="hcard-content">
+            <div class="d-flex align-items-center justify-content-between mb-1">
+              <span class="hcard-brand-tag">${brandLabel}</span>
+              ${hasDiscount ? `
+                <div>
+                  <span class="hcard-discount-badge">${discountPercent}% OFF</span>
+                  <span class="hcard-old-price">$${p.precio_regular.toFixed(0)}</span>
+                </div>
+              ` : ''}
+            </div>
+            <h6 class="hcard-title m-0">${p.nombre}</h6>
+            <div class="hcard-price-main">
+              <span class="price-currency">$</span>${currentPrice.toFixed(0)}
+            </div>
+            <div class="hcard-shipping">
+              <i class="bi bi-truck text-success"></i>
+              <span>Envío gratis</span>
+              <span class="badge-full ms-1">⚡ FULL</span>
+            </div>
+          </div>
+        </a>
+      `;
+    }).join("");
   }
 
   // Render Brand Filter Chips inside Category Catalog View
@@ -868,6 +923,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     syncBottomNavActive("bnav-home");
     renderBrands();
     renderFeaturedProducts();
+    renderHorizontalProducts();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
